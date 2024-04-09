@@ -1,0 +1,1487 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Mercury 3.9.3\n"
+"POT-Creation-Date: 2023-03-14 12:23+0100\n"
+"PO-Revision-Date: 2019-02-02 18:11+0200\n"
+"Last-Translator: \n"
+"Language-Team: Space-Themes.com <space.themes.com@gmail.com>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_x;esc_html__;esc_html_e;_ex;_n;_nx;esc_attr__;"
+"esc_attr_e;esc_html;esc_attr\n"
+"X-Poedit-SearchPath-0: 404.php\n"
+"X-Poedit-SearchPath-1: archive.php\n"
+"X-Poedit-SearchPath-2: archive-bonus.php\n"
+"X-Poedit-SearchPath-3: archive-casino.php\n"
+"X-Poedit-SearchPath-4: archive-game.php\n"
+"X-Poedit-SearchPath-5: category.php\n"
+"X-Poedit-SearchPath-6: comments.php\n"
+"X-Poedit-SearchPath-7: footer.php\n"
+"X-Poedit-SearchPath-8: functions.php\n"
+"X-Poedit-SearchPath-9: header.php\n"
+"X-Poedit-SearchPath-10: index.php\n"
+"X-Poedit-SearchPath-11: page.php\n"
+"X-Poedit-SearchPath-12: page-no-sidebar.php\n"
+"X-Poedit-SearchPath-13: search.php\n"
+"X-Poedit-SearchPath-14: searchform.php\n"
+"X-Poedit-SearchPath-15: sidebar.php\n"
+"X-Poedit-SearchPath-16: single.php\n"
+"X-Poedit-SearchPath-17: taxonomy-bonus-category.php\n"
+"X-Poedit-SearchPath-18: taxonomy-game-category.php\n"
+"X-Poedit-SearchPath-19: aces\n"
+"X-Poedit-SearchPath-20: theme-parts\n"
+"X-Poedit-SearchPath-21: theme-parts/mobile-menu.php\n"
+"X-Poedit-SearchPath-22: theme-parts/related-posts.php\n"
+"X-Poedit-SearchPath-23: theme-parts/social-icons.php\n"
+"X-Poedit-SearchPath-24: theme-parts/archive\n"
+"X-Poedit-SearchPath-25: theme-parts/archive/loop.php\n"
+"X-Poedit-SearchPath-26: theme-parts/archive/loop-search.php\n"
+"X-Poedit-SearchPath-27: theme-parts/single\n"
+"X-Poedit-SearchPath-28: theme-parts/single/style-1.php\n"
+"X-Poedit-SearchPath-29: theme-parts/single/style-2.php\n"
+"X-Poedit-SearchPath-30: theme-parts/single/style-3.php\n"
+"X-Poedit-SearchPath-31: theme-parts/single/style-4.php\n"
+"X-Poedit-SearchPath-32: aces/related\n"
+"X-Poedit-SearchPath-33: aces/related/bonus-item-style-1.php\n"
+"X-Poedit-SearchPath-34: aces/related/game-item-style-1.php\n"
+"X-Poedit-SearchPath-35: aces/bonus-item-style-1.php\n"
+"X-Poedit-SearchPath-36: aces/casino-item-style-1.php\n"
+"X-Poedit-SearchPath-37: aces/casino-item-style-2.php\n"
+"X-Poedit-SearchPath-38: aces/casino-item-style-3.php\n"
+"X-Poedit-SearchPath-39: aces/casino-item-style-4.php\n"
+"X-Poedit-SearchPath-40: aces/casino-item-style-5.php\n"
+"X-Poedit-SearchPath-41: aces/game-item-style-1.php\n"
+"X-Poedit-SearchPath-42: theme-parts/header\n"
+"X-Poedit-SearchPath-43: theme-parts/header/style-1.php\n"
+"X-Poedit-SearchPath-44: theme-parts/header/style-2.php\n"
+"X-Poedit-SearchPath-45: page-bonus-archive-style-1.php\n"
+"X-Poedit-SearchPath-46: page-casino-archive-style-1.php\n"
+"X-Poedit-SearchPath-47: page-casino-archive-style-2.php\n"
+"X-Poedit-SearchPath-48: page-casino-archive-style-3.php\n"
+"X-Poedit-SearchPath-49: page-casino-archive-style-4.php\n"
+"X-Poedit-SearchPath-50: page-casino-archive-style-5.php\n"
+"X-Poedit-SearchPath-51: page-game-archive-style-1.php\n"
+"X-Poedit-SearchPath-52: taxonomy-casino-category.php\n"
+"X-Poedit-SearchPath-53: aces/single-casino\n"
+"X-Poedit-SearchPath-54: aces/single-casino/style-1.php\n"
+"X-Poedit-SearchPath-55: aces/single-casino/style-2.php\n"
+"X-Poedit-SearchPath-56: page-full-width.php\n"
+"X-Poedit-SearchPath-57: taxonomy-vendor.php\n"
+"X-Poedit-SearchPath-58: theme-parts/author-info.php\n"
+"X-Poedit-SearchPath-59: theme-parts/breadcrumbs.php\n"
+"X-Poedit-SearchPath-60: aces/single-casino/style-1-without-sidebar.php\n"
+"X-Poedit-SearchPath-61: aces/single-casino/style-2-without-sidebar.php\n"
+"X-Poedit-SearchPath-62: taxonomy-restricted-country.php\n"
+"X-Poedit-SearchPath-63: page-without-title.php\n"
+"X-Poedit-SearchPath-64: page-blog.php\n"
+"X-Poedit-SearchPath-65: page-casino-archive-style-6.php\n"
+"X-Poedit-SearchPath-66: page-casino-archive-style-7.php\n"
+"X-Poedit-SearchPath-67: page-game-archive-style-2.php\n"
+"X-Poedit-SearchPath-68: page-without-title.php\n"
+"X-Poedit-SearchPath-69: aces/casino-item-style-6.php\n"
+"X-Poedit-SearchPath-70: aces/casino-item-style-7.php\n"
+"X-Poedit-SearchPath-71: aces/game-item-style-2.php\n"
+"X-Poedit-SearchPath-72: aces/single-casino/style-3.php\n"
+"X-Poedit-SearchPath-73: aces/single-casino/style-3-without-sidebar.php\n"
+"X-Poedit-SearchPath-74: aces/single-game\n"
+"X-Poedit-SearchPath-75: aces/single-game/style-1.php\n"
+"X-Poedit-SearchPath-76: aces/single-game/style-1-without-sidebar.php\n"
+"X-Poedit-SearchPath-77: aces/single-game/style-2.php\n"
+"X-Poedit-SearchPath-78: aces/single-game/style-2-without-sidebar.php\n"
+"X-Poedit-SearchPath-79: aces/single-game/style-3.php\n"
+"X-Poedit-SearchPath-80: aces/single-game/style-3-without-sidebar.php\n"
+"X-Poedit-SearchPath-81: page-casino-archive-style-8.php\n"
+"X-Poedit-SearchPath-82: aces/casino-item-style-8.php\n"
+"X-Poedit-SearchPath-83: theme-functions\n"
+"X-Poedit-SearchPath-84: theme-functions/class-tgm-plugin-activation.php\n"
+"X-Poedit-SearchPath-85: theme-functions/custom-comments.php\n"
+"X-Poedit-SearchPath-86: theme-functions/customize.php\n"
+"X-Poedit-SearchPath-87: theme-functions/gutenberg.php\n"
+"X-Poedit-SearchPath-88: theme-functions/index.php\n"
+"X-Poedit-SearchPath-89: aces/single-bonus\n"
+"X-Poedit-SearchPath-90: aces/single-bonus/style-1.php\n"
+"X-Poedit-SearchPath-91: taxonomy.php\n"
+"X-Poedit-SearchPath-92: page-blank-template.php\n"
+
+#: 404.php:8
+msgid "Error 404"
+msgstr ""
+
+#: 404.php:28
+msgid "Page not Found"
+msgstr ""
+
+#: 404.php:29
+msgid "Nothing found."
+msgstr ""
+
+#: 404.php:29
+msgid "Go back to home page"
+msgstr ""
+
+#: aces/bonus-item-style-1.php:38 aces/related/bonus-item-style-1.php:38
+#: aces/single-bonus/style-1.php:51
+msgid "Get Bonus"
+msgstr ""
+
+#: aces/bonus-item-style-1.php:45 aces/casino-item-style-1.php:51
+#: aces/casino-item-style-2.php:51 aces/casino-item-style-4.php:52
+#: aces/casino-item-style-5.php:41 aces/casino-item-style-7.php:53
+#: aces/casino-item-style-8.php:53 aces/casino-item-style-9.php:52
+#: aces/game-item-style-1.php:49 aces/game-item-style-2.php:66
+#: aces/related/bonus-item-style-1.php:45
+#: aces/related/game-item-style-1.php:49 aces/single-bonus/style-1.php:58
+#: aces/single-casino/style-1-without-sidebar.php:63
+#: aces/single-casino/style-1.php:63
+#: aces/single-casino/style-2-without-sidebar.php:63
+#: aces/single-casino/style-2.php:63
+#: aces/single-casino/style-3-without-sidebar.php:63
+#: aces/single-casino/style-3.php:63
+#: aces/single-game/style-1-without-sidebar.php:48
+#: aces/single-game/style-1.php:48
+#: aces/single-game/style-2-without-sidebar.php:55
+#: aces/single-game/style-2.php:55
+#: aces/single-game/style-3-without-sidebar.php:55
+#: aces/single-game/style-3.php:55
+msgid "T&Cs Apply"
+msgstr ""
+
+#: aces/bonus-item-style-1.php:82 aces/related/bonus-item-style-1.php:82
+#: aces/single-bonus/style-1.php:114
+msgid "Bonus Code"
+msgstr ""
+
+#: aces/bonus-item-style-1.php:88 aces/related/bonus-item-style-1.php:88
+#: aces/single-bonus/style-1.php:121
+msgid "Valid Until:"
+msgstr ""
+
+#: aces/casino-item-style-1.php:38 aces/casino-item-style-2.php:38
+#: aces/casino-item-style-4.php:39 aces/casino-item-style-5.php:50
+#: aces/casino-item-style-6.php:41 aces/casino-item-style-7.php:46
+#: aces/casino-item-style-8.php:46 aces/casino-item-style-9.php:39
+#: aces/game-item-style-1.php:36 aces/game-item-style-2.php:37
+#: aces/related/game-item-style-1.php:36
+#: aces/single-casino/style-1-without-sidebar.php:56
+#: aces/single-casino/style-1.php:56
+#: aces/single-casino/style-2-without-sidebar.php:56
+#: aces/single-casino/style-2.php:56
+#: aces/single-casino/style-3-without-sidebar.php:56
+#: aces/single-casino/style-3.php:56
+#: aces/single-game/style-1-without-sidebar.php:41
+#: aces/single-game/style-1.php:41
+#: aces/single-game/style-2-without-sidebar.php:42
+#: aces/single-game/style-2.php:42
+#: aces/single-game/style-3-without-sidebar.php:42
+#: aces/single-game/style-3.php:42
+msgid "Play Now"
+msgstr ""
+
+#: aces/casino-item-style-4.php:61 aces/casino-item-style-5.php:60
+#: aces/casino-item-style-6.php:51 aces/casino-item-style-7.php:62
+#: aces/casino-item-style-8.php:62 aces/casino-item-style-9.php:61
+#: aces/game-item-style-2.php:53
+msgid "Read Review"
+msgstr ""
+
+#: aces/casino-item-style-4.php:120 aces/casino-item-style-9.php:127
+msgid "game"
+msgstr ""
+
+#: aces/casino-item-style-4.php:120 aces/casino-item-style-9.php:127
+msgid "games"
+msgstr ""
+
+#: aces/single-bonus/style-1.php:200
+#: aces/single-casino/style-1-without-sidebar.php:291
+#: aces/single-casino/style-1.php:291
+#: aces/single-casino/style-2-without-sidebar.php:268
+#: aces/single-casino/style-2.php:268
+#: aces/single-casino/style-3-without-sidebar.php:304
+#: aces/single-casino/style-3.php:304
+#: aces/single-game/style-1-without-sidebar.php:188
+#: aces/single-game/style-1.php:187
+#: aces/single-game/style-2-without-sidebar.php:231
+#: aces/single-game/style-2.php:231
+#: aces/single-game/style-3-without-sidebar.php:269
+#: aces/single-game/style-3.php:269 page-blank-template.php:34
+#: page-blog.php:101 page-bonus-archive-style-1.php:139
+#: page-casino-archive-style-1.php:139 page-casino-archive-style-2.php:139
+#: page-casino-archive-style-3.php:139 page-casino-archive-style-4.php:142
+#: page-casino-archive-style-5.php:139 page-casino-archive-style-6.php:139
+#: page-casino-archive-style-7.php:142 page-casino-archive-style-8.php:142
+#: page-full-width.php:43 page-game-archive-style-1.php:139
+#: page-game-archive-style-2.php:139 page-no-sidebar.php:42
+#: page-without-title.php:24 page.php:38
+#: theme-parts/single-empty-sidebar.php:15 theme-parts/single-empty.php:15
+#: theme-parts/single/style-1.php:55 theme-parts/single/style-2.php:55
+#: theme-parts/single/style-3.php:58 theme-parts/single/style-4.php:58
+msgid "Pages:"
+msgstr ""
+
+#: aces/single-bonus/style-1.php:259
+#: aces/single-game/style-1-without-sidebar.php:261
+#: aces/single-game/style-1.php:260
+#: aces/single-game/style-2-without-sidebar.php:291
+#: aces/single-game/style-2.php:291
+#: aces/single-game/style-3-without-sidebar.php:329
+#: aces/single-game/style-3.php:329
+msgid "More "
+msgstr ""
+
+#: aces/single-bonus/style-1.php:263
+#: aces/single-casino/style-1-without-sidebar.php:924
+#: aces/single-casino/style-1.php:924
+#: aces/single-casino/style-2-without-sidebar.php:878
+#: aces/single-casino/style-2.php:878
+#: aces/single-casino/style-3-without-sidebar.php:914
+#: aces/single-casino/style-3.php:914 archive-bonus.php:10
+msgid "Bonuses"
+msgstr ""
+
+#: aces/single-casino/style-1-without-sidebar.php:310
+#: aces/single-casino/style-1.php:310
+#: aces/single-casino/style-2-without-sidebar.php:287
+#: aces/single-casino/style-2.php:287
+#: aces/single-casino/style-3-without-sidebar.php:323
+#: aces/single-casino/style-3.php:323
+msgid "Details"
+msgstr ""
+
+#: aces/single-casino/style-1-without-sidebar.php:323
+#: aces/single-casino/style-1.php:323
+#: aces/single-casino/style-2-without-sidebar.php:299
+#: aces/single-casino/style-2.php:299
+#: aces/single-casino/style-3-without-sidebar.php:335
+#: aces/single-casino/style-3.php:335
+msgid "Software"
+msgstr ""
+
+#: aces/single-casino/style-1-without-sidebar.php:355
+#: aces/single-casino/style-1.php:355
+#: aces/single-casino/style-2-without-sidebar.php:329
+#: aces/single-casino/style-2.php:329
+#: aces/single-casino/style-3-without-sidebar.php:365
+#: aces/single-casino/style-3.php:365
+msgid "Deposit Methods"
+msgstr ""
+
+#: aces/single-casino/style-1-without-sidebar.php:387
+#: aces/single-casino/style-1.php:387
+#: aces/single-casino/style-2-without-sidebar.php:359
+#: aces/single-casino/style-2.php:359
+#: aces/single-casino/style-3-without-sidebar.php:395
+#: aces/single-casino/style-3.php:395
+msgid "Withdrawal Methods"
+msgstr ""
+
+#: aces/single-casino/style-1-without-sidebar.php:419
+#: aces/single-casino/style-1.php:419
+#: aces/single-casino/style-2-without-sidebar.php:389
+#: aces/single-casino/style-2.php:389
+#: aces/single-casino/style-3-without-sidebar.php:425
+#: aces/single-casino/style-3.php:425
+msgid "Withdrawal Limits"
+msgstr ""
+
+#: aces/single-casino/style-1-without-sidebar.php:451
+#: aces/single-casino/style-1.php:451
+#: aces/single-casino/style-2-without-sidebar.php:419
+#: aces/single-casino/style-2.php:419
+#: aces/single-casino/style-3-without-sidebar.php:455
+#: aces/single-casino/style-3.php:455
+msgid "Restricted Countries"
+msgstr ""
+
+#: aces/single-casino/style-1-without-sidebar.php:483
+#: aces/single-casino/style-1.php:483
+#: aces/single-casino/style-2-without-sidebar.php:449
+#: aces/single-casino/style-2.php:449
+#: aces/single-casino/style-3-without-sidebar.php:485
+#: aces/single-casino/style-3.php:485
+msgid "Licences"
+msgstr ""
+
+#: aces/single-casino/style-1-without-sidebar.php:515
+#: aces/single-casino/style-1.php:515
+#: aces/single-casino/style-2-without-sidebar.php:479
+#: aces/single-casino/style-2.php:479
+#: aces/single-casino/style-3-without-sidebar.php:515
+#: aces/single-casino/style-3.php:515
+msgid "Languages"
+msgstr ""
+
+#: aces/single-casino/style-1-without-sidebar.php:547
+#: aces/single-casino/style-1.php:547
+#: aces/single-casino/style-2-without-sidebar.php:509
+#: aces/single-casino/style-2.php:509
+#: aces/single-casino/style-3-without-sidebar.php:545
+#: aces/single-casino/style-3.php:545
+msgid "Currencies"
+msgstr ""
+
+#: aces/single-casino/style-1-without-sidebar.php:579
+#: aces/single-casino/style-1.php:579
+#: aces/single-casino/style-2-without-sidebar.php:539
+#: aces/single-casino/style-2.php:539
+#: aces/single-casino/style-3-without-sidebar.php:575
+#: aces/single-casino/style-3.php:575
+msgid "Devices"
+msgstr ""
+
+#: aces/single-casino/style-1-without-sidebar.php:611
+#: aces/single-casino/style-1.php:611
+#: aces/single-casino/style-2-without-sidebar.php:569
+#: aces/single-casino/style-2.php:569
+#: aces/single-casino/style-3-without-sidebar.php:605
+#: aces/single-casino/style-3.php:605
+msgid "Owner"
+msgstr ""
+
+#: aces/single-casino/style-1-without-sidebar.php:645
+#: aces/single-casino/style-1.php:645
+#: aces/single-casino/style-2-without-sidebar.php:601
+#: aces/single-casino/style-2.php:601
+#: aces/single-casino/style-3-without-sidebar.php:637
+#: aces/single-casino/style-3.php:637
+msgid "Established"
+msgstr ""
+
+#: aces/single-casino/style-1-without-sidebar.php:702
+#: aces/single-casino/style-1.php:702
+#: aces/single-casino/style-2-without-sidebar.php:768
+#: aces/single-casino/style-2.php:768
+#: aces/single-casino/style-3-without-sidebar.php:804
+#: aces/single-casino/style-3.php:804
+msgid "Overall Rating"
+msgstr ""
+
+#: aces/single-casino/style-1-without-sidebar.php:725
+#: aces/single-casino/style-1.php:725
+#: aces/single-casino/style-2-without-sidebar.php:700
+#: aces/single-casino/style-2.php:700
+#: aces/single-casino/style-3-without-sidebar.php:736
+#: aces/single-casino/style-3.php:736
+msgid "Trust & Fairness"
+msgstr ""
+
+#: aces/single-casino/style-1-without-sidebar.php:750
+#: aces/single-casino/style-1.php:750
+#: aces/single-casino/style-2-without-sidebar.php:717
+#: aces/single-casino/style-2.php:717
+#: aces/single-casino/style-3-without-sidebar.php:753
+#: aces/single-casino/style-3.php:753
+msgid "Games & Software"
+msgstr ""
+
+#: aces/single-casino/style-1-without-sidebar.php:775
+#: aces/single-casino/style-1.php:775
+#: aces/single-casino/style-2-without-sidebar.php:734
+#: aces/single-casino/style-2.php:734
+#: aces/single-casino/style-3-without-sidebar.php:770
+#: aces/single-casino/style-3.php:770
+msgid "Bonuses & Promotions"
+msgstr ""
+
+#: aces/single-casino/style-1-without-sidebar.php:800
+#: aces/single-casino/style-1.php:800
+#: aces/single-casino/style-2-without-sidebar.php:751
+#: aces/single-casino/style-2.php:751
+#: aces/single-casino/style-3-without-sidebar.php:787
+#: aces/single-casino/style-3.php:787
+msgid "Customer Support"
+msgstr ""
+
+#: aces/single-casino/style-1-without-sidebar.php:867
+#: aces/single-casino/style-1.php:867
+#: aces/single-casino/style-2-without-sidebar.php:821
+#: aces/single-casino/style-2.php:821
+#: aces/single-casino/style-3-without-sidebar.php:857
+#: aces/single-casino/style-3.php:857
+#: aces/single-game/style-1-without-sidebar.php:265
+#: aces/single-game/style-1.php:264
+#: aces/single-game/style-2-without-sidebar.php:295
+#: aces/single-game/style-2.php:295
+#: aces/single-game/style-3-without-sidebar.php:333
+#: aces/single-game/style-3.php:333 archive-game.php:10
+msgid "Games"
+msgstr ""
+
+#: aces/single-game/style-1-without-sidebar.php:89
+#: aces/single-game/style-1.php:89
+#: aces/single-game/style-2-without-sidebar.php:102
+#: aces/single-game/style-2.php:102
+#: aces/single-game/style-3-without-sidebar.php:213
+#: aces/single-game/style-3.php:213 theme-parts/author-info.php:7
+msgid "by"
+msgstr ""
+
+#: archive-bonus.php:52 archive-casino.php:52 archive-game.php:52
+#: page-bonus-archive-style-1.php:52 page-casino-archive-style-1.php:52
+#: page-casino-archive-style-2.php:52 page-casino-archive-style-3.php:52
+#: page-casino-archive-style-4.php:52 page-casino-archive-style-5.php:52
+#: page-casino-archive-style-6.php:52 page-casino-archive-style-7.php:52
+#: page-casino-archive-style-8.php:52 page-game-archive-style-1.php:52
+#: page-game-archive-style-2.php:52 taxonomy-bonus-category.php:44
+#: taxonomy-casino-category.php:44 taxonomy-game-category.php:44
+#: theme-functions/customize.php:32
+msgid "All"
+msgstr ""
+
+#: archive-bonus.php:84 archive-casino.php:118 archive-game.php:94
+#: archive.php:40 category.php:40 comments.php:48 index.php:34
+#: page-blog.php:57 page-bonus-archive-style-1.php:93
+#: page-casino-archive-style-1.php:93 page-casino-archive-style-2.php:93
+#: page-casino-archive-style-3.php:93 page-casino-archive-style-4.php:96
+#: page-casino-archive-style-5.php:93 page-casino-archive-style-6.php:93
+#: page-casino-archive-style-7.php:96 page-casino-archive-style-8.php:96
+#: page-game-archive-style-1.php:93 page-game-archive-style-2.php:93
+#: search.php:44 taxonomy-bonus-category.php:86
+#: taxonomy-casino-category.php:128 taxonomy-game-category.php:96
+#: taxonomy-restricted-country.php:82 taxonomy-vendor.php:49 taxonomy.php:83
+msgid "&laquo;"
+msgstr ""
+
+#: archive-bonus.php:85 archive-casino.php:119 archive-game.php:95
+#: archive.php:41 category.php:41 comments.php:49 index.php:35
+#: page-blog.php:58 page-bonus-archive-style-1.php:94
+#: page-casino-archive-style-1.php:94 page-casino-archive-style-2.php:94
+#: page-casino-archive-style-3.php:94 page-casino-archive-style-4.php:97
+#: page-casino-archive-style-5.php:94 page-casino-archive-style-6.php:94
+#: page-casino-archive-style-7.php:97 page-casino-archive-style-8.php:97
+#: page-game-archive-style-1.php:94 page-game-archive-style-2.php:94
+#: search.php:45 taxonomy-bonus-category.php:87
+#: taxonomy-casino-category.php:129 taxonomy-game-category.php:97
+#: taxonomy-restricted-country.php:83 taxonomy-vendor.php:50 taxonomy.php:84
+msgid "&raquo;"
+msgstr ""
+
+#: archive-bonus.php:97 archive-casino.php:131 archive-game.php:107
+#: archive.php:53 category.php:53 index.php:47 page-blog.php:70
+#: page-bonus-archive-style-1.php:106 page-casino-archive-style-1.php:106
+#: page-casino-archive-style-2.php:106 page-casino-archive-style-3.php:106
+#: page-casino-archive-style-4.php:109 page-casino-archive-style-5.php:106
+#: page-casino-archive-style-6.php:106 page-casino-archive-style-7.php:109
+#: page-casino-archive-style-8.php:109 page-game-archive-style-1.php:106
+#: page-game-archive-style-2.php:106 search.php:57
+#: taxonomy-bonus-category.php:99 taxonomy-casino-category.php:141
+#: taxonomy-game-category.php:109 taxonomy-restricted-country.php:95
+#: taxonomy-vendor.php:62 taxonomy.php:96 theme-parts/related-posts.php:72
+msgid "Posts not found"
+msgstr ""
+
+#: archive-bonus.php:99 archive-casino.php:133 archive-game.php:109
+#: archive.php:55 category.php:55 page-bonus-archive-style-1.php:108
+#: page-casino-archive-style-1.php:108 page-casino-archive-style-2.php:108
+#: page-casino-archive-style-3.php:108 page-casino-archive-style-4.php:111
+#: page-casino-archive-style-5.php:108 page-casino-archive-style-6.php:108
+#: page-casino-archive-style-7.php:111 page-casino-archive-style-8.php:111
+#: page-game-archive-style-1.php:108 page-game-archive-style-2.php:108
+#: taxonomy-bonus-category.php:101 taxonomy-casino-category.php:143
+#: taxonomy-game-category.php:111 taxonomy-restricted-country.php:97
+#: taxonomy-vendor.php:64 taxonomy.php:98
+msgid "No posts has been found. Please return to the homepage."
+msgstr ""
+
+#: archive-casino.php:10
+msgid "Casinos"
+msgstr ""
+
+#: comments.php:17
+#, php-format
+msgid "One Reply to &ldquo;%s&rdquo;"
+msgstr ""
+
+#: comments.php:21
+#, php-format
+msgid "%1$s Reply to &ldquo;%2$s&rdquo;"
+msgstr ""
+
+#: comments.php:41
+msgid "Reply"
+msgstr ""
+
+#: comments.php:59
+msgid "Name*"
+msgstr ""
+
+#: comments.php:60
+msgid "Email*"
+msgstr ""
+
+#: comments.php:61 theme-parts/social-icons.php:39
+msgid "Website"
+msgstr ""
+
+#: comments.php:63
+msgid ""
+"Save my name, email, and website in this browser for the next time I "
+"comment."
+msgstr ""
+
+#: comments.php:65
+msgid "Comment*"
+msgstr ""
+
+#: footer.php:17 theme-parts/mobile-menu.php:24
+msgid "&copy; Copyright"
+msgstr ""
+
+#: footer.php:17 theme-parts/mobile-menu.php:24
+msgid "Powered by"
+msgstr ""
+
+#: footer.php:17 theme-parts/mobile-menu.php:24
+msgid "https://wordpress.org"
+msgstr ""
+
+#: footer.php:17 theme-parts/mobile-menu.php:24
+msgid "WordPress"
+msgstr ""
+
+#: footer.php:17 theme-parts/mobile-menu.php:24
+msgid "https://mercurytheme.com"
+msgstr ""
+
+#: footer.php:17
+msgid "Affiliate Marketing WordPress Theme. Reviews and Top Lists"
+msgstr ""
+
+#: footer.php:17 theme-functions/index.php:13 theme-functions/index.php:14
+#: theme-functions/index.php:28 theme-parts/mobile-menu.php:24
+msgid "Mercury Theme"
+msgstr ""
+
+#: footer.php:60
+msgid "Back to Top"
+msgstr ""
+
+#: functions.php:108
+msgid "Main Menu"
+msgstr ""
+
+#: functions.php:109
+msgid "Footer Menu"
+msgstr ""
+
+#: functions.php:110
+msgid "Top Bar Menu"
+msgstr ""
+
+#: functions.php:122
+msgid "Sidebar"
+msgstr ""
+
+#: functions.php:124
+msgid "Add widgets here so that it appears on the sidebar."
+msgstr ""
+
+#: functions.php:132
+msgid "Homepage Central Block (Old)"
+msgstr ""
+
+#: functions.php:134
+msgid "For widgets in the homepage central block."
+msgstr ""
+
+#: functions.php:142
+msgid "Homepage Right Sidebar (Old)"
+msgstr ""
+
+#: functions.php:144
+msgid "Add widgets here so that it appears on the homepage right sidebar."
+msgstr ""
+
+#: functions.php:152 theme-functions/customize.php:360
+msgid "Footer"
+msgstr ""
+
+#: functions.php:154
+msgid "For text and images only."
+msgstr ""
+
+#: index.php:8
+msgid "Recent Posts"
+msgstr ""
+
+#: index.php:49 page-blog.php:72
+msgid "No posts has been found."
+msgstr ""
+
+#: search.php:9
+#, php-format
+msgid "Search results for: %s"
+msgstr ""
+
+#: search.php:11
+msgid "Nothing found"
+msgstr ""
+
+#: search.php:59
+msgid "Nothing found. Please try another search query."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:327
+msgid "Install Required Plugins"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:328
+msgid "Install Plugins"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:330
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:332
+#, php-format
+msgid "Updating Plugin: %s"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:333
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:385
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:386
+#: theme-functions/class-tgm-plugin-activation.php:827
+#: theme-functions/class-tgm-plugin-activation.php:2533
+#: theme-functions/class-tgm-plugin-activation.php:3580
+msgid "Return to the Dashboard"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:387
+#: theme-functions/class-tgm-plugin-activation.php:3159
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:388
+#: theme-functions/class-tgm-plugin-activation.php:2952
+msgid "The following plugin was activated successfully:"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:390
+#, php-format
+msgid "No action taken. Plugin %1$s was already active."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:392
+#, php-format
+msgid ""
+"Plugin not activated. A higher version of %s is needed for this theme. "
+"Please update the plugin."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:394
+#, php-format
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:395
+msgid "Dismiss this notice"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:396
+msgid ""
+"There are one or more required or recommended plugins to install, update or "
+"activate."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:397
+msgid "Please contact the administrator of this site for help."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:522
+msgid "This plugin needs to be updated to be compatible with your theme."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:523
+msgid "Update Required"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:934
+msgid ""
+"The remote plugin package does not contain a folder with the desired slug "
+"and renaming did not work."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:934
+#: theme-functions/class-tgm-plugin-activation.php:937
+msgid ""
+"Please contact the plugin provider and ask them to package their plugin "
+"according to the WordPress guidelines."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:937
+msgid ""
+"The remote plugin package consists of more than one file, but the files are "
+"not packaged in a folder."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:1982
+#, php-format
+msgid "TGMPA v%s"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2273
+msgid "Required"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2276
+msgid "Recommended"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2292
+msgid "WordPress Repository"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2295
+msgid "External Source"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2298
+msgid "Pre-Packaged"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2315
+msgid "Not Installed"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2319
+msgid "Installed But Not Activated"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2321
+msgid "Active"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2327
+msgid "Required Update not Available"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2330
+msgid "Requires Update"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2333
+msgid "Update recommended"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2342
+#, php-format
+msgid "%1$s, %2$s"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2388
+#, php-format
+msgid "All <span class=\"count\">(%s)</span>"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2392
+#, php-format
+msgid "To Install <span class=\"count\">(%s)</span>"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2396
+#, php-format
+msgid "Update Available <span class=\"count\">(%s)</span>"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2400
+#, php-format
+msgid "To Activate <span class=\"count\">(%s)</span>"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2482
+msgid "unknown"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2490
+msgid "Installed version:"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2498
+msgid "Minimum required version:"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2510
+msgid "Available version:"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2533
+msgid "No plugins to install, update or activate."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2547
+msgid "Plugin"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2548
+msgid "Source"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2549
+msgid "Type"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2553
+msgid "Version"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2554
+msgid "Status"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2603
+#, php-format
+msgid "Install %2$s"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2608
+#, php-format
+msgid "Update %2$s"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2614
+#, php-format
+msgid "Activate %2$s"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2684
+msgid "Upgrade message from the plugin author:"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2717
+msgid "Install"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2723
+msgid "Update"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2726
+msgid "Activate"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2757
+msgid "No plugins were selected to be installed. No action taken."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2759
+msgid "No plugins were selected to be updated. No action taken."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2800
+msgid "No plugins are available to be installed at this time."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2802
+msgid "No plugins are available to be updated at this time."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2908
+msgid "No plugins were selected to be activated. No action taken."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:2934
+msgid "No plugins are available to be activated at this time."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:3158
+msgid "Plugin activation failed."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:3498
+#, php-format
+msgid "Updating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:3501
+#, php-format
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:3503
+#, php-format
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:3507
+msgid ""
+"The installation and activation process is starting. This process may take "
+"a while on some hosts, so please be patient."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:3509
+#, php-format
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:3510
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:3512
+#, php-format
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:3515
+msgid ""
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:3517
+#, php-format
+msgid "%1$s installed successfully."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:3518
+msgid "All installations have been completed."
+msgstr ""
+
+#: theme-functions/class-tgm-plugin-activation.php:3520
+#, php-format
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: theme-functions/custom-comments.php:31
+#, php-format
+msgid "%s says:"
+msgstr ""
+
+#: theme-functions/custom-comments.php:35
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: theme-functions/custom-comments.php:42
+#, php-format
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: theme-functions/custom-comments.php:47
+msgid "(Edit)"
+msgstr ""
+
+#: theme-functions/customize.php:100
+msgid "Main Color"
+msgstr ""
+
+#: theme-functions/customize.php:114
+msgid "Second Color"
+msgstr ""
+
+#: theme-functions/customize.php:128
+msgid "Stars Color"
+msgstr ""
+
+#: theme-functions/customize.php:142
+msgid "Enable a homepage archive section"
+msgstr ""
+
+#: theme-functions/customize.php:151
+msgid "Header"
+msgstr ""
+
+#: theme-functions/customize.php:164
+msgid "Choose a header style"
+msgstr ""
+
+#: theme-functions/customize.php:168 theme-functions/customize.php:480
+#: theme-functions/customize.php:505
+msgid "#1 Style"
+msgstr ""
+
+#: theme-functions/customize.php:169 theme-functions/customize.php:481
+#: theme-functions/customize.php:506
+msgid "#2 Style"
+msgstr ""
+
+#: theme-functions/customize.php:182
+msgid "Enable Top Bar for #1 Style"
+msgstr ""
+
+#: theme-functions/customize.php:197
+msgid "Disable the floating header"
+msgstr ""
+
+#: theme-functions/customize.php:212
+msgid "Header background color"
+msgstr ""
+
+#: theme-functions/customize.php:226
+msgid "Top bar background color"
+msgstr ""
+
+#: theme-functions/customize.php:240
+msgid "Top bar text/link color"
+msgstr ""
+
+#: theme-functions/customize.php:254
+msgid "Top bar link hover color"
+msgstr ""
+
+#: theme-functions/customize.php:268
+msgid "Text logo color"
+msgstr ""
+
+#: theme-functions/customize.php:282
+msgid "Text slogan color"
+msgstr ""
+
+#: theme-functions/customize.php:296
+msgid "Main menu link color"
+msgstr ""
+
+#: theme-functions/customize.php:310
+msgid "Main menu link hover color"
+msgstr ""
+
+#: theme-functions/customize.php:324
+msgid "Submenu background color"
+msgstr ""
+
+#: theme-functions/customize.php:338
+msgid "Submenu link color"
+msgstr ""
+
+#: theme-functions/customize.php:352
+msgid "Submenu link hover color"
+msgstr ""
+
+#: theme-functions/customize.php:375
+msgid "Footer Copyright"
+msgstr ""
+
+#: theme-functions/customize.php:376
+msgid "Add your copyright to the footer."
+msgstr ""
+
+#: theme-functions/customize.php:387
+msgid "Background image for the Mobile Menu"
+msgstr ""
+
+#: theme-functions/customize.php:388
+msgid "Minimal background image size 640 x 1200 px."
+msgstr ""
+
+#: theme-functions/customize.php:398 theme-functions/index.php:76
+msgid "ACES"
+msgstr ""
+
+#: theme-functions/customize.php:404
+msgid "Button colors"
+msgstr ""
+
+#: theme-functions/customize.php:417
+msgid "Color of the title of the \"Play Now\" button"
+msgstr ""
+
+#: theme-functions/customize.php:429
+msgid "Color of the background of the \"Play Now\" button"
+msgstr ""
+
+#: theme-functions/customize.php:443
+msgid "Color of the title of the \"Read Review\" button"
+msgstr ""
+
+#: theme-functions/customize.php:455
+msgid "Color of the background of the \"Read Review\" button"
+msgstr ""
+
+#: theme-functions/customize.php:463
+msgid "Archive settings"
+msgstr ""
+
+#: theme-functions/customize.php:476
+msgid ""
+"The layout style of organization (casino) listing pages (archive and "
+"taxonomy)"
+msgstr ""
+
+#: theme-functions/customize.php:482
+msgid "#3 Style"
+msgstr ""
+
+#: theme-functions/customize.php:483
+msgid "#4 Style"
+msgstr ""
+
+#: theme-functions/customize.php:484
+msgid "#5 Style"
+msgstr ""
+
+#: theme-functions/customize.php:485
+msgid "#6 Style"
+msgstr ""
+
+#: theme-functions/customize.php:486
+msgid "#7 Style"
+msgstr ""
+
+#: theme-functions/customize.php:487
+msgid "#8 Style"
+msgstr ""
+
+#: theme-functions/customize.php:488
+msgid "#9 Style"
+msgstr ""
+
+#: theme-functions/customize.php:501
+msgid "The layout style of unit (game) listing pages (archive and taxonomy)"
+msgstr ""
+
+#: theme-functions/customize.php:519
+msgid "Enable category navigation for Organizations (Casinos)"
+msgstr ""
+
+#: theme-functions/customize.php:533
+msgid "\"All\" page for Organizations (Casinos)"
+msgstr ""
+
+#: theme-functions/customize.php:534 theme-functions/customize.php:561
+#: theme-functions/customize.php:588
+msgid "Please select the page with a list of all items"
+msgstr ""
+
+#: theme-functions/customize.php:546
+msgid "Enable category navigation for Units (Games)"
+msgstr ""
+
+#: theme-functions/customize.php:560
+msgid "\"All\" page for Units (Games)"
+msgstr ""
+
+#: theme-functions/customize.php:573
+msgid "Enable category navigation for Offers (Bonuses)"
+msgstr ""
+
+#: theme-functions/customize.php:587
+msgid "\"All\" page for Offers (Bonuses)"
+msgstr ""
+
+#: theme-functions/customize.php:594
+msgid "Other Settings"
+msgstr ""
+
+#: theme-functions/customize.php:607
+msgid "Enable boxed layout"
+msgstr ""
+
+#: theme-functions/customize.php:622
+msgid "Enable related posts"
+msgstr ""
+
+#: theme-functions/customize.php:637
+msgid "Enable the sticky sidebar"
+msgstr ""
+
+#: theme-functions/customize.php:652
+msgid "Enable the \"time ago\" date format"
+msgstr ""
+
+#: theme-functions/customize.php:667
+msgid "Enable the post views counter"
+msgstr ""
+
+#: theme-functions/customize.php:682
+msgid "Disable date display in posts"
+msgstr ""
+
+#: theme-functions/customize.php:697
+msgid "Disable an author info block"
+msgstr ""
+
+#: theme-functions/customize.php:712
+msgid "Enable an organization (casino) float bottom bar"
+msgstr ""
+
+#: theme-functions/customize.php:721
+msgid "Main Menu Labels Settings"
+msgstr ""
+
+#: theme-functions/customize.php:736
+msgid "Title of the \"New\" label"
+msgstr ""
+
+#: theme-functions/customize.php:737
+msgid "To add to the menu, continue to use the \".new\" class"
+msgstr ""
+
+#: theme-functions/customize.php:747
+msgid "Color of the title of the \"New\" label"
+msgstr ""
+
+#: theme-functions/customize.php:759
+msgid "Color of the background of the \"New\" label"
+msgstr ""
+
+#: theme-functions/customize.php:775
+msgid "Title of the \"Best\" label"
+msgstr ""
+
+#: theme-functions/customize.php:776
+msgid "To add to the menu, continue to use the \".best\" class"
+msgstr ""
+
+#: theme-functions/customize.php:786
+msgid "Color of the title of the \"Best\" label"
+msgstr ""
+
+#: theme-functions/customize.php:798
+msgid "Color of the background of the \"Best\" label"
+msgstr ""
+
+#: theme-functions/customize.php:814
+msgid "Title of the \"Hot\" label"
+msgstr ""
+
+#: theme-functions/customize.php:815
+msgid "To add to the menu, continue to use the \".hot\" class"
+msgstr ""
+
+#: theme-functions/customize.php:825
+msgid "Color of the title of the \"Hot\" label"
+msgstr ""
+
+#: theme-functions/customize.php:837
+msgid "Color of the background of the \"Hot\" label"
+msgstr ""
+
+#: theme-functions/customize.php:853
+msgid "Title of the \"Top\" label"
+msgstr ""
+
+#: theme-functions/customize.php:854
+msgid "To add to the menu, continue to use the \".top\" class"
+msgstr ""
+
+#: theme-functions/customize.php:864
+msgid "Color of the title of the \"Top\" label"
+msgstr ""
+
+#: theme-functions/customize.php:876
+msgid "Color of the background of the \"Top\" label"
+msgstr ""
+
+#: theme-functions/customize.php:884
+msgid "Social Icons"
+msgstr ""
+
+#: theme-functions/customize.php:898 theme-parts/social-icons.php:3
+msgid "Facebook"
+msgstr ""
+
+#: theme-functions/customize.php:900
+msgid "https://www.facebook.com/"
+msgstr ""
+
+#: theme-functions/customize.php:914 theme-parts/social-icons.php:9
+msgid "Twitter"
+msgstr ""
+
+#: theme-functions/customize.php:916
+msgid "https://twitter.com/"
+msgstr ""
+
+#: theme-functions/customize.php:930 theme-parts/social-icons.php:15
+msgid "YouTube"
+msgstr ""
+
+#: theme-functions/customize.php:932
+msgid "https://www.youtube.com/"
+msgstr ""
+
+#: theme-functions/customize.php:946 theme-parts/social-icons.php:21
+msgid "Instagram"
+msgstr ""
+
+#: theme-functions/customize.php:959 theme-parts/social-icons.php:27
+msgid "LinkedIn"
+msgstr ""
+
+#: theme-functions/customize.php:972 theme-parts/social-icons.php:33
+msgid "Reddit"
+msgstr ""
+
+#: theme-functions/customize.php:985
+msgid "Other Link"
+msgstr ""
+
+#: theme-functions/gutenberg.php:20
+msgid "mercury Main Color"
+msgstr ""
+
+#: theme-functions/gutenberg.php:26
+msgid "mercury Second Color"
+msgstr ""
+
+#: theme-functions/gutenberg.php:32
+msgid "mercury White"
+msgstr ""
+
+#: theme-functions/gutenberg.php:38
+msgid "mercury Gray"
+msgstr ""
+
+#: theme-functions/gutenberg.php:44
+msgid "mercury Emerald"
+msgstr ""
+
+#: theme-functions/gutenberg.php:50
+msgid "mercury Alizarin"
+msgstr ""
+
+#: theme-functions/gutenberg.php:56
+msgid "mercury Wisteria"
+msgstr ""
+
+#: theme-functions/gutenberg.php:62
+msgid "mercury Peter River"
+msgstr ""
+
+#: theme-functions/gutenberg.php:68
+msgid "mercury Clouds"
+msgstr ""
+
+#: theme-functions/index.php:31
+msgid "Thank you for using the Mercury theme!"
+msgstr ""
+
+#: theme-functions/index.php:32
+msgid ""
+"Please, don&#8217;t forget to rate 5 stars ★★★★★ for the theme. It helps a "
+"lot."
+msgstr ""
+
+#: theme-functions/index.php:33
+msgid "https://themeforest.net/downloads"
+msgstr ""
+
+#: theme-functions/index.php:33
+msgid "themeforest.net/downloads"
+msgstr ""
+
+#: theme-functions/index.php:38
+msgid "All Mercury theme settings are in"
+msgstr ""
+
+#: theme-functions/index.php:38
+msgid "Customize"
+msgstr ""
+
+#: theme-functions/index.php:39
+msgid "https://mercurytheme.com/documentation/"
+msgstr ""
+
+#: theme-functions/index.php:39
+msgid "Online Documentation"
+msgstr ""
+
+#: theme-functions/index.php:40
+msgid "https://spacethemes.ticksy.com/"
+msgstr ""
+
+#: theme-functions/index.php:40
+msgid "Need support?"
+msgstr ""
+
+#: theme-functions/index.php:57
+msgid "One Click Demo Import"
+msgstr ""
+
+#: theme-functions/index.php:66
+msgid "Mercury Addons"
+msgstr ""
+
+#: theme-functions/index.php:109
+msgid "Mercury Casino 1"
+msgstr ""
+
+#: theme-functions/index.php:115 theme-functions/index.php:126
+#: theme-functions/index.php:137 theme-functions/index.php:148
+#: theme-functions/index.php:159 theme-functions/index.php:170
+#: theme-functions/index.php:181 theme-functions/index.php:192
+#: theme-functions/index.php:203 theme-functions/index.php:214
+#: theme-functions/index.php:225 theme-functions/index.php:236
+#: theme-functions/index.php:247
+msgid ""
+"Please waiting for a few minutes, do not close the window or refresh the "
+"page until the data is imported."
+msgstr ""
+
+#: theme-functions/index.php:120
+msgid "Mercury Casino 2"
+msgstr ""
+
+#: theme-functions/index.php:131
+msgid "Mercury Casino 3"
+msgstr ""
+
+#: theme-functions/index.php:142
+msgid "Mercury Betting 1"
+msgstr ""
+
+#: theme-functions/index.php:153
+msgid "Mercury Casino 4"
+msgstr ""
+
+#: theme-functions/index.php:164
+msgid "Mercury Betting 2"
+msgstr ""
+
+#: theme-functions/index.php:175
+msgid "Mercury Slots 1"
+msgstr ""
+
+#: theme-functions/index.php:186
+msgid "Mercury Poker 1"
+msgstr ""
+
+#: theme-functions/index.php:197
+msgid "Mercury Betting 3"
+msgstr ""
+
+#: theme-functions/index.php:208
+msgid "Mercury Magazine 1"
+msgstr ""
+
+#: theme-functions/index.php:219
+msgid "Mercury Crypto 1"
+msgstr ""
+
+#: theme-functions/index.php:230
+msgid "Mercury VPN/Hosting 1"
+msgstr ""
+
+#: theme-functions/index.php:241
+msgid "Mercury Dating 1"
+msgstr ""
+
+#: theme-parts/archive/loop-search.php:47 theme-parts/archive/loop.php:52
+msgid "Read more"
+msgstr ""
+
+#: theme-parts/mobile-menu.php:24
+msgid "Affiliate WordPress Theme"
+msgstr ""
+
+#: theme-parts/related-posts.php:4
+msgid "Read More"
+msgstr ""
+
+#: theme-parts/related-posts.php:74
+msgid "Sorry, no other posts related this article."
+msgstr ""

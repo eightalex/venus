@@ -1,0 +1,11 @@
+/*
+Theme Name: Mercury Child
+Theme URI: https://mercurytheme.com/
+Description: Child theme for Mercury theme
+Author: MercuryTheme.com
+Author URI: https://mercurytheme.com/
+Template: mercury
+Version: 3.9.9
+*/
+@import url("../mercury/style.css");
+@import url("./styles/index.css");
