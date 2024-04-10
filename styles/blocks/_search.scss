@@ -1,0 +1,64 @@
+@import "../mixins";
+
+.search {
+  position: relative;
+  display: flex;
+
+  &__form {
+
+  }
+
+  &__input {
+    padding-left: 60px;
+  }
+
+  &__button {
+    position: absolute;
+    top: 50%;
+    left: 24px;
+    transform: translateY(-50%);
+    padding: 0;
+    border: none;
+    background: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:active {
+      opacity: 0.8;
+    }
+
+    img {
+      display: flex;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  @include bp(1230px) {
+    display: flex;
+    margin-left: auto;
+
+    &__input {
+      display: none;
+    }
+
+    &__button {
+      position: static;
+      transform: none;
+      display: flex;
+      margin-left: auto;
+      padding: 14px;
+      width: 48px;
+      height: 48px;
+      border-radius: 48px;
+      background-color: #1b1f28;
+
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
+    }
+  }
+}

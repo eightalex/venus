@@ -1,0 +1,83 @@
+@import "../variables";
+@import "../mixins";
+
+.section-top {
+  position: relative;
+  margin-top: -98px;
+  padding-top: 98px;
+  padding-bottom: 50px;
+  width: 100%;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    opacity: 0.3;
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 300%;
+    height: 300%;
+    transform: translateX(-50%) rotate(-25deg);
+    background-image: url("#{$images-url}/section/suits_3.svg");
+    background-size: 520px;
+    background-repeat: repeat;
+    background-position: 0 0;
+  }
+
+  &::after {
+    content: "";
+    display: flex;
+    position: absolute;
+    left: calc(50% + 395px);
+    top: calc(50% - 100px);
+    z-index: 0;
+    width: 480px;
+    height: 480px;
+    border-radius: 480px;
+    background-color: #e3f666;
+    transform: translate(-50%, -50%);
+
+    @include bp(1450px) {
+      display: none;
+    }
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  &__clouds-1 {
+    position: absolute;
+    left: calc(50% - 430px);
+    top: calc(50% + 160px);
+    z-index: -1;
+    width: 1165px;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: lighten;
+  }
+
+  &__clouds-2 {
+    position: absolute;
+    right: 0;
+    top: -125px;
+    z-index: -1;
+    width: 1280px;
+    mix-blend-mode: lighten;
+  }
+
+  &__deer {
+    position: absolute;
+    left: calc(50% + 340px);
+    bottom: 0;
+    width: 500px;
+    transform: translateX(-50%);
+    z-index: 1;
+
+    @include bp(1450px) {
+      display: none;
+    }
+  }
+}

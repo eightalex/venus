@@ -29,48 +29,7 @@
 </header> -->
 
 <!-- merge header -->
-<header
-	class="header space-header-height relative <?php if (get_theme_mod('mercury_enable_top_bar')) { ?> enable-top-bar<?php } ?>">
-	<div class="header__wrap space-header-wrap space-header-float relative">
-		<div class="container">
-			<div class="header__inner">
-				<div class="header__logo">
-					<?php
-					$site_name = esc_attr(get_bloginfo('name'));
-					$custom_logo_id = get_theme_mod('custom_logo');
 
-					if (has_custom_logo()) {
-						echo '<a href="' . esc_url(home_url('/')) . '" title="' . $site_name . '">' . wp_get_attachment_image($custom_logo_id, 'mercury-custom-logo header__logo', "", array("alt" => $site_name)) . '</a>';
-					} else {
-						echo '<a href="' . esc_url(home_url('/')) . '" title="' . esc_attr(get_bloginfo('name')) . '" class="text-logo">' . esc_html(get_bloginfo('name')) . '</a><span>' . esc_html(get_bloginfo('description')) . '</span>';
-					}
-					?>
-				</div>
-				<div class="header__search search">
-					<input class="search__input custom-input" type="text" aria-label="search"
-						placeholder="Type your text here">
-					<button class="search__button">
-						<img src="./images/icons/search.svg" alt="Search">
-					</button>
-				</div>
-				<nav class="navigation space-header-menu">
-					<?php
-					if (has_nav_menu('main-menu')) {
-						wp_nav_menu(array('container' => 'ul', 'menu_class' => 'main-menu navigation__inner', 'theme_location' => 'main-menu', 'depth' => 3, 'fallback_cb' => '__return_empty_string'));
-					}
-					?>
-					<div class="navigation__burger space-mobile-menu-icon">
-						<span>
-							<div></div>
-							<div></div>
-							<div></div>
-						</span>
-					</div>
-				</nav>
-			</div>
-		</div>
-	</div>
-</header>
 
 <!-- old header -->
 <!-- <div
@@ -126,4 +85,4 @@
 			</div>
 		</div>
 	</div>
-</div> -->
+</div>

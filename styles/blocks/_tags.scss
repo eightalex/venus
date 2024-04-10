@@ -1,0 +1,84 @@
+@import "../mixins";
+
+.tags {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &__card {
+    display: flex;
+    align-items: flex-start;
+    gap: 65px;
+    padding: 24px;
+    background-color: #1b1f28;
+
+    &:nth-child(2n) {
+      background-color: transparent;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+    width: 270px;
+  }
+
+  &__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+    background: #fff;
+
+    img {
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  &__title {
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    padding: 6px 24px;
+    border-radius: 100px;
+    background-color: #e3f666;
+  }
+
+  @include bp(l) {
+    &__card {
+      flex-direction: column;
+      gap: 20px;
+      padding: 24px 16px;
+    }
+
+    &__header {
+      width: auto;
+    }
+
+    &__list {
+      gap: 12px;
+    }
+  }
+}

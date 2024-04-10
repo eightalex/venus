@@ -1,0 +1,19 @@
+@import "../mixins";
+
+.game-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include bp(1230px) {
+    grid-template-columns: repeat(2, auto);
+    justify-content: center;
+  }
+
+  @include bp(m) {
+    grid-template-columns: auto;
+  }
+}

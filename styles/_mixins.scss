@@ -1,0 +1,44 @@
+@mixin bp($breakpoint) {
+  @if $breakpoint == s {
+    @media (max-width: 375px) { @content; }
+  } @else if $breakpoint == m {
+    @media (max-width: 768px) { @content; }
+  } @else if $breakpoint == l {
+    @media (max-width: 1024px) { @content; }
+  } @else if $breakpoint == xl {
+    @media (max-width: 1440px) { @content; }
+  } @else if $breakpoint == xxl {
+    @media (max-width: 1920px) { @content; }
+  } @else {
+    @media (max-width: $breakpoint) { @content; }
+  }
+}
+
+@mixin retina() {
+  @media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (   min--moz-device-pixel-ratio: 2),
+  only screen and (     -o-min-device-pixel-ratio: 2/1),
+  only screen and (        min-device-pixel-ratio: 2),
+  only screen and (                min-resolution: 192dpi),
+  only screen and (                min-resolution: 2dppx) {
+    @content;
+  }
+}
+
+@mixin horizontal-flip() {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
+
+@mixin horizontal-flip-reset() {
+  -moz-transform: none;
+  -o-transform: none;
+  -webkit-transform: none;
+  transform: none;
+  filter: none;
+  -ms-filter: none;
+}

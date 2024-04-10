@@ -50,7 +50,7 @@
   align-items: flex-end;
 }
 
-.header .navigation__burger span div {
+.header .navigation__burger span span {
   width: 100%;
   height: 2px;
   border-radius: 2px;
@@ -58,15 +58,15 @@
   margin: 0;
 }
 
-.header .navigation__burger span div:nth-child(1) {
+.header .navigation__burger span span:nth-child(1) {
   width: 75%;
 }
 
-.header .navigation__burger span div:nth-child(2) {
+.header .navigation__burger span span:nth-child(2) {
   width: 100%;
 }
 
-.header .navigation__burger span div:nth-child(3) {
+.header .navigation__burger span span:nth-child(3) {
   width: 57%;
 }
 

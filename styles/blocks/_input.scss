@@ -1,0 +1,26 @@
+.custom-input {
+  display: flex;
+  padding: 14px 24px;
+  max-height: 48px;
+
+  color: #fff;
+
+  font-family: Hind, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 128%;
+
+  border-radius: 12px;
+  border: 1px solid #404556;
+  background: #1b1f28;
+
+  &::placeholder {
+    color: #9197af;
+  }
+
+  &:focus {
+    border-color: #fff;
+    outline: none;
+  }
+}
