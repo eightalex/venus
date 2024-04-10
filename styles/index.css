@@ -339,7 +339,8 @@ body {
     justify-content: space-between;
     padding: 15px 24px;
     height: auto;
-    color: #fff; }
+    color: #fff;
+    white-space: break-spaces; }
     .navigation__submenu .navigation__item a::after {
       transform: rotate(-90deg); }
   .navigation__submenu .navigation__item:hover {
