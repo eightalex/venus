@@ -2,8 +2,8 @@
 
 .header {
   position: relative;
-  z-index: 1;
-  padding: 28px 0;
+  z-index: 2;
+  max-height: 104px;
   background: #262c3a;
 
   &__inner {

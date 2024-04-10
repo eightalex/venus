@@ -2,6 +2,8 @@
 @import "../mixins";
 
 .navigation {
+  $this: &;
+
   &__inner {
     display: flex;
     align-items: center;
@@ -12,14 +14,24 @@
   }
 
   &__item {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 10px;
+    height: 104px;
+
+    a {
+      color: #fff;
+      font-family: Hind, sans-serif;
+      text-decoration: none;
+    }
 
     &.menu-item-has-children {
       &::after {
         content: "";
         display: flex;
+        flex-shrink: 0;
+        margin-left: 3px;
         width: 16px;
         height: 16px;
         background-image: url("#{$images-url}/icons/arrow-down.svg");
@@ -28,35 +40,77 @@
 
     &:hover {
       cursor: pointer;
-      opacity: 0.8;
+
+      & > a {
+        color: #a3aecb;
+      }
+
+      & > #{$this} {
+        &__submenu {
+          display: flex;
+          opacity: 1;
+        }
+      }
     }
   }
 
   &__submenu {
     display: none;
+    opacity: 0;
     position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1;
-    padding: 16px;
-    background-color: #1b1f28;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    top: 104px;
+    left: -24px;
+    flex-direction: column;
+    padding: 0;
+    width: 230px;
+    background-color: #262c3a;
+    border-radius: 0 0 12px 12px;
+    transition: top, opacity 300ms ease-in-out;
 
     &.active {
-      display: block;
+      top: 80px;
+      opacity: 1;
+      visibility: visible;
     }
 
-    &__item {
-      display: block;
-      margin: 8px 0;
-    }
-  }
+    #{$this} {
+      &__item {
+        justify-content: space-between;
+        gap: 0;
+        padding: 15px 24px;
+        height: auto;
 
-  a {
-    color: #fff;
-    font-family: Hind, sans-serif;
-    text-decoration: none;
+        a {
+          color: #fff;
+        }
+
+        &:hover {
+          background-color: #393f56;
+        }
+
+        &:last-child {
+          border-radius: 0 0 12px 12px;
+        }
+      }
+
+      &__submenu {
+        top: 0;
+        left: 100%;
+        border-radius: 0 12px 12px 12px;
+
+        #{$this} {
+          &__item {
+            &:first-child {
+              border-radius: 0 12px 0 0;
+            }
+
+            &:last-child {
+              border-radius: 0 12px 12px 12px;
+            }
+          }
+        }
+      }
+    }
   }
 
   &__burger {
