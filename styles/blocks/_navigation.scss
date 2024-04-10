@@ -34,7 +34,7 @@
         content: "";
         display: flex;
         flex-shrink: 0;
-        margin-left: 3px;
+        margin-left: 5px;
         width: 16px;
         height: 16px;
         background-image: url("#{$images-url}/icons/arrow-down.svg");
@@ -84,6 +84,10 @@
           padding: 15px 24px;
           height: auto;
           color: #fff;
+
+          &::after {
+            transform: rotate(-90deg);
+          }
         }
 
         &:hover {

@@ -302,7 +302,7 @@ body {
     content: "";
     display: flex;
     flex-shrink: 0;
-    margin-left: 3px;
+    margin-left: 5px;
     width: 16px;
     height: 16px;
     background-image: url("../assets/images/icons/arrow-down.svg"); }
@@ -336,6 +336,8 @@ body {
     padding: 15px 24px;
     height: auto;
     color: #fff; }
+    .navigation__submenu .navigation__item a::after {
+      transform: rotate(-90deg); }
   .navigation__submenu .navigation__item:hover {
     background-color: #393f56; }
   .navigation__submenu .navigation__item:last-child {
