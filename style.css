@@ -3,5 +3,5 @@ Theme Name: Venus
 Description: Child theme for Mercury theme
 Template: mercury
 */
-/* @import url("../mercury/style.css"); */
+/*@import url("../mercury/style.css");*/
 @import url("./styles/index.css");

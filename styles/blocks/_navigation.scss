@@ -17,17 +17,20 @@
     position: relative;
     display: flex;
     align-items: center;
-    gap: 10px;
-    height: 104px;
 
     a {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      gap: 10px;
+      height: 104px;
       color: #fff;
       font-family: Hind, sans-serif;
       text-decoration: none;
     }
 
     &.menu-item-has-children {
-      &::after {
+      & > a::after {
         content: "";
         display: flex;
         flex-shrink: 0;
@@ -75,12 +78,11 @@
 
     #{$this} {
       &__item {
-        justify-content: space-between;
-        gap: 0;
-        padding: 15px 24px;
-        height: auto;
-
         a {
+          gap: 0;
+          justify-content: space-between;
+          padding: 15px 24px;
+          height: auto;
           color: #fff;
         }
 
@@ -105,7 +107,7 @@
             }
 
             &:last-child {
-              border-radius: 0 12px 12px 12px;
+              border-radius: 0 0 12px 12px;
             }
           }
         }
