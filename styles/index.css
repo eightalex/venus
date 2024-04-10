@@ -16,7 +16,7 @@ body {
 .container {
   margin: 0 auto;
   padding: 0 20px;
-  max-width: 1170px;
+  max-width: 1170px !important;
   width: 100%; }
   .container.relative {
     position: relative; }
@@ -186,8 +186,7 @@ body {
       height: 20px; }
   @media (max-width: 1230px) {
     .search {
-      display: flex;
-      margin-left: auto; }
+      display: flex; }
       .search__input {
         display: none; }
       .search__button {
@@ -231,7 +230,7 @@ body {
   position: relative;
   z-index: 2;
   max-height: 104px;
-  background: #262c3a; }
+  background-color: #262c3a; }
   .header__inner {
     display: flex;
     align-items: center; }
@@ -246,7 +245,11 @@ body {
     margin-right: auto; }
   @media (max-width: 1230px) {
     .header__inner {
-      justify-content: flex-start; } }
+      justify-content: flex-start;
+      height: 86px; }
+    .header__search {
+      margin-left: auto;
+      margin-right: 24px; } }
 
 .breadcrumbs {
   position: relative;
@@ -281,7 +284,7 @@ body {
   display: flex;
   align-items: center;
   gap: 24px;
-  margin: 0;
+  margin: 0 0 0 24px;
   padding: 0;
   list-style: none; }
 
@@ -297,7 +300,8 @@ body {
     height: 104px;
     color: #fff;
     font-family: Hind, sans-serif;
-    text-decoration: none; }
+    text-decoration: none;
+    white-space: nowrap; }
   .navigation__item.menu-item-has-children > a::after {
     content: "";
     display: flex;
@@ -353,7 +357,7 @@ body {
 
 .navigation__burger {
   display: none; }
-  .navigation__burger span {
+  .navigation__burger > span {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -361,16 +365,16 @@ body {
     padding: 4px 2px;
     width: 100%;
     height: 100%; }
-    .navigation__burger span span {
+    .navigation__burger > span span {
       margin: 0;
       height: 2px;
       border-radius: 2px;
       background-color: #fff; }
-      .navigation__burger span span:nth-child(1) {
+      .navigation__burger > span span:nth-child(1) {
         width: 75%; }
-      .navigation__burger span span:nth-child(2) {
+      .navigation__burger > span span:nth-child(2) {
         width: 100%; }
-      .navigation__burger span span:nth-child(3) {
+      .navigation__burger > span span:nth-child(3) {
         width: 57%; }
 
 @media (max-width: 1230px) {

@@ -4,7 +4,7 @@
   position: relative;
   z-index: 2;
   max-height: 104px;
-  background: #262c3a;
+  background-color: #262c3a;
 
   &__inner {
     display: flex;
@@ -29,6 +29,12 @@
   @include bp(1230px) {
     &__inner {
       justify-content: flex-start;
+      height: 86px;
+    }
+
+    &__search {
+      margin-left: auto;
+      margin-right: 24px;
     }
   }
 }
