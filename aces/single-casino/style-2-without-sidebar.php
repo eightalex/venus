@@ -115,9 +115,13 @@
 
 <div class="space-single-organization space-style-2-organization relative">
 
-	<!-- Organization Header Start -->
+    <!-- Breadcrumbs Start -->
 
-    <span>style-2 without sidebar</span>
+    <?php get_template_part( '/theme-parts/breadcrumbs' ); ?>
+
+    <!-- Breadcrumbs End -->
+
+	<!-- Organization Header Start -->
 
 	<div class="space-style-2-organization-header box-100 relative">
 		<div class="space-style-2-organization-header-ins space-page-wrapper relative">
@@ -238,12 +242,6 @@
 	</div>
 
 	<!-- Organization Header End -->
-
-	<!-- Breadcrumbs Start -->
-
-	<?php get_template_part( '/theme-parts/breadcrumbs' ); ?>
-
-	<!-- Breadcrumbs End -->
 
 		<!-- Single Organization Page Section Start -->
 

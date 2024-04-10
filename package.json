@@ -1,0 +1,11 @@
+{
+  "name": "venus",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:eightalex/venus.git",
+  "author": "BohdanRadchenko <bradchenko@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "node-sass": "^9.0.0"
+  }
+}
