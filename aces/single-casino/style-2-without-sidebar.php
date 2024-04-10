@@ -117,6 +117,8 @@
 
 	<!-- Organization Header Start -->
 
+    <span>style-2 without sidebar</span>
+
 	<div class="space-style-2-organization-header box-100 relative">
 		<div class="space-style-2-organization-header-ins space-page-wrapper relative">
 			<div class="space-style-2-organization-header-elements box-100 relative">
