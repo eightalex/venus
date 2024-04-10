@@ -164,6 +164,10 @@ body {
   display: flex; }
   .search__input {
     padding-left: 60px; }
+    .search__input:-webkit-autofill, .search__input:-webkit-autofill:hover, .search__input:-webkit-autofill:focus, .search__input:-webkit-autofill:active {
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: #fff;
+      box-shadow: inset 0 0 20px 20px #1b1f28; }
   .search__button {
     position: absolute;
     top: 50%;

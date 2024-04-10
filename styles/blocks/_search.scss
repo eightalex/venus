@@ -9,6 +9,7 @@
   }
 
   &__input {
+    @include autofill(#1b1f28);
     padding-left: 60px;
   }
 
