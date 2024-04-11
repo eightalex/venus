@@ -1,4 +1,6 @@
 .bonus-card {
+  $this: &;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -9,10 +11,22 @@
 
   &:nth-child(2n) {
     background-image: var(--Red-Gradient, linear-gradient(266deg, rgba(245, 80, 157, 0.96) 0%, #FB80B9 79.08%, #ED2C86 100%));
+
+    #{$this} {
+      &__gift {
+        background-color: var(--Red-Dark, #C41D1D);
+      }
+    }
   }
 
   &:nth-child(3n) {
     background-image: var(--Blue-Gradient, linear-gradient(180deg, #0BB9F8 50.52%, #0A8EF2 100%));
+
+    #{$this} {
+      &__gift {
+        background-color: var(--Blue-2, #0A8EF2);
+      }
+    }
   }
 
   &__tags {
