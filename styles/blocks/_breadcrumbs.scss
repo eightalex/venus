@@ -39,39 +39,10 @@
             content: " ";
             width: 5px;
             height: 5px;
-            background-color: #9197af;
+            background-color: var(--Grey-Light, #9197af);
             border-radius: 50%;
           }
         }
-      }
-    }
-  }
-
-  &__item {
-    display: flex;
-    align-items: center;
-    color: var(--Grey-Light, #9197af);
-    font: 400 14px/128% Hind, sans-serif;
-
-    &:not(:first-child) {
-      &::before {
-        content: "";
-        display: flex;
-        margin-right: 18px;
-        margin-left: 18px;
-        width: 5px;
-        height: 5px;
-        background-color: #9197af;
-        border-radius: 50%;
-      }
-    }
-
-    a {
-      color: #9197af;
-      text-decoration: none;
-
-      &:hover {
-        opacity: 0.8;
       }
     }
   }
