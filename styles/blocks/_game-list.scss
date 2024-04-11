@@ -1,6 +1,6 @@
 @import "../mixins";
 
-.game-list {
+.card-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 18px;

@@ -39,7 +39,6 @@
 
   @include bp(1230px) {
     display: flex;
-    margin-left: auto;
 
     &__input {
       display: none;
