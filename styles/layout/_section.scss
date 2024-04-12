@@ -81,6 +81,7 @@
 
     &::before {
       content: "";
+      opacity: 0.24;
       display: flex;
       position: absolute;
       top: 0;
@@ -103,15 +104,19 @@
 
     &_2 {
       &::before {
-        opacity: 0.24;
         background-image: url("#{$images-url}/section/bg2.jpeg");
       }
     }
 
     &_3 {
       &::before {
-        opacity: 0.24;
         background-image: url("#{$images-url}/section/bg3.jpeg");
+      }
+    }
+
+    &_4 {
+      &::before {
+        background-image: url("#{$images-url}/section/bg4.jpeg");
       }
     }
   }

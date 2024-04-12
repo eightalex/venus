@@ -1,0 +1,115 @@
+@import "../mixins";
+
+.form-reply {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 60px;
+  border-radius: 16px;
+  background: var(--Grey-Dark-2, #1b1f28);
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__title {
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    text-transform: uppercase;
+
+    em {
+      color: #e3f666;
+      font-style: normal;
+    }
+  }
+
+  &__subtitle {
+    color: #9197af;
+    font-family: Montserrat, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  &__form {
+    display: grid;
+    gap: 16px 24px;
+    grid-template-areas:
+      "name comment"
+      "email comment"
+      "website comment"
+      "checkbox ."
+      "cta .";
+    grid-template-columns: 400px 1fr;
+  }
+
+  &__input {
+    &:nth-child(1) {
+      grid-area: name;
+    }
+
+    &:nth-child(2) {
+      grid-area: email;
+    }
+
+    &:nth-child(3) {
+      grid-area: website;
+    }
+
+    &:nth-child(4) {
+      grid-area: checkbox;
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
+
+    &:nth-child(5) {
+      grid-area: comment;
+    }
+  }
+
+  &__cta {
+    grid-area: cta;
+  }
+
+  &__button {
+    width: 100%;
+  }
+
+  @include bp(l) {
+    padding: 24px 16px;
+
+    &__title {
+      font-size: 28px;
+    }
+
+    &__form {
+      display: grid;
+      grid-template-areas:
+      "name"
+      "email"
+      "website"
+      "comment"
+      "checkbox"
+      "cta";
+      grid-template-columns: 1fr;
+    }
+
+    &__input {
+      &:nth-child(4) {
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
+
+      &:nth-child(5) {
+        height: 280px;
+      }
+    }
+  }
+}

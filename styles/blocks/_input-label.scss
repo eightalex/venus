@@ -1,0 +1,14 @@
+.input-label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__label {
+    color: var(--Grey-Light, #9197AF);
+    font-family: Hind, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 128%; /* 17.92px */
+  }
+}
