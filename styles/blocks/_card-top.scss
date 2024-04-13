@@ -78,6 +78,15 @@
     & i {
       font-size: 26px;
     }
+
+    &::before {
+      content: "";
+      display: flex;
+      width: 26px;
+      height: 26px;
+      background-image: url("#{$images-url}/icons/star.svg");
+      margin-right: 12px;
+    }
   }
 
   &__text {
