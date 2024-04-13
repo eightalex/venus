@@ -501,7 +501,7 @@ body {
       display: flex;
       width: 26px;
       height: 26px;
-      background-image: url("../assets/images/images/icons/star.svg");
+      background-image: url("../assets/images/icons/star.svg");
       margin-right: 12px; }
   .card-top__text {
     margin-top: 24px;
@@ -545,7 +545,7 @@ body {
       display: flex;
       width: 20px;
       height: 20px;
-      background-image: url("../assets/images/images/icons/attention.svg");
+      background-image: url("../assets/images/icons/attention.svg");
       margin-right: 10px; }
   @media (max-width: 768px) {
     .card-top {
@@ -645,7 +645,7 @@ body {
     opacity: 0.24;
     width: 100%;
     height: 100%;
-    background: url("../assets/images/benefits/lights-1.png"); }
+    background: url("../assets/images/lights-1.png"); }
   .benefits__title {
     position: relative;
     z-index: 1;
@@ -815,12 +815,49 @@ body {
       gap: 12px; } }
 
 .rating-card {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-areas: "tags tags" "about cta" "content content";
+  grid-template-columns: 1fr 330px;
   margin-top: 80px;
   margin-bottom: 80px;
   padding: 60px;
   border-radius: 16px;
   background: linear-gradient(180deg, #0bb9f8 50.52%, #0a8ef2 100%); }
+  .rating-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    border-radius: 16px;
+    opacity: 0.24;
+    width: 100%;
+    height: 100%;
+    background-image: url("../assets/images/lights-1.png");
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH"; }
+  .rating-card::after {
+    content: "";
+    position: absolute;
+    top: 56px;
+    left: 390px;
+    z-index: 0;
+    opacity: 0.24;
+    width: 310px;
+    height: 340px;
+    background-image: url("../assets/images/rating-card/heart.svg");
+    background-repeat: no-repeat;
+    mix-blend-mode: color-burn; }
   .rating-card__tags {
+    grid-area: tags;
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
     gap: 16px; }
@@ -835,11 +872,12 @@ body {
     font-style: normal;
     font-weight: 600;
     line-height: normal; }
-  .rating-card__header {
-    display: flex;
-    justify-content: space-between; }
+  .rating-card__about {
+    grid-area: about;
+    position: relative;
+    z-index: 1;
+    padding-top: 10px; }
   .rating-card__price {
-    margin-top: 10px;
     margin-bottom: 20px;
     color: #e3f666;
     font-family: Montserrat, sans-serif;
@@ -864,22 +902,32 @@ body {
     font-weight: 400;
     line-height: 128%;
     /* 20.48px */ }
-  .rating-card__cta span {
+  .rating-card__cta {
+    grid-area: cta;
+    position: relative;
+    z-index: 1;
     display: flex;
-    justify-content: center;
-    margin-top: 24px;
-    color: #fff;
-    text-align: center;
-    font-family: Hind, sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 128%;
-    /* 17.92px */ }
+    flex-direction: column;
+    align-items: center; }
+    .rating-card__cta span {
+      display: flex;
+      justify-content: center;
+      margin-top: 24px;
+      color: #fff;
+      text-align: center;
+      font-family: Hind, sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 128%;
+      /* 17.92px */ }
   .rating-card__button {
     padding-left: 115px;
     padding-right: 115px; }
   .rating-card__content {
+    grid-area: content;
+    position: relative;
+    z-index: 1;
     display: flex;
     gap: 40px;
     margin-top: 32px;
@@ -949,6 +997,24 @@ body {
       height: 16px;
       background-image: url("../assets/images/icons/star.svg");
       background-size: contain; }
+  @media (max-width: 1050px) {
+    .rating-card {
+      padding: 24px 16px;
+      grid-template-areas: "tags" "about" "content" "cta";
+      grid-template-columns: 1fr; }
+      .rating-card__price {
+        margin-bottom: 10px; }
+      .rating-card__content {
+        gap: 20px;
+        margin-top: 24px;
+        margin-bottom: 24px;
+        padding: 16px;
+        flex-direction: column; }
+      .rating-card__list {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, auto);
+        column-gap: 0;
+        row-gap: 24px; } }
 
 .card-list {
   display: grid;
