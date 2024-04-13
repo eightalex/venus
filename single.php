@@ -41,7 +41,7 @@
         } else if ($game_style == 3) {
             get_template_part('/aces/single-game/style-2');
         } else if ($game_style == 4) {
-            get_template_part('/aces/single-game/style-2-without-sidebar');
+            get_template_part('aces/single-game/style-2-without-sidebar');
         } else if ($game_style == 5) {
             get_template_part('/aces/single-game/style-3');
         } else if ($game_style == 6) {
@@ -105,6 +105,11 @@
 <?php get_footer(); ?>
 
 <style>
+
+    .section_suits::before {
+        background-image: url("<?= get_stylesheet_directory_uri() ?>/assets/images/section/suits_3.png");
+    }
+
     .section_bg_1 {
         &::before {
             opacity: 0.32;
@@ -123,6 +128,13 @@
         &::before {
             opacity: 0.24;
             background-image: url("<?= get_stylesheet_directory_uri() ?>/assets/images/section/bg3.jpeg");
+        }
+    }
+
+    .section_bg_4 {
+        &::before {
+            opacity: 0.24;
+            background-image: url("<?= get_stylesheet_directory_uri() ?>/assets/images/section/bg4.jpeg");
         }
     }
 </style>

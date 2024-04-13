@@ -118,1538 +118,834 @@ if (get_the_author_meta('url')) {
 
         <!-- Breadcrumbs Start -->
 
-        <?php get_template_part('/theme-parts/breadcrumbs'); ?>
+        <div style="display: none;">
+            <?php get_template_part('/theme-parts/breadcrumbs'); ?>
+        </div>
 
         <!-- Breadcrumbs End -->
 
         <!-- Organization Header Start -->
 
-        <section id="style-2-widthout-sidebar-header" class="section-top">
-            <div class="container relative">
-                <div class="card-top">
-                    <div class="card-top__image">
-                        <?php
-                        $post_title_attr = the_title_attribute('echo=0');
-                        if (wp_get_attachment_image(get_post_thumbnail_id())) {
-                            echo wp_get_attachment_image(get_post_thumbnail_id(), 'mercury-135-135', "", array("alt" => $post_title_attr));
-                        } ?>
-                    </div>
+        <!-- HEADER -->
+        <div style="display: none;">
+            <section id="style-2-widthout-sidebar-header" class="section-top">
+                <div class="container relative">
+                    <div class="card-top">
+                        <div class="card-top__image">
+                            <?php
+                            $post_title_attr = the_title_attribute('echo=0');
+                            if (wp_get_attachment_image(get_post_thumbnail_id())) {
+                                echo wp_get_attachment_image(get_post_thumbnail_id(), 'mercury-135-135', "", array("alt" => $post_title_attr));
+                            } ?>
+                        </div>
 
-                    <!-- Title Start -->
+                        <!-- Title Start -->
 
-                    <div class="card-top__title"><?php the_title(); ?></div>
+                        <div class="card-top__title"><?php the_title(); ?></div>
 
-                    <!-- Title End -->
+                        <!-- Title End -->
 
-                    <div class="card-top__subtitle-wrapper">
-                        <div class="card-top__subtitle">
-                            <?php if ($casino_short_desc) { ?>
+                        <div class="card-top__subtitle-wrapper">
+                            <div class="card-top__subtitle">
+                                <?php if ($casino_short_desc) { ?>
 
-                                <!-- Short Description of the Organization Start -->
+                                    <!-- Short Description of the Organization Start -->
 
-                                <pre><?php echo trim(wp_kses($casino_short_desc, $casino_allowed_html)); ?></pre>
+                                    <pre><?php echo trim(wp_kses($casino_short_desc, $casino_allowed_html)); ?></pre>
 
-                                <!-- Short Description of the Organization End -->
+                                    <!-- Short Description of the Organization End -->
+
+                                <?php } ?>
+                            </div>
+                            <div class="card-top__rating">
+                                <i class="fas fa-star"></i>
+                                (<?php echo esc_html(number_format((float)$casino_overall_rating, 1, '.', ',')); ?>)
+                            </div>
+                        </div>
+
+                        <div class="card-top__text">
+                            <?php echo wp_kses($casino_detailed_tc, $casino_allowed_html); ?>
+                        </div>
+
+                        <div class="card-top__cta">
+                            <?php if ($casino_external_link) { ?>
+
+                                <!-- Button Start -->
+
+                                <a href="<?php echo esc_url($casino_external_link); ?>"
+                                   title="<?php echo esc_attr($button_title); ?>"
+                                   class="card-top__button button"
+                                   rel="nofollow" target="_blank">
+                                    <?php echo esc_html($button_title); ?>
+                                </a>
+
+                                <!-- Button End -->
 
                             <?php } ?>
-                        </div>
-                        <div class="card-top__rating">
-                            <i class="fas fa-star"></i>
-                            (<?php echo esc_html(number_format((float)$casino_overall_rating, 1, '.', ',')); ?>)
-                        </div>
-                    </div>
 
-                    <div class="card-top__text">
-                        <?php echo wp_kses($casino_detailed_tc, $casino_allowed_html); ?>
-                    </div>
-
-                    <div class="card-top__cta">
-                        <?php if ($casino_external_link) { ?>
-
-                            <!-- Button Start -->
-
-                            <a href="<?php echo esc_url($casino_external_link); ?>"
-                               title="<?php echo esc_attr($button_title); ?>"
-                               class="card-top__button button"
-                               rel="nofollow" target="_blank">
-                                <?php echo esc_html($button_title); ?>
-                            </a>
-
-                            <!-- Button End -->
-
-                        <?php } ?>
-
-                        <?php if ($organization_popup_hide == true) { ?>
-                            <div class="space-organization-header-button-notice relative" style="margin-top: 5px;">
-                                <span class="tc-apply"><?php echo esc_html($custom_popup_title); ?></span>
-                                <div class="tc-desc">
-                                    <?php
-                                    if ($casino_detailed_tc) {
-                                        echo wp_kses($casino_detailed_tc, $casino_allowed_html);
-                                    }
-                                    ?>
+                            <?php if ($organization_popup_hide == true) { ?>
+                                <div class="space-organization-header-button-notice relative" style="margin-top: 5px;">
+                                    <span class="tc-apply"><?php echo esc_html($custom_popup_title); ?></span>
+                                    <div class="tc-desc">
+                                        <?php
+                                        if ($casino_detailed_tc) {
+                                            echo wp_kses($casino_detailed_tc, $casino_allowed_html);
+                                        }
+                                        ?>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php } ?>
+                            <?php } ?>
 
-                        <?php if ($casino_button_notice) { ?>
+                            <?php if ($casino_button_notice) { ?>
 
-                            <!-- The notice below of the button Start -->
+                                <!-- The notice below of the button Start -->
 
-                            <span>
+                                <span>
                                 <?php echo wp_kses($casino_button_notice, $casino_allowed_html); ?>
                             </span>
 
-                            <!-- The notice below of the button End -->
+                                <!-- The notice below of the button End -->
 
-                        <?php } ?>
+                            <?php } ?>
+                        </div>
+
+                        <?php
+                        if (function_exists('aces_geolocation')) {
+                            if (get_option('aces_geolocation_enable')) { ?>
+
+                                <!-- Accepted users info Start -->
+
+                                <div class="card-top__info">
+                                    <i class="fas exclamation"></i>
+                                    <?php aces_geolocation(get_the_ID()); ?>
+                                </div>
+
+                                <!-- Accepted users info End -->
+
+                            <?php }
+                        } ?>
                     </div>
-
-                    <?php
-                    if (function_exists('aces_geolocation')) {
-                        if (get_option('aces_geolocation_enable')) { ?>
-
-                            <!-- Accepted users info Start -->
-
-                            <div class="card-top__info">
-                                <i class="fas exclamation"></i>
-                                <?php aces_geolocation(get_the_ID()); ?>
-                            </div>
-
-                            <!-- Accepted users info End -->
-
-                        <?php }
-                    } ?>
                 </div>
-            </div>
-            <img class="section-top__clouds-1"
-                 src="<?= get_stylesheet_directory_uri() ?>/assets/images/section/clouds-1.png"
-                 alt="clouds">
-            <img class="section-top__clouds-2"
-                 src="<?= get_stylesheet_directory_uri() ?>/assets/images/section/clouds-2.png"
-                 alt="clouds">
-            <img class="section-top__deer" src="<?= get_stylesheet_directory_uri() ?>/assets/images/deer.svg"
-                 alt="deer">
-        </section>
+                <img class="section-top__clouds-1"
+                     src="<?= get_stylesheet_directory_uri() ?>/assets/images/section/clouds-1.png"
+                     alt="clouds">
+                <img class="section-top__clouds-2"
+                     src="<?= get_stylesheet_directory_uri() ?>/assets/images/section/clouds-2.png"
+                     alt="clouds">
+                <img class="section-top__deer" src="<?= get_stylesheet_directory_uri() ?>/assets/images/deer.svg"
+                     alt="deer">
+            </section>
+        </div>
 
         <!-- Organization Header End -->
 
         <!-- Single Organization Page Section Start -->
 
-        <section id="style-2-widthout-sidebar-about" class="section section_bg section_bg_1">
-            <div class="container">
-                <div class="section__inner">
+        <!-- ABOUT -->
+        <div style="display: none;">
+            <section id="style-2-widthout-sidebar-about" class="section section_bg section_bg_1">
+                <div class="container">
+                    <div class="section__inner">
 
-                    <?php if (function_exists('spacethemes_set_post_views')) {
-                        spacethemes_set_post_views(get_the_ID());
-                    } ?>
+                        <?php if (function_exists('spacethemes_set_post_views')) {
+                            spacethemes_set_post_views(get_the_ID());
+                        } ?>
 
-                    <header class="section__header">
-                        <div class="section__title">About <em>gaming</em></div>
-                        <?php if (has_excerpt()) { ?>
-                            <div class="section__subtitle">
-                                <?php the_excerpt(); ?>
-                            </div>
-                        <?php } ?>
-                    </header>
-
-                    <div class="space-page-content-wrap relative">
-
-                        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                            <?php if (function_exists('spacethemes_set_post_views')) {
-                                spacethemes_set_post_views(get_the_ID());
-                            } ?>
-
-                            <div class="section__content">
-                                <div class="benefits benefits_spades">
-                                    <div class="benefits__title">Pros casino</div>
-                                    <ul class="benefits__list">
-                                        <li class="benefits__item">Aenean bibendum tempor lectus</li>
-                                        <li class="benefits__item">Vestibulum ultricies</li>
-                                        <li class="benefits__item">Nunc consectetur urna quis elit</li>
-                                        <li class="benefits__item">Curabitur odio tellus</li>
-                                        <li class="benefits__item">Donec rhoncus mi ac dui efficitur</li>
-                                    </ul>
+                        <header class="section__header">
+                            <div class="section__title">About <em>gaming</em></div>
+                            <?php if (has_excerpt()) { ?>
+                                <div class="section__subtitle">
+                                    <?php the_excerpt(); ?>
                                 </div>
-                                <div class="benefits benefits_clubs benefits_negative">
-                                    <div class="benefits__title">Cons casino</div>
-                                    <ul class="benefits__list">
-                                        <li class="benefits__item">Aenean bibendum tempor lectus</li>
-                                        <li class="benefits__item">Vestibulum ultricies</li>
-                                        <li class="benefits__item">Nunc consectetur urna quis elit</li>
-                                        <li class="benefits__item">Curabitur odio tellus</li>
-                                        <li class="benefits__item">Donec rhoncus mi ac dui efficitur</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <span style="color: red">unknown 1</span>
-                            <?php
-                            if (get_theme_mod('mercury_old_pros_cons_casinos')) {
-                                $casino_pros_desc = wp_kses(get_post_meta(get_the_ID(), 'casino_pros_desc', true), $casino_allowed_html);
-                                $casino_cons_desc = wp_kses(get_post_meta(get_the_ID(), 'casino_cons_desc', true), $casino_allowed_html);
-                                ?>
-
-                                <!-- Pros/Cons Start -->
-
-                                <?php if ($casino_pros_desc || $casino_cons_desc) { ?>
-
-                                    <div class="space-pros-cons box-100 relative">
-                                        <?php if ($casino_pros_desc) { ?>
-                                            <div class="space-pros <?php if (!$casino_cons_desc) { ?>box-100<?php } else { ?>box-50<?php } ?> relative">
-                                                <div class="space-pros-ins relative">
-                                                    <div class="space-pros-title box-100 relative">
-                                                        <?php
-                                                        if (get_option('casinos_pros_title')) {
-                                                            echo esc_html(get_option('casinos_pros_title'));
-                                                        } else {
-                                                            echo esc_html__('Pros', 'mercury');
-                                                        }
-                                                        ?>
-                                                    </div>
-                                                    <div class="space-pros-description box-100 relative">
-                                                        <?php echo wp_kses($casino_pros_desc, $casino_allowed_html); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <?php } ?>
-                                        <?php if ($casino_cons_desc) { ?>
-                                            <div class="space-cons <?php if (!$casino_pros_desc) { ?>box-100<?php } else { ?>box-50<?php } ?> relative">
-                                                <div class="space-cons-ins relative">
-                                                    <div class="space-cons-title box-100 relative">
-                                                        <?php
-                                                        if (get_option('casinos_cons_title')) {
-                                                            echo esc_html(get_option('casinos_cons_title'));
-                                                        } else {
-                                                            echo esc_html__('Cons', 'mercury');
-                                                        }
-                                                        ?>
-                                                    </div>
-                                                    <div class="space-cons-description box-100 relative">
-                                                        <?php echo wp_kses($casino_cons_desc, $casino_allowed_html); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <?php } ?>
-                                    </div>
-
-                                <?php } ?>
-
-                                <!-- Pros/Cons End -->
-
                             <?php } ?>
+                        </header>
 
-                            <span style="color: red">unknown 2</span>
-                            <div class="space-page-content-box-wrap relative">
-                                <div class="space-page-content box-100 relative">
-                                    <?php
-                                    the_content();
-                                    wp_link_pages(array(
-                                        'before' => '<div class="clear"></div><nav class="navigation pagination-post">' . esc_html__('Pages:', 'mercury'),
-                                        'after' => '</nav>',
-                                        'link_before' => '<span class="page-number">',
-                                        'link_after' => '</span>',
-                                    ));
-                                    ?>
-                                </div>
+                        <span style="color: red;">No implemented yet!</span>
+                        <div class="section__content">
+                            <div class="benefits benefits_spades">
+                                <div class="benefits__title">Pros casino</div>
+                                <ul class="benefits__list">
+                                    <li class="benefits__item">Aenean bibendum tempor lectus</li>
+                                    <li class="benefits__item">Vestibulum ultricies</li>
+                                    <li class="benefits__item">Nunc consectetur urna quis elit</li>
+                                    <li class="benefits__item">Curabitur odio tellus</li>
+                                    <li class="benefits__item">Donec rhoncus mi ac dui efficitur</li>
+                                </ul>
                             </div>
-
-                            <span style="color: red">rating block</span>
-                            <div>
-                                <?php if ($organization_disable_rating_block == true) {
-
-                                } else { ?>
-
-                                    <!-- Ratings Block Start -->
-
-                                    <div class="space-organization-style-2-calltoaction-rating relative">
-                                        <div class="space-organization-style-2-calltoaction-rating-ins box-100 relative">
-                                            <div class="space-organization-style-2-calltoaction-block box-100 relative">
-                                                <div class="space-organization-style-2-calltoaction-text box-66 relative">
-
-                                                    <?php if ($casino_terms_desc) { ?>
-
-                                                        <!-- Terms Start -->
-
-                                                        <div class="space-organization-style-2-calltoaction-text-ins relative">
-                                                            <?php echo wp_kses($casino_terms_desc, $casino_allowed_html); ?>
-                                                        </div>
-
-                                                        <!-- Terms End -->
-
-                                                    <?php } ?>
-
-                                                </div>
-                                                <div class="space-organization-style-2-calltoaction-button box-33 text-right relative">
-
-                                                    <?php if ($casino_external_link) { ?>
-
-                                                        <!-- Button Start -->
-
-                                                        <div class="space-organization-style-2-calltoaction-button-ins text-center relative">
-                                                            <a href="<?php echo esc_url($casino_external_link); ?>"
-                                                               title="<?php echo esc_html($button_title); ?>"
-                                                               class="space-calltoaction-button" rel="nofollow"
-                                                               target="_blank"><?php echo esc_html($button_title); ?> <i
-                                                                        class="fas fa-arrow-alt-circle-right"></i></a>
-
-                                                            <?php if ($casino_button_notice) { ?>
-
-                                                                <!-- The notice below of the button Start -->
-
-                                                                <div class="space-organization-style-2-calltoaction-button-notice relative">
-                                                                    <?php echo wp_kses($casino_button_notice, $casino_allowed_html); ?>
-                                                                </div>
-
-                                                                <!-- The notice below of the button End -->
-
-                                                            <?php } ?>
-
-                                                        </div>
-
-                                                        <!-- Button End -->
-
-                                                    <?php } ?>
-
-                                                </div>
-                                            </div>
-                                            <div class="space-organization-style-2-ratings-block box-100 relative">
-                                                <div class="space-organization-style-2-ratings-all box-66 relative">
-                                                    <div class="space-organization-style-2-ratings-all-ins box-100 relative">
-
-                                                        <?php if ($casino_rating_trust) { ?>
-                                                            <div class="space-organization-style-2-ratings-all-item box-50 relative">
-                                                                <div class="space-organization-style-2-ratings-all-item-ins relative">
-                                                                    <div class="space-organization-style-2-ratings-all-item-value relative">
-                                                                        <?php echo esc_html(number_format((float)$casino_rating_trust, 1, '.', ',')); ?>
-                                                                        <i class="fas fa-star"></i>
-                                                                    </div>
-                                                                    <?php
-                                                                    $rating_1_title = get_option('rating_1');
-                                                                    if ($rating_1_title) {
-                                                                        echo esc_html($rating_1_title);
-                                                                    } else {
-                                                                        esc_html_e('Trust & Fairness', 'mercury');
-                                                                    } ?>
-                                                                </div>
-                                                            </div>
-                                                        <?php } ?>
-
-                                                        <?php if ($casino_rating_games) { ?>
-                                                            <div class="space-organization-style-2-ratings-all-item box-50 relative">
-                                                                <div class="space-organization-style-2-ratings-all-item-ins relative">
-                                                                    <div class="space-organization-style-2-ratings-all-item-value relative">
-                                                                        <?php echo esc_html(number_format((float)$casino_rating_games, 1, '.', ',')); ?>
-                                                                        <i class="fas fa-star"></i>
-                                                                    </div>
-                                                                    <?php
-                                                                    $rating_2_title = get_option('rating_2');
-                                                                    if ($rating_2_title) {
-                                                                        echo esc_html($rating_2_title);
-                                                                    } else {
-                                                                        esc_html_e('Games & Software', 'mercury');
-                                                                    } ?>
-                                                                </div>
-                                                            </div>
-                                                        <?php } ?>
-
-                                                        <?php if ($casino_rating_bonus) { ?>
-                                                            <div class="space-organization-style-2-ratings-all-item box-50 relative">
-                                                                <div class="space-organization-style-2-ratings-all-item-ins relative">
-                                                                    <div class="space-organization-style-2-ratings-all-item-value relative">
-                                                                        <?php echo esc_html(number_format((float)$casino_rating_bonus, 1, '.', ',')); ?>
-                                                                        <i class="fas fa-star"></i>
-                                                                    </div>
-                                                                    <?php
-                                                                    $rating_3_title = get_option('rating_3');
-                                                                    if ($rating_3_title) {
-                                                                        echo esc_html($rating_3_title);
-                                                                    } else {
-                                                                        esc_html_e('Bonuses & Promotions', 'mercury');
-                                                                    } ?>
-                                                                </div>
-                                                            </div>
-                                                        <?php } ?>
-
-                                                        <?php if ($casino_rating_customer) { ?>
-                                                            <div class="space-organization-style-2-ratings-all-item box-50 relative">
-                                                                <div class="space-organization-style-2-ratings-all-item-ins relative">
-                                                                    <div class="space-organization-style-2-ratings-all-item-value relative">
-                                                                        <?php echo esc_html(number_format((float)$casino_rating_customer, 1, '.', ',')); ?>
-                                                                        <i class="fas fa-star"></i>
-                                                                    </div>
-                                                                    <?php
-                                                                    $rating_4_title = get_option('rating_4');
-                                                                    if ($rating_4_title) {
-                                                                        echo esc_html($rating_4_title);
-                                                                    } else {
-                                                                        esc_html_e('Customer Support', 'mercury');
-                                                                    } ?>
-                                                                </div>
-                                                            </div>
-                                                        <?php } ?>
-
-                                                    </div>
-                                                </div>
-                                                <div class="space-organization-style-2-rating-overall box-33 relative">
-                                                    <div class="space-organization-style-2-rating-overall-ins text-center relative">
-                                                        <?php echo esc_html(number_format((float)$casino_overall_rating, 1, '.', ',')); ?>
-                                                        <span>
-															<?php
-                                                            $rating_overall_title = get_option('rating_overall');
-                                                            if ($rating_overall_title) {
-                                                                echo esc_html($rating_overall_title);
-                                                            } else {
-                                                                esc_html_e('Overall Rating', 'mercury');
-                                                            } ?>
-														</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Ratings Block End -->
-
-                                <?php } ?>
+                            <div class="benefits benefits_clubs benefits_negative">
+                                <div class="benefits__title">Cons casino</div>
+                                <ul class="benefits__list">
+                                    <li class="benefits__item">Aenean bibendum tempor lectus</li>
+                                    <li class="benefits__item">Vestibulum ultricies</li>
+                                    <li class="benefits__item">Nunc consectetur urna quis elit</li>
+                                    <li class="benefits__item">Curabitur odio tellus</li>
+                                    <li class="benefits__item">Donec rhoncus mi ac dui efficitur</li>
+                                </ul>
                             </div>
-
-                        <?php endwhile; ?>
-                        <?php endif; ?>
-
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
-        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-            <?php if ($organization_disable_details == true) {
+        <!-- DETAILS -->
+        <div style="display: none;">
+            <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-            } else { ?>
+                <?php if ($organization_disable_details == true) {
 
-                <?php if ($casino_software || $casino_deposit_methods || $casino_withdrawal_methods || $casino_withdrawal_limits || $casino_restricted_countries || $casino_licences || $casino_languages || $casino_currencies || $casino_devices || $casino_owner || $casino_est) { ?>
+                } else { ?>
 
-                    <!-- Organization Details Start -->
+                    <?php if ($casino_software || $casino_deposit_methods || $casino_withdrawal_methods || $casino_withdrawal_limits || $casino_restricted_countries || $casino_licences || $casino_languages || $casino_currencies || $casino_devices || $casino_owner || $casino_est) { ?>
 
-                    <section id="style-2-widthout-sidebar-details" class="section section_bg section_bg_2">
-                        <div class="container">
-                            <div class="section__inner">
-                                <header class="section__header">
-                                    <div class="section__title">
-                                        <h3><?php the_title(); ?><?php esc_html_e('Details', 'mercury'); ?></h3>
-                                        Stars casino <em>details</em>
-                                    </div>
-                                </header>
-                                <div class="section__content">
-                                    <ul class="tags">
-                                        <?php if ($casino_software) { ?>
+                        <!-- Organization Details Start -->
 
-                                            <!-- Organization Software Start -->
+                        <section id="style-2-widthout-sidebar-details" class="section section_bg section_bg_2">
+                            <div class="container">
+                                <div class="section__inner">
+                                    <header class="section__header">
+                                        <div class="section__title">
+                                            Stars casino <em>details</em>
+                                            <!--                                        <h3>-->
+                                            <?php //the_title(); ?><!---->
+                                            <?php //esc_html_e('Details', 'mercury'); ?><!--</h3>-->
+                                        </div>
+                                        <div class="section__subtitle">
+                                            Cras in nisi id turpis cursus vulputate. Aliquam at sapien non tellus congue
+                                            efficitur.
+                                            Nam scelerisque quam quis turpis pellentesque, in placerat erat laoreet.
+                                        </div>
+                                    </header>
+                                    <div class="section__content">
+                                        <ul class="tags">
+                                            <?php if ($casino_software) { ?>
 
-                                            <li class="tags__card">
-                                                <div class="tags__header">
-                                                    <div class="tags__icon">
-                                                        <img
-                                                                src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/software.svg"
-                                                                alt="tag"
-                                                        >
-                                                    </div>
-                                                    <div class="tags__title">
-                                                        <?php if (get_option('casinos_software_title')) { ?>
-                                                            <?php echo esc_html(get_option('casinos_software_title')); ?>
-                                                        <?php } else { ?>
-                                                            <?php esc_html_e('Software', 'mercury'); ?>
-                                                        <?php } ?>
-                                                    </div>
-                                                </div>
-                                                <ul class="tags__list">
-                                                    <?php foreach ($casino_software as $software) {
-                                                        $software_logo = get_term_meta($software->term_id, 'taxonomy-image-id', true);
-                                                        if ($software_logo) { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$software->term_id, $software->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($software->name); ?>"
-                                                               class="tags__item">
-                                                                <?php echo wp_get_attachment_image($software_logo, 'mercury-9999-32', "", array("class" => "space-software-logo")); ?>
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a class="tags__item"
-                                                               href="<?php echo esc_url(get_term_link((int)$software->term_id, $software->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($software->name); ?>"><?php echo esc_html($software->name); ?></a>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                </ul>
-                                            </li>
+                                                <!-- Organization Software Start -->
 
-                                            <!-- Organization Software End -->
-
-                                        <?php } ?>
-
-                                        <?php if ($casino_deposit_methods) { ?>
-
-                                            <!-- Organization Deposit Methods Start -->
-
-                                            <li class="tags__card">
-                                                <div class="tags__header">
-                                                    <div class="tags__icon">
-                                                        <img
-                                                                src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/deposit-methods.svg"
-                                                                alt="tag"
-                                                        >
-                                                    </div>
-                                                    <div class="tags__title">
-                                                        <?php if (get_option('casinos_deposit_method_title')) { ?>
-                                                            <?php echo esc_html(get_option('casinos_deposit_method_title')); ?>
-                                                        <?php } else { ?>
-                                                            <?php esc_html_e('Deposit Methods', 'mercury'); ?>
-                                                        <?php } ?>
-                                                    </div>
-                                                </div>
-                                                <ul class="tags__list">
-                                                    <?php foreach ($casino_deposit_methods as $deposit) {
-                                                        $deposit_logo = get_term_meta($deposit->term_id, 'taxonomy-image-id', true);
-                                                        if ($deposit_logo) { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$deposit->term_id, $deposit->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($deposit->name); ?>"
-                                                               class="tags__item"
-                                                            >
-                                                                <?php echo wp_get_attachment_image($deposit_logo, 'mercury-9999-32', "", array("class" => "space-deposit-logo")); ?>
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a
-                                                                    class="tags__item"
-                                                                    href="<?php echo esc_url(get_term_link((int)$deposit->term_id, $deposit->taxonomy)); ?>"
-                                                                    title="<?php echo esc_attr($deposit->name); ?>"><?php echo esc_html($deposit->name); ?></a>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                </ul>
-                                            </li>
-
-                                            <!-- Organization Deposit Methods End -->
-
-                                        <?php } ?>
-
-                                        <?php if ($casino_withdrawal_methods) { ?>
-
-                                            <!-- Organization Withdrawal Methods Start -->
-
-                                            <li class="tags__card">
-                                                <div class="tags__header">
-                                                    <div class="tags__icon">
-                                                        <img
-                                                                src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/withdrawal-methods.svg"
-                                                                alt="tag"
-                                                        >
-                                                    </div>
-                                                    <div class="tags__title">
-                                                        <?php if (get_option('casinos_withdrawal_method_title')) { ?>
-                                                            <?php echo esc_html(get_option('casinos_withdrawal_method_title')); ?>
-                                                        <?php } else { ?>
-                                                            <?php esc_html_e('Withdrawal Methods', 'mercury'); ?>
-                                                        <?php } ?>
-                                                    </div>
-                                                </div>
-                                                <ul class="tags__list">
-                                                    <?php foreach ($casino_withdrawal_methods as $withdrawal) {
-                                                        $withdrawal_logo = get_term_meta($withdrawal->term_id, 'taxonomy-image-id', true);
-                                                        if ($withdrawal_logo) { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$withdrawal->term_id, $withdrawal->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($withdrawal->name); ?>"
-                                                               class="tags__item"
-                                                            >
-                                                                <?php echo wp_get_attachment_image($withdrawal_logo, 'mercury-9999-32', "", array("class" => "space-withdrawal-logo")); ?>
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a
-                                                                    class="tags__item"
-                                                                    href="<?php echo esc_url(get_term_link((int)$withdrawal->term_id, $withdrawal->taxonomy)); ?>"
-                                                                    title="<?php echo esc_attr($withdrawal->name); ?>"><?php echo esc_html($withdrawal->name); ?></a>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                </ul>
-                                            </li>
-
-                                            <!-- Organization Withdrawal Methods End -->
-
-                                        <?php } ?>
-
-                                        <?php if ($casino_withdrawal_limits) { ?>
-
-                                            <!-- Organization Withdrawal Limits Start -->
-
-                                            <li class="tags__card">
-                                                <div class="tags__header">
-                                                    <div class="tags__icon">
-                                                        <img
-                                                                src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/withdrawal-methods.svg"
-                                                                alt="tag"
-                                                        >
-                                                    </div>
-                                                    <div class="tags__title">
-                                                        <?php if (get_option('casinos_withdrawal_limit_title')) { ?>
-                                                            <?php echo esc_html(get_option('casinos_withdrawal_limit_title')); ?>
-                                                        <?php } else { ?>
-                                                            <?php esc_html_e('Withdrawal Limits', 'mercury'); ?>
-                                                        <?php } ?>
-                                                    </div>
-                                                </div>
-                                                <ul class="tags__list">
-                                                    <?php foreach ($casino_withdrawal_limits as $limit) {
-                                                        $limit_logo = get_term_meta($limit->term_id, 'taxonomy-image-id', true);
-                                                        if ($limit_logo) { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$limit->term_id, $limit->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($limit->name); ?>"
-                                                               class="tags__item"
-                                                            >
-                                                                <?php echo wp_get_attachment_image($limit_logo, 'mercury-9999-32', "", array("class" => "space-limit-logo")); ?>
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a
-                                                                    class="tags__item"
-                                                                    href="<?php echo esc_url(get_term_link((int)$limit->term_id, $limit->taxonomy)); ?>"
-                                                                    title="<?php echo esc_attr($limit->name); ?>"><?php echo esc_html($limit->name); ?></a>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                </ul>
-                                            </li>
-
-                                            <!-- Organization Withdrawal Limits End -->
-
-                                        <?php } ?>
-
-                                        <?php if ($casino_restricted_countries) { ?>
-
-                                            <!-- Organization Restricted Countries Start -->
-
-                                            <li class="tags__card">
-                                                <div class="tags__header">
-                                                    <div class="tags__icon">
-                                                        <img
-                                                                src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/restricted-countries.svg"
-                                                                alt="tag"
-                                                        >
-                                                    </div>
-                                                    <div class="tags__title">
-                                                        <?php if (get_option('casinos_restricted_countries_title')) { ?>
-                                                            <?php echo esc_html(get_option('casinos_restricted_countries_title')); ?>
-                                                        <?php } else { ?>
-                                                            <?php esc_html_e('Restricted Countries', 'mercury'); ?>
-                                                        <?php } ?>
-                                                    </div>
-                                                </div>
-
-                                                <ul class="tags__list">
-                                                    <?php foreach ($casino_restricted_countries as $country) {
-                                                        $country_flag = get_term_meta($country->term_id, 'taxonomy-image-id', true);
-                                                        if ($country_flag) { ?>
-                                                            <span class="flag-item">
-															<?php echo wp_get_attachment_image($country_flag, 'mercury-9999-32', "", array("class" => "space-country-flag")); ?>
-														</span>
-                                                        <?php } else { ?>
-                                                            <span class="tags__item"><?php echo esc_html($country->name); ?></span>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                </ul>
-                                            </li>
-
-                                            <!-- Organization Restricted Countries End -->
-
-                                        <?php } ?>
-
-                                        <?php if ($casino_licences) { ?>
-
-                                            <!-- Organization Licences Start -->
-
-                                            <li class="tags__card">
-                                                <div class="tags__header">
+                                                <li class="tags__card">
                                                     <div class="tags__header">
                                                         <div class="tags__icon">
                                                             <img
-                                                                    src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/licenses.svg"
+                                                                    src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/software.svg"
                                                                     alt="tag"
                                                             >
                                                         </div>
                                                         <div class="tags__title">
-                                                            <?php if (get_option('casinos_licences_title')) { ?>
-                                                                <?php echo esc_html(get_option('casinos_licences_title')); ?>
+                                                            <?php if (get_option('casinos_software_title')) { ?>
+                                                                <?php echo esc_html(get_option('casinos_software_title')); ?>
                                                             <?php } else { ?>
-                                                                <?php esc_html_e('Licences', 'mercury'); ?>
+                                                                <?php esc_html_e('Software', 'mercury'); ?>
                                                             <?php } ?>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <ul class="tags__list">
-                                                    <?php foreach ($casino_licences as $licence) {
-                                                        $licence_logo = get_term_meta($licence->term_id, 'taxonomy-image-id', true);
-                                                        if ($licence_logo) { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$licence->term_id, $licence->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($licence->name); ?>"
-                                                               class="tags__item">
-                                                                <?php echo wp_get_attachment_image($licence_logo, 'mercury-9999-32', "", array("class" => "space-licence-logo")); ?>
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a class="tags__item"
-                                                               href="<?php echo esc_url(get_term_link((int)$licence->term_id, $licence->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($licence->name); ?>"><?php echo esc_html($licence->name); ?></a>
+                                                    <ul class="tags__list">
+                                                        <?php foreach ($casino_software as $software) {
+                                                            $software_logo = get_term_meta($software->term_id, 'taxonomy-image-id', true);
+                                                            if ($software_logo) { ?>
+                                                                <a href="<?php echo esc_url(get_term_link((int)$software->term_id, $software->taxonomy)); ?>"
+                                                                   title="<?php echo esc_attr($software->name); ?>"
+                                                                   class="tags__item">
+                                                                    <?php echo wp_get_attachment_image($software_logo, 'mercury-9999-32', "", array("class" => "space-software-logo")); ?>
+                                                                </a>
+                                                            <?php } else { ?>
+                                                                <a class="tags__item"
+                                                                   href="<?php echo esc_url(get_term_link((int)$software->term_id, $software->taxonomy)); ?>"
+                                                                   title="<?php echo esc_attr($software->name); ?>"><?php echo esc_html($software->name); ?></a>
+                                                            <?php } ?>
                                                         <?php } ?>
-                                                    <?php } ?>
-                                                </ul>
-                                            </li>
+                                                    </ul>
+                                                </li>
 
-                                            <!-- Organization Licences End -->
+                                                <!-- Organization Software End -->
 
-                                        <?php } ?>
+                                            <?php } ?>
 
-                                        <?php if ($casino_languages) { ?>
+                                            <?php if ($casino_deposit_methods) { ?>
 
-                                            <!-- Organization Languages Start -->
+                                                <!-- Organization Deposit Methods Start -->
 
-                                            <li class="tags__card">
-                                                <div class="tags__header">
-                                                    <div class="tags__icon">
-                                                        <img
-                                                                src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/languages.svg"
-                                                                alt="tag"
-                                                        >
+                                                <li class="tags__card">
+                                                    <div class="tags__header">
+                                                        <div class="tags__icon">
+                                                            <img
+                                                                    src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/deposit-methods.svg"
+                                                                    alt="tag"
+                                                            >
+                                                        </div>
+                                                        <div class="tags__title">
+                                                            <?php if (get_option('casinos_deposit_method_title')) { ?>
+                                                                <?php echo esc_html(get_option('casinos_deposit_method_title')); ?>
+                                                            <?php } else { ?>
+                                                                <?php esc_html_e('Deposit Methods', 'mercury'); ?>
+                                                            <?php } ?>
+                                                        </div>
                                                     </div>
-                                                    <div class="tags__title">
-                                                        <?php if (get_option('casinos_languages_title')) { ?>
-                                                            <?php echo esc_html(get_option('casinos_languages_title')); ?>
-                                                        <?php } else { ?>
-                                                            <?php esc_html_e('Languages', 'mercury'); ?>
+                                                    <ul class="tags__list">
+                                                        <?php foreach ($casino_deposit_methods as $deposit) {
+                                                            $deposit_logo = get_term_meta($deposit->term_id, 'taxonomy-image-id', true);
+                                                            if ($deposit_logo) { ?>
+                                                                <a href="<?php echo esc_url(get_term_link((int)$deposit->term_id, $deposit->taxonomy)); ?>"
+                                                                   title="<?php echo esc_attr($deposit->name); ?>"
+                                                                   class="tags__item"
+                                                                >
+                                                                    <?php echo wp_get_attachment_image($deposit_logo, 'mercury-9999-32', "", array("class" => "space-deposit-logo")); ?>
+                                                                </a>
+                                                            <?php } else { ?>
+                                                                <a
+                                                                        class="tags__item"
+                                                                        href="<?php echo esc_url(get_term_link((int)$deposit->term_id, $deposit->taxonomy)); ?>"
+                                                                        title="<?php echo esc_attr($deposit->name); ?>"><?php echo esc_html($deposit->name); ?></a>
+                                                            <?php } ?>
                                                         <?php } ?>
+                                                    </ul>
+                                                </li>
+
+                                                <!-- Organization Deposit Methods End -->
+
+                                            <?php } ?>
+
+                                            <?php if ($casino_withdrawal_methods) { ?>
+
+                                                <!-- Organization Withdrawal Methods Start -->
+
+                                                <li class="tags__card">
+                                                    <div class="tags__header">
+                                                        <div class="tags__icon">
+                                                            <img
+                                                                    src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/withdrawal-methods.svg"
+                                                                    alt="tag"
+                                                            >
+                                                        </div>
+                                                        <div class="tags__title">
+                                                            <?php if (get_option('casinos_withdrawal_method_title')) { ?>
+                                                                <?php echo esc_html(get_option('casinos_withdrawal_method_title')); ?>
+                                                            <?php } else { ?>
+                                                                <?php esc_html_e('Withdrawal Methods', 'mercury'); ?>
+                                                            <?php } ?>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <ul class="tags__list">
-                                                    <?php foreach ($casino_languages as $language) {
-                                                        $language_logo = get_term_meta($language->term_id, 'taxonomy-image-id', true);
-                                                        if ($language_logo) { ?>
-                                                            <a class="tags__item"
-                                                               href="<?php echo esc_url(get_term_link((int)$language->term_id, $language->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($language->name); ?>"
-                                                               class="logo-item">
-                                                                <?php echo wp_get_attachment_image($language_logo, 'mercury-9999-32', "", array("class" => "space-language-logo")); ?>
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a class="tags__item"
-                                                               href="<?php echo esc_url(get_term_link((int)$language->term_id, $language->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($language->name); ?>"><?php echo esc_html($language->name); ?></a>
+                                                    <ul class="tags__list">
+                                                        <?php foreach ($casino_withdrawal_methods as $withdrawal) {
+                                                            $withdrawal_logo = get_term_meta($withdrawal->term_id, 'taxonomy-image-id', true);
+                                                            if ($withdrawal_logo) { ?>
+                                                                <a href="<?php echo esc_url(get_term_link((int)$withdrawal->term_id, $withdrawal->taxonomy)); ?>"
+                                                                   title="<?php echo esc_attr($withdrawal->name); ?>"
+                                                                   class="tags__item"
+                                                                >
+                                                                    <?php echo wp_get_attachment_image($withdrawal_logo, 'mercury-9999-32', "", array("class" => "space-withdrawal-logo")); ?>
+                                                                </a>
+                                                            <?php } else { ?>
+                                                                <a
+                                                                        class="tags__item"
+                                                                        href="<?php echo esc_url(get_term_link((int)$withdrawal->term_id, $withdrawal->taxonomy)); ?>"
+                                                                        title="<?php echo esc_attr($withdrawal->name); ?>"><?php echo esc_html($withdrawal->name); ?></a>
+                                                            <?php } ?>
                                                         <?php } ?>
-                                                    <?php } ?>
-                                                </ul>
-                                            </li>
+                                                    </ul>
+                                                </li>
 
-                                            <!-- Organization Languages End -->
+                                                <!-- Organization Withdrawal Methods End -->
 
-                                        <?php } ?>
+                                            <?php } ?>
 
-                                        <?php if ($casino_currencies) { ?>
+                                            <?php if ($casino_withdrawal_limits) { ?>
 
-                                            <!-- Organization Currencies Start -->
+                                                <!-- Organization Withdrawal Limits Start -->
 
-                                            <li class="tags__card">
-                                                <div class="tags__header">
-                                                    <div class="tags__icon">
-                                                        <img
-                                                                src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/currencies.svg"
-                                                                alt="tag"
-                                                        >
+                                                <li class="tags__card">
+                                                    <div class="tags__header">
+                                                        <div class="tags__icon">
+                                                            <img
+                                                                    src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/withdrawal-methods.svg"
+                                                                    alt="tag"
+                                                            >
+                                                        </div>
+                                                        <div class="tags__title">
+                                                            <?php if (get_option('casinos_withdrawal_limit_title')) { ?>
+                                                                <?php echo esc_html(get_option('casinos_withdrawal_limit_title')); ?>
+                                                            <?php } else { ?>
+                                                                <?php esc_html_e('Withdrawal Limits', 'mercury'); ?>
+                                                            <?php } ?>
+                                                        </div>
                                                     </div>
-                                                    <div class="tags__title">
-                                                        <?php if (get_option('casinos_currencies_title')) { ?>
-                                                            <?php echo esc_html(get_option('casinos_currencies_title')); ?>
-                                                        <?php } else { ?>
-                                                            <?php esc_html_e('Currencies', 'mercury'); ?>
+                                                    <ul class="tags__list">
+                                                        <?php foreach ($casino_withdrawal_limits as $limit) {
+                                                            $limit_logo = get_term_meta($limit->term_id, 'taxonomy-image-id', true);
+                                                            if ($limit_logo) { ?>
+                                                                <a href="<?php echo esc_url(get_term_link((int)$limit->term_id, $limit->taxonomy)); ?>"
+                                                                   title="<?php echo esc_attr($limit->name); ?>"
+                                                                   class="tags__item"
+                                                                >
+                                                                    <?php echo wp_get_attachment_image($limit_logo, 'mercury-9999-32', "", array("class" => "space-limit-logo")); ?>
+                                                                </a>
+                                                            <?php } else { ?>
+                                                                <a
+                                                                        class="tags__item"
+                                                                        href="<?php echo esc_url(get_term_link((int)$limit->term_id, $limit->taxonomy)); ?>"
+                                                                        title="<?php echo esc_attr($limit->name); ?>"><?php echo esc_html($limit->name); ?></a>
+                                                            <?php } ?>
                                                         <?php } ?>
-                                                    </div>
-                                                </div>
+                                                    </ul>
+                                                </li>
 
-                                                <ul class="tags__list">
-                                                    <?php foreach ($casino_currencies as $currency) {
-                                                        $currency_logo = get_term_meta($currency->term_id, 'taxonomy-image-id', true);
-                                                        if ($currency_logo) { ?>
-                                                            <a class="tags__item"
-                                                               href="<?php echo esc_url(get_term_link((int)$currency->term_id, $currency->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($currency->name); ?>"
-                                                               class="logo-item">
-                                                                <?php echo wp_get_attachment_image($currency_logo, 'mercury-9999-32', "", array("class" => "space-currency-logo")); ?>
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a class="tags__item"
-                                                               href="<?php echo esc_url(get_term_link((int)$currency->term_id, $currency->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($currency->name); ?>"><?php echo esc_html($currency->name); ?></a>
+                                                <!-- Organization Withdrawal Limits End -->
+
+                                            <?php } ?>
+
+                                            <?php if ($casino_restricted_countries) { ?>
+
+                                                <!-- Organization Restricted Countries Start -->
+
+                                                <li class="tags__card">
+                                                    <div class="tags__header">
+                                                        <div class="tags__icon">
+                                                            <img
+                                                                    src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/restricted-countries.svg"
+                                                                    alt="tag"
+                                                            >
+                                                        </div>
+                                                        <div class="tags__title">
+                                                            <?php if (get_option('casinos_restricted_countries_title')) { ?>
+                                                                <?php echo esc_html(get_option('casinos_restricted_countries_title')); ?>
+                                                            <?php } else { ?>
+                                                                <?php esc_html_e('Restricted Countries', 'mercury'); ?>
+                                                            <?php } ?>
+                                                        </div>
+                                                    </div>
+
+                                                    <ul class="tags__list">
+                                                        <?php foreach ($casino_restricted_countries as $country) {
+                                                            $country_flag = get_term_meta($country->term_id, 'taxonomy-image-id', true);
+                                                            if ($country_flag) { ?>
+                                                                <span class="flag-item">
+															<?php echo wp_get_attachment_image($country_flag, 'mercury-9999-32', "", array("class" => "space-country-flag")); ?>
+														</span>
+                                                            <?php } else { ?>
+                                                                <span class="tags__item"><?php echo esc_html($country->name); ?></span>
+                                                            <?php } ?>
                                                         <?php } ?>
-                                                    <?php } ?>
-                                                </ul>
-                                            </li>
+                                                    </ul>
+                                                </li>
 
-                                            <!-- Organization Currencies End -->
+                                                <!-- Organization Restricted Countries End -->
 
-                                        <?php } ?>
+                                            <?php } ?>
 
-                                        <?php if ($casino_devices) { ?>
+                                            <?php if ($casino_licences) { ?>
 
-                                            <!-- Organization Devices Start -->
+                                                <!-- Organization Licences Start -->
 
-                                            <li class="tags__card">
-                                                <div class="tags__header">
-                                                    <div class="tags__icon">
-                                                        <img
-                                                                src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/devices.svg"
-                                                                alt="tag"
-                                                        >
+                                                <li class="tags__card">
+                                                    <div class="tags__header">
+                                                        <div class="tags__header">
+                                                            <div class="tags__icon">
+                                                                <img
+                                                                        src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/licenses.svg"
+                                                                        alt="tag"
+                                                                >
+                                                            </div>
+                                                            <div class="tags__title">
+                                                                <?php if (get_option('casinos_licences_title')) { ?>
+                                                                    <?php echo esc_html(get_option('casinos_licences_title')); ?>
+                                                                <?php } else { ?>
+                                                                    <?php esc_html_e('Licences', 'mercury'); ?>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="tags__title">
-                                                        <?php if (get_option('casinos_devices_title')) { ?>
-                                                            <?php echo esc_html(get_option('casinos_devices_title')); ?>
-                                                        <?php } else { ?>
-                                                            <?php esc_html_e('Devices', 'mercury'); ?>
+                                                    <ul class="tags__list">
+                                                        <?php foreach ($casino_licences as $licence) {
+                                                            $licence_logo = get_term_meta($licence->term_id, 'taxonomy-image-id', true);
+                                                            if ($licence_logo) { ?>
+                                                                <a href="<?php echo esc_url(get_term_link((int)$licence->term_id, $licence->taxonomy)); ?>"
+                                                                   title="<?php echo esc_attr($licence->name); ?>"
+                                                                   class="tags__item">
+                                                                    <?php echo wp_get_attachment_image($licence_logo, 'mercury-9999-32', "", array("class" => "space-licence-logo")); ?>
+                                                                </a>
+                                                            <?php } else { ?>
+                                                                <a class="tags__item"
+                                                                   href="<?php echo esc_url(get_term_link((int)$licence->term_id, $licence->taxonomy)); ?>"
+                                                                   title="<?php echo esc_attr($licence->name); ?>"><?php echo esc_html($licence->name); ?></a>
+                                                            <?php } ?>
                                                         <?php } ?>
+                                                    </ul>
+                                                </li>
+
+                                                <!-- Organization Licences End -->
+
+                                            <?php } ?>
+
+                                            <?php if ($casino_languages) { ?>
+
+                                                <!-- Organization Languages Start -->
+
+                                                <li class="tags__card">
+                                                    <div class="tags__header">
+                                                        <div class="tags__icon">
+                                                            <img
+                                                                    src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/languages.svg"
+                                                                    alt="tag"
+                                                            >
+                                                        </div>
+                                                        <div class="tags__title">
+                                                            <?php if (get_option('casinos_languages_title')) { ?>
+                                                                <?php echo esc_html(get_option('casinos_languages_title')); ?>
+                                                            <?php } else { ?>
+                                                                <?php esc_html_e('Languages', 'mercury'); ?>
+                                                            <?php } ?>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <ul class="tags__list">
-                                                    <li class="tags__item">ATM</li>
-                                                    <li class="tags__item">$1,000 per day</li>
-                                                    <li class="tags__item">$4,000 peer week</li>
-                                                    <li class="tags__item">$8,000 per month</li>
-                                                    <li class="tags__item">Turkey</li>
-                                                    <li class="tags__item">Ukraine</li>
-                                                    <li class="tags__item">United Kingdom</li>
-                                                </ul>
-                                            </li>
-
-                                            <!-- Organization Devices End -->
-
-                                        <?php } ?>
-
-                                        <?php if ($casino_owner) { ?>
-
-                                            <!-- Organization Owner Start -->
-
-                                            <li class="tags__card">
-                                                <div class="tags__header">
-                                                    <div class="tags__icon">
-                                                        <img
-                                                                src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/owner.svg"
-                                                                alt="tag"
-                                                        >
-                                                    </div>
-                                                    <div class="tags__title">
-                                                        <?php if (get_option('casinos_owner_title')) { ?>
-                                                            <?php echo esc_html(get_option('casinos_owner_title')); ?>
-                                                        <?php } else { ?>
-                                                            <?php esc_html_e('Owner', 'mercury'); ?>
+                                                    <ul class="tags__list">
+                                                        <?php foreach ($casino_languages as $language) {
+                                                            $language_logo = get_term_meta($language->term_id, 'taxonomy-image-id', true);
+                                                            if ($language_logo) { ?>
+                                                                <a class="tags__item"
+                                                                   href="<?php echo esc_url(get_term_link((int)$language->term_id, $language->taxonomy)); ?>"
+                                                                   title="<?php echo esc_attr($language->name); ?>"
+                                                                   class="logo-item">
+                                                                    <?php echo wp_get_attachment_image($language_logo, 'mercury-9999-32', "", array("class" => "space-language-logo")); ?>
+                                                                </a>
+                                                            <?php } else { ?>
+                                                                <a class="tags__item"
+                                                                   href="<?php echo esc_url(get_term_link((int)$language->term_id, $language->taxonomy)); ?>"
+                                                                   title="<?php echo esc_attr($language->name); ?>"><?php echo esc_html($language->name); ?></a>
+                                                            <?php } ?>
                                                         <?php } ?>
+                                                    </ul>
+                                                </li>
+
+                                                <!-- Organization Languages End -->
+
+                                            <?php } ?>
+
+                                            <?php if ($casino_currencies) { ?>
+
+                                                <!-- Organization Currencies Start -->
+
+                                                <li class="tags__card">
+                                                    <div class="tags__header">
+                                                        <div class="tags__icon">
+                                                            <img
+                                                                    src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/currencies.svg"
+                                                                    alt="tag"
+                                                            >
+                                                        </div>
+                                                        <div class="tags__title">
+                                                            <?php if (get_option('casinos_currencies_title')) { ?>
+                                                                <?php echo esc_html(get_option('casinos_currencies_title')); ?>
+                                                            <?php } else { ?>
+                                                                <?php esc_html_e('Currencies', 'mercury'); ?>
+                                                            <?php } ?>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <ul class="tags__list">
-
-                                                    <?php foreach ($casino_owner as $owner) {
-                                                        $owner_logo = get_term_meta($owner->term_id, 'taxonomy-image-id', true);
-                                                        if ($owner_logo) { ?>
-                                                            <a class="tags__item"
-                                                               href="<?php echo esc_url(get_term_link((int)$owner->term_id, $owner->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($owner->name); ?>"
-                                                               class="logo-item">
-                                                                <?php echo wp_get_attachment_image($owner_logo, 'mercury-9999-32', "", array("class" => "space-owner-logo")); ?>
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a class="tags__item"
-                                                               href="<?php echo esc_url(get_term_link((int)$owner->term_id, $owner->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($owner->name); ?>">
-                                                                <?php echo esc_html($owner->name); ?>
-                                                            </a>
+                                                    <ul class="tags__list">
+                                                        <?php foreach ($casino_currencies as $currency) {
+                                                            $currency_logo = get_term_meta($currency->term_id, 'taxonomy-image-id', true);
+                                                            if ($currency_logo) { ?>
+                                                                <a class="tags__item"
+                                                                   href="<?php echo esc_url(get_term_link((int)$currency->term_id, $currency->taxonomy)); ?>"
+                                                                   title="<?php echo esc_attr($currency->name); ?>"
+                                                                   class="logo-item">
+                                                                    <?php echo wp_get_attachment_image($currency_logo, 'mercury-9999-32', "", array("class" => "space-currency-logo")); ?>
+                                                                </a>
+                                                            <?php } else { ?>
+                                                                <a class="tags__item"
+                                                                   href="<?php echo esc_url(get_term_link((int)$currency->term_id, $currency->taxonomy)); ?>"
+                                                                   title="<?php echo esc_attr($currency->name); ?>"><?php echo esc_html($currency->name); ?></a>
+                                                            <?php } ?>
                                                         <?php } ?>
-                                                    <?php } ?>
-                                                </ul>
-                                            </li>
+                                                    </ul>
+                                                </li>
 
-                                            <!-- Organization Owner End -->
+                                                <!-- Organization Currencies End -->
 
-                                        <?php } ?>
+                                            <?php } ?>
 
-                                        <?php if ($casino_est) { ?>
+                                            <?php if ($casino_devices) { ?>
 
-                                            <!-- Organization Established Start -->
+                                                <!-- Organization Devices Start -->
 
-                                            <li class="tags__card">
-                                                <div class="tags__header">
-                                                    <div class="tags__icon">
-                                                        <img
-                                                                src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/established.svg"
-                                                                alt="tag"
-                                                        >
+                                                <li class="tags__card">
+                                                    <div class="tags__header">
+                                                        <div class="tags__icon">
+                                                            <img
+                                                                    src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/devices.svg"
+                                                                    alt="tag"
+                                                            >
+                                                        </div>
+                                                        <div class="tags__title">
+                                                            <?php if (get_option('casinos_devices_title')) { ?>
+                                                                <?php echo esc_html(get_option('casinos_devices_title')); ?>
+                                                            <?php } else { ?>
+                                                                <?php esc_html_e('Devices', 'mercury'); ?>
+                                                            <?php } ?>
+                                                        </div>
                                                     </div>
-                                                    <div class="tags__title">
-                                                        <?php if (get_option('casinos_est_title')) { ?>
-                                                            <?php echo esc_html(get_option('casinos_est_title')); ?>
-                                                        <?php } else { ?>
-                                                            <?php esc_html_e('Established', 'mercury'); ?>
-                                                        <?php } ?>
+                                                    <ul class="tags__list">
+                                                        <li class="tags__item">ATM</li>
+                                                        <li class="tags__item">$1,000 per day</li>
+                                                        <li class="tags__item">$4,000 peer week</li>
+                                                        <li class="tags__item">$8,000 per month</li>
+                                                        <li class="tags__item">Turkey</li>
+                                                        <li class="tags__item">Ukraine</li>
+                                                        <li class="tags__item">United Kingdom</li>
+                                                    </ul>
+                                                </li>
+
+                                                <!-- Organization Devices End -->
+
+                                            <?php } ?>
+
+                                            <?php if ($casino_owner) { ?>
+
+                                                <!-- Organization Owner Start -->
+
+                                                <li class="tags__card">
+                                                    <div class="tags__header">
+                                                        <div class="tags__icon">
+                                                            <img
+                                                                    src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/owner.svg"
+                                                                    alt="tag"
+                                                            >
+                                                        </div>
+                                                        <div class="tags__title">
+                                                            <?php if (get_option('casinos_owner_title')) { ?>
+                                                                <?php echo esc_html(get_option('casinos_owner_title')); ?>
+                                                            <?php } else { ?>
+                                                                <?php esc_html_e('Owner', 'mercury'); ?>
+                                                            <?php } ?>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <ul class="tags__list">
-                                                    <?php foreach ($casino_est as $est) {
-                                                        $est_logo = get_term_meta($est->term_id, 'taxonomy-image-id', true);
-                                                        if ($est_logo) { ?>
-                                                            <a class="tags__item"
-                                                               href="<?php echo esc_url(get_term_link((int)$est->term_id, $est->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($est->name); ?>"
-                                                               class="logo-item">
-                                                                <?php echo wp_get_attachment_image($est_logo, 'mercury-9999-32', "", array("class" => "space-est-logo")); ?>
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a class="tags__item"
-                                                               href="<?php echo esc_url(get_term_link((int)$est->term_id, $est->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($est->name); ?>">
-                                                                <?php echo esc_html($est->name); ?>
-                                                            </a>
+                                                    <ul class="tags__list">
+
+                                                        <?php foreach ($casino_owner as $owner) {
+                                                            $owner_logo = get_term_meta($owner->term_id, 'taxonomy-image-id', true);
+                                                            if ($owner_logo) { ?>
+                                                                <a class="tags__item"
+                                                                   href="<?php echo esc_url(get_term_link((int)$owner->term_id, $owner->taxonomy)); ?>"
+                                                                   title="<?php echo esc_attr($owner->name); ?>"
+                                                                   class="logo-item">
+                                                                    <?php echo wp_get_attachment_image($owner_logo, 'mercury-9999-32', "", array("class" => "space-owner-logo")); ?>
+                                                                </a>
+                                                            <?php } else { ?>
+                                                                <a class="tags__item"
+                                                                   href="<?php echo esc_url(get_term_link((int)$owner->term_id, $owner->taxonomy)); ?>"
+                                                                   title="<?php echo esc_attr($owner->name); ?>">
+                                                                    <?php echo esc_html($owner->name); ?>
+                                                                </a>
+                                                            <?php } ?>
                                                         <?php } ?>
-                                                    <?php } ?>
-                                                </ul>
-                                            </li>
+                                                    </ul>
+                                                </li>
 
-                                            <!-- Organization Established End -->
+                                                <!-- Organization Owner End -->
 
-                                        <?php } ?>
+                                            <?php } ?>
 
-                                    </ul>
+                                            <?php if ($casino_est) { ?>
+
+                                                <!-- Organization Established Start -->
+
+                                                <li class="tags__card">
+                                                    <div class="tags__header">
+                                                        <div class="tags__icon">
+                                                            <img
+                                                                    src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/tags/established.svg"
+                                                                    alt="tag"
+                                                            >
+                                                        </div>
+                                                        <div class="tags__title">
+                                                            <?php if (get_option('casinos_est_title')) { ?>
+                                                                <?php echo esc_html(get_option('casinos_est_title')); ?>
+                                                            <?php } else { ?>
+                                                                <?php esc_html_e('Established', 'mercury'); ?>
+                                                            <?php } ?>
+                                                        </div>
+                                                    </div>
+
+                                                    <ul class="tags__list">
+                                                        <?php foreach ($casino_est as $est) {
+                                                            $est_logo = get_term_meta($est->term_id, 'taxonomy-image-id', true);
+                                                            if ($est_logo) { ?>
+                                                                <a class="tags__item"
+                                                                   href="<?php echo esc_url(get_term_link((int)$est->term_id, $est->taxonomy)); ?>"
+                                                                   title="<?php echo esc_attr($est->name); ?>"
+                                                                   class="logo-item">
+                                                                    <?php echo wp_get_attachment_image($est_logo, 'mercury-9999-32', "", array("class" => "space-est-logo")); ?>
+                                                                </a>
+                                                            <?php } else { ?>
+                                                                <a class="tags__item"
+                                                                   href="<?php echo esc_url(get_term_link((int)$est->term_id, $est->taxonomy)); ?>"
+                                                                   title="<?php echo esc_attr($est->name); ?>">
+                                                                    <?php echo esc_html($est->name); ?>
+                                                                </a>
+                                                            <?php } ?>
+                                                        <?php } ?>
+                                                    </ul>
+                                                </li>
+
+                                                <!-- Organization Established End -->
+
+                                            <?php } ?>
+
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
 
-                    <!-- Organization Details End -->
+                        <!-- Organization Details End -->
+
+                    <?php } ?>
 
                 <?php } ?>
 
-            <?php } ?>
+            <?php endwhile; ?>
+            <?php endif; ?>
+        </div>
 
-        <?php endwhile; ?>
-        <?php endif; ?>
+        <!-- RATING -->
+        <div style="display: none;">
+            <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
+                <div>
+                    <?php if ($organization_disable_rating_block == true) {
 
-        <?php
-        $post_id_related = '"' . $post->ID . '"';
-        ?>
+                    } else { ?>
 
-        <!-- Single Organization Page Section End -->
+                        <!-- Ratings Block Start -->
 
-        <!-- Single Organization Page Section Start OLD STYLE -->
+                        <div class="space-organization-style-2-calltoaction-rating relative">
+                            <div class="space-organization-style-2-calltoaction-rating-ins box-100 relative">
+                                <div class="space-organization-style-2-calltoaction-block box-100 relative">
+                                    <div class="space-organization-style-2-calltoaction-text box-66 relative">
+                                        <?php if ($casino_terms_desc) { ?>
 
-        <div style="padding: 300px 0 0 0; color: red">OLD CODE</div>
+                                            <!-- Terms Start -->
 
-        <div class="space-page-section box-100 relative style-2-without-sidebar">
-            <div class="space-page-section-ins space-page-wrapper relative">
-                <div class="space-content-section box-100 relative">
-
-                    <div class="space-page-content-wrap relative">
-
-                        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                            <?php if (function_exists('spacethemes_set_post_views')) {
-                                spacethemes_set_post_views(get_the_ID());
-                            } ?>
-
-                            <?php if (has_excerpt()) { ?>
-                                <div class="space-organization-content-excerpt relative">
-                                    <?php the_excerpt(); ?>
-                                </div>
-                            <?php } ?>
-
-                            <?php
-                            if (get_theme_mod('mercury_old_pros_cons_casinos')) {
-                                $casino_pros_desc = wp_kses(get_post_meta(get_the_ID(), 'casino_pros_desc', true), $casino_allowed_html);
-                                $casino_cons_desc = wp_kses(get_post_meta(get_the_ID(), 'casino_cons_desc', true), $casino_allowed_html);
-                                ?>
-
-                                <!-- Pros/Cons Start -->
-
-                                <?php if ($casino_pros_desc || $casino_cons_desc) { ?>
-
-                                    <div class="space-pros-cons box-100 relative">
-                                        <?php if ($casino_pros_desc) { ?>
-                                            <div class="space-pros <?php if (!$casino_cons_desc) { ?>box-100<?php } else { ?>box-50<?php } ?> relative">
-                                                <div class="space-pros-ins relative">
-                                                    <div class="space-pros-title box-100 relative">
-                                                        <?php
-                                                        if (get_option('casinos_pros_title')) {
-                                                            echo esc_html(get_option('casinos_pros_title'));
-                                                        } else {
-                                                            echo esc_html__('Pros', 'mercury');
-                                                        }
-                                                        ?>
-                                                    </div>
-                                                    <div class="space-pros-description box-100 relative">
-                                                        <?php echo wp_kses($casino_pros_desc, $casino_allowed_html); ?>
-                                                    </div>
-                                                </div>
+                                            <div class="space-organization-style-2-calltoaction-text-ins relative">
+                                                <?php echo wp_kses($casino_terms_desc, $casino_allowed_html); ?>
                                             </div>
-                                        <?php } ?>
-                                        <?php if ($casino_cons_desc) { ?>
-                                            <div class="space-cons <?php if (!$casino_pros_desc) { ?>box-100<?php } else { ?>box-50<?php } ?> relative">
-                                                <div class="space-cons-ins relative">
-                                                    <div class="space-cons-title box-100 relative">
-                                                        <?php
-                                                        if (get_option('casinos_cons_title')) {
-                                                            echo esc_html(get_option('casinos_cons_title'));
-                                                        } else {
-                                                            echo esc_html__('Cons', 'mercury');
-                                                        }
-                                                        ?>
-                                                    </div>
-                                                    <div class="space-cons-description box-100 relative">
-                                                        <?php echo wp_kses($casino_cons_desc, $casino_allowed_html); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
+
+                                            <!-- Terms End -->
+
                                         <?php } ?>
                                     </div>
+                                    <div class="space-organization-style-2-calltoaction-button box-33 text-right relative">
+                                        <?php if ($casino_external_link) { ?>
 
-                                <?php } ?>
+                                            <!-- Button Start -->
 
-                                <!-- Pros/Cons End -->
+                                            <div class="space-organization-style-2-calltoaction-button-ins text-center relative">
+                                                <a href="<?php echo esc_url($casino_external_link); ?>"
+                                                   title="<?php echo esc_html($button_title); ?>"
+                                                   class="space-calltoaction-button" rel="nofollow"
+                                                   target="_blank"><?php echo esc_html($button_title); ?> <i
+                                                            class="fas fa-arrow-alt-circle-right"></i></a>
 
-                            <?php } ?>
+                                                <?php if ($casino_button_notice) { ?>
 
-                            <div class="space-page-content-box-wrap relative">
-                                <div class="space-page-content box-100 relative">
-                                    <?php
-                                    the_content();
-                                    wp_link_pages(array(
-                                        'before' => '<div class="clear"></div><nav class="navigation pagination-post">' . esc_html__('Pages:', 'mercury'),
-                                        'after' => '</nav>',
-                                        'link_before' => '<span class="page-number">',
-                                        'link_after' => '</span>',
-                                    ));
-                                    ?>
-                                </div>
-                            </div>
+                                                    <!-- The notice below of the button Start -->
 
-                            <?php if ($organization_disable_details == true) {
-
-                            } else { ?>
-
-                                <?php if ($casino_software || $casino_deposit_methods || $casino_withdrawal_methods || $casino_withdrawal_limits || $casino_restricted_countries || $casino_licences || $casino_languages || $casino_currencies || $casino_devices || $casino_owner || $casino_est) { ?>
-
-                                    <!-- Organization Details Start -->
-
-                                    <div class="space-organization-details box-100 relative">
-                                        <div class="space-organization-details-title box-100 relative">
-                                            <h3><?php the_title(); ?><?php esc_html_e('Details', 'mercury'); ?></h3>
-                                        </div>
-
-                                        <?php if ($casino_software) { ?>
-
-                                            <!-- Organization Software Start -->
-
-                                            <div class="space-organization-details-item box-100 relative">
-                                                <div class="space-organization-details-item-title box-33 relative">
-                                                    <span><i class="fas fa-puzzle-piece"></i></span> <?php if (get_option('casinos_software_title')) { ?>
-                                                        <?php echo esc_html(get_option('casinos_software_title')); ?>
-                                                    <?php } else { ?>
-                                                        <?php esc_html_e('Software', 'mercury'); ?>
-                                                    <?php } ?>
-                                                </div>
-                                                <div class="space-organization-details-item-links box-66 relative">
-                                                    <?php foreach ($casino_software as $software) {
-                                                        $software_logo = get_term_meta($software->term_id, 'taxonomy-image-id', true);
-                                                        if ($software_logo) { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$software->term_id, $software->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($software->name); ?>"
-                                                               class="logo-item">
-                                                                <?php echo wp_get_attachment_image($software_logo, 'mercury-9999-32', "", array("class" => "space-software-logo")); ?>
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$software->term_id, $software->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($software->name); ?>"><?php echo esc_html($software->name); ?></a>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                </div>
-                                            </div>
-
-                                            <!-- Organization Software End -->
-
-                                        <?php } ?>
-
-                                        <?php if ($casino_deposit_methods) { ?>
-
-                                            <!-- Organization Deposit Methods Start -->
-
-                                            <div class="space-organization-details-item box-100 relative">
-                                                <div class="space-organization-details-item-title box-33 relative">
-                                                    <span><i class="fas fa-credit-card"></i></span> <?php if (get_option('casinos_deposit_method_title')) { ?>
-                                                        <?php echo esc_html(get_option('casinos_deposit_method_title')); ?>
-                                                    <?php } else { ?>
-                                                        <?php esc_html_e('Deposit Methods', 'mercury'); ?>
-                                                    <?php } ?>
-                                                </div>
-                                                <div class="space-organization-details-item-links box-66 relative">
-                                                    <?php foreach ($casino_deposit_methods as $deposit) {
-                                                        $deposit_logo = get_term_meta($deposit->term_id, 'taxonomy-image-id', true);
-                                                        if ($deposit_logo) { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$deposit->term_id, $deposit->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($deposit->name); ?>"
-                                                               class="logo-item">
-                                                                <?php echo wp_get_attachment_image($deposit_logo, 'mercury-9999-32', "", array("class" => "space-deposit-logo")); ?>
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$deposit->term_id, $deposit->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($deposit->name); ?>"><?php echo esc_html($deposit->name); ?></a>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                </div>
-                                            </div>
-
-                                            <!-- Organization Deposit Methods End -->
-
-                                        <?php } ?>
-
-                                        <?php if ($casino_withdrawal_methods) { ?>
-
-                                            <!-- Organization Withdrawal Methods Start -->
-
-                                            <div class="space-organization-details-item box-100 relative">
-                                                <div class="space-organization-details-item-title box-33 relative">
-                                                    <span><i class="fas fa-wallet"></i></span> <?php if (get_option('casinos_withdrawal_method_title')) { ?>
-                                                        <?php echo esc_html(get_option('casinos_withdrawal_method_title')); ?>
-                                                    <?php } else { ?>
-                                                        <?php esc_html_e('Withdrawal Methods', 'mercury'); ?>
-                                                    <?php } ?>
-                                                </div>
-                                                <div class="space-organization-details-item-links box-66 relative">
-                                                    <?php foreach ($casino_withdrawal_methods as $withdrawal) {
-                                                        $withdrawal_logo = get_term_meta($withdrawal->term_id, 'taxonomy-image-id', true);
-                                                        if ($withdrawal_logo) { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$withdrawal->term_id, $withdrawal->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($withdrawal->name); ?>"
-                                                               class="logo-item">
-                                                                <?php echo wp_get_attachment_image($withdrawal_logo, 'mercury-9999-32', "", array("class" => "space-withdrawal-logo")); ?>
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$withdrawal->term_id, $withdrawal->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($withdrawal->name); ?>"><?php echo esc_html($withdrawal->name); ?></a>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                </div>
-                                            </div>
-
-                                            <!-- Organization Withdrawal Methods End -->
-
-                                        <?php } ?>
-
-                                        <?php if ($casino_withdrawal_limits) { ?>
-
-                                            <!-- Organization Withdrawal Limits Start -->
-
-                                            <div class="space-organization-details-item box-100 relative">
-                                                <div class="space-organization-details-item-title box-33 relative">
-                                                    <span><i class="fas fa-coins"></i></span> <?php if (get_option('casinos_withdrawal_limit_title')) { ?>
-                                                        <?php echo esc_html(get_option('casinos_withdrawal_limit_title')); ?>
-                                                    <?php } else { ?>
-                                                        <?php esc_html_e('Withdrawal Limits', 'mercury'); ?>
-                                                    <?php } ?>
-                                                </div>
-                                                <div class="space-organization-details-item-links box-66 relative">
-                                                    <?php foreach ($casino_withdrawal_limits as $limit) {
-                                                        $limit_logo = get_term_meta($limit->term_id, 'taxonomy-image-id', true);
-                                                        if ($limit_logo) { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$limit->term_id, $limit->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($limit->name); ?>"
-                                                               class="logo-item">
-                                                                <?php echo wp_get_attachment_image($limit_logo, 'mercury-9999-32', "", array("class" => "space-limit-logo")); ?>
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$limit->term_id, $limit->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($limit->name); ?>"><?php echo esc_html($limit->name); ?></a>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                </div>
-                                            </div>
-
-                                            <!-- Organization Withdrawal Limits End -->
-
-                                        <?php } ?>
-
-                                        <?php if ($casino_restricted_countries) { ?>
-
-                                            <!-- Organization Restricted Countries Start -->
-
-                                            <div class="space-organization-details-item box-100 relative">
-                                                <div class="space-organization-details-item-title box-33 relative">
-                                                    <span><i class="fas fa-flag"></i></span> <?php if (get_option('casinos_restricted_countries_title')) { ?>
-                                                        <?php echo esc_html(get_option('casinos_restricted_countries_title')); ?>
-                                                    <?php } else { ?>
-                                                        <?php esc_html_e('Restricted Countries', 'mercury'); ?>
-                                                    <?php } ?>
-                                                </div>
-                                                <div class="space-organization-details-item-links box-66 relative">
-                                                    <?php foreach ($casino_restricted_countries as $country) {
-                                                        $country_flag = get_term_meta($country->term_id, 'taxonomy-image-id', true);
-                                                        if ($country_flag) { ?>
-                                                            <span class="flag-item">
-															<?php echo wp_get_attachment_image($country_flag, 'mercury-9999-32', "", array("class" => "space-country-flag")); ?>
-														</span>
-                                                        <?php } else { ?>
-                                                            <span><?php echo esc_html($country->name); ?></span>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                </div>
-                                            </div>
-
-                                            <!-- Organization Restricted Countries End -->
-
-                                        <?php } ?>
-
-                                        <?php if ($casino_licences) { ?>
-
-                                            <!-- Organization Licences Start -->
-
-                                            <div class="space-organization-details-item box-100 relative">
-                                                <div class="space-organization-details-item-title box-33 relative">
-                                                    <span><i class="fas fa-file-alt"></i></span> <?php if (get_option('casinos_licences_title')) { ?>
-                                                        <?php echo esc_html(get_option('casinos_licences_title')); ?>
-                                                    <?php } else { ?>
-                                                        <?php esc_html_e('Licences', 'mercury'); ?>
-                                                    <?php } ?>
-                                                </div>
-                                                <div class="space-organization-details-item-links box-66 relative">
-                                                    <?php foreach ($casino_licences as $licence) {
-                                                        $licence_logo = get_term_meta($licence->term_id, 'taxonomy-image-id', true);
-                                                        if ($licence_logo) { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$licence->term_id, $licence->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($licence->name); ?>"
-                                                               class="logo-item">
-                                                                <?php echo wp_get_attachment_image($licence_logo, 'mercury-9999-32', "", array("class" => "space-licence-logo")); ?>
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$licence->term_id, $licence->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($licence->name); ?>"><?php echo esc_html($licence->name); ?></a>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                </div>
-                                            </div>
-
-                                            <!-- Organization Licences End -->
-
-                                        <?php } ?>
-
-                                        <?php if ($casino_languages) { ?>
-
-                                            <!-- Organization Languages Start -->
-
-                                            <div class="space-organization-details-item box-100 relative">
-                                                <div class="space-organization-details-item-title box-33 relative">
-                                                    <span><i class="fas fa-globe"></i></span> <?php if (get_option('casinos_languages_title')) { ?>
-                                                        <?php echo esc_html(get_option('casinos_languages_title')); ?>
-                                                    <?php } else { ?>
-                                                        <?php esc_html_e('Languages', 'mercury'); ?>
-                                                    <?php } ?>
-                                                </div>
-                                                <div class="space-organization-details-item-links box-66 relative">
-                                                    <?php foreach ($casino_languages as $language) {
-                                                        $language_logo = get_term_meta($language->term_id, 'taxonomy-image-id', true);
-                                                        if ($language_logo) { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$language->term_id, $language->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($language->name); ?>"
-                                                               class="logo-item">
-                                                                <?php echo wp_get_attachment_image($language_logo, 'mercury-9999-32', "", array("class" => "space-language-logo")); ?>
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$language->term_id, $language->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($language->name); ?>"><?php echo esc_html($language->name); ?></a>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                </div>
-                                            </div>
-
-                                            <!-- Organization Languages End -->
-
-                                        <?php } ?>
-
-                                        <?php if ($casino_currencies) { ?>
-
-                                            <!-- Organization Currencies Start -->
-
-                                            <div class="space-organization-details-item box-100 relative">
-                                                <div class="space-organization-details-item-title box-33 relative">
-                                                    <span><i class="fas fa-dollar-sign"></i></span> <?php if (get_option('casinos_currencies_title')) { ?>
-                                                        <?php echo esc_html(get_option('casinos_currencies_title')); ?>
-                                                    <?php } else { ?>
-                                                        <?php esc_html_e('Currencies', 'mercury'); ?>
-                                                    <?php } ?>
-                                                </div>
-                                                <div class="space-organization-details-item-links box-66 relative">
-                                                    <?php foreach ($casino_currencies as $currency) {
-                                                        $currency_logo = get_term_meta($currency->term_id, 'taxonomy-image-id', true);
-                                                        if ($currency_logo) { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$currency->term_id, $currency->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($currency->name); ?>"
-                                                               class="logo-item">
-                                                                <?php echo wp_get_attachment_image($currency_logo, 'mercury-9999-32', "", array("class" => "space-currency-logo")); ?>
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$currency->term_id, $currency->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($currency->name); ?>"><?php echo esc_html($currency->name); ?></a>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                </div>
-                                            </div>
-
-                                            <!-- Organization Currencies End -->
-
-                                        <?php } ?>
-
-                                        <?php if ($casino_devices) { ?>
-
-                                            <!-- Organization Devices Start -->
-
-                                            <div class="space-organization-details-item box-100 relative">
-                                                <div class="space-organization-details-item-title box-33 relative">
-                                                    <span><i class="fas fa-desktop"></i></span> <?php if (get_option('casinos_devices_title')) { ?>
-                                                        <?php echo esc_html(get_option('casinos_devices_title')); ?>
-                                                    <?php } else { ?>
-                                                        <?php esc_html_e('Devices', 'mercury'); ?>
-                                                    <?php } ?>
-                                                </div>
-                                                <div class="space-organization-details-item-links box-66 relative">
-                                                    <?php foreach ($casino_devices as $device) {
-                                                        $device_logo = get_term_meta($device->term_id, 'taxonomy-image-id', true);
-                                                        if ($device_logo) { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$device->term_id, $device->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($device->name); ?>"
-                                                               class="logo-item">
-                                                                <?php echo wp_get_attachment_image($device_logo, 'mercury-9999-32', "", array("class" => "space-device-logo")); ?>
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$device->term_id, $device->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($device->name); ?>"><?php echo esc_html($device->name); ?></a>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                </div>
-                                            </div>
-
-                                            <!-- Organization Devices End -->
-
-                                        <?php } ?>
-
-                                        <?php if ($casino_owner) { ?>
-
-                                            <!-- Organization Owner Start -->
-
-                                            <div class="space-organization-details-item box-100 relative">
-                                                <div class="space-organization-details-item-title box-33 relative">
-                                                    <span><i class="fas fa-building"></i></span> <?php if (get_option('casinos_owner_title')) { ?>
-                                                        <?php echo esc_html(get_option('casinos_owner_title')); ?>
-                                                    <?php } else { ?>
-                                                        <?php esc_html_e('Owner', 'mercury'); ?>
-                                                    <?php } ?>
-                                                </div>
-                                                <div class="space-organization-details-item-links box-66 relative">
-                                                    <?php foreach ($casino_owner as $owner) {
-                                                        $owner_logo = get_term_meta($owner->term_id, 'taxonomy-image-id', true);
-                                                        if ($owner_logo) { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$owner->term_id, $owner->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($owner->name); ?>"
-                                                               class="logo-item">
-                                                                <?php echo wp_get_attachment_image($owner_logo, 'mercury-9999-32', "", array("class" => "space-owner-logo")); ?>
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$owner->term_id, $owner->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($owner->name); ?>">
-                                                                <?php echo esc_html($owner->name); ?>
-                                                            </a>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                </div>
-                                            </div>
-
-                                            <!-- Organization Owner End -->
-
-                                        <?php } ?>
-
-                                        <?php if ($casino_est) { ?>
-
-                                            <!-- Organization Established Start -->
-
-                                            <div class="space-organization-details-item box-100 relative">
-                                                <div class="space-organization-details-item-title box-33 relative">
-                                                    <span><i class="fas fa-glass-cheers"></i></span> <?php if (get_option('casinos_est_title')) { ?>
-                                                        <?php echo esc_html(get_option('casinos_est_title')); ?>
-                                                    <?php } else { ?>
-                                                        <?php esc_html_e('Established', 'mercury'); ?>
-                                                    <?php } ?>
-                                                </div>
-                                                <div class="space-organization-details-item-links box-66 relative">
-                                                    <?php foreach ($casino_est as $est) {
-                                                        $est_logo = get_term_meta($est->term_id, 'taxonomy-image-id', true);
-                                                        if ($est_logo) { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$est->term_id, $est->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($est->name); ?>"
-                                                               class="logo-item">
-                                                                <?php echo wp_get_attachment_image($est_logo, 'mercury-9999-32', "", array("class" => "space-est-logo")); ?>
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a href="<?php echo esc_url(get_term_link((int)$est->term_id, $est->taxonomy)); ?>"
-                                                               title="<?php echo esc_attr($est->name); ?>">
-                                                                <?php echo esc_html($est->name); ?>
-                                                            </a>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                </div>
-                                            </div>
-
-                                            <!-- Organization Established End -->
-
-                                        <?php } ?>
-
-                                    </div>
-
-                                    <!-- Organization Details End -->
-
-                                <?php } ?>
-
-                            <?php } ?>
-
-                            <?php if ($organization_disable_rating_block == true) {
-
-                            } else { ?>
-
-                                <!-- Ratings Block Start -->
-
-                                <div class="space-organization-style-2-calltoaction-rating relative">
-                                    <div class="space-organization-style-2-calltoaction-rating-ins box-100 relative">
-                                        <div class="space-organization-style-2-calltoaction-block box-100 relative">
-                                            <div class="space-organization-style-2-calltoaction-text box-66 relative">
-
-                                                <?php if ($casino_terms_desc) { ?>
-
-                                                    <!-- Terms Start -->
-
-                                                    <div class="space-organization-style-2-calltoaction-text-ins relative">
-                                                        <?php echo wp_kses($casino_terms_desc, $casino_allowed_html); ?>
+                                                    <div class="space-organization-style-2-calltoaction-button-notice relative">
+                                                        <?php echo wp_kses($casino_button_notice, $casino_allowed_html); ?>
                                                     </div>
 
-                                                    <!-- Terms End -->
+                                                    <!-- The notice below of the button End -->
 
                                                 <?php } ?>
 
                                             </div>
-                                            <div class="space-organization-style-2-calltoaction-button box-33 text-right relative">
 
-                                                <?php if ($casino_external_link) { ?>
+                                            <!-- Button End -->
 
-                                                    <!-- Button Start -->
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <div class="space-organization-style-2-ratings-block box-100 relative">
+                                    <div class="space-organization-style-2-ratings-all box-66 relative">
+                                        <div class="space-organization-style-2-ratings-all-ins box-100 relative">
 
-                                                    <div class="space-organization-style-2-calltoaction-button-ins text-center relative">
-                                                        <a href="<?php echo esc_url($casino_external_link); ?>"
-                                                           title="<?php echo esc_html($button_title); ?>"
-                                                           class="space-calltoaction-button" rel="nofollow"
-                                                           target="_blank"><?php echo esc_html($button_title); ?> <i
-                                                                    class="fas fa-arrow-alt-circle-right"></i></a>
-
-                                                        <?php if ($casino_button_notice) { ?>
-
-                                                            <!-- The notice below of the button Start -->
-
-                                                            <div class="space-organization-style-2-calltoaction-button-notice relative">
-                                                                <?php echo wp_kses($casino_button_notice, $casino_allowed_html); ?>
-                                                            </div>
-
-                                                            <!-- The notice below of the button End -->
-
-                                                        <?php } ?>
-
+                                            <?php if ($casino_rating_trust) { ?>
+                                                <div class="space-organization-style-2-ratings-all-item box-50 relative">
+                                                    <div class="space-organization-style-2-ratings-all-item-ins relative">
+                                                        <div class="space-organization-style-2-ratings-all-item-value relative">
+                                                            <?php echo esc_html(number_format((float)$casino_rating_trust, 1, '.', ',')); ?>
+                                                            <i class="fas fa-star"></i>
+                                                        </div>
+                                                        <?php
+                                                        $rating_1_title = get_option('rating_1');
+                                                        if ($rating_1_title) {
+                                                            echo esc_html($rating_1_title);
+                                                        } else {
+                                                            esc_html_e('Trust & Fairness', 'mercury');
+                                                        } ?>
                                                     </div>
-
-                                                    <!-- Button End -->
-
-                                                <?php } ?>
-
-                                            </div>
-                                        </div>
-                                        <div class="space-organization-style-2-ratings-block box-100 relative">
-                                            <div class="space-organization-style-2-ratings-all box-66 relative">
-                                                <div class="space-organization-style-2-ratings-all-ins box-100 relative">
-
-                                                    <?php if ($casino_rating_trust) { ?>
-                                                        <div class="space-organization-style-2-ratings-all-item box-50 relative">
-                                                            <div class="space-organization-style-2-ratings-all-item-ins relative">
-                                                                <div class="space-organization-style-2-ratings-all-item-value relative">
-                                                                    <?php echo esc_html(number_format((float)$casino_rating_trust, 1, '.', ',')); ?>
-                                                                    <i class="fas fa-star"></i>
-                                                                </div>
-                                                                <?php
-                                                                $rating_1_title = get_option('rating_1');
-                                                                if ($rating_1_title) {
-                                                                    echo esc_html($rating_1_title);
-                                                                } else {
-                                                                    esc_html_e('Trust & Fairness', 'mercury');
-                                                                } ?>
-                                                            </div>
-                                                        </div>
-                                                    <?php } ?>
-
-                                                    <?php if ($casino_rating_games) { ?>
-                                                        <div class="space-organization-style-2-ratings-all-item box-50 relative">
-                                                            <div class="space-organization-style-2-ratings-all-item-ins relative">
-                                                                <div class="space-organization-style-2-ratings-all-item-value relative">
-                                                                    <?php echo esc_html(number_format((float)$casino_rating_games, 1, '.', ',')); ?>
-                                                                    <i class="fas fa-star"></i>
-                                                                </div>
-                                                                <?php
-                                                                $rating_2_title = get_option('rating_2');
-                                                                if ($rating_2_title) {
-                                                                    echo esc_html($rating_2_title);
-                                                                } else {
-                                                                    esc_html_e('Games & Software', 'mercury');
-                                                                } ?>
-                                                            </div>
-                                                        </div>
-                                                    <?php } ?>
-
-                                                    <?php if ($casino_rating_bonus) { ?>
-                                                        <div class="space-organization-style-2-ratings-all-item box-50 relative">
-                                                            <div class="space-organization-style-2-ratings-all-item-ins relative">
-                                                                <div class="space-organization-style-2-ratings-all-item-value relative">
-                                                                    <?php echo esc_html(number_format((float)$casino_rating_bonus, 1, '.', ',')); ?>
-                                                                    <i class="fas fa-star"></i>
-                                                                </div>
-                                                                <?php
-                                                                $rating_3_title = get_option('rating_3');
-                                                                if ($rating_3_title) {
-                                                                    echo esc_html($rating_3_title);
-                                                                } else {
-                                                                    esc_html_e('Bonuses & Promotions', 'mercury');
-                                                                } ?>
-                                                            </div>
-                                                        </div>
-                                                    <?php } ?>
-
-                                                    <?php if ($casino_rating_customer) { ?>
-                                                        <div class="space-organization-style-2-ratings-all-item box-50 relative">
-                                                            <div class="space-organization-style-2-ratings-all-item-ins relative">
-                                                                <div class="space-organization-style-2-ratings-all-item-value relative">
-                                                                    <?php echo esc_html(number_format((float)$casino_rating_customer, 1, '.', ',')); ?>
-                                                                    <i class="fas fa-star"></i>
-                                                                </div>
-                                                                <?php
-                                                                $rating_4_title = get_option('rating_4');
-                                                                if ($rating_4_title) {
-                                                                    echo esc_html($rating_4_title);
-                                                                } else {
-                                                                    esc_html_e('Customer Support', 'mercury');
-                                                                } ?>
-                                                            </div>
-                                                        </div>
-                                                    <?php } ?>
-
                                                 </div>
-                                            </div>
-                                            <div class="space-organization-style-2-rating-overall box-33 relative">
-                                                <div class="space-organization-style-2-rating-overall-ins text-center relative">
-                                                    <?php echo esc_html(number_format((float)$casino_overall_rating, 1, '.', ',')); ?>
-                                                    <span>
+                                            <?php } ?>
+
+                                            <?php if ($casino_rating_games) { ?>
+                                                <div class="space-organization-style-2-ratings-all-item box-50 relative">
+                                                    <div class="space-organization-style-2-ratings-all-item-ins relative">
+                                                        <div class="space-organization-style-2-ratings-all-item-value relative">
+                                                            <?php echo esc_html(number_format((float)$casino_rating_games, 1, '.', ',')); ?>
+                                                            <i class="fas fa-star"></i>
+                                                        </div>
+                                                        <?php
+                                                        $rating_2_title = get_option('rating_2');
+                                                        if ($rating_2_title) {
+                                                            echo esc_html($rating_2_title);
+                                                        } else {
+                                                            esc_html_e('Games & Software', 'mercury');
+                                                        } ?>
+                                                    </div>
+                                                </div>
+                                            <?php } ?>
+
+                                            <?php if ($casino_rating_bonus) { ?>
+                                                <div class="space-organization-style-2-ratings-all-item box-50 relative">
+                                                    <div class="space-organization-style-2-ratings-all-item-ins relative">
+                                                        <div class="space-organization-style-2-ratings-all-item-value relative">
+                                                            <?php echo esc_html(number_format((float)$casino_rating_bonus, 1, '.', ',')); ?>
+                                                            <i class="fas fa-star"></i>
+                                                        </div>
+                                                        <?php
+                                                        $rating_3_title = get_option('rating_3');
+                                                        if ($rating_3_title) {
+                                                            echo esc_html($rating_3_title);
+                                                        } else {
+                                                            esc_html_e('Bonuses & Promotions', 'mercury');
+                                                        } ?>
+                                                    </div>
+                                                </div>
+                                            <?php } ?>
+
+                                            <?php if ($casino_rating_customer) { ?>
+                                                <div class="space-organization-style-2-ratings-all-item box-50 relative">
+                                                    <div class="space-organization-style-2-ratings-all-item-ins relative">
+                                                        <div class="space-organization-style-2-ratings-all-item-value relative">
+                                                            <?php echo esc_html(number_format((float)$casino_rating_customer, 1, '.', ',')); ?>
+                                                            <i class="fas fa-star"></i>
+                                                        </div>
+                                                        <?php
+                                                        $rating_4_title = get_option('rating_4');
+                                                        if ($rating_4_title) {
+                                                            echo esc_html($rating_4_title);
+                                                        } else {
+                                                            esc_html_e('Customer Support', 'mercury');
+                                                        } ?>
+                                                    </div>
+                                                </div>
+                                            <?php } ?>
+
+                                        </div>
+                                    </div>
+                                    <div class="space-organization-style-2-rating-overall box-33 relative">
+                                        <div class="space-organization-style-2-rating-overall-ins text-center relative">
+                                            <?php echo esc_html(number_format((float)$casino_overall_rating, 1, '.', ',')); ?>
+                                            <span>
 															<?php
                                                             $rating_overall_title = get_option('rating_overall');
                                                             if ($rating_overall_title) {
@@ -1658,62 +954,71 @@ if (get_the_author_meta('url')) {
                                                                 esc_html_e('Overall Rating', 'mercury');
                                                             } ?>
 														</span>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
 
-                                <!-- Ratings Block End -->
+                        <!-- Ratings Block End -->
 
-                            <?php } ?>
-
-                        <?php endwhile; ?>
-                        <?php endif; ?>
-
-                    </div>
+                    <?php } ?>
+                </div>
 
 
-                    <?php
-                    $post_id_related = '"' . $post->ID . '"';
+            <?php endwhile; ?>
+            <?php endif; ?>
+        </div>
+
+        <?php $post_id_related = '"' . $post->ID . '"'; ?>
+
+        <!-- GAMES -->
+        <div style="display: none;">
+            <?php if ($organization_disable_related_units == true) {
+
+            } else { ?>
+
+                <!-- Related Units Start -->
+
+                <?php
+                $game_args = get_posts(
+                    array(
+                        'posts_per_page' => 8,
+                        'post_type' => 'game',
+                        'meta_query' => array(
+                            array(
+                                'key' => 'parent_casino',
+                                'value' => $post_id_related,
+                                'compare' => 'LIKE'
+                            )
+                        )
+                    )
+                );
+                if ($game_args) {
                     ?>
 
-                    <?php if ($organization_disable_related_units == true) {
-
-                    } else { ?>
-
-                        <!-- Related Units Start -->
-
-                        <?php
-                        $game_args = get_posts(
-                            array(
-                                'posts_per_page' => 8,
-                                'post_type' => 'game',
-                                'meta_query' => array(
-                                    array(
-                                        'key' => 'parent_casino',
-                                        'value' => $post_id_related,
-                                        'compare' => 'LIKE'
-                                    )
-                                )
-                            )
-                        );
-                        if ($game_args) {
-                            ?>
-
-                            <div class="space-related-items box-100 read-more-block relative">
-                                <div class="space-related-items-ins space-page-wrapper relative">
-                                    <div class="space-block-title relative">
-									<span>
-										<?php the_title(); ?><?php if (get_option('games_section_name')) {
+                    <section class="section section_bg section_bg_3">
+                        <div class="container">
+                            <div class="section__inner">
+                                <header class="section__header">
+                                    <div class="section__title">
+                                        <?php the_title(); ?>
+                                        <?php if (get_option('games_section_name')) {
                                             esc_html_e(get_option('games_section_name'));
                                         } else {
                                             esc_html_e('Games', 'mercury');
                                         } ?>
-									</span>
+                                        Stars casino <em>games</em>
                                     </div>
-                                    <div class="space-units-archive-items box-100 relative">
+                                    <div class="section__subtitle">
+                                        Cras in nisi id turpis cursus vulputate. Aliquam at sapien non tellus congue
+                                        efficitur.
+                                        Nam scelerisque quam quis turpis pellentesque, in placerat erat laoreet.
+                                    </div>
+                                </header>
 
+                                <div class="section__content">
+                                    <div class="card-list">
                                         <?php
                                         foreach ($game_args as $post) {
                                             setup_postdata($post);
@@ -1724,53 +1029,63 @@ if (get_the_author_meta('url')) {
                                         }
                                         wp_reset_postdata();
                                         ?>
-
                                     </div>
                                 </div>
+
                             </div>
+                        </div>
+                    </section>
+                <?php } ?>
 
-                        <?php } ?>
+                <!-- Related Units End -->
 
-                        <!-- Related Units End -->
+            <?php } ?>
+        </div>
 
-                    <?php } ?>
+        <!-- BONUSES -->
+        <div style="display: none;">
+            <?php if ($organization_disable_related_offers == true) {
 
-                    <?php if ($organization_disable_related_offers == true) {
+            } else { ?>
 
-                    } else { ?>
+                <!-- Related Offers Start -->
 
-                        <!-- Related Offers Start -->
-
-                        <?php
-                        $bonus_args = get_posts(
+                <?php
+                $bonus_args = get_posts(
+                    array(
+                        'posts_per_page' => 4,
+                        'post_type' => 'bonus',
+                        'meta_query' => array(
                             array(
-                                'posts_per_page' => 4,
-                                'post_type' => 'bonus',
-                                'meta_query' => array(
-                                    array(
-                                        'key' => 'bonus_parent_casino',
-                                        'value' => $post_id_related,
-                                        'compare' => 'LIKE'
-                                    )
-                                )
+                                'key' => 'bonus_parent_casino',
+                                'value' => $post_id_related,
+                                'compare' => 'LIKE'
                             )
-                        );
-                        if ($bonus_args) {
-                            ?>
-
-                            <div class="space-related-items box-100 read-more-block relative">
-                                <div class="space-related-items-ins space-page-wrapper relative">
-                                    <div class="space-block-title relative">
-									<span>
-										<?php the_title(); ?><?php if (get_option('bonuses_section_name')) {
+                        )
+                    )
+                );
+                if ($bonus_args) { ?>
+                    <section class="section section_suits">
+                        <div class="container">
+                            <div class="section__inner">
+                                <header class="section__header">
+                                    <div class="section__title">
+                                        <?php the_title(); ?>
+                                        <?php if (get_option('bonuses_section_name')) {
                                             esc_html_e(get_option('bonuses_section_name'));
                                         } else {
                                             esc_html_e('Bonuses', 'mercury');
                                         } ?>
-									</span>
+                                        <div>Stars casino <em>bonuses</em></div>
                                     </div>
-                                    <div class="space-offers-archive-items box-100 relative">
-
+                                    <div class="section__subtitle">
+                                        Cras in nisi id turpis cursus vulputate. Aliquam at sapien non tellus congue
+                                        efficitur.
+                                        Nam scelerisque quam quis turpis pellentesque, in placerat erat laoreet.
+                                    </div>
+                                </header>
+                                <div class="section__content">
+                                    <div class="card-list">
                                         <?php
                                         foreach ($bonus_args as $post) {
                                             setup_postdata($post);
@@ -1781,32 +1096,33 @@ if (get_the_author_meta('url')) {
                                         }
                                         wp_reset_postdata();
                                         ?>
-
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </section>
+                <?php } ?>
 
-                        <?php } ?>
+                <!-- Related Offers End -->
 
-                        <!-- Related Offers End -->
-
-                    <?php } ?>
-
-                    <?php if (comments_open() || get_comments_number()) : ?>
-
-                        <!-- Comments Start -->
-
-                        <?php comments_template(); ?>
-
-                        <!-- Comments End -->
-
-                    <?php endif; ?>
-
-                </div>
-            </div>
+            <?php } ?>
         </div>
 
-        <!-- Single Organization Page Section End OLD STYLE -->
+        <!-- COMMENTS -->
+        <div style="display: block;">
+            <?php if (comments_open() || get_comments_number()) : ?>
+
+                <!-- Comments Start -->
+
+                <?php comments_template(); ?>
+
+                <!-- Comments End -->
+
+            <?php endif; ?>
+        </div>
+
+
+        <!-- Single Organization Page Section End -->
 
     </div>
 

@@ -234,6 +234,7 @@ body {
   background: var(--Red, #F5509D);
   box-shadow: 0 0 24px 0 rgba(245, 80, 157, 0.5);
   color: var(--White, #FFF);
+  text-decoration: none;
   /* Action/Button */
   font-family: Montserrat, sans-serif;
   font-size: 16px;
@@ -247,6 +248,10 @@ body {
     cursor: pointer; }
   .button:active {
     background: #f5509d; }
+  .button:link {
+    color: var(--White, #fff); }
+  .button:visited {
+    color: var(--White, #fff); }
 
 .checkbox {
   display: flex;
@@ -1027,6 +1032,12 @@ body {
     font-weight: 800;
     line-height: normal;
     text-transform: uppercase; }
+    .game-card__title a {
+      text-decoration: none; }
+      .game-card__title a:link {
+        color: var(--White, #fff); }
+      .game-card__title a:visited {
+        color: var(--White, #fff); }
   .game-card__subtitle {
     margin-top: 10px;
     margin-bottom: auto;
@@ -1062,9 +1073,9 @@ body {
   max-width: 378px;
   border-radius: 16px;
   background-image: var(--Violet-Gradient, linear-gradient(266deg, #C285F8 0%, #C896F3 79.08%, #8C37D7 100%)); }
-  .bonus-card:nth-child(2n) {
+  .bonus-card:nth-child(3n+2) {
     background-image: var(--Red-Gradient, linear-gradient(266deg, rgba(245, 80, 157, 0.96) 0%, #FB80B9 79.08%, #ED2C86 100%)); }
-    .bonus-card:nth-child(2n) .bonus-card__gift {
+    .bonus-card:nth-child(3n+2) .bonus-card__gift {
       background-color: var(--Red-Dark, #C41D1D); }
   .bonus-card:nth-child(3n) {
     background-image: var(--Blue-Gradient, linear-gradient(180deg, #0BB9F8 50.52%, #0A8EF2 100%)); }
@@ -1099,7 +1110,8 @@ body {
     font-style: normal;
     font-weight: 800;
     line-height: normal;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    flex-grow: 1; }
   .bonus-card__gift {
     display: flex;
     align-items: center;
@@ -1108,7 +1120,8 @@ body {
     margin-right: -32px;
     padding: 14px 32px;
     width: calc(100% + 64px);
-    background-color: var(--Violet, #802BCC); }
+    background-color: var(--Violet, #802BCC);
+    justify-content: center; }
   .bonus-card__img {
     width: 82px;
     filter: drop-shadow(0px 2.767px 2.214px rgba(0, 0, 0, 0.02)) drop-shadow(0px 6.65px 5.32px rgba(0, 0, 0, 0.03)) drop-shadow(0px 12.522px 10.017px rgba(0, 0, 0, 0.04)) drop-shadow(0px 22.336px 17.869px rgba(0, 0, 0, 0.04)) drop-shadow(0px 41.778px 33.422px rgba(0, 0, 0, 0.05)) drop-shadow(0px 100px 80px rgba(0, 0, 0, 0.07)); }
@@ -1155,6 +1168,11 @@ body {
     font-weight: 400;
     line-height: 128%;
     /* 17.92px */ }
+  .bonus-card__header a, .bonus-card__tag a {
+    text-decoration: none;
+    color: inherit; }
+    .bonus-card__header a:active, .bonus-card__header a:link, .bonus-card__tag a:active, .bonus-card__tag a:link {
+      color: inherit; }
 
 .form-reply {
   display: flex;

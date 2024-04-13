@@ -32,6 +32,17 @@
     font-weight: 800;
     line-height: normal;
     text-transform: uppercase;
+
+    & a {
+      text-decoration: none;
+      &:link {
+        color: var(--White, #fff);
+      }
+
+      &:visited {
+        color: var(--White, #fff);
+      }
+    }
   }
 
   &__subtitle {
