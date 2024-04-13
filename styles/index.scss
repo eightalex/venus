@@ -5,8 +5,10 @@
 @import "layout/section";
 
 @import "blocks/input";
+@import "blocks/input-label";
 @import "blocks/search";
 @import "blocks/button";
+@import "blocks/checkbox";
 
 @import "blocks/header";
 @import "blocks/breadcrumbs";
@@ -19,3 +21,4 @@
 @import "blocks/game-list";
 @import "blocks/game-card";
 @import "blocks/bonus-card";
+@import "blocks/form-reply";

@@ -1,0 +1,53 @@
+.checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  &__input {
+    display: flex;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 2px;
+    color: currentColor;
+    background-color: #429837;
+    font: inherit;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+
+    &::before {
+      content: "";
+      width: 24px;
+      height: 24px;
+      opacity: 0;
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M18.969 8.57151C19.3664 8.15913 19.3542 7.50259 18.9417 7.10519C18.5294 6.7078 17.8728 6.71999 17.4754 7.13242L9.72834 15.1722L6.52452 11.8473C6.12712 11.4349 5.47058 11.4227 5.0582 11.8201C4.64577 12.2175 4.63358 12.874 5.03097 13.2865L8.98162 17.3863C9.17705 17.5892 9.44668 17.7038 9.72834 17.7038C10.01 17.7038 10.2797 17.5892 10.4751 17.3863L18.969 8.57151Z" fill="white"/></svg>');
+      transform: translateY(5px);
+      transition: opacity, transform 100ms ease-in-out;
+    }
+
+    &:checked::before {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    &:disabled {
+      --form-control-color: #959495;
+      color: #959495;
+      cursor: not-allowed;
+    }
+  }
+
+  &__label {
+    color: #9197af;
+    font-family: Hind, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 128%; /* 20.48px */
+    cursor: pointer;
+  }
+}
