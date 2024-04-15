@@ -8,9 +8,17 @@
   padding: 0;
   list-style: none;
 
+  &_col-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   @include bp(1230px) {
     grid-template-columns: repeat(2, auto);
     justify-content: center;
+
+    &_col-2 {
+      grid-template-columns: auto;
+    }
   }
 
   @include bp(m) {

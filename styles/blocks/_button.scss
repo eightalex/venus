@@ -1,15 +1,16 @@
 .button {
   display: inline-flex;
   justify-content: center;
+  align-items: center;
 
-  padding: 22px 60px;
+  padding: 20px 8px;
 
   border-radius: 100px;
   border: none;
-  background: var(--Red, #F5509D);
+  background-color: var(--Red, #f5509d);
   box-shadow: 0 0 24px 0 rgba(245, 80, 157, 0.50);
 
-  color: var(--White, #FFF);
+  color: var(--White, #fff);
   text-decoration: none;
 
   /* Action/Button */
@@ -22,19 +23,36 @@
   text-align: center;
 
   &:hover {
-    background: #ea739f;
+    background-color: #ea739f;
     cursor: pointer;
   }
 
   &:active {
-    background: #f5509d;
+    background-color: #f5509d;
+  }
+
+  &_outline {
+    border: 1px solid var(--Red, #f5509d);
+    background-color: transparent;
+
+    &:hover {
+      color: var(--White, #fff);
+      background-color: rgba(#f5509d, 0.1);
+    }
+
+    &:active {
+      color: var(--White, #fff);
+      background-color: transparent;
+    }
   }
 
   &:link {
-    color: var(--White, #fff);
+    //color: var(--White, #fff);
+    color: inherit;
   }
 
   &:visited {
-    color: var(--White, #fff);
+    //color: var(--White, #fff);
+    color: inherit;
   }
 }
