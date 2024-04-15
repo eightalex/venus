@@ -80,7 +80,7 @@
     }
   }
 
-  @include bp(m) {
+  @include bp(l) {
     display: flex;
     flex-direction: column;
     gap: 32px;
