@@ -1154,6 +1154,15 @@ body {
         grid-template-rows: repeat(4, auto);
         column-gap: 0;
         row-gap: 24px; } }
+  @media (max-width: 768px) {
+    .rating-card__button {
+      padding-left: 40px;
+      padding-right: 40px; }
+    .rating-card__overall-rating {
+      padding-left: 22px;
+      padding-right: 22px; }
+    .rating-card__rating {
+      gap: 4px; } }
 
 .card-list {
   display: grid;

@@ -255,4 +255,20 @@
         row-gap: 24px;
     }
   }
+
+  @include bp(m) {
+    &__button {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    &__overall-rating {
+      padding-left: 22px;
+      padding-right: 22px;
+    }
+
+    &__rating {
+      gap: 4px;
+    }
+  }
 }
