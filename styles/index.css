@@ -682,6 +682,7 @@ body {
     .card-top__info::before {
       content: "";
       display: flex;
+      flex-shrink: 0;
       width: 20px;
       height: 20px;
       background-image: url("../assets/images/icons/attention.svg");

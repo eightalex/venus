@@ -115,6 +115,7 @@
     &::before {
       content: "";
       display: flex;
+      flex-shrink: 0;
       width: 20px;
       height: 20px;
       background-image: url("#{$images-url}/icons/attention.svg");
