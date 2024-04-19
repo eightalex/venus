@@ -37,4 +37,15 @@
       margin-right: 24px;
     }
   }
+
+  @include bp(s) {
+    &__logo {
+      margin-right: 24px;
+      width: 135px;
+    }
+
+    &__search {
+      margin-right: 16px;
+    }
+  }
 }
