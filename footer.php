@@ -1,5 +1,20 @@
 <!-- Footer Start -->
 
+<?= do_shortcode('
+    [aces-casinos-5
+        items_number="8"
+        external_link="1"
+        category=""
+        items_id=""
+        exclude_id=""
+        game_id=""
+        columns="4"
+        order="DESC"
+        orderby="rating"
+        title="Top Rated Casinos KEK"
+    ]'
+) ?>
+
 <div class="space-footer box-100 relative">
 	<?php if ( is_active_sidebar( 'footer-center-sidebar' ) ) { ?>
 	<div class="space-footer-top box-100 relative" <?php if(get_theme_mod('mercury_footer_bg')) { ?>style="background-position: center bottom; background-repeat: no-repeat; background-size: cover; background-image: url('<?php echo esc_url( get_theme_mod( 'mercury_footer_bg' ) ) ?>');"<?php } ?>>
