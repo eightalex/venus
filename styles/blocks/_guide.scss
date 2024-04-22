@@ -1,5 +1,9 @@
+@import "../variables";
+@import "../mixins";
+
 .guide {
   $this: &;
+  padding-bottom: 200px;
 
   &__header {
     display: flex;
@@ -77,8 +81,8 @@
 
     &:nth-child(odd) {
       #{$this}__image {
-        top: -300px;
-        left: calc(100% + 100px);
+        top: -260px;
+        left: calc(100% + 340px);
       }
     }
 
@@ -86,8 +90,8 @@
       align-self: flex-end;
 
       #{$this}__image {
-        top: -300px;
-        right: calc(100% + 100px);
+        top: -180px;
+        right: calc(100% + 340px);
         height: 500px;
       }
 
@@ -137,6 +141,70 @@
 
     img {
       height: 100%;
+    }
+  }
+
+  @include bp(1250px) {
+    &__step {
+      &::after {
+        width: 100px;
+      }
+
+      &:nth-child(odd) {
+        #{$this}__image {
+          top: -150px;
+          left: calc(100% + 130px);
+          height: 430px;
+        }
+      }
+
+      &:nth-child(even) {
+        #{$this}__image {
+          top: -140px;
+          right: calc(100% + 140px);
+          height: 430px;
+        }
+      }
+    }
+  }
+
+  @include bp(900px) {
+    padding-bottom: 500px;
+
+    &__content {
+      gap: 585px;
+    }
+
+    &__step {
+      &:nth-child(odd),
+      &:nth-child(even) {
+        align-self: center;
+
+        &::after {
+          top: calc(100% + 15px);
+          left: calc(50% - 1px);
+          width: 1px;
+          height: 64px;
+          border-bottom: none;
+          border-left: 1px dashed #fff;
+        }
+
+        #{$this}__image {
+          transform: translateX(50%);
+          top: 210px;
+          right: 50%;
+          left: auto;
+          height: 430px;
+        }
+      }
+    }
+
+    &__title {
+      font-size: 24px;
+    }
+
+    &__info {
+      padding: 20px 32px;
     }
   }
 }
