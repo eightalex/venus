@@ -35,22 +35,49 @@
     line-height: 100%;
   }
 
+  &__subtitle-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 16px;
+    width: 100%;
+  }
+
   &__subtitle {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 16px;
-    margin-top: 16px;
-    width: 100%;
     font-size: 20px;
     font-weight: 600;
+    flex-grow: 1;
+
+    & pre {
+      margin: 0;
+      padding: 0;
+      display: inline;
+      width: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+
+      & * {
+        margin: 0;
+        padding: 0;
+      }
+    }
   }
 
   &__rating {
     display: flex;
     align-items: center;
+    gap: 12px;
     font-size: 16px;
     font-weight: 600;
+    min-height: 30px;
+
+    & i {
+      font-size: 26px;
+    }
 
     &::before {
       content: "";
@@ -69,6 +96,11 @@
     font-style: normal;
     font-weight: 400;
     line-height: 128%; // 600, 700, 800 / 500 italic
+
+    & * {
+      margin: 0;
+      padding: 0;
+    }
   }
 
   &__cta {
@@ -97,7 +129,7 @@
   }
 
   &__button {
-
+    text-decoration: none;
   }
 
   &__info {
@@ -112,14 +144,18 @@
     font-size: 14px;
     font-weight: 400;
 
-    &::before {
-      content: "";
-      display: flex;
-      flex-shrink: 0;
-      width: 20px;
-      height: 20px;
-      background-image: url("#{$images-url}/icons/attention.svg");
-      margin-right: 10px;
+    & i.exclamation {
+      &::before {
+        content: '\f06a';
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      margin-inline-end: 10px;
     }
   }
 
