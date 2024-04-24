@@ -9,7 +9,7 @@
   border-radius: 16px;
   background-image: var(--Violet-Gradient, linear-gradient(266deg, #C285F8 0%, #C896F3 79.08%, #8C37D7 100%));
 
-  &:nth-child(2n) {
+  &:nth-child(3n+2) {
     background-image: var(--Red-Gradient, linear-gradient(266deg, rgba(245, 80, 157, 0.96) 0%, #FB80B9 79.08%, #ED2C86 100%));
 
     #{$this} {
@@ -62,6 +62,7 @@
     font-weight: 800;
     line-height: normal;
     text-transform: uppercase;
+    flex-grow: 1;
   }
 
   &__gift {
@@ -73,6 +74,8 @@
     padding: 14px 32px;
     width: calc(100% + 64px);
     background-color: var(--Violet, #802BCC);
+
+    justify-content: center;
   }
 
   &__img {
@@ -136,5 +139,18 @@
     font-style: normal;
     font-weight: 400;
     line-height: 128%; /* 17.92px */
+  }
+
+  &__header,
+  &__tag {
+    & a {
+      text-decoration: none;
+      color: inherit;
+
+      &:active,
+      &:link {
+        color: inherit;
+      }
+    }
   }
 }

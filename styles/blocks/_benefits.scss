@@ -38,6 +38,7 @@
     text-transform: uppercase;
   }
 
+  & ul,
   &__list {
     position: relative;
     z-index: 1;
@@ -52,6 +53,7 @@
     list-style: none;
   }
 
+  & li,
   &__item {
     display: flex;
     align-items: center;
@@ -81,6 +83,12 @@
       &::before {
         background-image: url("#{$images-url}/icons/cross-red.svg");
       }
+    }
+  }
+
+  &_negative li {
+    &::before {
+      background-image: url("#{$images-url}/icons/cross-red.svg");
     }
   }
 
