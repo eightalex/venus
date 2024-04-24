@@ -105,7 +105,6 @@
 <?php get_footer(); ?>
 
 <style>
-
     .section_suits::before {
         background-image: url("<?= get_stylesheet_directory_uri() ?>/assets/images/section/suits_3.png");
     }
