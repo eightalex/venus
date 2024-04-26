@@ -237,6 +237,7 @@ body {
   background-color: var(--Red, #f5509d);
   box-shadow: 0 0 24px 0 rgba(245, 80, 157, 0.5);
   color: var(--White, #fff);
+  text-decoration: none;
   /* Action/Button */
   font-family: Montserrat, sans-serif;
   font-size: 16px;
@@ -259,6 +260,10 @@ body {
     .button_outline:active {
       color: var(--White, #fff);
       background-color: transparent; }
+  .button:link {
+    color: inherit; }
+  .button:visited {
+    color: inherit; }
 
 .checkbox {
   display: flex;
@@ -459,31 +464,37 @@ body {
 .breadcrumbs {
   position: relative;
   z-index: 1;
-  padding: 40px 0; }
+  padding: 40px 0;
+  font: 400 14px/128% Hind, sans-serif; }
   .breadcrumbs__inner {
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0; }
-  .breadcrumbs__item {
-    display: flex;
-    align-items: center;
-    color: var(--Grey-Light, #9197af);
-    font: 400 14px/128% Hind, sans-serif; }
-    .breadcrumbs__item:not(:first-child)::before {
-      content: "";
+    .breadcrumbs__inner span span {
+      color: var(--Grey-Light, #9197af);
+      font: 400 14px/128% Hind, sans-serif;
       display: flex;
-      margin-right: 18px;
-      margin-left: 18px;
-      width: 5px;
-      height: 5px;
-      background-color: #9197af;
-      border-radius: 50%; }
-    .breadcrumbs__item a {
-      color: #9197af;
-      text-decoration: none; }
-      .breadcrumbs__item a:hover {
-        opacity: 0.8; }
+      gap: 18px;
+      user-select: none; }
+      .breadcrumbs__inner span span a {
+        color: inherit;
+        text-decoration: none;
+        user-select: none;
+        display: flex;
+        align-items: center; }
+        .breadcrumbs__inner span span a:hover {
+          opacity: 0.8; }
+      .breadcrumbs__inner span span:not(:first-child) {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center; }
+        .breadcrumbs__inner span span:not(:first-child)::before {
+          content: " ";
+          width: 5px;
+          height: 5px;
+          background-color: var(--Grey-Light, #9197af);
+          border-radius: 50%; }
 
 .navigation__inner {
   display: flex;
@@ -621,20 +632,39 @@ body {
     font-weight: 800;
     text-transform: uppercase;
     line-height: 100%; }
+  .card-top__subtitle-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 16px;
+    width: 100%; }
   .card-top__subtitle {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 16px;
-    margin-top: 16px;
-    width: 100%;
     font-size: 20px;
-    font-weight: 600; }
+    font-weight: 600;
+    flex-grow: 1; }
+    .card-top__subtitle pre {
+      margin: 0;
+      padding: 0;
+      display: inline;
+      width: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word; }
+      .card-top__subtitle pre * {
+        margin: 0;
+        padding: 0; }
   .card-top__rating {
     display: flex;
     align-items: center;
+    gap: 12px;
     font-size: 16px;
-    font-weight: 600; }
+    font-weight: 600;
+    min-height: 30px; }
+    .card-top__rating i {
+      font-size: 26px; }
     .card-top__rating::before {
       content: "";
       display: flex;
@@ -649,6 +679,9 @@ body {
     font-style: normal;
     font-weight: 400;
     line-height: 128%; }
+    .card-top__text * {
+      margin: 0;
+      padding: 0; }
   .card-top__cta {
     display: flex;
     align-items: center;
@@ -668,6 +701,8 @@ body {
         background-color: #fff;
         margin-right: 24px;
         margin-left: 24px; }
+  .card-top__button {
+    text-decoration: none; }
   .card-top__info {
     display: flex;
     align-items: center;
@@ -679,14 +714,16 @@ body {
     font-family: Hind, sans-serif;
     font-size: 14px;
     font-weight: 400; }
-    .card-top__info::before {
-      content: "";
-      display: flex;
-      flex-shrink: 0;
-      width: 20px;
-      height: 20px;
-      background-image: url("../assets/images/icons/attention.svg");
-      margin-right: 10px; }
+    .card-top__info i.exclamation {
+      margin-inline-end: 10px; }
+      .card-top__info i.exclamation::before {
+        content: '\f06a';
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center; }
   @media (max-width: 768px) {
     .card-top {
       max-width: none; }
@@ -796,7 +833,7 @@ body {
     font-weight: 800;
     line-height: normal;
     text-transform: uppercase; }
-  .benefits__list {
+  .benefits ul, .benefits__list {
     position: relative;
     z-index: 1;
     display: grid;
@@ -808,7 +845,7 @@ body {
     margin: 40px 0 0;
     padding: 0;
     list-style: none; }
-  .benefits__item {
+  .benefits li, .benefits__item {
     display: flex;
     align-items: center;
     gap: 16px;
@@ -819,7 +856,7 @@ body {
     font-weight: 400;
     line-height: 128%;
     /* 20.48px */ }
-    .benefits__item::before {
+    .benefits li::before, .benefits__item::before {
       content: "";
       flex-shrink: 0;
       width: 32px;
@@ -831,6 +868,8 @@ body {
     background: linear-gradient(266deg, rgba(245, 80, 157, 0.96) 0%, #fb80b9 79.08%, #ed2c86 100%); }
     .benefits_negative .benefits__item::before {
       background-image: url("../assets/images/icons/cross-red.svg"); }
+  .benefits_negative li::before {
+    background-image: url("../assets/images/icons/cross-red.svg"); }
   .benefits_spades {
     padding-left: 440px;
     padding-right: 80px; }
@@ -941,9 +980,16 @@ body {
     padding: 0;
     list-style: none; }
   .tags__item {
+    text-decoration: none;
+    text-transform: none;
+    color: #000;
     padding: 6px 24px;
     border-radius: 100px;
     background-color: #e3f666; }
+    .tags__item:link {
+      color: #000; }
+    .tags__item:visited {
+      color: #0d1620; }
   @media (max-width: 1024px) {
     .tags__card {
       flex-direction: column;
@@ -1213,6 +1259,12 @@ body {
     font-weight: 800;
     line-height: normal;
     text-transform: uppercase; }
+    .game-card__title a {
+      text-decoration: none; }
+      .game-card__title a:link {
+        color: var(--White, #fff); }
+      .game-card__title a:visited {
+        color: var(--White, #fff); }
   .game-card__subtitle {
     margin-top: 10px;
     margin-bottom: auto;
@@ -1248,9 +1300,9 @@ body {
   max-width: 378px;
   border-radius: 16px;
   background-image: var(--Violet-Gradient, linear-gradient(266deg, #C285F8 0%, #C896F3 79.08%, #8C37D7 100%)); }
-  .bonus-card:nth-child(2n) {
+  .bonus-card:nth-child(3n+2) {
     background-image: var(--Red-Gradient, linear-gradient(266deg, rgba(245, 80, 157, 0.96) 0%, #FB80B9 79.08%, #ED2C86 100%)); }
-    .bonus-card:nth-child(2n) .bonus-card__gift {
+    .bonus-card:nth-child(3n+2) .bonus-card__gift {
       background-color: var(--Red-Dark, #C41D1D); }
   .bonus-card:nth-child(3n) {
     background-image: var(--Blue-Gradient, linear-gradient(180deg, #0BB9F8 50.52%, #0A8EF2 100%)); }
@@ -1285,7 +1337,8 @@ body {
     font-style: normal;
     font-weight: 800;
     line-height: normal;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    flex-grow: 1; }
   .bonus-card__gift {
     display: flex;
     align-items: center;
@@ -1294,7 +1347,8 @@ body {
     margin-right: -32px;
     padding: 14px 32px;
     width: calc(100% + 64px);
-    background-color: var(--Violet, #802BCC); }
+    background-color: var(--Violet, #802BCC);
+    justify-content: center; }
   .bonus-card__img {
     width: 82px;
     filter: drop-shadow(0px 2.767px 2.214px rgba(0, 0, 0, 0.02)) drop-shadow(0px 6.65px 5.32px rgba(0, 0, 0, 0.03)) drop-shadow(0px 12.522px 10.017px rgba(0, 0, 0, 0.04)) drop-shadow(0px 22.336px 17.869px rgba(0, 0, 0, 0.04)) drop-shadow(0px 41.778px 33.422px rgba(0, 0, 0, 0.05)) drop-shadow(0px 100px 80px rgba(0, 0, 0, 0.07)); }
@@ -1341,6 +1395,11 @@ body {
     font-weight: 400;
     line-height: 128%;
     /* 17.92px */ }
+  .bonus-card__header a, .bonus-card__tag a {
+    text-decoration: none;
+    color: inherit; }
+    .bonus-card__header a:active, .bonus-card__header a:link, .bonus-card__tag a:active, .bonus-card__tag a:link {
+      color: inherit; }
 
 .casino-card {
   display: grid;

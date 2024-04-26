@@ -11,6 +11,7 @@
   box-shadow: 0 0 24px 0 rgba(245, 80, 157, 0.50);
 
   color: var(--White, #fff);
+  text-decoration: none;
 
   /* Action/Button */
   font-family: Montserrat, sans-serif;
@@ -43,5 +44,15 @@
       color: var(--White, #fff);
       background-color: transparent;
     }
+  }
+
+  &:link {
+    //color: var(--White, #fff);
+    color: inherit;
+  }
+
+  &:visited {
+    //color: var(--White, #fff);
+    color: inherit;
   }
 }

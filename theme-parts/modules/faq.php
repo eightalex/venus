@@ -52,7 +52,7 @@ if($faqs->have_posts()):
                                 <?php the_title()?>
                             </label>
                             <div class="faq__answer">
-                                <?php the_content()?>
+                                <?php echo  wpautop(get_the_content())?>
                             </div>
                         </li>
                         <?php
