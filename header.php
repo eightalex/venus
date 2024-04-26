@@ -10,7 +10,7 @@
 </head>
 <body ontouchstart <?php body_class(); ?>>
     <?php wp_body_open(); ?>
-    <div class="space-box relative<?php if (get_theme_mod('mercury_boxed_layout')) { ?> enabled<?php } ?>">
+    <!-- <div class="space-box relative<?php if (get_theme_mod('mercury_boxed_layout')) { ?> enabled<?php } ?>"> -->
 
         <!-- Header Start -->
 
