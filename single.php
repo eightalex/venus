@@ -1,10 +1,19 @@
 <?php get_header(); ?>
 
 <div id="post-<?php the_ID(); ?>">
-
 	<?php
 
-	if ( is_singular( 'casino' ) ) {
+    $ID = get_the_ID();
+    $custom_content = carbon_get_post_meta(get_the_ID(), 'ud_post_content');
+
+    if(!empty($custom_content)){
+        get_template_part('/theme-parts/modules/breadcrumbs');
+
+        foreach($custom_content as $part){
+            $part_tmpl = $part['_type'];
+            get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part]);
+        }
+    }elseif ( is_singular( 'casino' ) ) {
 
 		// Get the page template if the custom post type is "Casino"
 
@@ -78,34 +87,23 @@
 
 		// Get the page template if the custom post type is "Post"
 
-		// $post_style = get_post_meta( get_the_ID(), 'post_style', true );
-		$ID = get_the_ID();
-		$custom_content = carbon_get_post_meta(get_the_ID(), 'ud_post_content');
+		$post_style = get_post_meta( get_the_ID(), 'post_style', true );
 
-		if(empty($custom_content)){
-			if ($post_style == 1) {
-			get_template_part( '/theme-parts/single/style-1' );
-			} else if ($post_style == 2) {
-				get_template_part( '/theme-parts/single/style-2' );
-			} else if ($post_style == 3) {
-				get_template_part( '/theme-parts/single/style-3' );
-			} else if ($post_style == 4) {
-				get_template_part( '/theme-parts/single/style-4' );
-			} else if ($post_style == 5) {
-				get_template_part( '/theme-parts/single-empty' );
-			} else if ($post_style == 6) {
-				get_template_part( '/theme-parts/single-empty-sidebar' );
-			} else {
-				get_template_part( '/theme-parts/single/style-1' );
-			}
-		}else{
-			get_template_part('/theme-parts/modules/breadcrumbs');
-
-			foreach($custom_content as $part){
-				$part_tmpl = $part['_type'];
-				get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part]);
-			}
-		}
+        if ($post_style == 1) {
+        get_template_part( '/theme-parts/single/style-1' );
+        } else if ($post_style == 2) {
+            get_template_part( '/theme-parts/single/style-2' );
+        } else if ($post_style == 3) {
+            get_template_part( '/theme-parts/single/style-3' );
+        } else if ($post_style == 4) {
+            get_template_part( '/theme-parts/single/style-4' );
+        } else if ($post_style == 5) {
+            get_template_part( '/theme-parts/single-empty' );
+        } else if ($post_style == 6) {
+            get_template_part( '/theme-parts/single-empty-sidebar' );
+        } else {
+            get_template_part( '/theme-parts/single/style-1' );
+        }
 	}
 
 	?>
