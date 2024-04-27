@@ -387,7 +387,6 @@ function crb_attach_theme_options() {
         'guide' => [
             'singular_name' => __('Guide'),
             'plural_name'   => __('Guides'),
-        ],
         'advantages' => [
             'singular_name' => __('Advantage'),
             'plural_name'   => __('Advantages')
