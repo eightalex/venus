@@ -124,9 +124,9 @@ function ud_get_games(array $atts){
 	    'exclude_id'        => isset($exclude_id)? $exclude_id: '',
 	    'columns'           => isset($columns)? $columns :4,
 	    'order'             => isset($order)? $order: '',
-	    'orderby'           => isset($order)? $order: '',
+	    'orderby'           => isset($orderby)? $orderby: '',
 	    'title'             => isset($title)? $title: '',
-        'exclude_id_array'  => isset($exclude_id_array)? $exclude_id_array: [],
+        // 'exclude_id_array'  => isset($exclude_id_array)? $exclude_id_array: [],
 	);
 
     extract($g_args);
@@ -254,6 +254,63 @@ function ud_get_games(array $atts){
     return $game_query;
 }
 
+add_filter('ud_get_casinos', 'ud_get_casinos');
+function ud_get_casinos(array $atts){
+    extract($atts);
+
+    $cas_args = array (
+	    'items_number'      => isset($items_number)? $items_number :4,
+	    'category'          => isset($category)? $category: '',
+	    'items_id'          => isset($items_id)? $items_id: '',
+	    'order'             => isset($order)? $order: '',
+	    'orderby'           => isset($orderby)? $orderby: '',
+        'post__not_in'      => isset($exclude_id)? [$exclude_id]: [], 
+        // 'exclude_id_array'  => isset($exclude_id_array)? $exclude_id_array: [],
+	);
+
+    extract($cas_args);
+
+    if ( !empty( $category ) ) {
+
+		$categories_id_array = explode( ',', $category );
+
+		$args = array(
+			'posts_per_page' => $items_number,
+			'post_type'      => 'casino',
+			'post__not_in'   => isset($exclude_id)? [$exclude_id]: [],
+			'post_status'    => 'publish',
+			'tax_query' => array(
+				'relation' => 'AND',
+				array(
+					'taxonomy' => 'casino-category',
+					'field'    => 'id',
+					'terms'    => $categories_id_array
+				),
+			),
+			'orderby'  => $orderby,
+			'order'    => $order
+		);
+
+	} else {
+		$args = array(
+			'posts_per_page' => $items_number,
+			'post_type'      => 'casino',
+			'post__not_in'   => $exclude_id_array,
+			'no_found_rows'  => true,
+			'post_status'    => 'publish',
+			'orderby'        => $orderby,
+			'order'          => $order
+		);
+
+	}
+
+	$cas_query = new WP_Query( $args );
+
+    wp_reset_postdata();
+
+    return $cas_query;
+}
+
 add_filter('ud_get_games_cats', 'ud_get_games_cats');
 function ud_get_games_cats(){
     $args = array(
@@ -268,6 +325,33 @@ function ud_get_games_cats(){
 
     foreach($gcq as $gc){
         $out[$gc->term_id] = $gc->name;
+    };
+
+    return $out;
+}
+
+// add_filter('get_current_post_cat', 'get_current_post_cat');
+// function get_current_post_cat($tax){
+//     $req = $_REQUEST;
+//     return get_the_terms($_REQUEST['post'], $tax);
+// }
+
+// var_dump(get_current_post_cat('casino-category'));
+
+add_filter('ud_get_casinos_cats', 'ud_get_casinos_cats');
+function ud_get_casinos_cats(){
+    $args = array(
+        'taxonomy'   => 'casino-category',
+    );
+
+    $cq = get_terms($args);
+
+    $out = [
+        '' => __('All'),
+    ];
+
+    foreach($cq as $c){
+        $out[$c->term_id] = $c->name;
     };
 
     return $out;
@@ -303,18 +387,29 @@ function crb_attach_theme_options() {
         'guide' => [
             'singular_name' => __('Guide'),
             'plural_name'   => __('Guides'),
-        ]
+        ],
+        'advantages' => [
+            'singular_name' => __('Advantage'),
+            'plural_name'   => __('Advantages')
+        ],
+        'flaws' => [
+            'singular_name' => __('Flaw'),
+            'plural_name'   => __('Flaws')
+        ],
     ];
 
     Container::make( 'post_meta', 'Content menage' )
         ->where('post_type', '=', 'post')
+        ->or_where('post_type', '=', 'casino')
         ->add_fields( array(
+            // Field::make('text', 'current_post_type', 'Post Type')
+            //     ->set_default_value(apply_filters('ud_get_post_type', true)),
             Field::make('complex', 'ud_post_content', __('Content'))
                 ->setup_labels($labels['sections'])
                 ->set_collapsed(true)
                 ->add_fields('guide', array(
                     Field::make('image', 'guide_bg_img', __('Background'))
-                    ->set_value_type( 'url' ),
+                        ->set_value_type( 'url' ),
                     Field::make('textarea', 'guide_title', __('Title'))
                         ->help_text("<span style='color: blue;'>".__('Leave blank to use post title')."</span>"),
                     Field::make('textarea', 'guide_desc', __('Description')),
@@ -336,13 +431,15 @@ function crb_attach_theme_options() {
                 ))
                 ->add_fields('form-reply', array(
                     Field::make('text', 'fr_title', __('Title'))
+                        ->set_default_value('Leave a <em>reply</em>')
                         ->set_width(75),
                     Field::make('image', 'fr_bg', __('Bacground'))
                         ->set_value_type('url')
                         ->set_width(25),   
                     Field::make('textarea', 'fr_subtitle', __('Subtitle'))
+                        ->set_default_value('Your email address will not be published. Required fields are marked')
                 ))
-                ->add_fields('game-card', array(
+                ->add_fields('game-card', __('Games'), array(
                     Field::make('text', 'gc_title', __('Title'))
                         ->set_width(75),
                     Field::make('image', 'gc_bg', __('Bacground'))
@@ -357,7 +454,29 @@ function crb_attach_theme_options() {
                         ->set_attribute('type', 'number') 
                         ->set_width(25),
                 ))
-                ->add_fields('faq', array(
+                ->add_fields('casino-card', __('Casinos'), array(
+                    Field::make('text', 'cas_title', __('Title'))
+                        ->set_default_value('Top rated <em>casinos</em>')
+                        ->set_width(50),
+                    // Field::make('image', 'cas_bg', __('Bacground'))
+                    //     ->set_value_type('url')
+                    //     ->set_width(25),   
+                    Field::make('textarea', 'cas_subtitle', __('Subtitle')),
+                    Field::make('select', 'cas_category', __('Select category'))
+                        ->add_options(apply_filters('ud_get_casinos_cats', true))
+                        ->set_width(33),
+                    Field::make('text', 'cas_count', __('Number of casinos to show'))   
+                        ->set_default_value(4)
+                        ->set_attribute('type', 'number') 
+                        ->set_width(33), 
+                    Field::make('select', 'cas_order_by', __('Order by'))
+                        ->set_width(33)
+                        ->add_options(array(
+                            'date' => __('Date'),
+                            'name' => __('Name'),
+                        ))       
+                ))
+                ->add_fields('faq', 'FAQ`s', array(
                     Field::make('checkbox', 'faq_power', __('Include FAQ'))
                         ->set_default_value('yes')
                         ->set_width(50),
@@ -371,10 +490,60 @@ function crb_attach_theme_options() {
                 ->add_fields('author', array(
                     Field::make('checkbox', 'au_power', __('Include author info'))
                         ->set_default_value('yes')
-                        ->set_width(50),
+                        ->set_width(33),
                     Field::make('image', 'ua_bg', __('Background'))  
                         ->set_value_type('url')
-                        ->set_width(50),    
+                        ->set_width(33), 
+                    Field::make('image', 'au_main_img', __('Main image')) 
+                        ->set_value_type('url')
+                        ->help_text("<span style='color: blue;'>".__('Leave blank to use default image:')."<img width='50' src='".get_stylesheet_directory_uri()."/assets/images/author/picture.svg'></span>")
+                        ->set_width(33),       
+                ))
+                ->add_fields('benefits',array(
+                    Field::make('text', 'benefits_title', __('Title'))
+                        ->set_width(75),
+                    Field::make('image', 'benefits_bg', __('Background'))
+                        ->set_width(25)
+                        ->set_value_type( 'url' ),
+                    Field::make('textarea', 'benefits_subtitle', __('Subtitle')),
+                    Field::make('text', 'advantages_title', __('Advantages list title'))
+                        ->set_width(50)
+                        ->set_default_value('Pros casino'),
+                    Field::make('text', 'flaws_title', __('Flaws list title'))
+                        ->set_width(50)
+                        ->set_default_value('Cons casino'),    
+                    Field::make('complex', 'benefits_advantages', __('Advantages'))
+                        ->setup_labels($labels['advantages'])
+                        ->set_collapsed(true)
+                        ->set_width(50)
+                        ->add_fields(array(
+                            Field::make('text', 'b_adv', __('Advantage'))
+                        ))
+                        ->set_header_template( '
+                        <% if (b_adv) { %>
+                            <%- b_adv %>
+                        <% } %>    
+                        '),
+                    Field::make('complex', 'benefits_flaws', __('Flaws'))
+                        ->setup_labels($labels['flaws'])
+                        ->set_collapsed(true)
+                        ->set_width(50)
+                        ->add_fields(array(
+                            Field::make('text', 'b_flaw', __('Flaw'))
+                        ))
+                        ->set_header_template( '
+                        <% if (b_flaw) { %>
+                            <%- b_flaw %>
+                        <% } %>    
+                        ')    
+                ))
+                ->add_fields('bandit', __('Simple image->text section'), array(
+                    Field::make('image', 'bandit_main_img', __('Image'))
+                        ->help_text("<span style='color: blue;'>".__('Leave blank to use default image:')."<img width='50' src='".get_stylesheet_directory_uri()."/assets/images/section/bandit.svg'></span>")
+                        ->set_width(25),
+                    Field::make('text', 'bandit_title', __('Title'))
+                        ->set_width(75),
+                    Field::make('textarea', 'bandit_subtitle', __('Subtitle'))    
                 ))
         ));
 }
