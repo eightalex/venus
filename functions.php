@@ -371,10 +371,13 @@ function crb_attach_theme_options() {
                 ->add_fields('author', array(
                     Field::make('checkbox', 'au_power', __('Include author info'))
                         ->set_default_value('yes')
-                        ->set_width(50),
+                        ->set_width(33),
                     Field::make('image', 'ua_bg', __('Background'))  
                         ->set_value_type('url')
-                        ->set_width(50),    
+                        ->set_width(33),   
+                    Field::make('image', 'au_main_img', __('Main image'))  
+                        ->set_value_type('url') 
+                        ->set_width(33)  
                 ))
         ));
 }
