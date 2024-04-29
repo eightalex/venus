@@ -139,7 +139,7 @@ function ud_get_games(array $atts){
 		$args = array(
 			'posts_per_page' => $items_number,
 			'post_type'      => 'game',
-			'post__not_in'   => $exclude_id_array,
+			// 'post__not_in'   => $exclude_id_array,
 			'no_found_rows'  => true,
 			'post_status'    => 'publish',
 			'tax_query' => array(
@@ -166,7 +166,7 @@ function ud_get_games(array $atts){
 		$args = array(
 			'posts_per_page' => $items_number,
 			'post_type'      => 'game',
-			'post__not_in'   => $exclude_id_array,
+			// 'post__not_in'   => $exclude_id_array,
 			'no_found_rows'  => true,
 			'post_status'    => 'publish',
 			'tax_query' => array(
@@ -187,7 +187,7 @@ function ud_get_games(array $atts){
 		$args = array(
 			'posts_per_page' => $items_number,
 			'post_type'      => 'game',
-			'post__not_in'   => $exclude_id_array,
+			// 'post__not_in'   => $exclude_id_array,
 			'no_found_rows'  => true,
 			'post_status'    => 'publish',
 			'tax_query' => array(
@@ -221,7 +221,7 @@ function ud_get_games(array $atts){
 		$args = array(
 			'posts_per_page' => $items_number,
 			'post_type'      => 'game',
-			'post__not_in'   => $exclude_id_array,
+			// 'post__not_in'   => $exclude_id_array,
 			'no_found_rows'  => true,
 			'post_status'    => 'publish',
 			'meta_query' => array(
@@ -238,7 +238,7 @@ function ud_get_games(array $atts){
 		$args = array(
 			'posts_per_page' => $items_number,
 			'post_type'      => 'game',
-			'post__not_in'   => $exclude_id_array,
+			// 'post__not_in'   => $exclude_id_array,
 			'no_found_rows'  => true,
 			'post_status'    => 'publish',
 			'orderby'        => $orderby,
@@ -370,6 +370,62 @@ function ud_get_faqs(array $faq_args){
     $q = new WP_Query($args);
     wp_reset_postdata();
     return $q;
+}
+
+add_filter('ud_has_object_with_property', 'ud_has_object_with_property', 10, 3);
+function ud_has_object_with_property($array, $propertyName, $propertyValue) {
+    foreach ($array as $object) {
+        if (is_object($object) && isset($object->$propertyName) && $object->$propertyName === $propertyValue) {
+            return true;
+        }
+    }
+    return false;
+}
+
+add_filter('ud_get_taxs', 'ud_get_taxs', 10, 2);
+function ud_get_taxs($type, $id){
+    $out = [];
+    if($type == 'casino'){
+        $necessary_taxs = [
+            'software'              => 'Software',
+            'deposit-method'        => 'Deposit Methods',
+            'withdrawal-method'     => 'Withdrawal Methods',
+            'withdrawal-limit'      => 'Withdrawal Limits',
+            'restricted-country'    => 'Restricted Countries',
+            'licence'               => 'Licences',
+            'casino-language'       => 'Languages',
+            'currency'              => 'Currencies',
+            'device'                => 'Devices',
+            'owner'                 => 'Owner',
+            'casino-est'            => 'Established',
+        ];
+
+        foreach($necessary_taxs as $tax_slug => $tax_name){
+            $tax = wp_get_post_terms($id, $tax_slug);
+
+            if(!empty($tax)){
+                foreach($tax as $k => $item){
+                    $out[$tax_name][$item->term_id] = $item->name;
+                }
+            }
+        }
+
+    }
+
+    return $out;
+}
+
+add_filter('ud_get_post_ratings', 'ud_get_post_ratings', 10, 2);
+function ud_get_post_ratings($type, $id){
+    $out = [
+        'Overall rating'        => floatval(get_post_meta($id, "{$type}_overall_rating", true)),
+        'Trust & Fairness'      => floatval(get_post_meta($id, "{$type}_rating_trust", true)),
+        'Bonuses & Promotions'  => floatval(get_post_meta($id, "{$type}_rating_bonus", true)),
+        'Games & Software'      => floatval(get_post_meta($id, "{$type}_rating_games", true)),
+        'Customer Support'      => floatval(get_post_meta($id, "{$type}_rating_customer", true)),
+    ];
+
+    return $out;
 }
 
 // CUSTOM FIELDS
@@ -544,6 +600,25 @@ function crb_attach_theme_options() {
                     Field::make('text', 'bandit_title', __('Title'))
                         ->set_width(75),
                     Field::make('textarea', 'bandit_subtitle', __('Subtitle'))
+                ))
+                ->add_fields('card-top', __('Card'), array(
+                    Field::make('checkbox', 'card_top_power', __('Display section'))
+                        ->set_default_value('yes')
+                ))
+                ->add_fields('tags', array(
+                    Field::make('checkbox', 'tags_power', __('Display tags'))
+                    ->set_default_value('yes')
+                    ->set_width(20),
+                    Field::make('text', 'tags_title', __('Title'))
+                        ->help_text("<span style='color: blue;'>".__('Leave blank to use default text (post title + "DETAILS")')."</span>")
+                        ->set_width(40),
+                    Field::make('text', 'tags_subtitle', __('Subitle'))
+                        ->set_width(40)
+                        ->help_text("<span style='color: blue;'>".__('Leave blank to use excerpt text')."</span>")
+                ))
+                ->add_fields('rating-card', __('Rating'), array(
+                    Field::make('checkbox', 'rating_power', __('Display rating'))
+                        ->set_default_value('yes')
                 ))
         ));
 }

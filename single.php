@@ -11,7 +11,8 @@
 
         foreach($custom_content as $part){
             $part_tmpl = $part['_type'];
-            get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part]);
+			$post_type = get_post_type();
+            get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part, "post_type" => $post_type]);
         }
     }elseif ( is_singular( 'casino' ) ) {
 
