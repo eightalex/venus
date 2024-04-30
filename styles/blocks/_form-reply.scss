@@ -48,6 +48,10 @@
       "checkbox ."
       "cta .";
     grid-template-columns: 400px 1fr;
+
+    .logged-in-as {
+      display: none;
+    }
   }
 
   &__input {
