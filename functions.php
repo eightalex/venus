@@ -295,7 +295,7 @@ function ud_get_casinos(array $atts){
 		$args = array(
 			'posts_per_page' => $items_number,
 			'post_type'      => 'casino',
-			'post__not_in'   => $exclude_id_array,
+			'post__not_in'   => isset($exclude_id)? [$exclude_id]: [],
 			'no_found_rows'  => true,
 			'post_status'    => 'publish',
 			'orderby'        => $orderby,
@@ -329,14 +329,6 @@ function ud_get_games_cats(){
 
     return $out;
 }
-
-// add_filter('get_current_post_cat', 'get_current_post_cat');
-// function get_current_post_cat($tax){
-//     $req = $_REQUEST;
-//     return get_the_terms($_REQUEST['post'], $tax);
-// }
-
-// var_dump(get_current_post_cat('casino-category'));
 
 add_filter('ud_get_casinos_cats', 'ud_get_casinos_cats');
 function ud_get_casinos_cats(){
@@ -428,6 +420,37 @@ function ud_get_post_ratings($type, $id){
     return $out;
 }
 
+add_filter('ud_get_bonuses', 'ud_get_bonuses');
+function ud_get_bonuses($atts){
+    extract($atts);
+
+    $args = array(
+        'posts_per_page' => isset($items_number)? $items_number: -1,
+        'post_type'      => 'bonus',
+        'post__not_in'   => isset($exclude_id)? [$exclude_id]: [],
+        'no_found_rows'  => true,
+        'post_status'    => 'publish',
+        // 'orderby'        => $orderby,
+        // 'order'          => $order
+    );
+
+    if(!empty($parent_id)){
+        $args['meta_query'] = array(
+            array(
+                'key'       => 'bonus_parent_casino',
+                'value'     => $parent_id,
+                'compare'   => 'LIKE'
+            )
+        );
+    }
+
+    $q = new WP_Query($args);
+
+    wp_reset_postdata();
+
+    return $q;
+}
+
 // CUSTOM FIELDS
 add_action( 'carbon_fields_register_fields', 'crb_attach_theme_options' );
 
@@ -458,8 +481,6 @@ function crb_attach_theme_options() {
         ->where('post_type', '=', 'post')
         ->or_where('post_type', '=', 'casino')
         ->add_fields( array(
-            // Field::make('text', 'current_post_type', 'Post Type')
-            //     ->set_default_value(apply_filters('ud_get_post_type', true)),
             Field::make('complex', 'ud_post_content', __('Content'))
                 ->setup_labels($labels['sections'])
                 ->set_collapsed(true)
@@ -497,11 +518,13 @@ function crb_attach_theme_options() {
                 ))
                 ->add_fields('game-card', __('Games'), array(
                     Field::make('text', 'gc_title', __('Title'))
+                        ->help_text("<span style='color: blue;'>".__('Leave blank to use default text (post title + "GAMES")')."</span>")
                         ->set_width(75),
                     Field::make('image', 'gc_bg', __('Bacground'))
                         ->set_value_type('url')
                         ->set_width(25),
-                    Field::make('textarea', 'gc_subtitle', __('Subtitle')),
+                    Field::make('textarea', 'gc_subtitle', __('Subtitle'))
+                        ->help_text("<span style='color: blue;'>".__('Leave blank to use excerpt text')."</span>"),
                     Field::make('select', 'gc_category', __('Select category'))
                         ->add_options(apply_filters('ud_get_games_cats', true))
                         ->set_width(75),
@@ -561,7 +584,8 @@ function crb_attach_theme_options() {
                     Field::make('image', 'benefits_bg', __('Background'))
                         ->set_width(25)
                         ->set_value_type( 'url' ),
-                    Field::make('textarea', 'benefits_subtitle', __('Subtitle')),
+                    Field::make('textarea', 'benefits_subtitle', __('Subtitle'))
+                        ->help_text("<span style='color: blue;'>".__('Leave blank to use excerpt text')."</span>"),
                     Field::make('text', 'advantages_title', __('Advantages list title'))
                         ->set_width(50)
                         ->set_default_value('Pros casino'),
@@ -612,13 +636,28 @@ function crb_attach_theme_options() {
                     Field::make('text', 'tags_title', __('Title'))
                         ->help_text("<span style='color: blue;'>".__('Leave blank to use default text (post title + "DETAILS")')."</span>")
                         ->set_width(40),
-                    Field::make('text', 'tags_subtitle', __('Subitle'))
+                    Field::make('textarea', 'tags_subtitle', __('Subitle'))
                         ->set_width(40)
                         ->help_text("<span style='color: blue;'>".__('Leave blank to use excerpt text')."</span>")
                 ))
                 ->add_fields('rating-card', __('Rating'), array(
                     Field::make('checkbox', 'rating_power', __('Display rating'))
                         ->set_default_value('yes')
+                ))
+                ->add_fields('bonus-card', __('Bonuses'), array(
+                    Field::make('checkbox', 'bonuses_power', __('Display bonuses'))
+                        ->set_default_value('yes')
+                        ->set_width(25),
+                    Field::make('text', 'bonuses_count', __('Number of bonuses to show'))
+                        ->set_default_value(3)
+                        ->set_attribute('type', 'number')
+                        ->set_width(75),
+                    Field::make('text', 'bonuses_title', __('Title'))   
+                        ->set_width(50)
+                        ->help_text("<span style='color: blue;'>".__('Leave blank to use default text (post title + "BONUSES")')."</span>"),
+                    Field::make('textarea', 'bonuses_subtitle', __('Subtitle'))
+                        ->set_width(50)
+                        ->help_text("<span style='color: blue;'>".__('Leave blank to use excerpt text')."</span>"),
                 ))
         ));
 }
