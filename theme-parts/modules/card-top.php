@@ -60,7 +60,7 @@ $has_country_str        = $has_country? __("Users from Ukraine accepted"): __("U
             </div>
         </div>
     </div>
-    <img class="section-top__clouds-1" src="../assets/images/section/clouds-1.png" alt="clouds">
-    <img class="section-top__clouds-2" src="../assets/images/section/clouds-2.png" alt="clouds">
-    <img class="section-top__deer" src="../assets/images/deer.svg" alt="deer">
+    <img class="section-top__clouds-1" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/section/clouds-1.png" alt="clouds">
+    <img class="section-top__clouds-2" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/section/clouds-2.png" alt="clouds">
+    <img class="section-top__deer" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/deer.svg" alt="deer">
 </section>
