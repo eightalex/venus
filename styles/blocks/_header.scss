@@ -3,12 +3,12 @@
 .header {
   position: relative;
   z-index: 3;
-  height: 104px;
   background-color: #262c3a;
 
   &__inner {
     display: flex;
     align-items: center;
+    height: 104px;
   }
 
   &__logo {

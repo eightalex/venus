@@ -308,11 +308,11 @@ body {
 .header {
   position: relative;
   z-index: 3;
-  height: 104px;
   background-color: #262c3a; }
   .header__inner {
     display: flex;
-    align-items: center; }
+    align-items: center;
+    height: 104px; }
   .header__logo {
     display: flex;
     flex-shrink: 0;
