@@ -125,6 +125,12 @@
         background-image: url("#{$images-url}/section/bg5.png");
       }
     }
+
+    &_6 {
+      &::before {
+        background-image: url("#{$images-url}/section/bg6.jpeg");
+      }
+    }
   }
 
   &_img {

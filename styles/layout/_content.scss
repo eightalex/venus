@@ -1,9 +1,55 @@
+@import "../variables";
+@import "../mixins";
+
 .content {
+  display: grid;
+  grid-template-columns: 1fr 335px;
+  column-gap: 60px;
+
   &__main {
 
   }
 
   &__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
 
+  &__sidebar-cards {
+    display: grid;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__subtitle {
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    text-transform: uppercase;
+  }
+
+  &__pagination {
+    margin-top: 60px;
+  }
+
+  &__pagination-button {
+    min-width: 250px;
+  }
+
+  @include bp(1230px) {
+    grid-template-columns: 380px 335px;
+    justify-content: center;
+  }
+
+  @include bp(830px) {
+    grid-template-columns: auto;
+
+    &__sidebar {
+      display: none;
+    }
   }
 }

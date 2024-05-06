@@ -2,6 +2,8 @@
 @import "../mixins";
 
 .casino-card {
+  $this: &;
+
   display: grid;
   grid-template-areas:
     "image title"
@@ -83,6 +85,42 @@
 
   &__button {
 
+  }
+
+  &_compact {
+    grid-template-areas:
+      "image title"
+      "image rating"
+      "image ."
+      "subtitle subtitle"
+      "cta cta";
+    column-gap: 20px;
+    padding: 16px;
+
+    #{$this} {
+      &__subtitle {
+        margin-top: 24px;
+      }
+
+      &__rating {
+        gap: 12px;
+
+        span:not(:first-child) {
+          display: none;
+        }
+
+        &::after {
+          content: "(" attr(data-rating) ")";
+          display: inline-flex;
+          color: #fff;
+          font-family: Hind, sans-serif;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 128%; /* 20.48px */
+        }
+      }
+    }
   }
 
   @include bp(m) {
