@@ -121,6 +121,8 @@ body {
     left: 50%;
     transform: translateX(-85%) translateY(-50%);
     height: calc(300%); }
+  .section_p_0 {
+    padding: 0; }
   @media (max-width: 768px) {
     .section {
       padding-top: 80px;
@@ -139,7 +141,9 @@ body {
       .section .section__title {
         font-size: 36px; }
       .section .section__content {
-        margin-top: 60px; } }
+        margin-top: 60px; }
+      .section_p_0 {
+        padding: 0; } }
 
 .content {
   display: grid;
@@ -1979,3 +1983,80 @@ body {
       cursor: auto; }
     .pagination__item:hover:not(.active) {
       background-color: rgba(145, 151, 175, 0.3); }
+  @media (max-width: 380px) {
+    .pagination__arrow {
+      padding: 20px;
+      width: 20px;
+      height: 20px;
+      background-size: 20px;
+      border-radius: 10px; }
+    .pagination__item {
+      width: 40px;
+      height: 40px;
+      font-size: 14px;
+      border-radius: 10px; } }
+  @media (max-width: 375px) {
+    .pagination {
+      gap: 3px; } }
+
+.banner {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 15px; }
+  .banner__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+  .banner__breadcrumbs {
+    padding: 0; }
+  .banner__title {
+    margin-top: 32px;
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    text-transform: uppercase; }
+    .banner__title em {
+      color: #e3f666;
+      font-style: normal; }
+  .banner__image {
+    flex-shrink: 0;
+    position: relative;
+    z-index: 0;
+    margin-right: 150px;
+    width: 387px;
+    height: 425px; }
+    .banner__image::before {
+      content: "";
+      position: absolute;
+      top: 85px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 0;
+      width: 564px;
+      height: 564px;
+      border-radius: 564px;
+      background-color: #e3f666; }
+    .banner__image img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: contain; }
+  @media (max-width: 768px) {
+    .banner__breadcrumbs {
+      display: none; }
+    .banner__title {
+      font-size: 36px; }
+    .banner__image {
+      margin-right: -40px;
+      width: 238px;
+      height: 261px; }
+      .banner__image::before {
+        width: 300px;
+        height: 300px;
+        border-radius: 300px; } }

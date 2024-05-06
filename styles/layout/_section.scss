@@ -178,6 +178,10 @@
     }
   }
 
+  &_p_0 {
+    padding: 0;
+  }
+
   @include bp(m) {
     padding-top: $vertical-padding-mobile;
     padding-bottom: $vertical-padding-mobile;
@@ -215,6 +219,10 @@
       &__content {
         margin-top: 60px;
       }
+    }
+
+    &_p_0 {
+      padding: 0;
     }
   }
 }

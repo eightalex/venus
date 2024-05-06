@@ -1,3 +1,6 @@
+@import "../variables";
+@import "../mixins";
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -47,5 +50,26 @@
     &:hover:not(.active) {
       background-color: rgba(#9197af, 0.3);
     }
+  }
+
+  @include bp(380px) {
+    &__arrow {
+      padding: 20px;
+      width: 20px;
+      height: 20px;
+      background-size: 20px;
+      border-radius: 10px;
+    }
+
+    &__item {
+      width: 40px;
+      height: 40px;
+      font-size: 14px;
+      border-radius: 10px;
+    }
+  }
+
+  @include bp(s) {
+    gap: 3px;
   }
 }
