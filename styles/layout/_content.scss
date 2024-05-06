@@ -32,12 +32,16 @@
     text-transform: uppercase;
   }
 
-  &__pagination {
+  &__nav {
     margin-top: 60px;
   }
 
-  &__pagination-button {
+  &__more-button {
     min-width: 250px;
+  }
+
+  &__pagination {
+    display: none !important;
   }
 
   @include bp(1230px) {
@@ -50,6 +54,18 @@
 
     &__sidebar {
       display: none;
+    }
+
+    &__nav {
+      margin-top: 40px;
+    }
+
+    &__more-button {
+      display: none !important;
+    }
+
+    &__pagination {
+      display: flex !important;
     }
   }
 }
