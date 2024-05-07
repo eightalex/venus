@@ -39,6 +39,8 @@ body {
     .section__title em {
       color: #e3f666;
       font-style: inherit; }
+    .section__title_s {
+      font-size: 32px; }
   .section__subtitle {
     margin-top: 33px;
     margin-left: auto;
@@ -138,9 +140,11 @@ body {
         left: 50%;
         transform: translateX(-50%) translateY(calc(-50% + 150px));
         height: 150%; }
-      .section .section__title {
+      .section__title {
         font-size: 36px; }
-      .section .section__content {
+        .section__title_s {
+          font-size: 24px; }
+      .section__content {
         margin-top: 60px; }
       .section_p_0 {
         padding: 0; } }
@@ -867,7 +871,7 @@ body {
     opacity: 0.24;
     width: 100%;
     height: 100%;
-    background: url("../assets/images/lights-1.png"); }
+    background-image: url("../assets/images/lights-1.png"); }
   .benefits__title {
     position: relative;
     z-index: 1;
@@ -2060,3 +2064,66 @@ body {
         width: 300px;
         height: 300px;
         border-radius: 300px; } }
+
+.advantages {
+  display: flex;
+  align-items: center;
+  gap: 35px; }
+  .advantages__item {
+    counter-increment: item;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    padding: 50px 180px 35px 24px;
+    max-width: 400px;
+    min-height: 330px;
+    border-radius: 16px;
+    background-image: linear-gradient(180deg, #0bb9f8 50.52%, #0a8ef2 100%); }
+    .advantages__item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      border-radius: 16px;
+      opacity: 0.24;
+      width: 100%;
+      height: 100%;
+      background-image: url("../assets/images/lights-1.png"); }
+  .advantages__text {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: #fff;
+    font-family: Hind, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 128%;
+    /* 20.48px */ }
+    .advantages__text::before {
+      content: "0" counter(item);
+      display: flex;
+      color: #0a8ef2;
+      font-family: Montserrat, sans-serif;
+      font-size: 56px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 70%; }
+  .advantages__image {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex; }
+  @media (max-width: 1180px) {
+    .advantages {
+      flex-direction: column; } }
+  @media (max-width: 360px) {
+    .advantages__item {
+      padding: 50px 24px;
+      min-height: auto; }
+    .advantages__image {
+      display: none; } }

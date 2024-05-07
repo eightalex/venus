@@ -14,16 +14,7 @@
   }
 
   &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    border-radius: 16px;
-    opacity: 0.24;
-    width: 100%;
-    height: 100%;
-    background: url("#{$images-url}/lights-1.png");
+    @include lights-bg();
   }
 
   &__title {

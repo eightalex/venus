@@ -33,6 +33,10 @@
       color: #e3f666;
       font-style: inherit;
     }
+
+    &_s {
+      font-size: 32px;
+    }
   }
 
   &__subtitle {
@@ -211,14 +215,16 @@
       }
     }
 
-    #{$this} {
-      &__title {
-        font-size: 36px;
-      }
+    &__title {
+      font-size: 36px;
 
-      &__content {
-        margin-top: 60px;
+      &_s {
+        font-size: 24px;
       }
+    }
+
+    &__content {
+      margin-top: 60px;
     }
 
     &_p_0 {
