@@ -69,7 +69,7 @@ add_filter( 'comment_form_defaults', 'ud_customise_comment_fields');
 function ud_customise_comment_fields( $default ) {
     $default[ 'comment_field' ] = '<div class="form-reply__input input-label">
                                 <label for="comment" class="input-label__label">Comment*</label>
-                                <textarea id="comment" class="input input_textarea" placeholder="Type your text here"></textarea>
+                                <textarea id="comment" name="comment" class="input input_textarea" placeholder="Type your text here"></textarea>
                             </div>';
     $default['class_submit'] = 'form-reply__button button';
     $default['label_submit'] = 'Post Comment';
