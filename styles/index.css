@@ -128,14 +128,10 @@ body {
   .section_img_2 .section__title {
     font-size: 32px; }
   .section_img_2 .section__image img:nth-child(1) {
+    max-width: 440px;
     width: 100%; }
   .section_img_2 .section__image img:nth-child(2) {
-    position: absolute;
-    z-index: 0;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(calc(-50% + 150px));
-    height: 150%; }
+    display: none; }
   .section_p_0 {
     padding: 0; }
   @media (max-width: 768px) {
