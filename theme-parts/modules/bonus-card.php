@@ -13,7 +13,6 @@ if(!$bonuses->have_posts()){
 }
 
 $title_section      = !empty($content['bonuses_title'])? $content['bonuses_title']: get_the_title()." <em>bonuses</em>";
-$section_subtitle   = !empty($content['bonuses_subtitle'])? $content['bonuses_subtitle']: get_the_excerpt($id);
 ?>
 <section class="section section_suits">
     <div class="container">
@@ -21,10 +20,10 @@ $section_subtitle   = !empty($content['bonuses_subtitle'])? $content['bonuses_su
             <header class="section__header">
                 <div class="section__title"><?php echo $title_section?></div>
                 <?php
-                if(!empty($section_subtitle)):
+                if(!empty($content['bonuses_subtitle'])):
                     ?>
                     <div class="section__subtitle">
-                        <?php echo $section_subtitle?>
+                        <?php echo $content['bonuses_subtitle']?>
                     </div>
                     <?php
                 endif;

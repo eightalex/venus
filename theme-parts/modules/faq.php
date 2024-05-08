@@ -1,9 +1,8 @@
 <?php
 extract($args);
-$faqs = apply_filters('ud_get_faqs', []);
-$faq_bg = !empty($content['faq_bg'])? $content['faq_bg']: get_stylesheet_directory_uri()."/assets/images/section/bg1.png";
+if(!empty($content['faq_items'])):
 
-if($faqs->have_posts()):
+$faq_bg = !empty($content['faq_bg'])? $content['faq_bg']: get_stylesheet_directory_uri()."/assets/images/section/bg1.png";
 ?>
 
 <style>
@@ -41,22 +40,20 @@ if($faqs->have_posts()):
             <div class="section__content">
                 <ul class="faq">
                     <?php
-                    $i = 0;
-                    while($faqs->have_posts()):
-                        $faqs->the_post();
-                        $i ++;
+                    foreach($content['faq_items'] as $k => $item):
+                        $i = $k+1;
                         ?>
                         <li class="faq__item">
                             <input class="faq__trigger" type="checkbox" id="question-<?php echo $i?>">
                             <label class="faq__question" for="question-<?php echo $i?>">
-                                <?php the_title()?>
+                                <?php echo $item['question']?>
                             </label>
                             <div class="faq__answer">
-                                <?php the_content()?>
+                                <?php echo wpautop($item['answer'])?>
                             </div>
                         </li>
                         <?php
-                    endwhile;
+                    endforeach;
                     ?>
                 </ul>
             </div>

@@ -99,6 +99,8 @@ if(!function_exists('customize_comment_form')){
 }
 
 
+
+
 add_filter('ud_get_file_data', 'ud_get_file_data');
 /**
  * Use sizes "medium", "medium_large", "large", "full" or or other registered sizes
@@ -234,7 +236,6 @@ function ud_get_games(array $atts){
 		);
 
 	} else {
-
 		$args = array(
 			'posts_per_page' => $items_number,
 			'post_type'      => 'game',
@@ -259,7 +260,7 @@ function ud_get_casinos(array $atts){
     extract($atts);
 
     $cas_args = array (
-	    'items_number'      => isset($items_number)? $items_number :4,
+	    'items_number'      => isset($items_number)? $items_number : get_option('posts_per_page'),
 	    'category'          => isset($category)? $category: '',
 	    'items_id'          => isset($items_id)? $items_id: '',
 	    'order'             => isset($order)? $order: '',
@@ -451,6 +452,184 @@ function ud_get_bonuses($atts){
     return $q;
 }
 
+/**
+ * $data = [
+ *  'title',
+ *  'img_src',
+ *  'img_alt',
+ *  'rating',
+ *  'desc',
+ *  'permalink',
+ *  'external_link',
+ *  'lnk_btn_txt' (link btn text)(opt),
+ *  'ex_lnk_btn_txt' (external link btn text)(opt),
+ *  'item_class' (opt)
+ * ]
+ */
+add_action('print_single_casino_template', 'print_single_casino_template');
+function print_single_casino_template($data = []){
+    extract($data); 
+
+    $desc_html          = "";
+    $external_link_html = "";
+    $lb_txt             = isset($lnk_btn_txt)? $lnk_btn_txt: 'Read review';
+    $elb_txt            = isset($ex_lnk_btn_txt)? $ex_lnk_btn_txt: 'Play now';
+    $add_class          = isset($item_class)? $item_class: '';
+
+    if(isset($desc) && !empty($desc)){
+        $desc_html = "<div class='casino-card__subtitle'>{$desc}</div>"; 
+    }
+
+    if(isset($external_link) && !empty($external_link)){
+        $external_link_html = "<a href='{$external_link}' target='_blank' class='casino-card__button button'>{$elb_txt}</a>";
+    }
+    
+    $tmpl = "<div class='casino-card {$add_class}'>
+                <div class='casino-card__image'>
+                    <img src='{$img_src}' alt='{$img_alt}'>
+                </div>
+                
+                <div class='casino-card__title'>{$title}</div>
+                <div class='casino-card__rating' data-rating='{$rating}'>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                {$desc_html}
+                <div class='casino-card__cta'>
+                    <a href='{$permalink}' class='casino-card__button button button_outline'>{$lb_txt}</a>
+                    {$external_link_html}
+                </div>
+            </div>";
+
+    echo $tmpl;
+}
+
+add_filter( 'my_pagination', 'my_pagination', 10, 2);
+function my_pagination(int $current_page, int $max_page){
+    $html = "<div class='pagination content__pagination' data-max_pages='{$max_page}'>";
+            $p = paginate_links([
+                    "base"               => "%_%",            
+                    "format"             => "page/%#%/",            
+                    "total"              => $max_page,        
+                    "current"            => $current_page,    
+                    "aria_current"       => "page",          
+                    "show_all"           => false,           
+                    "prev_next"          => true,        
+                    "prev_text"          => "<",              
+                    "next_text"          => ">",            
+                    "end_size"           => 2,               
+                    "mid_size"           => 2,             
+                    "type"               => "array",          
+                ]);
+
+                foreach($p as $l){
+                    $current_class = "";
+
+                    if($l == '<span aria-current="page" class="pagination__item">' . $current_page . '</span>'){
+                        $current_class = "pagination__item active";
+                    }
+                    $html .= "<li class='{$current_class}'>{$l}</li>";
+                }
+        
+            $html .= "</div>";
+         
+        return $html;    
+}
+
+add_action("ud_get_posts_loop", "ud_get_posts_loop");
+function ud_get_posts_loop($atts){
+    extract($atts);
+
+    $wrap_class = isset($wrap_class)? $wrap_class: 'card-list card-list_col-2';
+    $ID = get_the_ID();
+
+    if(get_post_type() == 'post'){
+        $exclude_id = $ID;
+    }
+    // $paged = $wp_query->get( 'paged' );
+    $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
+    $query = new WP_Query(array(
+        'posts_per_page'    =>  get_option('posts_per_page'),
+        'post_type'         => 'post',
+        'paged'             => $paged,
+        'post_status'       => 'publish',
+        'post__not_in'      => isset($exclude_id)? [$exclude_id]: [],
+    ));
+
+    
+    if(!$query->have_posts()){
+        return;
+    }
+
+    $max_pages = intval($query->max_num_pages);
+
+    $items = "";
+
+    while($query->have_posts()){
+        $query->the_post();
+        $id = get_the_id();
+        $thmb_id = get_post_thumbnail_id();
+
+        $thmb_data  = $thmb_id > 0? apply_filters('ud_get_file_data', $thmb_id) : false;
+        $thmb_src   = !$thmb_data? 'https://via.placeholder.com/315x220': $thmb_data['src'];
+        $thmb_alt   = !$thmb_data? 'image': $thmb_data['alt'];
+        $title      = get_the_title();
+        $excerpt    = "";
+        $post_date  = get_the_date();
+        $permalink  = get_the_permalink();
+        if(!empty(get_the_excerpt($id))){
+            $excerpt    = "<div class='news-card__text'>
+                                " . get_the_excerpt($id) . "
+                            </div>";
+                            }
+
+        $items .= "<div class='news-card'>
+                    <a href='{$permalink}'>        
+                        <div class='news-card__image'>
+                            <img src='{$thmb_src}' alt='{$thmb_alt}'>
+                        </div>
+                    </a>
+                    <div class='news-card__content'>
+                        <a href='{$permalink}'>
+                            <div class='news-card__title'>{$title}</div>
+                        </a>
+
+                        <time class='news-card__date' datetime='2023-04-17'>{$post_date}</time>
+                        {$excerpt}
+                    </div>
+                </div>";
+    }
+
+    $pagenavi           = "";
+    $pagenavi_items     = "";
+    $pagenavi_button    = "";
+
+    if($max_pages > 1){
+        if($paged < $max_pages){
+            $pagenavi_button = "<button class='button button_outline content__more-button' data-current='{$paged}'>See more</button>";
+        }
+
+        $pagenavi_items = apply_filters('my_pagination', $paged, $max_pages);
+
+        $pagenavi = "<div class='content__nav'>
+                        {$pagenavi_items}
+                    </div>";
+    }
+
+    $html = "<div class = '{$wrap_class}'>{$items}{$pagenavi}</div>";
+    wp_reset_postdata();
+
+    echo $html;
+}
+
 // CUSTOM FIELDS
 add_action( 'carbon_fields_register_fields', 'crb_attach_theme_options' );
 
@@ -474,16 +653,24 @@ function crb_attach_theme_options() {
         'flaws' => [
             'singular_name' => __('Flaw'),
             'plural_name'   => __('Flaws'),
+        ],
+        'faq' => [
+            'singular_name' => __('FAQ'),
+            'plural_name'   => __('FAQ`s'),
         ]
     ];
 
     Container::make( 'post_meta', 'Content menage' )
         ->where('post_type', '=', 'post')
         ->or_where('post_type', '=', 'casino')
+        ->or_where('post_type', '=', 'page')
         ->add_fields( array(
             Field::make('complex', 'ud_post_content', __('Content'))
                 ->setup_labels($labels['sections'])
                 ->set_collapsed(true)
+                ->add_fields('text-editor', 'Text editor', array(
+                    Field::make('rich_text', 'text_editor', __('Classic editor'))
+                ))
                 ->add_fields('guide', array(
                     Field::make('image', 'guide_bg_img', __('Background'))
                         ->set_value_type( 'url' ),
@@ -523,8 +710,7 @@ function crb_attach_theme_options() {
                     Field::make('image', 'gc_bg', __('Bacground'))
                         ->set_value_type('url')
                         ->set_width(25),
-                    Field::make('textarea', 'gc_subtitle', __('Subtitle'))
-                        ->help_text("<span style='color: blue;'>".__('Leave blank to use excerpt text')."</span>"),
+                    Field::make('textarea', 'gc_subtitle', __('Subtitle')),
                     Field::make('select', 'gc_category', __('Select category'))
                         ->add_options(apply_filters('ud_get_games_cats', true))
                         ->set_width(75),
@@ -564,19 +750,31 @@ function crb_attach_theme_options() {
                         ->set_width(50),
                     Field::make('textarea', 'faq_title', __("Title"))
                         ->set_default_value("Shave a <em>questions?</em>"),
-                    Field::make('textarea', 'faq_subtitle', __("Subtitle"))
+                    Field::make('textarea', 'faq_subtitle', __("Subtitle")),
+                    Field::make('complex', 'faq_items', __('Items'))
+                        ->set_collapsed(true)
+                        ->setup_labels($labels['faq'])
+                        ->add_fields(array(
+                            Field::make('text', 'question', __('Question')),
+                            Field::make('textarea', 'answer', __('Answer'))
+                        ))
+                        ->set_header_template( '
+                        <% if (question) { %>
+                            <%- question %>
+                        <% } %>    
+                        ')
                 ))
                 ->add_fields('author', array(
                     Field::make('checkbox', 'au_power', __('Include author info'))
                         ->set_default_value('yes')
-                        ->set_width(33),
+                        ->set_width(50),
                     Field::make('image', 'ua_bg', __('Background'))
                         ->set_value_type('url')
-                        ->set_width(33),
-                    Field::make('image', 'au_main_img', __('Main image'))
-                        ->set_value_type('url')
-                        ->help_text("<span style='color: blue;'>".__('Leave blank to use default image:')."<img width='50' src='".get_stylesheet_directory_uri()."/assets/images/author/picture.svg'></span>")
-                        ->set_width(33),
+                        ->set_width(50),
+                    // Field::make('image', 'au_main_img', __('Main image'))
+                    //     ->set_value_type('url')
+                    //     ->help_text("<span style='color: blue;'>".__('Leave blank to use default image:')."<img width='50' src='".get_stylesheet_directory_uri()."/assets/images/author/picture.svg'></span>")
+                    //     ->set_width(33),
                 ))
                 ->add_fields('benefits',array(
                     Field::make('text', 'benefits_title', __('Title'))
@@ -584,8 +782,7 @@ function crb_attach_theme_options() {
                     Field::make('image', 'benefits_bg', __('Background'))
                         ->set_width(25)
                         ->set_value_type( 'url' ),
-                    Field::make('textarea', 'benefits_subtitle', __('Subtitle'))
-                        ->help_text("<span style='color: blue;'>".__('Leave blank to use excerpt text')."</span>"),
+                    Field::make('textarea', 'benefits_subtitle', __('Subtitle')),
                     Field::make('text', 'advantages_title', __('Advantages list title'))
                         ->set_width(50)
                         ->set_default_value('Pros casino'),

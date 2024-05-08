@@ -59,45 +59,17 @@ if($casinos->have_posts()):
                         $desc                       = get_post_meta($id, 'casino_short_desc', true);
                         $casino_overall_rating      = floatval(get_post_meta($id, 'casino_overall_rating', true));
                         $casino_external_link       = get_post_meta($id, 'casino_external_link', true);
-                        ?>
-                        <div class="casino-card">
-                            <div class="casino-card__image">
-                                <img src="<?php echo $cas_img_data['src']?>" alt="<?php echo $cas_img_data['alt']?>">
-                            </div>
-                            <div class="casino-card__title"><?php the_title()?></div>
-                            <div class="casino-card__rating" data-rating="<?php echo $casino_overall_rating?>">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                            <?php
-                            if(!empty($desc)):
-                            ?>
-                            <div class="casino-card__subtitle">
-                                <?php echo $desc?>
-                            </div>
-                            <?php
-                            endif;
-                            ?>
-                            <div class="casino-card__cta">
-                                <a href="<?php the_permalink()?>" class="casino-card__button button button_outline">Read review</a>
-                                <?php
-                                if(!empty($casino_external_link)):
-                                    ?>
-                                    <a href="<?php echo $casino_external_link?>" target="_blank" class="casino-card__button button">Play now</a>
-                                    <?php
-                                endif;
-                                ?>
-                            </div>
-                        </div>
-                        <?php
+
+                        $atts = [
+                            'title'             => get_the_title(),
+                            'img_src'           => $cas_img_id !== 0? $cas_img_data['src']: '',
+                            'img_alt'           => $cas_img_id !== 0? $cas_img_data['alt']: get_the_title(), 
+                            'rating'            => $casino_overall_rating,
+                            'desc'              => $desc,
+                            'permalink'         => get_the_permalink(),
+                            'external_link'     => $casino_external_link,
+                        ];
+                        do_action('print_single_casino_template', $atts);
                     endwhile;
                     ?>
                 </div>

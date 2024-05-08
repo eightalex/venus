@@ -3,15 +3,15 @@
 <div id="post-<?php the_ID(); ?>">
 	<?php
 
-    $ID = get_the_ID();
+    $ID 			= get_the_ID();
     $custom_content = carbon_get_post_meta(get_the_ID(), 'ud_post_content');
+	$post_type 		= get_post_type();
 
     if(!empty($custom_content)){
         get_template_part('/theme-parts/modules/breadcrumbs');
 
         foreach($custom_content as $part){
             $part_tmpl = $part['_type'];
-			$post_type = get_post_type();
             get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part, "post_type" => $post_type]);
         }
     }elseif ( is_singular( 'casino' ) ) {

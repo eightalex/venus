@@ -8,14 +8,14 @@ $q_params = [
     'items_number'  => $content['gs_count'],
 ];
 
-if($post_type = "casino"){
+if($post_type !== "page"){
     $q_params['parent_id'] = $id;
 }
 $games = apply_filters('ud_get_games', $q_params);
 
+
 if($games->have_posts()):
     $section_title      = !empty($content['gc_title'])? $content['gc_title']: get_the_title()." <em>games</em>";
-    $section_subtitle   = !empty($content['gc_subtitle'])? $content['gc_subtitle']: get_the_excerpt($id);
 ?>
 
 <style>
@@ -31,10 +31,10 @@ if($games->have_posts()):
             <header class="section__header">
                 <div class="section__title"><?php echo $section_title?></div>
                 <?php
-                if($section_subtitle):
+                if(!empty($content['gc_subtitle'])):
                     ?>
                     <div class="section__subtitle">
-                        <?php echo $section_subtitle?>
+                        <?php echo $content['gc_subtitle']?>
                     </div>
                     <?php
                 endif;

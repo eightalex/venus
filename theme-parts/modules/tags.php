@@ -7,7 +7,6 @@ if(!$content['tags_power'] || empty($taxs)){
     return;
 }
 $title_section = !empty($content['tags_title'])? $content['tags_title']: get_the_title(). " <em>details</em>";
-$excerpt = !empty($content['tags_subtitle'])? $content['tags_subtitle']: get_the_excerpt($id);
 ?>
 <section class="section section_bg section_bg_2">
     <div class="container">
@@ -15,9 +14,15 @@ $excerpt = !empty($content['tags_subtitle'])? $content['tags_subtitle']: get_the
             <header class="section__header">
                 <div class="section__title"><?php echo $title_section?></div>
                 
-                <div class="section__subtitle">
-                    <?php echo $excerpt?>
-                </div>
+                <?php
+                if(!empty($content['tags_subtitle'])):
+                    ?>
+                    <div class="section__subtitle">
+                        <?php echo $content['tags_subtitle']?>
+                    </div>
+                    <?php
+                endif;
+                ?>
             </header>
             <div class="section__content">
                 <ul class="tags">

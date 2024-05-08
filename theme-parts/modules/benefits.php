@@ -6,7 +6,6 @@ if(empty($content['benefits_advantages']) && empty($content['benefits_flaws'])){
 }
 
 $benefits_bg        = !empty($content['benefits_bg'])? $content['benefits_bg']: get_stylesheet_directory_uri()."/assets/images/section/bg1.png";
-$section_subtitle   = !empty($content['benefits_subtitle'])? $content['benefits_subtitle']: get_the_excerpt($id);
 ?>
 
 <style>
@@ -25,10 +24,10 @@ $section_subtitle   = !empty($content['benefits_subtitle'])? $content['benefits_
                     <?php
                 endif;
 
-                if(!empty($section_subtitle)):
+                if(!empty($content['benefits_subtitle'])):
                     ?>
                     <div class="section__subtitle">
-                        <?php echo $section_subtitle?>
+                        <?php echo $content['benefits_subtitle']?>
                     </div>
                     <?php
                 endif;

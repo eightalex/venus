@@ -11,8 +11,8 @@ $last_name          = get_user_meta($author_id, 'last_name', true);
 $author_desc        = get_user_meta($author_id, 'description', true);
 $main_image_meta    = isset($content['au_main_img'])? $content['au_main_img']: '';
 $ava_url            = get_user_meta($author_id, 'sabox-profile-image', true);
-$ava                = !empty($ava_url)? $ava_url: get_stylesheet_directory_uri()."/assets/images/author/avatar.png";
-$main_image         = !empty($main_image_meta)? $main_image_meta: get_stylesheet_directory_uri()."/assets/images/author/picture.svg";
+$ava                = !empty($ava_url)? $ava_url: get_stylesheet_directory_uri()."/assets/images/author/picture.svg";
+// $main_image         = !empty($main_image_meta)? $main_image_meta: get_stylesheet_directory_uri()."/assets/images/author/picture.svg";
 
 ?>
 
@@ -32,13 +32,13 @@ $main_image         = !empty($main_image_meta)? $main_image_meta: get_stylesheet
                     <div class="author__about">
                         <?php echo $author_desc?>
                     </div>
-                    <div class="author__preview">
+                    <!-- <div class="author__preview">
                         <img src="<?php echo $ava?>" alt="author">
                         by <?php echo $firs_name . " " . $last_name?>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="author__image">
-                    <img src="<?php echo $main_image?>" alt="author">
+                    <img src="<?php echo $ava?>" alt="author">
                 </div>
             </div>
         </div>
