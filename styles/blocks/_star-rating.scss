@@ -1,0 +1,30 @@
+@import "../variables";
+@import "../mixins";
+
+.star-rating {
+  position: relative;
+  width: 312px;
+  height: 24px;
+
+  svg {
+    position: relative;
+    z-index: 1;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--star-rating-color, #e3f666);
+  }
+
+  @for $i from 1 through 100 {
+    &[data-rating^="#{$i/10}"]::before {
+      width: $i * 1%;
+    }
+  }
+}

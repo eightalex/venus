@@ -1,0 +1,122 @@
+@import "../variables";
+@import "../mixins";
+
+.game-rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 24px;
+    background-color: #262c3a;
+    --star-rating-background: #262c3a;
+
+    &:nth-child(even) {
+      background-color: #1b1f28;
+      --star-rating-background: #1b1f28;
+    }
+  }
+
+  &__img {
+    grid-area: img;
+    flex-shrink: 0;
+    overflow: hidden;
+    width: 88px;
+    height: 88px;
+    border-radius: 16px;
+    background-color: #fff;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__header {
+    grid-area: header;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__title {
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    text-transform: uppercase;
+  }
+
+  &__rating-mobile {
+    display: none;
+    align-items: center;
+    gap: 12px;
+
+    &::after {
+      content: "(" attr(data-rating) ")";
+      display: flex;
+      color: #fff;
+      font-family: Hind, sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 128%; /* 20.48px */
+    }
+  }
+
+  &__cta {
+    grid-area: cta;
+    display: flex;
+    gap: 16px;
+    margin-left: auto;
+  }
+
+  &__button {
+    min-width: 248px;
+  }
+
+  @include bp(1100px) {
+    &__button {
+      min-width: 140px;
+    }
+  }
+
+  @include bp(830px) {
+    &__item {
+      display: grid;
+      grid-template-areas:
+        "img header"
+        "cta cta";
+      grid-template-columns: 88px 1fr;
+      padding-left: 16px;
+      padding-right: 16px;
+      max-width: 335px;
+    }
+
+    &__rating-mobile {
+      display: flex;
+    }
+
+    &__rating {
+      display: none;
+    }
+
+    &__cta {
+      justify-content: center;
+      margin-left: 0;
+    }
+  }
+
+  @include bp(370px) {
+    &__button {
+      min-width: auto;
+    }
+  }
+}
