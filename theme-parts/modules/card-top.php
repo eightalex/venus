@@ -11,8 +11,8 @@ $rating                 = floatval(get_post_meta($id, "{$post_type}_overall_rati
 $detailed_tc            = get_post_meta( $id, "{$post_type}_detailed_tc", true );
 $button_notice          = get_post_meta( $id, "{$post_type}_button_notice", true );
 $restricted_countries   = wp_get_post_terms($id, 'restricted-country');
-$has_country            = apply_filters('ud_has_object_with_property',$restricted_countries, 'name', 'Ukraine');
-$has_country_str        = $has_country? __("Users from Ukraine accepted"): __("Users from Ukraine are not accepted");
+// $has_country            = apply_filters('ud_has_object_with_property',$restricted_countries, 'name', 'Ukraine');
+// $has_country_str        = $has_country? __("Users from Ukraine accepted"): __("Users from Ukraine are not accepted");
 ?>
 <section class="section-top">
     <div class="container relative">
@@ -20,6 +20,7 @@ $has_country_str        = $has_country? __("Users from Ukraine accepted"): __("U
             <div class="card-top__image">
                 <img src="<?php echo $featured_data['src']?>" alt="<?php echo $featured_data['alt']?>">
             </div>
+            
             <div class="card-top__title"><?php the_title()?></div>
 
             <div class="card-top__subtitle">
@@ -55,12 +56,13 @@ $has_country_str        = $has_country? __("Users from Ukraine accepted"): __("U
                 endif;
                 ?>
             </div>
-            <div class="card-top__info">
+            <!-- <div class="card-top__info">
                 <?php echo $has_country_str?>
-            </div>
+            </div> -->
         </div>
     </div>
     <img class="section-top__clouds-1" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/section/clouds-1.png" alt="clouds">
     <img class="section-top__clouds-2" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/section/clouds-2.png" alt="clouds">
     <img class="section-top__deer" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/deer.svg" alt="deer">
 </section>
+<?php

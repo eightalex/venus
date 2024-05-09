@@ -659,6 +659,16 @@ function crb_attach_theme_options() {
             'plural_name'   => __('FAQ`s'),
         ]
     ];
+    Container::make('post_meta', 'App banner')
+        // ->where('post_type', '=', 'post')
+        ->where('post_type', '=', 'page')
+        ->add_fields(array(
+            Field::make('text', 'app_banner_txt', __('Title'))
+                ->help_text("<span style='color: blue;'>".__('Leave blank to use post title')."</span>")
+                ->set_width(75),
+            Field::make('image', 'app_banner_img', __('Image'))
+                ->set_width(25),
+        ));
 
     Container::make( 'post_meta', 'Content menage' )
         ->where('post_type', '=', 'post')
@@ -668,7 +678,7 @@ function crb_attach_theme_options() {
             Field::make('complex', 'ud_post_content', __('Content'))
                 ->setup_labels($labels['sections'])
                 ->set_collapsed(true)
-                ->add_fields('text-editor', 'Text editor', array(
+                ->add_fields('text-editor', __('Text editor'), array(
                     Field::make('rich_text', 'text_editor', __('Classic editor'))
                 ))
                 ->add_fields('guide', array(
@@ -742,13 +752,14 @@ function crb_attach_theme_options() {
                         ))
                 ))
                 ->add_fields('faq', 'FAQ`s', array(
-                    Field::make('checkbox', 'faq_power', __('Include FAQ'))
-                        ->set_default_value('yes')
-                        ->set_width(50),
+                    // Field::make('checkbox', 'faq_power', __('Include FAQ'))
+                    //     ->set_default_value('yes')
+                    //     ->set_width(50),
                     Field::make('image', 'faq_bg', __('Background'))
                         ->set_value_type('url')
                         ->set_width(50),
                     Field::make('textarea', 'faq_title', __("Title"))
+                        ->set_width(50)
                         ->set_default_value("Shave a <em>questions?</em>"),
                     Field::make('textarea', 'faq_subtitle', __("Subtitle")),
                     Field::make('complex', 'faq_items', __('Items'))
@@ -818,6 +829,15 @@ function crb_attach_theme_options() {
                     Field::make('image', 'bandit_main_img', __('Image'))
                         ->help_text("<span style='color: blue;'>".__('Leave blank to use default image:')."<img width='50' src='".get_stylesheet_directory_uri()."/assets/images/section/bandit.svg'></span>")
                         ->set_width(25),
+                    Field::make('image', 'bandit_main_img_bg', __('Backgrownd for image'))    
+                        ->set_value_type('url')
+                        ->set_width(25),
+                    Field::make('select', 'bandit_style_type', __('Style'))
+                        ->set_width(50)
+                        ->add_options(array(
+                            'image_right'   => __('Picture on the rigth'),
+                            'image_left'    => __('Picture on the left')
+                        )),   
                     Field::make('text', 'bandit_title', __('Title'))
                         ->set_width(75),
                     Field::make('textarea', 'bandit_subtitle', __('Subtitle'))
@@ -855,6 +875,19 @@ function crb_attach_theme_options() {
                     Field::make('textarea', 'bonuses_subtitle', __('Subtitle'))
                         ->set_width(50)
                         ->help_text("<span style='color: blue;'>".__('Leave blank to use excerpt text')."</span>"),
+                ))
+                ->add_fields('advantages', array(
+                    Field::make('text', 'adv_title', __('Title')),
+                    Field::make('textarea', 'adv_subtitle', __('Subtitle')),
+                    Field::make('complex', 'adv_list', __('Advantage list'))
+                        ->set_collapsed(true)
+                        ->setup_labels($labels['advantages'])
+                        ->add_fields(array(
+                            Field::make('textarea', 'adv_item_txt', __('Description'))
+                                ->set_width(75),
+                            Field::make('image', 'adv_item_img', __('Thumbnail'))
+                                ->set_width(25)    
+                        ))
                 ))
         ));
 }
