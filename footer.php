@@ -12,48 +12,64 @@
 				<img src=<?php echo get_stylesheet_directory_uri()."/assets/images/logo.svg"?> alt="logo">
 			</a>
 			<div class="footer__text">
-				Trd.by er en anmeldelsesside for populære nettcasinoer i Norge. På nettstedet vårt kan du bare
-				finne aktuelle og ærlige anmeldelser av casinomerker, bonuser, spill og andre tilbud.
+				<?php if(get_theme_mod('footer_copyright') == '') { ?>
+						<?php esc_html_e( '&copy; Copyright', 'mercury' ); ?> <?php echo esc_html( date( 'Y' ) ) ?> <?php echo esc_html( get_bloginfo( 'name' ) ) ?> | <?php esc_html_e( 'Powered by', 'mercury' ); ?> <a href="<?php echo esc_url( __( 'https://wordpress.org', 'mercury' ) ); ?>" target="_blank" title="<?php esc_attr_e( 'WordPress', 'mercury' ); ?>"><?php esc_html_e( 'WordPress', 'mercury' ); ?></a> | <a href="<?php echo esc_url( __( 'https://mercurytheme.com', 'mercury' ) ); ?>" target="_blank" title="<?php esc_attr_e( 'Affiliate Marketing WordPress Theme. Reviews and Top Lists', 'mercury' ); ?>"><?php esc_html_e( 'Mercury Theme', 'mercury' ); ?></a>
+					<?php } else { ?>
+						<?php
+							$allowed_html = array(
+								'a' => array(
+									'href' => true,
+									'title' => true,
+									'target' => true,
+								),
+								'br' => array(),
+								'em' => array(),
+								'strong' => array(),
+								'span' => array(),
+								'p' => array()
+							);
+							echo wp_kses( get_theme_mod( 'footer_copyright' ), $allowed_html );
+						?>
+					<?php } ?>
 			</div>
 		</div>
 		<nav class="footer__nav">
-			<ul class="footer__list">
-				<li class="footer__item">
-					<a href="#" class="footer__link">Happy Spins Casino</a>
-				</li>
-				<li class="footer__item">
-					<a href="#" class="footer__link">Lilibet casino</a>
-				</li>
-				<li class="footer__item">
-					<a href="#" class="footer__link">Dette er trd.by</a>
-				</li>
-				<li class="footer__item">
-					<a href="#" class="footer__link">Kontakt</a>
-				</li>
-				<li class="footer__item">
-					<a href="#" class="footer__link">Ansvarlig spilling</a>
-				</li>
-				<li class="footer__item">
-					<a href="#" class="footer__link">Informasjoskapsler</a>
-				</li>
-			</ul>
-			<ul class="footer__list">
-				<li class="footer__item">
-					<a href="#" class="footer__link">Personvernerklaring</a>
-				</li>
-				<li class="footer__item">
-					<a href="#" class="footer__link">Vart oppdrag</a>
-				</li>
-				<li class="footer__item">
-					<a href="#" class="footer__link">Hvordan vurderer vi nettcasinoer?</a>
-				</li>
-				<li class="footer__item">
-					<a href="#" class="footer__link">Teamet vart</a>
-				</li>
-				<li class="footer__item">
-					<a href="#" class="footer__link">FAQ</a>
-				</li>
-			</ul>
+			<?php
+				$left_menu_items = "";
+				$rigt_menu_items = "";
+				$menu_items = wp_get_nav_menu_items('Footer menu');
+
+				if(!empty($menu_items)){
+					$items_count = count($menu_items);
+					foreach($menu_items as $k => $item){
+						$html = "<li class='footer__item'>
+									<a href='{$item->url}' class='footer__link'>{$item->title}</a>
+								</li>";
+						if($k < $items_count/2){
+							$left_menu_items .= $html;
+						}else{
+							$rigt_menu_items .= $html;
+						}
+						 
+					}
+				}
+
+			if(!empty($left_menu_items)):
+				?>
+				<ul class="footer__list">
+					<?php echo $left_menu_items?>
+				</ul>
+				<?php
+			endif;
+
+			if(!empty($rigt_menu_items)):
+				?>
+				<ul class="footer__list">
+					<?php echo $rigt_menu_items?>
+				</ul>
+				<?php
+			endif;
+			?>
 		</nav>
 		<div class="footer__social">
 			<a href="#" class="footer__social-link">

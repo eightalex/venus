@@ -4,10 +4,18 @@ extract($args);
 if(!$content['rating_power']){
     return;
 }
+
+if($content['rating_games']){
+    get_template_part('theme-parts/modules/game-rating','', ['content' => $content]);
+
+    return;
+};
+
 $terms_desc         = get_post_meta($id, "{$post_type}_terms_desc", true);
 $terms_desc_arr     = explode('<br />', wpautop($terms_desc));
 $ratings_data       = apply_filters('ud_get_post_ratings', $post_type, $id);
 $external_link      = get_post_meta($id, "{$post_type}_external_link", true);
+
 ?>
 <section class="section_suits">
     <div class="container">

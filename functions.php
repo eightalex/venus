@@ -630,13 +630,28 @@ function ud_get_posts_loop($atts){
     echo $html;
 }
 
+function get_games_options_arr(){
+    $games = apply_filters('ud_get_games', ['items_number' => -1]);
+
+    $out = [
+        '' => __('Choice games'),
+    ];
+
+    if($games->have_posts()){
+        foreach($games->posts as $game){
+            $out[$game->ID] = $game->post_title; 
+        } 
+    }
+    return $out;
+}
+
 // CUSTOM FIELDS
-add_action( 'carbon_fields_register_fields', 'crb_attach_theme_options' );
+add_action( 'carbon_fields_register_fields', 'ud_custon_fields' );
 
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 
-function crb_attach_theme_options() {
+function ud_custon_fields() {
     $labels = [
         'sections' => [
             'singular_name' => __('Section'),
@@ -659,6 +674,7 @@ function crb_attach_theme_options() {
             'plural_name'   => __('FAQ`s'),
         ]
     ];
+
     Container::make('post_meta', 'App banner')
         // ->where('post_type', '=', 'post')
         ->where('post_type', '=', 'page')
@@ -860,6 +876,35 @@ function crb_attach_theme_options() {
                 ->add_fields('rating-card', __('Rating'), array(
                     Field::make('checkbox', 'rating_power', __('Display rating'))
                         ->set_default_value('yes')
+                        ->set_width(50),
+                    Field::make('checkbox', 'rating_games', __('Show game ratings')) 
+                        ->set_width(50),
+                    Field::make('textarea', 'rating_games_title', __('Title section'))
+                        ->set_rows(2)
+                        ->set_conditional_logic( array(
+                            array(
+                                'field' => 'rating_games',
+                                'value' => true,
+                                'compare' => '=',
+                            )
+                        ) ),
+                    Field::make('textarea', 'rating_games_subtitle', __('Subtitle'))
+                        ->set_conditional_logic( array(
+                            array(
+                                'field' => 'rating_games',
+                                'value' => true,
+                                'compare' => '=',
+                            )
+                        ) ), 
+                    Field::make('multiselect', 'rating_posts_list', __('Games'))  
+                        ->add_options(get_games_options_arr())
+                        ->set_conditional_logic( array(
+                            array(
+                                'field' => 'rating_games',
+                                'value' => true,
+                                'compare' => '=',
+                            )
+                        ) )
                 ))
                 ->add_fields('bonus-card', __('Bonuses'), array(
                     Field::make('checkbox', 'bonuses_power', __('Display bonuses'))
