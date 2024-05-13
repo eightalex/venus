@@ -34,15 +34,15 @@ $title_section = !empty($content['tags_title'])? $content['tags_title']: get_the
                         <li class="tags__card">
                             <div class="tags__header">
                                 <div class="tags__icon">
-                                    <img src="<?php echo $icon_url?>" alt="<?php echo $tk?>">
+                                    <img src="<?php echo $icon_url?>" alt="<?php echo _e($tk, 'mercury')?>">
                                 </div>
-                                <div class="tags__title"><?php echo $tk?></div>
+                                <div class="tags__title"><?php echo _e($tk, 'mercury')?></div>
                             </div>
                             <ul class="tags__list">
                                 <?php
                                 foreach($items as $item):
                                 ?>
-                                <li class="tags__item"><?php echo $item?></li>
+                                <li class="tags__item"><?php echo _e($item, 'mercury')?></li>
                                 <?php
                                 endforeach;
                                 ?>
