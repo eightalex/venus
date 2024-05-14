@@ -1,0 +1,71 @@
+@import "../variables";
+@import "../mixins";
+
+.slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 35px;
+
+  &__inner {
+    border-radius: 16px;
+  }
+
+  &__prev,
+  &__next {
+    flex-shrink: 0;
+    display: flex;
+    width: 64px;
+    height: 64px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    border: 1px solid #f5509d;
+    box-shadow: 0 0 24px 0 rgba(245, 80, 157, 0.50);
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 0 24px 2px rgba(245, 80, 157, 1);
+    }
+
+    &::before {
+      content: "";
+      transform: translateX(-2px);
+      display: flex;
+      width: 32px;
+      height: 32px;
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M9.99994 15.9999C9.99994 15.7442 10.0977 15.4882 10.2929 15.2929L20.2929 5.29294C20.6837 4.90219 21.3164 4.90219 21.7069 5.29294C22.0974 5.68369 22.0977 6.31644 21.7069 6.70694L12.4139 15.9999L21.7069 25.2929C22.0977 25.6837 22.0977 26.3164 21.7069 26.7069C21.3162 27.0974 20.6834 27.0977 20.2929 26.7069L10.2929 16.7069C10.0977 16.5117 9.99994 16.2557 9.99994 15.9999Z" fill="white"/></svg>');
+      background-size: contain;
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      box-shadow: none;
+      pointer-events: none;
+      cursor: default;
+    }
+  }
+
+  &__next {
+    &::before {
+      transform: translateX(2px) rotate(180deg);
+    }
+  }
+
+  @include bp(l) {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0;
+
+    &__prev {
+      order: 1;
+      margin-top: 24px;
+      margin-right: 32px;
+    }
+
+    &__next {
+      order: 2;
+      margin-top: 24px;
+    }
+  }
+}

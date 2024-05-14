@@ -1,0 +1,16 @@
+.rating-mobile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  &::after {
+    content: "(" attr(data-rating) ")";
+    display: flex;
+    color: #fff;
+    font-family: Hind, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 128%;
+  }
+}
