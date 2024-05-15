@@ -2631,3 +2631,52 @@ body {
     font-style: normal;
     font-weight: 400;
     line-height: 128%; }
+
+.game-types {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 18px;
+  grid-row-gap: 24px; }
+  .game-types__item {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    background-color: #262c3a; }
+  .game-types__header {
+    display: flex;
+    gap: 16px;
+    align-items: center; }
+  .game-types__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+    background-color: #1b1f28; }
+    .game-types__icon img {
+      object-fit: contain;
+      width: 50px;
+      height: 50px; }
+  .game-types__title {
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal; }
+  .game-types__text {
+    color: #9197af;
+    font-family: Hind, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 128%; }
+  @media (max-width: 768px) {
+    .game-types {
+      grid-template-columns: 1fr;
+      grid-row-gap: 16px; }
+      .game-types__item {
+        padding: 20px;
+        gap: 20px; } }

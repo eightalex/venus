@@ -1,0 +1,67 @@
+@import "../variables";
+@import "../mixins";
+
+.game-types {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 18px;
+  grid-row-gap: 24px;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    background-color: #262c3a;
+  }
+
+  &__header {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+    background-color: #1b1f28;
+
+    img {
+      object-fit: contain;
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  &__title {
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  &__text {
+    color: #9197af;
+    font-family: Hind, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 128%;
+  }
+
+  @include bp(m) {
+    grid-template-columns: 1fr;
+    grid-row-gap: 16px;
+
+    &__item {
+      padding: 20px;
+      gap: 20px;
+    }
+  }
+}
