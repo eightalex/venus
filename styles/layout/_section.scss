@@ -181,7 +181,8 @@
       }
     }
 
-    &_2 {
+    &_2,
+    &_3 {
       #{$this} {
         &__inner {
           flex-direction: row-reverse;
@@ -194,13 +195,32 @@
         &__image {
           img {
             &:nth-child(1) {
-              max-width: 440px;
               width: 100%;
             }
 
             &:nth-child(2) {
               display: none;
             }
+          }
+        }
+      }
+    }
+
+    &_2 {
+      #{$this} {
+        &__image {
+          &:nth-child(1) {
+            max-width: 440px;
+          }
+        }
+      }
+    }
+
+    &_3 {
+      #{$this} {
+        &__image {
+          &:nth-child(1) {
+            max-width: 514px;
           }
         }
       }
