@@ -2701,6 +2701,7 @@ body {
     height: 28px;
     background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="28" viewBox="0 0 40 28" fill="none"><path d="M0.401002 28C0.267335 27.07 0.167084 26.1068 0.100251 25.1103C0.0334169 24.1139 0 23.3832 0 22.9182C0 18.4674 0.802005 14.2491 2.40602 10.2633C4.01003 6.21115 5.98162 2.79004 8.3208 0L18.4461 2.29182C17.1763 5.14828 16.1404 8.40332 15.3383 12.0569C14.6032 15.6441 14.2356 19.0652 14.2356 22.3203C14.2356 22.4531 14.2356 22.7521 14.2356 23.2171C14.2356 23.6157 14.2356 24.1139 14.2356 24.7118C14.3024 25.2432 14.3358 25.8078 14.3358 26.4057C14.4027 27.0036 14.4695 27.535 14.5363 28H0.401002ZM21.9549 28C21.8212 27.07 21.721 26.1068 21.6541 25.1103C21.5873 24.1139 21.5539 23.3832 21.5539 22.9182C21.5539 18.4674 22.3559 14.2491 23.9599 10.2633C25.5639 6.21115 27.5355 2.79004 29.8747 0L40 2.29182C38.7302 5.14828 37.6942 8.40332 36.8922 12.0569C36.1571 15.6441 35.7895 19.0652 35.7895 22.3203C35.7895 22.4531 35.7895 22.7521 35.7895 23.2171C35.7895 23.6157 35.7895 24.1139 35.7895 24.7118C35.8563 25.2432 35.8897 25.8078 35.8897 26.4057C35.9566 27.0036 36.0234 27.535 36.0902 28H21.9549Z" fill="%239197AF"/></svg>'); }
   .quote__text {
+    margin: 0;
     color: #fff;
     font-family: Montserrat, sans-serif;
     font-size: 24px;
@@ -2708,12 +2709,21 @@ body {
     font-weight: 500;
     line-height: 128%; }
   .quote__author {
+    display: block;
+    margin-top: 16px;
     color: #9197af;
     font-family: Hind, sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 128%; }
+  @media (max-width: 768px) {
+    .quote {
+      padding: 24px 24px 40px;
+      background-color: #1b1f28; }
+      .quote::after {
+        bottom: 24px;
+        right: 24px; } }
 
 .quote-author {
   margin: 0;
@@ -2723,7 +2733,9 @@ body {
   .quote-author__header {
     display: flex;
     align-items: center;
-    justify-content: space-between; }
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap; }
   .quote-author__author {
     display: flex;
     align-items: center;
@@ -2760,9 +2772,17 @@ body {
       height: 24px;
       background-image: url("../assets/images/icons/star.svg"); }
   .quote-author__text {
+    margin: 32px 0 0;
     color: #fff;
     font-family: Montserrat, sans-serif;
     font-size: 24px;
     font-style: italic;
     font-weight: 500;
     line-height: 128%; }
+  @media (max-width: 768px) {
+    .quote-author {
+      padding: 24px; }
+      .quote-author__rating {
+        background-color: #262c3a; }
+      .quote-author__text {
+        margin-top: 20px; } }

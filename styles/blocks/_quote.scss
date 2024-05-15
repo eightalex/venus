@@ -1,3 +1,6 @@
+@import "../variables";
+@import "../mixins";
+
 .quote {
   position: relative;
   margin: 0;
@@ -16,6 +19,7 @@
   }
 
   &__text {
+    margin: 0;
     color: #fff;
     font-family: Montserrat, sans-serif;
     font-size: 24px;
@@ -25,11 +29,23 @@
   }
 
   &__author {
+    display: block;
+    margin-top: 16px;
     color: #9197af;
     font-family: Hind, sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 128%;
+  }
+
+  @include bp(m) {
+    padding: 24px 24px 40px;
+    background-color: #1b1f28;
+
+    &::after {
+      bottom: 24px;
+      right: 24px;
+    }
   }
 }

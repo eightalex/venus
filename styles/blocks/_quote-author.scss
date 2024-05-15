@@ -1,3 +1,6 @@
+@import "../variables";
+@import "../mixins";
+
 .quote-author {
   margin: 0;
   padding: 50px 50px 40px;
@@ -8,6 +11,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
   }
 
   &__author {
@@ -55,11 +60,24 @@
   }
 
   &__text {
+    margin: 32px 0 0;
     color: #fff;
     font-family: Montserrat, sans-serif;
     font-size: 24px;
     font-style: italic;
     font-weight: 500;
     line-height: 128%;
+  }
+
+  @include bp(m) {
+    padding: 24px;
+
+    &__rating {
+      background-color: #262c3a;
+    }
+
+    &__text {
+      margin-top: 20px;
+    }
   }
 }
