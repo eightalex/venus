@@ -112,6 +112,18 @@ function ud_get_file_data($attach_id, $size = 'thumbnal'){
     );
 }
 
+add_filter('ud_get_author_infos', 'ud_get_author_infos');
+function ud_get_author_infos($author_id){
+    $infos = [
+        'firs_name'          => get_user_meta($author_id, 'first_name', true),
+        'last_name'          => get_user_meta($author_id, 'last_name', true),
+        'desc'               => get_user_meta($author_id, 'description', true),
+        'ava_url'            => get_user_meta($author_id, 'sabox-profile-image', true)
+    ];
+
+    return $infos;
+}
+
 add_filter('ud_get_games', 'ud_get_games');
 function ud_get_games(array $atts){
     extract($atts);
@@ -645,6 +657,56 @@ function get_games_options_arr(){
     return $out;
 }
 
+add_shortcode( 'print_quote', 'ud_print_quote' );
+function ud_print_quote($atts){
+    if(empty($atts)){
+        return;
+    }
+    extract($atts);
+    $content    = isset($text)? $text: '';
+    $author     = isset($author_name)? $author_name: '';
+
+    $html = "<blockquote class='quote'>
+                <p class='quote__text'>
+                    $content
+                </p>
+                <cite class='quote__author'>$author</cite>
+            </blockquote>";
+
+    echo $html;     
+}
+
+add_shortcode( 'author_annatation', 'ud_author_annatation' );
+function ud_author_annatation($atts){
+    if(empty($atts)){
+        return;
+    }
+    extract($atts);
+    $text           = isset($text)? $text: '';
+    $author         = isset($author_id)? $author_id: get_queried_object()->post_author;
+    $rating         = isset($rating)? $rating: '';
+    $author_info    = apply_filters('ud_get_author_infos', $author);
+    $ava            = $author_info['ava_url'];
+    $full_name      = $author_info['firs_name'] . " " . $author_info['last_name'];
+
+    $html = "<blockquote class='quote-author'>
+                <header class='quote-author__header'>
+                    <cite class='quote-author__author'>
+                        <img src='{$ava}' alt='author'>
+                        {$full_name}
+                    </cite>
+                    <div class='quote-author__rating'>
+                        {$rating}
+                    </div>
+                </header>
+                <p class='quote-author__text'>
+                    {$text}
+                </p>
+            </blockquote>";
+
+    echo $html;     
+}
+
 // CUSTOM FIELDS
 add_action( 'carbon_fields_register_fields', 'ud_custon_fields' );
 
@@ -675,6 +737,8 @@ function ud_custon_fields() {
         ]
     ];
 
+    $shortcodes_codex = "You can use: [print_quote text='*Text' author_name='*Author Nane'] and [author_annatation text='*Text' rating='* 0-9' author_id='int (optional)']";
+
     Container::make('post_meta', 'App banner')
         // ->where('post_type', '=', 'post')
         ->where('post_type', '=', 'page')
@@ -695,6 +759,7 @@ function ud_custon_fields() {
                 ->setup_labels($labels['sections'])
                 ->set_collapsed(true)
                 ->add_fields('text-editor', __('Text editor'), array(
+                    Field::make( 'separator', 'crb_separator', $shortcodes_codex ),
                     Field::make('rich_text', 'text_editor', __('Classic editor'))
                 ))
                 ->add_fields('guide', array(

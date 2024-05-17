@@ -6,11 +6,12 @@ $author_id = get_post_field ('post_author', $id);
 // $author_mata = get_user_meta($author_id);
 if($content['au_power']):
 
-$firs_name          = get_user_meta($author_id, 'first_name', true);
-$last_name          = get_user_meta($author_id, 'last_name', true);
-$author_desc        = get_user_meta($author_id, 'description', true);
+$author             = apply_filters('ud_get_author_infos', $author_id);
+$firs_name          = $author['firs_name'];
+$last_name          = $author['last_name'];
+$author_desc        = $author['desc'];
 $main_image_meta    = isset($content['au_main_img'])? $content['au_main_img']: '';
-$ava_url            = get_user_meta($author_id, 'sabox-profile-image', true);
+$ava_url            = $author['ava_url'];
 $ava                = !empty($ava_url)? $ava_url: get_stylesheet_directory_uri()."/assets/images/author/picture.svg";
 // $main_image         = !empty($main_image_meta)? $main_image_meta: get_stylesheet_directory_uri()."/assets/images/author/picture.svg";
 
