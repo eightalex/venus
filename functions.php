@@ -18,6 +18,8 @@ add_filter( 'nav_menu_submenu_css_class', 'filter_submenu_classes', 10, 3 );
 
 function venus_scripts() {
     wp_enqueue_style('my_custom_style', get_stylesheet_directory_uri().'/styles/index.css');
+    wp_enqueue_style('swiper_style', get_stylesheet_directory_uri().'/scripts/libs/swiper-bundle.min.css');
+    wp_enqueue_script('swiper_js', get_theme_file_uri( '/scripts/libs/swiper-bundle.min.js' ), array( 'jquery' ), $GLOBALS['mercury_version'], true );
     wp_enqueue_script('app', get_theme_file_uri( '/scripts/app.js' ), array( 'jquery' ), $GLOBALS['mercury_version'], true );
 }
 
@@ -734,6 +736,10 @@ function ud_custon_fields() {
         'faq' => [
             'singular_name' => __('FAQ'),
             'plural_name'   => __('FAQ`s'),
+        ],
+        'game_types' => [
+            'singular_name' => __('Game Type'),
+            'plural_name'   => __('Game Types'),
         ]
     ];
 
@@ -998,6 +1004,31 @@ function ud_custon_fields() {
                             Field::make('image', 'adv_item_img', __('Thumbnail'))
                                 ->set_width(25)    
                         ))
+                ))
+                ->add_fields('game-types', array(
+                    Field::make('text', 'game_types_title', __('Title')),
+                    Field::make('textarea', 'game_types_subtitle', __('Subtitle')),
+                    Field::make('complex', 'game_types_repeater', __('Items'))
+                        ->set_collapsed(true)
+                        ->setup_labels($labels['game_types'])
+                        ->add_fields(array(
+                            Field::make('image', 'gt_icon', __('Icon'))
+                                ->set_width(25),
+                            Field::make('text', 'gt_title', __('Title'))
+                                ->set_width(75),
+                            Field::make('textarea', 'gt_desc', __('Description'))     
+                        ))
+                        ->set_header_template( '
+                        <% if (gt_title) { %>
+                            <%- gt_title %>
+                        <% } %>    
+                        ')
+                ))
+                ->add_fields('games-slider', array(
+                    Field::make('text', 'gs_title', __('Title')),
+                    Field::make('textarea', 'gs_subtitle', __('Subtitle')),
+                    Field::make('multiselect', 'gs_games', __('Games'))
+                        ->add_options(get_games_options_arr())
                 ))
         ));
 }
