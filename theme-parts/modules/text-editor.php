@@ -12,7 +12,7 @@ $txt = $content['text_editor'];
         <div class="section__inner">
             <div class="variable-content">
                 <?php
-                    apply_filters('the_content',$txt);
+                   echo apply_filters('the_content',$txt);
                 ?>
             </div>
         </div>

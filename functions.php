@@ -675,7 +675,7 @@ function ud_print_quote($atts){
                 <cite class='quote__author'>$author</cite>
             </blockquote>";
 
-    echo $html;     
+    return $html;     
 }
 
 add_shortcode( 'author_annatation', 'ud_author_annatation' );
@@ -706,7 +706,7 @@ function ud_author_annatation($atts){
                 </p>
             </blockquote>";
 
-    echo $html;     
+    return $html;     
 }
 
 // CUSTOM FIELDS
