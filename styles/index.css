@@ -873,6 +873,7 @@ body {
 .benefits {
   position: relative;
   padding: 60px 400px 60px 80px;
+  min-height: 320px;
   border-radius: 16px;
   background: linear-gradient(266deg, #c285f8 0%, #c896f3 79.08%, #8c37d7 100%); }
   .benefits + .benefits {
