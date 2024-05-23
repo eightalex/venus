@@ -2787,3 +2787,27 @@ body {
         background-color: #262c3a; }
       .quote-author__text {
         margin-top: 20px; } }
+
+.categories {
+  position: relative;
+  z-index: 1; }
+  .categories__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 40px 0; }
+  .categories__item {
+    display: flex;
+    padding: 6px 24px 4px;
+    justify-content: center;
+    align-items: center;
+    color: #262c3a;
+    border-radius: 100px;
+    background: #e3f666;
+    font-family: Hind, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 128%;
+    /* 20.48px */
+    text-align: center; }
