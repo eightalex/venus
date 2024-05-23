@@ -18,6 +18,7 @@ if(empty($app_banner_img)){
 }
 
 ?>
+<!-- TODO: need replace in special module, and include -->
 <section class="section section_bg section_bg_6">
     <div class="container">
         <div class="section__inner">
