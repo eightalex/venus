@@ -1,0 +1,32 @@
+.page-switch {
+  display: flex;
+  gap: 6px;
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 230px;
+    color: #9197af;
+    border-radius: 16px;
+    background-color: #262c3a;
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+
+    &.active {
+      color: #262c3a;
+      background-color: #fff;
+    }
+
+    &:hover:not(.active) {
+      background-color: #353c4b;
+    }
+  }
+}
