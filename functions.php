@@ -709,6 +709,24 @@ function ud_author_annatation($atts){
     return $html;     
 }
 
+add_filter('ud_get_tax_posts_tags', 'ud_get_tax_posts_tags');
+function ud_get_tax_posts_tags($posts){
+    $arr = [];
+
+    foreach($posts as $post){
+        $p_id = $post->ID;
+        $tags = get_the_tags($p_id);
+    
+        foreach($tags as $tag){
+            if(!in_array($tag->name, $arr)){
+                array_push($arr, $tag->name);
+            }
+        }
+    }
+
+    return $arr;
+}
+
 // CUSTOM FIELDS
 add_action( 'carbon_fields_register_fields', 'ud_custon_fields' );
 
@@ -1030,5 +1048,11 @@ function ud_custon_fields() {
                     Field::make('multiselect', 'gs_games', __('Games'))
                         ->add_options(get_games_options_arr())
                 ))
+        ));
+
+    Container::make( 'term_meta', 'Content' )
+        ->where( 'term_taxonomy', '=', 'category' )    
+        ->add_fields(array(
+            Field::make('rich_text', 'content_editor', __('Content'))
         ));
 }
