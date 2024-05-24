@@ -1,3 +1,6 @@
+@import "../variables";
+@import "../mixins";
+
 .page-switch {
   display: flex;
   gap: 6px;
@@ -28,5 +31,10 @@
     &:hover:not(.active) {
       background-color: #353c4b;
     }
+  }
+
+  @include bp(m) {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }

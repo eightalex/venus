@@ -2983,3 +2983,7 @@ body {
       background-color: #fff; }
     .page-switch__button:hover:not(.active) {
       background-color: #353c4b; }
+  @media (max-width: 768px) {
+    .page-switch {
+      flex-wrap: wrap;
+      justify-content: center; } }
