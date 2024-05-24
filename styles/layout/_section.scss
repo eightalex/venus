@@ -135,6 +135,17 @@
         background-image: url("#{$images-url}/section/bg6.jpeg");
       }
     }
+
+    &_7 {
+      background-color: #1b1f28;
+
+      &::before {
+        opacity: 1;
+        background-image: url("#{$images-url}/section/bg7.png");
+        background-position: center;
+        filter: none;
+      }
+    }
   }
 
   &_img {
