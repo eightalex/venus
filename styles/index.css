@@ -91,6 +91,8 @@ body {
       background-color: lightgray;
       mix-blend-mode: overlay;
       filter: blur(8px); }
+    .section_bg_n {
+      background-color: transparent; }
     .section_bg_1::before {
       opacity: 0.32;
       background-image: url("../assets/images/section/bg1.png"); }
@@ -2695,6 +2697,8 @@ body {
     font-style: normal;
     font-weight: 400;
     line-height: 128%; }
+  .rating-mobile_inverted::after {
+    color: #262c3a; }
 
 .game-types {
   display: grid;
@@ -3095,3 +3099,79 @@ body {
       flex-wrap: wrap; }
     .bonus-widget__gift {
       width: 60px; } }
+
+.banner-casino {
+  display: flex;
+  margin-top: 6px;
+  margin-bottom: 90px;
+  border-radius: 16px;
+  background-color: #fff; }
+  .banner-casino__image {
+    overflow: hidden;
+    flex-shrink: 0;
+    margin: -20px 0;
+    width: 440px;
+    height: 440px;
+    border-radius: 16px;
+    background-color: #fff; }
+    .banner-casino__image img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%; }
+  .banner-casino__content {
+    padding: 25px 50px; }
+  .banner-casino__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between; }
+  .banner-casino__title {
+    color: #262c3a;
+    font-family: Montserrat, sans-serif;
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    text-transform: uppercase; }
+  .banner-casino__subtitle {
+    margin-top: 16px;
+    color: #262c3a;
+    font-family: Montserrat, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal; }
+  .banner-casino__text {
+    margin-top: 24px;
+    color: #9197af;
+    font-family: Hind, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 128%; }
+  .banner-casino__cta {
+    margin-top: 32px;
+    max-width: 350px; }
+    .banner-casino__cta span {
+      display: block;
+      margin-top: 12px;
+      color: #9197af;
+      font-family: Hind, sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 128%;
+      text-align: center; }
+  .banner-casino__button {
+    width: 100%; }
+  @media (max-width: 1024px) {
+    .banner-casino {
+      flex-direction: column; }
+      .banner-casino__image {
+        margin: 0 auto;
+        max-width: 335px;
+        width: 100%;
+        height: 335px; }
+      .banner-casino__content {
+        padding: 16px; }
+      .banner-casino__title {
+        font-size: 36px; } }

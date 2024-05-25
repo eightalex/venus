@@ -99,6 +99,10 @@
       filter: blur(8px);
     }
 
+    &_n {
+      background-color: transparent;
+    }
+
     &_1 {
       &::before {
         opacity: 0.32;

@@ -13,4 +13,10 @@
     font-weight: 400;
     line-height: 128%;
   }
+
+  &_inverted {
+    &::after {
+      color: #262c3a;
+    }
+  }
 }
