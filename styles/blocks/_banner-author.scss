@@ -2,6 +2,13 @@
 @import "../mixins";
 
 .banner-author {
+  &_bonus {
+    display: flex;
+    gap: 35px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
   &__breadcrumbs {
     padding: 0;
     margin-bottom: 32px;
@@ -9,6 +16,13 @@
 
   &__header {
     margin-bottom: 32px;
+  }
+
+  &__tags {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 6px;
   }
 
   &__title {
@@ -98,6 +112,16 @@
 
     span {
       font: inherit;
+    }
+  }
+
+  @include bp(l) {
+    &_bonus {
+      flex-wrap: wrap;
+    }
+
+    &__tags {
+      margin-bottom: 12px;
     }
   }
 

@@ -50,7 +50,7 @@ $title_section      = !empty($content['bonuses_title'])? $content['bonuses_title
                                 <?php the_title()?>
                             </header>
                             <div class="bonus-card__gift">
-                                <img src=<?php echo get_stylesheet_directory_uri()."/assets/images/bonus-card/gift.svg"?> alt="gift" class="bonus-card__img">
+                                <img src=<?php echo get_stylesheet_directory_uri() . "/assets/images/gift.svg" ?> alt="gift" class="bonus-card__img">
                                 <?php
                                 if(!empty($bonus_code) && !empty($bonus_valid_date)):
                                     $ds = strtotime($bonus_valid_date);

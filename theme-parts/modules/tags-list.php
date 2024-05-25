@@ -12,7 +12,7 @@ if(empty($tags)){
             <?php
             foreach($tags as $tag):
                 ?>
-                <div class="categories__item"><?php echo $tag?></div>
+                <div class="tag"><?php echo $tag?></div>
                 <?php
             endforeach;
             ?>

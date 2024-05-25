@@ -60,23 +60,6 @@
     list-style: none;
   }
 
-  &__item {
-    text-decoration: none;
-    text-transform: none;
-    color: #000;
-    padding: 6px 24px;
-    border-radius: 100px;
-    background-color: #e3f666;
-
-    &:link {
-      color: #000;
-    }
-
-    &:visited {
-      color: #0d1620;
-    }
-  }
-
   @include bp(l) {
     &__card {
       flex-direction: column;

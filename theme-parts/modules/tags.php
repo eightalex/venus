@@ -13,7 +13,7 @@ $title_section = !empty($content['tags_title'])? $content['tags_title']: get_the
         <div class="section__inner">
             <header class="section__header">
                 <div class="section__title"><?php echo $title_section?></div>
-                
+
                 <?php
                 if(!empty($content['tags_subtitle'])):
                     ?>
@@ -42,7 +42,7 @@ $title_section = !empty($content['tags_title'])? $content['tags_title']: get_the
                                 <?php
                                 foreach($items as $item):
                                 ?>
-                                <li class="tags__item"><?php echo _e($item, 'mercury')?></li>
+                                <li class="tag"><?php echo _e($item, 'mercury')?></li>
                                 <?php
                                 endforeach;
                                 ?>
@@ -51,193 +51,6 @@ $title_section = !empty($content['tags_title'])? $content['tags_title']: get_the
                         <?php
                     endforeach;
                     ?>
-                    <!-- <li class="tags__card">
-                        <div class="tags__header">
-                            <div class="tags__icon">
-                                <img src="../assets/images/icons/tags/software.svg" alt="tag">
-                            </div>
-                            <div class="tags__title">Software</div>
-                        </div>
-                        <ul class="tags__list">
-                            <li class="tags__item">ATM</li>
-                            <li class="tags__item">$1,000 per day</li>
-                            <li class="tags__item">$4,000 peer week</li>
-                            <li class="tags__item">$8,000 per month</li>
-                            <li class="tags__item">Turkey</li>
-                            <li class="tags__item">Ukraine</li>
-                            <li class="tags__item">United Kingdom</li>
-                        </ul>
-                    </li>
-                    <li class="tags__card">
-                        <div class="tags__header">
-                            <div class="tags__icon">
-                                <img src="../assets/images/icons/tags/deposit-methods.svg" alt="tag">
-                            </div>
-                            <div class="tags__title">Deposit Methods</div>
-                        </div>
-                        <ul class="tags__list">
-                            <li class="tags__item">ATM</li>
-                            <li class="tags__item">$1,000 per day</li>
-                            <li class="tags__item">$4,000 peer week</li>
-                            <li class="tags__item">$8,000 per month</li>
-                            <li class="tags__item">Turkey</li>
-                            <li class="tags__item">Ukraine</li>
-                            <li class="tags__item">United Kingdom</li>
-                        </ul>
-                    </li>
-                    <li class="tags__card">
-                        <div class="tags__header">
-                            <div class="tags__icon">
-                                <img src="../assets/images/icons/tags/withdrawal-methods.svg" alt="tag">
-                            </div>
-                            <div class="tags__title">Withdrawal Methods</div>
-                        </div>
-                        <ul class="tags__list">
-                            <li class="tags__item">ATM</li>
-                            <li class="tags__item">$1,000 per day</li>
-                            <li class="tags__item">$4,000 peer week</li>
-                            <li class="tags__item">$8,000 per month</li>
-                            <li class="tags__item">Turkey</li>
-                            <li class="tags__item">Ukraine</li>
-                            <li class="tags__item">United Kingdom</li>
-                        </ul>
-                    </li>
-                    <li class="tags__card">
-                        <div class="tags__header">
-                            <div class="tags__icon">
-                                <img src="../assets/images/icons/tags/withdrawal-limits.svg" alt="tag">
-                            </div>
-                            <div class="tags__title">Withdrawal Limits</div>
-                        </div>
-                        <ul class="tags__list">
-                            <li class="tags__item">ATM</li>
-                            <li class="tags__item">$1,000 per day</li>
-                            <li class="tags__item">$4,000 peer week</li>
-                            <li class="tags__item">$8,000 per month</li>
-                            <li class="tags__item">Turkey</li>
-                            <li class="tags__item">Ukraine</li>
-                            <li class="tags__item">United Kingdom</li>
-                        </ul>
-                    </li>
-                    <li class="tags__card">
-                        <div class="tags__header">
-                            <div class="tags__icon">
-                                <img src="../assets/images/icons/tags/restricted-countries.svg" alt="tag">
-                            </div>
-                            <div class="tags__title">Restricted Countries</div>
-                        </div>
-                        <ul class="tags__list">
-                            <li class="tags__item">ATM</li>
-                            <li class="tags__item">$1,000 per day</li>
-                            <li class="tags__item">$4,000 peer week</li>
-                            <li class="tags__item">$8,000 per month</li>
-                            <li class="tags__item">Turkey</li>
-                            <li class="tags__item">Ukraine</li>
-                            <li class="tags__item">United Kingdom</li>
-                        </ul>
-                    </li>
-                    <li class="tags__card">
-                        <div class="tags__header">
-                            <div class="tags__icon">
-                                <img src="../assets/images/icons/tags/licenses.svg" alt="tag">
-                            </div>
-                            <div class="tags__title">Licences</div>
-                        </div>
-                        <ul class="tags__list">
-                            <li class="tags__item">ATM</li>
-                            <li class="tags__item">$1,000 per day</li>
-                            <li class="tags__item">$4,000 peer week</li>
-                            <li class="tags__item">$8,000 per month</li>
-                            <li class="tags__item">Turkey</li>
-                            <li class="tags__item">Ukraine</li>
-                            <li class="tags__item">United Kingdom</li>
-                        </ul>
-                    </li>
-                    <li class="tags__card">
-                        <div class="tags__header">
-                            <div class="tags__icon">
-                                <img src="../assets/images/icons/tags/languages.svg" alt="tag">
-                            </div>
-                            <div class="tags__title">Languages</div>
-                        </div>
-                        <ul class="tags__list">
-                            <li class="tags__item">ATM</li>
-                            <li class="tags__item">$1,000 per day</li>
-                            <li class="tags__item">$4,000 peer week</li>
-                            <li class="tags__item">$8,000 per month</li>
-                            <li class="tags__item">Turkey</li>
-                            <li class="tags__item">Ukraine</li>
-                            <li class="tags__item">United Kingdom</li>
-                        </ul>
-                    </li>
-                    <li class="tags__card">
-                        <div class="tags__header">
-                            <div class="tags__icon">
-                                <img src="../assets/images/icons/tags/currencies.svg" alt="tag">
-                            </div>
-                            <div class="tags__title">Currencies</div>
-                        </div>
-                        <ul class="tags__list">
-                            <li class="tags__item">ATM</li>
-                            <li class="tags__item">$1,000 per day</li>
-                            <li class="tags__item">$4,000 peer week</li>
-                            <li class="tags__item">$8,000 per month</li>
-                            <li class="tags__item">Turkey</li>
-                            <li class="tags__item">Ukraine</li>
-                            <li class="tags__item">United Kingdom</li>
-                        </ul>
-                    </li>
-                    <li class="tags__card">
-                        <div class="tags__header">
-                            <div class="tags__icon">
-                                <img src="../assets/images/icons/tags/devices.svg" alt="tag">
-                            </div>
-                            <div class="tags__title">Devices</div>
-                        </div>
-                        <ul class="tags__list">
-                            <li class="tags__item">ATM</li>
-                            <li class="tags__item">$1,000 per day</li>
-                            <li class="tags__item">$4,000 peer week</li>
-                            <li class="tags__item">$8,000 per month</li>
-                            <li class="tags__item">Turkey</li>
-                            <li class="tags__item">Ukraine</li>
-                            <li class="tags__item">United Kingdom</li>
-                        </ul>
-                    </li>
-                    <li class="tags__card">
-                        <div class="tags__header">
-                            <div class="tags__icon">
-                                <img src="../assets/images/icons/tags/owner.svg" alt="tag">
-                            </div>
-                            <div class="tags__title">Owner</div>
-                        </div>
-                        <ul class="tags__list">
-                            <li class="tags__item">ATM</li>
-                            <li class="tags__item">$1,000 per day</li>
-                            <li class="tags__item">$4,000 peer week</li>
-                            <li class="tags__item">$8,000 per month</li>
-                            <li class="tags__item">Turkey</li>
-                            <li class="tags__item">Ukraine</li>
-                            <li class="tags__item">United Kingdom</li>
-                        </ul>
-                    </li>
-                    <li class="tags__card">
-                        <div class="tags__header">
-                            <div class="tags__icon">
-                                <img src="../assets/images/icons/tags/established.svg" alt="tag">
-                            </div>
-                            <div class="tags__title">Established</div>
-                        </div>
-                        <ul class="tags__list">
-                            <li class="tags__item">ATM</li>
-                            <li class="tags__item">$1,000 per day</li>
-                            <li class="tags__item">$4,000 peer week</li>
-                            <li class="tags__item">$8,000 per month</li>
-                            <li class="tags__item">Turkey</li>
-                            <li class="tags__item">Ukraine</li>
-                            <li class="tags__item">United Kingdom</li>
-                        </ul>
-                    </li> -->
                 </ul>
             </div>
         </div>
