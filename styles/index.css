@@ -211,7 +211,33 @@ body {
 .content {
   display: grid;
   grid-template-columns: 1fr 335px;
-  column-gap: 60px; }
+  column-gap: 60px;
+  padding-top: 60px;
+  padding-bottom: 60px; }
+  .content__footer {
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(145, 151, 175, 0.5); }
+  .content__socials {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    color: #9197af;
+    font-family: Hind, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal; }
+  .content__social {
+    width: 24px;
+    height: 24px; }
+    .content__social:hover {
+      opacity: 0.8; }
+    .content__social img {
+      object-fit: contain;
+      width: 100%;
+      height: 100%; }
   .content__sidebar {
     display: flex;
     flex-direction: column;
