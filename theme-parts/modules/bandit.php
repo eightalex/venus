@@ -9,6 +9,7 @@ $bandit_image_id    = $content['bandit_main_img'];
 $main_image_url     = get_stylesheet_directory_uri()."/assets/images/section/bandit.svg";
 $main_image_alt     = "automat";
 $type_class         = $content['bandit_style_type'] == 'image_right'? '': 'section_img_2';
+$fill               = $content['bandit_fill_area']? 'section_img-v2': '';
 
 if(!empty($bandit_image_id)){
     $img_data = apply_filters('ud_get_file_data', $bandit_image_id, 'large');
@@ -20,7 +21,7 @@ if(!empty($bandit_image_id)){
 }
 ?>
 
-<section class="section section_suits section_img <?php echo $type_class?>">
+<section class="section section_suits section_img <?php echo $type_class . $fill?>">
     <div class="container">
         <div class="section__inner">
             <div class="section__image">

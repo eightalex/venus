@@ -439,14 +439,15 @@ add_filter('ud_get_bonuses', 'ud_get_bonuses');
 function ud_get_bonuses($atts){
     extract($atts);
 
+    $paged = isset($_GET['bonuses-page']) ? absint( $_GET['bonuses-page'] ) : 1;
+    // $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
+
     $args = array(
         'posts_per_page' => isset($items_number)? $items_number: -1,
         'post_type'      => 'bonus',
+        'paged'          => $paged,
         'post__not_in'   => isset($exclude_id)? [$exclude_id]: [],
-        'no_found_rows'  => true,
         'post_status'    => 'publish',
-        // 'orderby'        => $orderby,
-        // 'order'          => $order
     );
 
     if(!empty($parent_id)){
@@ -459,11 +460,40 @@ function ud_get_bonuses($atts){
         );
     }
 
+    $term = $_GET['bonuses-cat'];
+    if(isset($terms)){
+        $args['tax_query'] = array(
+                            'relation' => 'AND',
+                            array(
+                                'taxonomy' => 'bonus-category',
+                                'field'    => 'id',
+                                'terms'    => [$term]
+                            ),
+                        );
+    }
+
     $q = new WP_Query($args);
+
+    $max_pages = intval($q->max_num_pages);
 
     wp_reset_postdata();
 
-    return $q;
+    $out = [
+        'res' => $q,
+    ];
+
+
+    if($max_pages > 1){
+        $pagenavi_items = apply_filters('my_pagination', $paged, $max_pages);
+        $out['pagenavi'] = "<div class='content-cards__footer'>
+                                <div class='pagination'>
+                                    {$pagenavi_items}
+                                </div>
+                            </div>";
+    }
+
+
+    return $out;
 }
 
 /**
@@ -526,12 +556,86 @@ function print_single_casino_template($data = []){
     echo $tmpl;
 }
 
-add_filter( 'my_pagination', 'my_pagination', 10, 2);
-function my_pagination(int $current_page, int $max_page){
-    $html = "<div class='pagination content__pagination' data-max_pages='{$max_page}'>";
+add_filter('print_single_bonus_card', 'print_single_bonus_card');
+function print_single_bonus_card(array $data){
+    extract($data);
+
+    $bonus_code_html = "";
+    $bonus_img_def   = "<img src=" . get_stylesheet_directory_uri().'/assets/images/bonus-card/gift.svg' . " alt='gift' class='bonus-card__img'>";        
+    $description     = "";  
+    $external        = "";  
+    $bn              = "";  
+    $detailed_tc     = "";   
+
+    if(!empty($bonus_code) && !empty($bonus_valid_date)):
+        $ds = strtotime($bonus_valid_date);
+        $df = date('M d, Y', $ds);
+
+        $bonus_code_html = "<div class='bonus-card__gift-content'>
+                                <span>Bonus code:</span>
+                                <span>{$bonus_code}</span>
+                                <span>Valid Until: {$df}</span>
+                            </div>";
+        
+    endif;
+
+    if(!empty($short_desc)):
+        $description = "<div class='bonus-card__subtitle'>
+                            {$short_desc}
+                        </div>";
+    endif;
+
+    if(!empty($external_link)):
+        $external ="<div class='bonus-card__cta'>
+                        <a href='$external_link' target='__blank'  class='bonus-card__button button'>Play now</a>
+                    </div>";
+    endif;
+
+    if(!empty($button_notice)):
+        $bn = "<br>{$button_notice}";
+    endif;
+
+    if(!empty($offer_detailed_tc)):
+        $detailed_tc = "<div class='tc-desc'>
+                            {$offer_detailed_tc}
+                        </div>";
+    endif;
+
+    $cart = "<div class='bonus-card'>
+                <div class='bonus-card__tags'>
+                    <div class='bonus-card__tag'>Deposit Bonus</div>
+                </div>
+                <header class='bonus-card__header'>
+                    $title
+                </header>
+                <div class='bonus-card__gift'>
+                    $bonus_img_def
+                    $bonus_code_html
+                </div>
+                
+                $description
+
+                $external
+
+                <div class='bonus-card__info'>
+                    T&Cs Apply
+                    $bn
+
+                    $detailed_tc
+                </div>
+            </div>";
+
+    return $cart;        
+}
+
+add_filter( 'my_pagination', 'my_pagination', 10, 3);
+function my_pagination(int $current_page, int $max_page, $ajax = 0){
+    $is_ajax = ($ajax == 1)? 'is_ajax': '';
+    $page_url = get_the_permalink();
+    $html = "<div class='pagination content__pagination {$is_ajax}' data-max_pages='{$max_page}'>";
             $p = paginate_links([
-                    "base"               => "%_%",            
-                    "format"             => "page/%#%/",            
+                    "base"               => wp_normalize_path("?bonuses-page=%#%" ),            
+                    "format"             => "?bonuses-page=%#%",            
                     "total"              => $max_page,        
                     "current"            => $current_page,    
                     "aria_current"       => "page",          
@@ -546,7 +650,6 @@ function my_pagination(int $current_page, int $max_page){
 
                 foreach($p as $l){
                     $current_class = "";
-
                     if($l == '<span aria-current="page" class="pagination__item">' . $current_page . '</span>'){
                         $current_class = "pagination__item active";
                     }
@@ -938,11 +1041,13 @@ function ud_custon_fields() {
                         ->set_value_type('url')
                         ->set_width(25),
                     Field::make('select', 'bandit_style_type', __('Style'))
-                        ->set_width(50)
+                        ->set_width(25)
                         ->add_options(array(
                             'image_right'   => __('Picture on the rigth'),
                             'image_left'    => __('Picture on the left')
-                        )),   
+                        )),
+                    Field::make('checkbox', 'bandit_fill_area', __('Fill area'))    
+                        ->set_width(25),       
                     Field::make('text', 'bandit_title', __('Title'))
                         ->set_width(75),
                     Field::make('textarea', 'bandit_subtitle', __('Subtitle'))
@@ -999,10 +1104,19 @@ function ud_custon_fields() {
                     Field::make('checkbox', 'bonuses_power', __('Display bonuses'))
                         ->set_default_value('yes')
                         ->set_width(25),
+                    Field::make('checkbox', 'bonuses_filter_on', __('Filter'))
+                        ->set_default_value('yes')
+                        ->set_width(25),
+                    Field::make('select', 'bonuses_parent', __('Include'))
+                        ->add_options(array(
+                            'all'       => 'All',
+                            'children'  => 'Children'
+                        ))
+                        ->set_width(25),
                     Field::make('text', 'bonuses_count', __('Number of bonuses to show'))
                         ->set_default_value(3)
                         ->set_attribute('type', 'number')
-                        ->set_width(75),
+                        ->set_width(25),
                     Field::make('text', 'bonuses_title', __('Title'))   
                         ->set_width(50)
                         ->help_text("<span style='color: blue;'>".__('Leave blank to use default text (post title + "BONUSES")')."</span>"),

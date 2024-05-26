@@ -260,8 +260,8 @@ body {
     margin-top: 60px; }
   .content__more-button {
     min-width: 250px; }
-  .content__pagination {
-    display: none !important; }
+  /* .content__pagination {
+    display: none !important; } */
   @media (max-width: 1230px) {
     .content {
       grid-template-columns: 380px 335px;

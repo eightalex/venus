@@ -1,14 +1,24 @@
 <?php
 extract($args);
 
+$post_type = get_post_type($id);
+
 $args_arr = [
-    'parent_id'     => $id,
     'items_number'  => $content['bonuses_count']
 ];
 
+if($content['bonuses_parent'] !== 'all'){
+    $args_arr['parent_id'] = $id;
+}
+
 $bonuses = apply_filters('ud_get_bonuses', $args_arr);
 
-if(!$bonuses->have_posts()){
+if(!$bonuses['res']->have_posts()){
+    return;
+}
+
+if($content['bonuses_filter_on']){
+    get_template_part('theme-parts/modules/bonus-card-filter', '', ['bonuses' => $bonuses]);
     return;
 }
 
@@ -32,76 +42,21 @@ $title_section      = !empty($content['bonuses_title'])? $content['bonuses_title
             <div class="section__content">
                 <div class="card-list">
                     <?php
-                    while($bonuses->have_posts()):
-                        $bonuses->the_post();
+                    while($bonuses['res']->have_posts()):
+                        $bonuses['res']->the_post();
                         $b_id = get_the_ID();
-                        $short_desc         = get_post_meta($b_id, 'bonus_short_desc', true);
-                        $external_link      = get_post_meta($b_id, 'bonus_external_link', true);
-                        $button_notice      = get_post_meta($b_id, 'bonus_button_notice', true);
-                        $offer_detailed_tc  = get_post_meta($b_id, 'offer_detailed_tc', true);
-                        $bonus_code         = get_post_meta($b_id, 'bonus_code', true);
-                        $bonus_valid_date   = get_post_meta($b_id, 'bonus_valid_date', true);
-                        ?>
-                        <div class="bonus-card">
-                            <div class="bonus-card__tags">
-                                <div class="bonus-card__tag">Deposit Bonus</div>
-                            </div>
-                            <header class="bonus-card__header">
-                                <?php the_title()?>
-                            </header>
-                            <div class="bonus-card__gift">
-                                <img src=<?php echo get_stylesheet_directory_uri() . "/assets/images/gift.svg" ?> alt="gift" class="bonus-card__img">
-                                <?php
-                                if(!empty($bonus_code) && !empty($bonus_valid_date)):
-                                    $ds = strtotime($bonus_valid_date);
-                                    $df = date('M d, Y', $ds);
-                                    ?>
-                                    <div class="bonus-card__gift-content">
-                                        <span>Bonus code:</span>
-                                        <span><?php echo $bonus_code?></span>
-                                        <span>Valid Until: <?php echo $df?></span>
-                                    </div>
-                                    <?php
-                                endif;
-                                ?>
-                            </div>
-                            <?php
-                            if(!empty($short_desc)):
-                                ?>
-                                <div class="bonus-card__subtitle">
-                                    <?php echo $short_desc?>
-                                </div>
-                                <?php
-                            endif;
 
-                            if(!empty($external_link)):
-                            ?>
-                            <div class="bonus-card__cta">
-                                <a href="<?php echo $external_link?>" target="__blank"  class="bonus-card__button button">Play now</a>
-                            </div>
-                            <?php
-                            endif;
-                            ?>
-                            <div class="bonus-card__info">
-                                T&Cs Apply
-                                <?php
-                                if(!empty($button_notice)):
-                                    ?>
-                                    <br><?php echo $button_notice?>
-                                    <?php
-                                endif;
-
-                                if(!empty($offer_detailed_tc)):
-                                    ?>
-                                    <div class="tc-desc">
-                                        <?php echo $offer_detailed_tc?>
-                                    </div>
-                                    <?php
-                                endif;
-                                ?>
-                            </div>
-                        </div>
-                        <?php
+                        $data = [
+                            'title'             => get_the_title($b_id),
+                            'short_desc'        => get_post_meta($b_id, 'bonus_short_desc', true),
+                            'external_link'     => get_post_meta($b_id, 'bonus_external_link', true),
+                            'button_notice'     => get_post_meta($b_id, 'bonus_button_notice', true),
+                            'offer_detailed_tc' => get_post_meta($b_id, 'offer_detailed_tc', true),
+                            'bonus_code'        => get_post_meta($b_id, 'bonus_code', true),
+                            'bonus_valid_date'  => get_post_meta($b_id, 'bonus_valid_date', true)
+                        ];
+                        
+                        echo apply_filters('print_single_bonus_card', $data);
                     endwhile;
                     ?>
                 </div>
