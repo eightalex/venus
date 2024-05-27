@@ -599,7 +599,7 @@ function print_single_casino_template($data = []){
                                 <use href='#starPath' x='96' y='0'/>
                                 <use href='#starPath' x='128' y='0'/>
                                 <use href='#starPath' x='160' y='0'/>
-                                <use href='#starPath' x='192 y='0'/>
+                                <use href='#starPath' x='192' y='0'/>
                                 <use href='#starPath' x='224' y='0'/>
                                 <use href='#starPath' x='256' y='0'/>
                                 <use href='#starPath' x='288' y='0'/>
@@ -1254,10 +1254,10 @@ function ud_custon_fields() {
         ));
 
     Container::make( 'term_meta', 'Content' )
-        ->where( 'term_taxonomy', '=', 'category' )   
-        ->or_where( 'term_taxonomy', '=', 'game-category' ) 
-        ->or_where( 'term_taxonomy', '=', 'casino-category' ) 
-        ->or_where( 'term_taxonomy', '=', 'bonus-category' ) 
+        ->where( 'term_taxonomy', '=', 'category' )
+        ->or_where( 'term_taxonomy', '=', 'game-category' )
+        ->or_where( 'term_taxonomy', '=', 'casino-category' )
+        ->or_where( 'term_taxonomy', '=', 'bonus-category' )
         ->add_fields(array(
             Field::make('rich_text', 'content_editor', __('Content'))
         ));
