@@ -14,8 +14,17 @@ if($post_type !== "page"){
 $games = apply_filters('ud_get_games', $q_params);
 
 
-if($games->have_posts()):
-    $section_title      = !empty($content['gc_title'])? $content['gc_title']: get_the_title()." <em>games</em>";
+if(!$games['res']->have_posts()){
+    return;
+}
+
+if($content['gs_is_filter']){
+    get_template_part('theme-parts/modules/game-card-filter', '', ['games' => $games]);
+    return;
+}
+
+$section_title = !empty($content['gc_title'])? $content['gc_title']: get_the_title()." <em>games</em>";
+
 ?>
 
 <style>
@@ -44,55 +53,22 @@ if($games->have_posts()):
             <div class="section__content">
                 <ul class="card-list">
                     <?php
-                    while($games->have_posts()):
-                        $games->the_post();
+                    while($games['res']->have_posts()):
+                        $games['res']->the_post();
+                        $g_id       = get_the_ID();
+                        $g_img_id   = get_post_thumbnail_id();
+                        $gel        = get_post_meta( $g_id, 'game_external_link', true );
 
-                        $g_id            = get_the_ID();
-                        $g_img_id        = get_post_thumbnail_id();
-                        $g_img_data      = apply_filters('ud_get_file_data', $g_img_id);
-                        $short_desc      = get_post_meta( $g_id, 'game_short_desc', true );
-                        $gel             = get_post_meta( $g_id, 'game_external_link', true );
-                        $button_notice   = get_post_meta( $g_id, 'casino_button_notice', true );
-                        $external_link   = !empty($gel)? esc_url( $gel ): get_the_permalink();
-                        $unit_detailed   = get_post_meta( $g_id, 'unit_detailed_tc', true );
-                    ?>
-                    <li class="game-card">
-                        <div class="game-card__image">
-                            <img src="<?php echo $g_img_data['src']?>" alt="<?php echo $g_img_data['alt']?>">
-                        </div>
-                        <div class="game-card__title"><?php the_title()?></div>
-                        <?php
-                        if(!empty($short_desc)):
-                        ?>
-                        <div class="game-card__subtitle">
-                            <?php echo $short_desc?>
-                        </div>
-                        <?php
-                        endif;
-                        ?>
-                        <div class="game-card__cta">
-                            <a href="<?php echo $external_link?>" class="game-card__button button"><?php echo __("Play now")?></a>
-                        </div>
-                        <div class="game-card__info">
-                            T&Cs Apply
-                            <?php
-                            if(!empty($button_notice)):
-                                ?>
-                                <br><?php echo $button_notice?>
-                                <?php
-                            endif;
+                        $game_params = [
+                            'g_img_data'      => apply_filters('ud_get_file_data', $g_img_id),
+                            'title'           => get_the_title(),  
+                            'short_desc'      => get_post_meta( $g_id, 'game_short_desc', true ),
+                            'button_notice'   => get_post_meta( $g_id, 'casino_button_notice', true ),
+                            'external_link'   => !empty($gel)? esc_url( $gel ): get_the_permalink(),
+                            'unit_detailed'   => get_post_meta( $g_id, 'unit_detailed_tc', true ),
+                        ];
 
-                            if(!empty($unit_detailed)):
-                                ?>
-                                <div class="tc-desc">
-                                    <?php echo $unit_detailed?>
-                                </div>
-                                <?php
-                            endif;
-                            ?>
-                        </div>
-                    </li>
-                    <?php
+                        echo apply_filters('ud_print_single_game', $game_params);
                     endwhile;
                     ?>
                 </ul>
@@ -101,4 +77,3 @@ if($games->have_posts()):
     </div>
 </section>
 <?php
-endif;

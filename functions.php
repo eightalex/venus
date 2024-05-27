@@ -126,6 +126,57 @@ function ud_get_author_infos($author_id){
     return $infos;
 }
 
+add_filter('ud_print_single_game', 'ud_print_single_game');
+function ud_print_single_game(array $data){
+    extract($data);
+
+    $img_src    = $g_img_data['src'];
+    $img_alt    = $g_img_data['alt'];
+    $desc       = "";
+    $ext_lnk    = "";
+    $bn         = "";
+    $unt_d      = "";
+
+    if(!empty($short_desc)){
+        $desc = "<div class='game-card__subtitle'>
+                    {$short_desc}
+                </div>";
+    }
+
+    if(!empty($external_link)){
+        $ext_lnk = "<div class='game-card__cta'>
+                        <a href='{$external_link}' class='game-card__button button'>Play now</a>
+                    </div>";
+    }
+
+    if(!empty($button_notice)){
+        $bn = "<br>{$button_notice}";
+    }
+
+    if(!empty($unit_detailed)){
+        $unt_d = "<div class='tc-desc'>
+                        {$unit_detailed}
+                    </div>";
+    }
+
+    $cart = "<li class='game-card'>
+                <div class='game-card__image'>
+                    <img src='{$img_src}' alt='{$img_alt}'>
+                </div>
+                <div class='game-card__title'>{$title}</div>
+                {$desc}
+                {$ext_lnk}
+                <div class='game-card__info'>
+                    T&Cs Apply
+                    {$bn}
+
+                    {$unt_d}
+                </div>
+            </li>";
+
+    return $cart;        
+}
+
 add_filter('ud_get_games', 'ud_get_games');
 function ud_get_games(array $atts){
     extract($atts);
@@ -145,6 +196,10 @@ function ud_get_games(array $atts){
         // 'exclude_id_array'  => isset($exclude_id_array)? $exclude_id_array: [],
 	);
 
+    if(isset($_GET['games-cat'])){
+        $g_args['category'] = $_GET['games-cat'];
+    }
+
     extract($g_args);
 
     if ( !empty( $category ) & !empty( $vendor ) ) {
@@ -156,7 +211,6 @@ function ud_get_games(array $atts){
 			'posts_per_page' => $items_number,
 			'post_type'      => 'game',
 			// 'post__not_in'   => $exclude_id_array,
-			'no_found_rows'  => true,
 			'post_status'    => 'publish',
 			'tax_query' => array(
 				'relation' => 'AND',
@@ -177,19 +231,18 @@ function ud_get_games(array $atts){
 
 	} else if ( !empty( $category ) ) {
 
-		$categories_id_array = explode( ',', $category );
+		// $categories_id_array = explode( ',', $category );
 
 		$args = array(
 			'posts_per_page' => $items_number,
 			'post_type'      => 'game',
 			// 'post__not_in'   => $exclude_id_array,
-			'no_found_rows'  => true,
 			'post_status'    => 'publish',
 			'tax_query' => array(
 				array(
 					'taxonomy' => 'game-category',
-					'field'    => 'id',
-					'terms'    => $categories_id_array
+					'field'    => 'term_id',
+					'terms'    => $category
 				)
 			),
 			'orderby'  => $orderby,
@@ -204,7 +257,6 @@ function ud_get_games(array $atts){
 			'posts_per_page' => $items_number,
 			'post_type'      => 'game',
 			// 'post__not_in'   => $exclude_id_array,
-			'no_found_rows'  => true,
 			'post_status'    => 'publish',
 			'tax_query' => array(
 				array(
@@ -226,7 +278,6 @@ function ud_get_games(array $atts){
 			'post_type'      => 'game',
 			'post__in'       => $items_id_array,
 			'orderby'        => 'post__in',
-			'no_found_rows'  => true,
 			'post_status'    => 'publish'
 		);
 
@@ -238,7 +289,6 @@ function ud_get_games(array $atts){
 			'posts_per_page' => $items_number,
 			'post_type'      => 'game',
 			// 'post__not_in'   => $exclude_id_array,
-			'no_found_rows'  => true,
 			'post_status'    => 'publish',
 			'meta_query' => array(
 		        array(
@@ -254,7 +304,6 @@ function ud_get_games(array $atts){
 			'posts_per_page' => $items_number,
 			'post_type'      => 'game',
 			// 'post__not_in'   => $exclude_id_array,
-			'no_found_rows'  => true,
 			'post_status'    => 'publish',
 			'orderby'        => $orderby,
 			'order'          => $order
@@ -262,11 +311,30 @@ function ud_get_games(array $atts){
 
 	}
 
+    $paged = isset($_GET['games-page'])? $_GET['games-page']: 1;
+
+    $args['paged'] = $paged;
+
 	$game_query = new WP_Query( $args );
+
+    $max_pages = intval($game_query->max_num_pages);
 
     wp_reset_postdata();
 
-    return $game_query;
+    $out = [
+        'res' => $game_query,
+    ];
+
+    if($max_pages > 1){
+        $pagenavi_items = apply_filters('my_pagination', $paged, $max_pages, "games-page");
+        $out['pagenavi'] = "<div class='content-cards__footer'>
+                                <div class='pagination'>
+                                    {$pagenavi_items}
+                                </div>
+                            </div>";
+    }
+
+    return $out;
 }
 
 add_filter('ud_get_casinos', 'ud_get_casinos');
@@ -460,14 +528,13 @@ function ud_get_bonuses($atts){
         );
     }
 
-    $term = $_GET['bonuses-cat'];
-    if(isset($terms)){
+    if(isset($_GET['bonuses-cat'])){
         $args['tax_query'] = array(
                             'relation' => 'AND',
                             array(
                                 'taxonomy' => 'bonus-category',
-                                'field'    => 'id',
-                                'terms'    => [$term]
+                                'field'    => 'term_id',
+                                'terms'    => $_GET['bonuses-cat']
                             ),
                         );
     }
@@ -482,16 +549,12 @@ function ud_get_bonuses($atts){
         'res' => $q,
     ];
 
-
     if($max_pages > 1){
-        $pagenavi_items = apply_filters('my_pagination', $paged, $max_pages);
+        $pagenavi_items = apply_filters('my_pagination', $paged, $max_pages, "bonuses-page");
         $out['pagenavi'] = "<div class='content-cards__footer'>
-                                <div class='pagination'>
-                                    {$pagenavi_items}
-                                </div>
+                                {$pagenavi_items}
                             </div>";
     }
-
 
     return $out;
 }
@@ -561,11 +624,12 @@ function print_single_bonus_card(array $data){
     extract($data);
 
     $bonus_code_html = "";
-    $bonus_img_def   = "<img src=" . get_stylesheet_directory_uri().'/assets/images/bonus-card/gift.svg' . " alt='gift' class='bonus-card__img'>";        
+    $bonus_img_def   = "<img src=" . get_stylesheet_directory_uri().'/assets/images/gift.svg' . " alt='gift' class='bonus-card__img'>";        
     $description     = "";  
     $external        = "";  
     $bn              = "";  
     $detailed_tc     = "";   
+    $tax_info        = "";
 
     if(!empty($bonus_code) && !empty($bonus_valid_date)):
         $ds = strtotime($bonus_valid_date);
@@ -601,10 +665,14 @@ function print_single_bonus_card(array $data){
                         </div>";
     endif;
 
+    if(!empty($tax)):
+        $tax_info = "<div class='bonus-card__tags'>
+                        <div class='bonus-card__tag'>{$tax}</div>
+                    </div>";
+    endif;
+
     $cart = "<div class='bonus-card'>
-                <div class='bonus-card__tags'>
-                    <div class='bonus-card__tag'>Deposit Bonus</div>
-                </div>
+                {$tax_info}
                 <header class='bonus-card__header'>
                     $title
                 </header>
@@ -629,13 +697,12 @@ function print_single_bonus_card(array $data){
 }
 
 add_filter( 'my_pagination', 'my_pagination', 10, 3);
-function my_pagination(int $current_page, int $max_page, $ajax = 0){
-    $is_ajax = ($ajax == 1)? 'is_ajax': '';
+function my_pagination(int $current_page, int $max_page,string $url_param){
     $page_url = get_the_permalink();
-    $html = "<div class='pagination content__pagination {$is_ajax}' data-max_pages='{$max_page}'>";
+    $html = "<div class='pagination content__pagination' data-max_pages='{$max_page}'>";
             $p = paginate_links([
-                    "base"               => wp_normalize_path("?bonuses-page=%#%" ),            
-                    "format"             => "?bonuses-page=%#%",            
+                    "base"               => wp_normalize_path("?{$url_param}=%#%" ),            
+                    "format"             => "?{$url_param}=%#%",            
                     "total"              => $max_page,        
                     "current"            => $current_page,    
                     "aria_current"       => "page",          
@@ -754,8 +821,8 @@ function get_games_options_arr(){
         '' => __('Choice games'),
     ];
 
-    if($games->have_posts()){
-        foreach($games->posts as $game){
+    if($games['res']->have_posts()){
+        foreach($games['res']->posts as $game){
             $out[$game->ID] = $game->post_title; 
         } 
     }
@@ -889,6 +956,10 @@ function ud_custon_fields() {
                     Field::make( 'separator', 'crb_separator', $shortcodes_codex ),
                     Field::make('rich_text', 'text_editor', __('Classic editor'))
                 ))
+                ->add_fields('card-top', __('Card'), array(
+                    Field::make('checkbox', 'card_top_power', __('Display section'))
+                        ->set_default_value('yes')
+                ))
                 ->add_fields('guide', array(
                     Field::make('image', 'guide_bg_img', __('Background'))
                         ->set_value_type( 'url' ),
@@ -931,11 +1002,38 @@ function ud_custon_fields() {
                     Field::make('textarea', 'gc_subtitle', __('Subtitle')),
                     Field::make('select', 'gc_category', __('Select category'))
                         ->add_options(apply_filters('ud_get_games_cats', true))
-                        ->set_width(75),
+                        ->set_width(33),
                     Field::make('text', 'gs_count', __('Number of games to show'))
                         ->set_default_value(4)
                         ->set_attribute('type', 'number')
-                        ->set_width(25),
+                        ->set_width(33),
+                    Field::make('checkbox', 'gs_is_filter', __('Filter'))
+                        ->set_width(33),
+                ))
+                ->add_fields('game-types', array(
+                    Field::make('text', 'game_types_title', __('Title')),
+                    Field::make('textarea', 'game_types_subtitle', __('Subtitle')),
+                    Field::make('complex', 'game_types_repeater', __('Items'))
+                        ->set_collapsed(true)
+                        ->setup_labels($labels['game_types'])
+                        ->add_fields(array(
+                            Field::make('image', 'gt_icon', __('Icon'))
+                                ->set_width(25),
+                            Field::make('text', 'gt_title', __('Title'))
+                                ->set_width(75),
+                            Field::make('textarea', 'gt_desc', __('Description'))     
+                        ))
+                        ->set_header_template( '
+                        <% if (gt_title) { %>
+                            <%- gt_title %>
+                        <% } %>    
+                        ')
+                ))
+                ->add_fields('games-slider', array(
+                    Field::make('text', 'gs_title', __('Title')),
+                    Field::make('textarea', 'gs_subtitle', __('Subtitle')),
+                    Field::make('multiselect', 'gs_games', __('Games'))
+                        ->add_options(get_games_options_arr())
                 ))
                 ->add_fields('casino-card', __('Casinos'), array(
                     Field::make('text', 'cas_title', __('Title'))
@@ -1052,10 +1150,6 @@ function ud_custon_fields() {
                         ->set_width(75),
                     Field::make('textarea', 'bandit_subtitle', __('Subtitle'))
                 ))
-                ->add_fields('card-top', __('Card'), array(
-                    Field::make('checkbox', 'card_top_power', __('Display section'))
-                        ->set_default_value('yes')
-                ))
                 ->add_fields('tags', array(
                     Field::make('checkbox', 'tags_power', __('Display tags'))
                     ->set_default_value('yes')
@@ -1136,31 +1230,6 @@ function ud_custon_fields() {
                             Field::make('image', 'adv_item_img', __('Thumbnail'))
                                 ->set_width(25)    
                         ))
-                ))
-                ->add_fields('game-types', array(
-                    Field::make('text', 'game_types_title', __('Title')),
-                    Field::make('textarea', 'game_types_subtitle', __('Subtitle')),
-                    Field::make('complex', 'game_types_repeater', __('Items'))
-                        ->set_collapsed(true)
-                        ->setup_labels($labels['game_types'])
-                        ->add_fields(array(
-                            Field::make('image', 'gt_icon', __('Icon'))
-                                ->set_width(25),
-                            Field::make('text', 'gt_title', __('Title'))
-                                ->set_width(75),
-                            Field::make('textarea', 'gt_desc', __('Description'))     
-                        ))
-                        ->set_header_template( '
-                        <% if (gt_title) { %>
-                            <%- gt_title %>
-                        <% } %>    
-                        ')
-                ))
-                ->add_fields('games-slider', array(
-                    Field::make('text', 'gs_title', __('Title')),
-                    Field::make('textarea', 'gs_subtitle', __('Subtitle')),
-                    Field::make('multiselect', 'gs_games', __('Games'))
-                        ->add_options(get_games_options_arr())
                 ))
         ));
 

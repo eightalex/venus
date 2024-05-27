@@ -45,6 +45,7 @@ $title_section      = !empty($content['bonuses_title'])? $content['bonuses_title
                     while($bonuses['res']->have_posts()):
                         $bonuses['res']->the_post();
                         $b_id = get_the_ID();
+                        $taxs = wp_get_post_terms($b_id, 'bonus-category');
 
                         $data = [
                             'title'             => get_the_title($b_id),
@@ -53,7 +54,9 @@ $title_section      = !empty($content['bonuses_title'])? $content['bonuses_title
                             'button_notice'     => get_post_meta($b_id, 'bonus_button_notice', true),
                             'offer_detailed_tc' => get_post_meta($b_id, 'offer_detailed_tc', true),
                             'bonus_code'        => get_post_meta($b_id, 'bonus_code', true),
-                            'bonus_valid_date'  => get_post_meta($b_id, 'bonus_valid_date', true)
+                            'bonus_valid_date'  => get_post_meta($b_id, 'bonus_valid_date', true),
+                            'tax'               => !empty($taxs)? $taxs[0]->name: '',
+
                         ];
                         
                         echo apply_filters('print_single_bonus_card', $data);
