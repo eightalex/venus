@@ -174,7 +174,7 @@ function ud_print_single_game(array $data){
                 </div>
             </li>";
 
-    return $cart;        
+    return $cart;
 }
 
 add_filter('ud_get_games', 'ud_get_games');
@@ -328,9 +328,7 @@ function ud_get_games(array $atts){
     if($max_pages > 1){
         $pagenavi_items = apply_filters('my_pagination', $paged, $max_pages, "games-page");
         $out['pagenavi'] = "<div class='content-cards__footer'>
-                                <div class='pagination'>
-                                    {$pagenavi_items}
-                                </div>
+                                {$pagenavi_items}
                             </div>";
     }
 
@@ -575,7 +573,7 @@ function ud_get_bonuses($atts){
  */
 add_action('print_single_casino_template', 'print_single_casino_template');
 function print_single_casino_template($data = []){
-    extract($data); 
+    extract($data);
 
     $desc_html          = "";
     $external_link_html = "";
@@ -584,13 +582,13 @@ function print_single_casino_template($data = []){
     $add_class          = isset($item_class)? $item_class: '';
 
     if(isset($desc) && !empty($desc)){
-        $desc_html = "<div class='casino-card__subtitle'>{$desc}</div>"; 
+        $desc_html = "<div class='casino-card__subtitle'>{$desc}</div>";
     }
 
     if(isset($external_link) && !empty($external_link)){
         $external_link_html = "<a href='{$external_link}' target='_blank' class='casino-card__button button'>{$elb_txt}</a>";
     }
-    
+
     $tmpl = "<div class='casino-card {$add_class}'>
                 <div class='casino-card__image'>
                     <img src='{$img_src}' alt='{$img_alt}'>
@@ -624,12 +622,11 @@ function print_single_bonus_card(array $data){
     extract($data);
 
     $bonus_code_html = "";
-    $bonus_img_def   = "<img src=" . get_stylesheet_directory_uri().'/assets/images/gift.svg' . " alt='gift' class='bonus-card__img'>";        
-    $description     = "";  
-    $external        = "";  
-    $bn              = "";  
-    $detailed_tc     = "";   
-    $tax_info        = "";
+    $bonus_img_def   = "<img src=" . get_stylesheet_directory_uri().'/assets/images/gift.svg' . " alt='gift' class='bonus-card__img'>";
+    $description     = "";
+    $external        = "";
+    $bn              = "";
+    $detailed_tc     = "";$tax_info        = "";
 
     if(!empty($bonus_code) && !empty($bonus_valid_date)):
         $ds = strtotime($bonus_valid_date);
@@ -640,7 +637,7 @@ function print_single_bonus_card(array $data){
                                 <span>{$bonus_code}</span>
                                 <span>Valid Until: {$df}</span>
                             </div>";
-        
+
     endif;
 
     if(!empty($short_desc)):
@@ -693,7 +690,7 @@ function print_single_bonus_card(array $data){
                 </div>
             </div>";
 
-    return $cart;        
+    return $cart;
 }
 
 add_filter( 'my_pagination', 'my_pagination', 10, 3);
@@ -701,18 +698,18 @@ function my_pagination(int $current_page, int $max_page,string $url_param){
     $page_url = get_the_permalink();
     $html = "<div class='pagination content__pagination' data-max_pages='{$max_page}'>";
             $p = paginate_links([
-                    "base"               => wp_normalize_path("?{$url_param}=%#%" ),            
-                    "format"             => "?{$url_param}=%#%",            
-                    "total"              => $max_page,        
-                    "current"            => $current_page,    
-                    "aria_current"       => "page",          
-                    "show_all"           => false,           
-                    "prev_next"          => true,        
-                    "prev_text"          => "<",              
-                    "next_text"          => ">",            
-                    "end_size"           => 2,               
-                    "mid_size"           => 2,             
-                    "type"               => "array",          
+                    "base"               => wp_normalize_path("?{$url_param}=%#%" ),
+                    "format"             => "?{$url_param}=%#%",
+                    "total"              => $max_page,
+                    "current"            => $current_page,
+                    "aria_current"       => "page",
+                    "show_all"           => false,
+                    "prev_next"          => true,
+                    "prev_text"          => "<",
+                    "next_text"          => ">",
+                    "end_size"           => 2,
+                    "mid_size"           => 2,
+                    "type"               => "array",
                 ]);
 
                 foreach($p as $l){
@@ -722,10 +719,10 @@ function my_pagination(int $current_page, int $max_page,string $url_param){
                     }
                     $html .= "<li class='{$current_class}'>{$l}</li>";
                 }
-        
+
             $html .= "</div>";
-         
-        return $html;    
+
+        return $html;
 }
 
 add_action("ud_get_posts_loop", "ud_get_posts_loop");
@@ -748,7 +745,7 @@ function ud_get_posts_loop($atts){
         'post__not_in'      => isset($exclude_id)? [$exclude_id]: [],
     ));
 
-    
+
     if(!$query->have_posts()){
         return;
     }
@@ -823,8 +820,8 @@ function get_games_options_arr(){
 
     if($games['res']->have_posts()){
         foreach($games['res']->posts as $game){
-            $out[$game->ID] = $game->post_title; 
-        } 
+            $out[$game->ID] = $game->post_title;
+        }
     }
     return $out;
 }
@@ -845,7 +842,7 @@ function ud_print_quote($atts){
                 <cite class='quote__author'>$author</cite>
             </blockquote>";
 
-    return $html;     
+    return $html;
 }
 
 add_shortcode( 'author_annatation', 'ud_author_annatation' );
@@ -876,7 +873,7 @@ function ud_author_annatation($atts){
                 </p>
             </blockquote>";
 
-    return $html;     
+    return $html;
 }
 
 add_filter('ud_get_tax_posts_tags', 'ud_get_tax_posts_tags');
@@ -886,7 +883,7 @@ function ud_get_tax_posts_tags($posts){
     foreach($posts as $post){
         $p_id = $post->ID;
         $tags = get_the_tags($p_id);
-    
+
         foreach($tags as $tag){
             if(!in_array($tag->name, $arr)){
                 array_push($arr, $tag->name);
@@ -1021,7 +1018,7 @@ function ud_custon_fields() {
                                 ->set_width(25),
                             Field::make('text', 'gt_title', __('Title'))
                                 ->set_width(75),
-                            Field::make('textarea', 'gt_desc', __('Description'))     
+                            Field::make('textarea', 'gt_desc', __('Description'))
                         ))
                         ->set_header_template( '
                         <% if (gt_title) { %>
@@ -1135,7 +1132,7 @@ function ud_custon_fields() {
                     Field::make('image', 'bandit_main_img', __('Image'))
                         ->help_text("<span style='color: blue;'>".__('Leave blank to use default image:')."<img width='50' src='".get_stylesheet_directory_uri()."/assets/images/section/bandit.svg'></span>")
                         ->set_width(25),
-                    Field::make('image', 'bandit_main_img_bg', __('Backgrownd for image'))    
+                    Field::make('image', 'bandit_main_img_bg', __('Backgrownd for image'))
                         ->set_value_type('url')
                         ->set_width(25),
                     Field::make('select', 'bandit_style_type', __('Style'))
@@ -1144,8 +1141,8 @@ function ud_custon_fields() {
                             'image_right'   => __('Picture on the rigth'),
                             'image_left'    => __('Picture on the left')
                         )),
-                    Field::make('checkbox', 'bandit_fill_area', __('Fill area'))    
-                        ->set_width(25),       
+                    Field::make('checkbox', 'bandit_fill_area', __('Fill area'))
+                        ->set_width(25),
                     Field::make('text', 'bandit_title', __('Title'))
                         ->set_width(75),
                     Field::make('textarea', 'bandit_subtitle', __('Subtitle'))
@@ -1165,7 +1162,7 @@ function ud_custon_fields() {
                     Field::make('checkbox', 'rating_power', __('Display rating'))
                         ->set_default_value('yes')
                         ->set_width(50),
-                    Field::make('checkbox', 'rating_games', __('Show game ratings')) 
+                    Field::make('checkbox', 'rating_games', __('Show game ratings'))
                         ->set_width(50),
                     Field::make('textarea', 'rating_games_title', __('Title section'))
                         ->set_rows(2)
@@ -1183,8 +1180,8 @@ function ud_custon_fields() {
                                 'value' => true,
                                 'compare' => '=',
                             )
-                        ) ), 
-                    Field::make('multiselect', 'rating_posts_list', __('Games'))  
+                        ) ),
+                    Field::make('multiselect', 'rating_posts_list', __('Games'))
                         ->add_options(get_games_options_arr())
                         ->set_conditional_logic( array(
                             array(
@@ -1211,7 +1208,7 @@ function ud_custon_fields() {
                         ->set_default_value(3)
                         ->set_attribute('type', 'number')
                         ->set_width(25),
-                    Field::make('text', 'bonuses_title', __('Title'))   
+                    Field::make('text', 'bonuses_title', __('Title'))
                         ->set_width(50)
                         ->help_text("<span style='color: blue;'>".__('Leave blank to use default text (post title + "BONUSES")')."</span>"),
                     Field::make('textarea', 'bonuses_subtitle', __('Subtitle'))
@@ -1228,13 +1225,13 @@ function ud_custon_fields() {
                             Field::make('textarea', 'adv_item_txt', __('Description'))
                                 ->set_width(75),
                             Field::make('image', 'adv_item_img', __('Thumbnail'))
-                                ->set_width(25)    
+                                ->set_width(25)
                         ))
                 ))
         ));
 
     Container::make( 'term_meta', 'Content' )
-        ->where( 'term_taxonomy', '=', 'category' )    
+        ->where( 'term_taxonomy', '=', 'category' )
         ->add_fields(array(
             Field::make('rich_text', 'content_editor', __('Content'))
         ));

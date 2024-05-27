@@ -6,8 +6,10 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
+  list-style: none;
 
-  &__arrow {
+  a.prev,
+  a.next {
     padding: 24px;
     width: 24px;
     height: 24px;
@@ -16,6 +18,7 @@
     background-size: 24px;
     background-repeat: no-repeat;
     border-radius: 12px;
+    font-size: 0;
 
     &.next {
       transform: rotate(180deg);
@@ -26,7 +29,7 @@
     }
   }
 
-  &__item {
+  .page-numbers {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,7 +44,8 @@
     line-height: normal;
     text-decoration: none;
 
-    &.active {
+    &.active,
+    &.current {
       color: #fff;
       background-color: #f5509d;
       cursor: auto;
@@ -53,7 +57,8 @@
   }
 
   @include bp(380px) {
-    &__arrow {
+    a.prev,
+    a.next {
       padding: 20px;
       width: 20px;
       height: 20px;
@@ -61,7 +66,7 @@
       border-radius: 10px;
     }
 
-    &__item {
+    .page-numbers {
       width: 40px;
       height: 40px;
       font-size: 14px;

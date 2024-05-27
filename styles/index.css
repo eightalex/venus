@@ -258,10 +258,8 @@ body {
     text-transform: uppercase; }
   .content__nav {
     margin-top: 60px; }
-  .content__more-button {
-    min-width: 250px; }
   .content__pagination {
-    display: none !important; }
+    display: flex; }
   @media (max-width: 1230px) {
     .content {
       grid-template-columns: 380px 335px;
@@ -272,11 +270,7 @@ body {
       .content__sidebar {
         display: none; }
       .content__nav {
-        margin-top: 40px; }
-      .content__more-button {
-        display: none !important; }
-      .content__pagination {
-        display: flex !important; } }
+        margin-top: 40px; } }
 
 .input {
   display: flex;
@@ -2031,8 +2025,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px; }
-  .pagination__arrow {
+  gap: 5px;
+  list-style: none; }
+  .pagination a.prev,
+  .pagination a.next {
     padding: 24px;
     width: 24px;
     height: 24px;
@@ -2040,12 +2036,15 @@ body {
     background-position: center;
     background-size: 24px;
     background-repeat: no-repeat;
-    border-radius: 12px; }
-    .pagination__arrow.next {
+    border-radius: 12px;
+    font-size: 0; }
+    .pagination a.prev.next,
+    .pagination a.next.next {
       transform: rotate(180deg); }
-    .pagination__arrow:hover {
+    .pagination a.prev:hover,
+    .pagination a.next:hover {
       background-color: rgba(145, 151, 175, 0.3); }
-  .pagination__item {
+  .pagination .page-numbers {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2059,20 +2058,21 @@ body {
     font-weight: 800;
     line-height: normal;
     text-decoration: none; }
-    .pagination__item.active {
+    .pagination .page-numbers.active, .pagination .page-numbers.current {
       color: #fff;
       background-color: #f5509d;
       cursor: auto; }
-    .pagination__item:hover:not(.active) {
+    .pagination .page-numbers:hover:not(.active) {
       background-color: rgba(145, 151, 175, 0.3); }
   @media (max-width: 380px) {
-    .pagination__arrow {
+    .pagination a.prev,
+    .pagination a.next {
       padding: 20px;
       width: 20px;
       height: 20px;
       background-size: 20px;
       border-radius: 10px; }
-    .pagination__item {
+    .pagination .page-numbers {
       width: 40px;
       height: 40px;
       font-size: 14px;
