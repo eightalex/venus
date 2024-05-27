@@ -2,19 +2,24 @@
 extract($args);
 
 $cas_args = [
-    'items_number'  => $content['cas_count'],
-    'orderby'       => $content['cas_order_by'],
-    'exclude_id'    => ''
+    'items_number'   => $content['cas_count'],
 ];
-
 
 if(get_post_type() == 'casino'){
     $term_data = wp_get_post_terms($id, 'casino-category');
 
-    $cas_args['category'] = $term_data[0]->term_taxonomy_id;
+    $cas_args['category']   = $term_data[0]->term_taxonomy_id;
     $cas_args['exclude_id'] = $id;
 }elseif(!empty($content['cas_category'])){
     $cas_args['category'] = $content['cas_category'];
+}
+
+$_post__in_arr = array_filter($content['cas_casionois'],function($value) {
+    return ($value !== '');
+});
+
+if(!empty($_post__in_arr)){    
+    $cas_args['post__in'] = $_post__in_arr;
 }
 
 $casinos = apply_filters('ud_get_casinos', $cas_args);
@@ -74,6 +79,16 @@ if($casinos->have_posts()):
                     ?>
                 </div>
             </div>
+            <?php
+                $max_pages = $casinos->max_num_pages;
+                $paged = $casinos->query['paged'];    
+                if($max_pages  > 1){
+                    $pagenavi_items = apply_filters('my_pagination', $paged, $max_pages, "casinois-page");
+                    echo "<div class='content-cards__footer'>
+                                {$pagenavi_items}
+                          </div>";
+                }
+            ?>
         </div>
     </div>
 </section>

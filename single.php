@@ -65,19 +65,7 @@
 		}
 
 	} elseif ( is_singular( 'bonus' ) ) {
-
-		// Get the page template if the custom post type is "Bonus"
-
-		$offer_style = get_post_meta( get_the_ID(), 'mercury_offer_style', true );
-
-		if ($offer_style == 2) {
-			get_template_part( '/theme-parts/single-empty' );
-		} else if ($offer_style == 3) {
-			get_template_part( '/theme-parts/single-empty-sidebar' );
-		} else {
-			get_template_part( '/aces/single-bonus/style-1' );
-		}
-
+		get_template_part('/theme-parts/content', 'bonus');
 	} elseif ( is_singular( 'slotsl' ) ) {
 
 		// Get the page template if the custom post type is "Slots Launch"
