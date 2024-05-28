@@ -496,6 +496,8 @@ body {
     font-weight: 400;
     line-height: 128%;
     /* 17.92px */ }
+    .footer__text a {
+      color: inherit; }
   .footer__nav {
     grid-area: nav;
     display: flex;

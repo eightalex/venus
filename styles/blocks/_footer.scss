@@ -38,6 +38,10 @@
     font-style: normal;
     font-weight: 400;
     line-height: 128%; /* 17.92px */
+
+    a {
+      color: inherit;
+    }
   }
 
   &__nav {
