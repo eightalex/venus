@@ -518,13 +518,20 @@ function ud_get_bonuses($atts){
         );
     }
 
-    if(isset($_GET['bonuses-cat'])){
+    if(isset($_GET['bonuses-cat']) || isset($category)){
+        $cat = 0;
+
+        if(isset($_GET['bonuses-cat'])){
+            $cat = $_GET['bonuses-cat'];
+        }elseif(isset($category)){
+            $cat = $category;
+        }
         $args['tax_query'] = array(
                             'relation' => 'AND',
                             array(
                                 'taxonomy' => 'bonus-category',
                                 'field'    => 'term_id',
-                                'terms'    => $_GET['bonuses-cat']
+                                'terms'    => $cat
                             ),
                         );
     }
@@ -833,7 +840,7 @@ function get_games_options_arr(){
 
 add_shortcode( 'print_quote', 'ud_print_quote' );
 function ud_print_quote($atts){
-    if(empty($atts)){
+    if(empty($atts) || is_admin()){
         return;
     }
     extract($atts);
@@ -852,7 +859,7 @@ function ud_print_quote($atts){
 
 add_shortcode( 'author_annatation', 'ud_author_annatation' );
 function ud_author_annatation($atts){
-    if(empty($atts)){
+    if(empty($atts) || is_admin()){
         return;
     }
     extract($atts);
@@ -956,6 +963,7 @@ function ud_custon_fields() {
     Container::make('post_meta', 'App banner')
         // ->where('post_type', '=', 'post')
         ->where('post_type', '=', 'page')
+        ->or_where('post_type', '=', 'bonus')
         ->add_fields(array(
             Field::make('text', 'app_banner_txt', __('Title'))
                 ->help_text("<span style='color: blue;'>".__('Leave blank to use post title')."</span>")
@@ -967,6 +975,7 @@ function ud_custon_fields() {
     Container::make( 'post_meta', 'Content menage' )
         ->where('post_type', '=', 'post')
         ->or_where('post_type', '=', 'casino')
+        ->or_where('post_type', '=', 'bonus')
         ->or_where('post_type', '=', 'page')
         ->add_fields( array(
             Field::make('complex', 'ud_post_content', __('Content'))
@@ -1224,7 +1233,8 @@ function ud_custon_fields() {
                     Field::make('select', 'bonuses_parent', __('Include'))
                         ->add_options(array(
                             'all'       => 'All',
-                            'children'  => 'Children'
+                            'children'  => 'Children',
+                            'curent'    => 'Curent category'
                         ))
                         ->set_width(25),
                     Field::make('text', 'bonuses_count', __('Number of bonuses to show'))
@@ -1251,6 +1261,13 @@ function ud_custon_fields() {
                                 ->set_width(25)
                         ))
                 ))
+        ));
+
+    Container::make('post_meta', __('Additionall settings'))   
+        ->where('post_type', '=', 'bonus')
+        ->set_context('side')
+        ->add_fields(array(
+            Field::make('text', 'casinois_sidebar_title', __('Casinois sidebar title'))
         ));
 
     Container::make( 'term_meta', 'Content' )

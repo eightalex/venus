@@ -8,6 +8,9 @@
 	$post_type 		= get_post_type();
 
     if(!empty($custom_content)){
+		if(is_singular( 'bonus' )){
+			get_template_part('/theme-parts/content', 'bonus');
+		}
         get_template_part('/theme-parts/modules/breadcrumbs');
 
         foreach($custom_content as $part){

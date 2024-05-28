@@ -6,8 +6,12 @@ $post_type = get_post_type($id);
 $args_arr = [
     'items_number'  => $content['bonuses_count']
 ];
+$tax        = 'bonus-category';
 
-if($content['bonuses_parent'] !== 'all'){
+if($content['bonuses_parent'] == 'curent'){
+    $bonus_cat  = wp_get_post_terms($id, $tax);
+    $args_arr['category'] = $bonus_cat[0]->term_id;
+}elseif($content['bonuses_parent'] == 'children'){
     $args_arr['parent_id'] = $id;
 }
 
