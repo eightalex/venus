@@ -38,7 +38,7 @@ get_template_part('/theme-parts/modules/banner', 'author', ['id' => $p_id]);
                         <?php echo apply_filters('the_content',get_the_content());?>
                     </div>
                     <!-- END: TEXT-EDITOR BLOCK -->
-                    <div class="content__footer">
+                    <!-- <div class="content__footer">
                         <div class="content__socials">
                             Share:
                             <a href="#" class="content__social">
@@ -54,7 +54,7 @@ get_template_part('/theme-parts/modules/banner', 'author', ['id' => $p_id]);
                                 <img src="../assets/images/icons/social/share.svg" alt="share">
                             </a>
                         </div>
-                    </div>
+                    </div> -->
                 </main>
                 <?php
                 if(!empty($casinois_list)):

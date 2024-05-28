@@ -10,6 +10,7 @@
     if(!empty($custom_content)){
 		if(is_singular( 'bonus' )){
 			get_template_part('/theme-parts/content', 'bonus');
+			return;
 		}
         get_template_part('/theme-parts/modules/breadcrumbs');
 
