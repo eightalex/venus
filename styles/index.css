@@ -775,6 +775,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
+    width: 100%;
     font-size: 20px;
     font-weight: 600;
     flex-grow: 1; }
@@ -788,6 +790,8 @@ body {
       .card-top__subtitle pre * {
         margin: 0;
         padding: 0; }
+    .card-top__subtitle p {
+      margin: 0; }
   .card-top__rating {
     display: flex;
     align-items: center;
