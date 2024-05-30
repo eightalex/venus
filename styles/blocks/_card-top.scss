@@ -9,11 +9,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-
   color: #fff;
-
   border-radius: 16px;
-  background: linear-gradient(180deg, #0BB9F8 50%, #0A8EF2 100%);
+  background: linear-gradient(180deg, #0bb9f8 50%, #0a8ef2 100%);
 
   &__image {
     width: 100%;
@@ -23,7 +21,6 @@
 
     img {
       width: 100%;
-      //transform: translateY(-38%);
     }
   }
 
@@ -95,7 +92,7 @@
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 128%; // 600, 700, 800 / 500 italic
+    line-height: 128%;
 
     & * {
       margin: 0;

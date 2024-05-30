@@ -38,10 +38,6 @@
     border-radius: 480px;
     background-color: #e3f666;
     transform: translate(-50%, -50%);
-
-    @include bp(1450px) {
-      display: none;
-    }
   }
 
   .container {
@@ -75,8 +71,35 @@
     width: 500px;
     transform: translateX(-50%);
     z-index: 1;
+  }
 
-    @include bp(1450px) {
+  @include bp(1180px) {
+    &::after {
+      top: calc(50% - 20px);
+      width: 400px;
+      height: 400px;
+    }
+
+    &__deer {
+      width: 400px;
+    }
+  }
+
+  @include bp(1130px) {
+    &::after {
+      top: calc(50% + 100px);
+      width: 300px;
+      height: 300px;
+    }
+
+    &__deer {
+      width: 300px;
+    }
+  }
+
+  @include bp(870px) {
+    &::after,
+    &__deer {
       display: none;
     }
   }

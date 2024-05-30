@@ -750,7 +750,7 @@ body {
   align-items: flex-start;
   color: #fff;
   border-radius: 16px;
-  background: linear-gradient(180deg, #0BB9F8 50%, #0A8EF2 100%); }
+  background: linear-gradient(180deg, #0bb9f8 50%, #0a8ef2 100%); }
   .card-top__image {
     width: 100%;
     height: 222px;
@@ -905,9 +905,6 @@ body {
     border-radius: 480px;
     background-color: #e3f666;
     transform: translate(-50%, -50%); }
-    @media (max-width: 1450px) {
-      .section-top::after {
-        display: none; } }
   .section-top .container {
     position: relative;
     z-index: 2; }
@@ -933,9 +930,23 @@ body {
     width: 500px;
     transform: translateX(-50%);
     z-index: 1; }
-    @media (max-width: 1450px) {
-      .section-top__deer {
-        display: none; } }
+  @media (max-width: 1180px) {
+    .section-top::after {
+      top: calc(50% - 20px);
+      width: 400px;
+      height: 400px; }
+    .section-top__deer {
+      width: 400px; } }
+  @media (max-width: 1130px) {
+    .section-top::after {
+      top: calc(50% + 100px);
+      width: 300px;
+      height: 300px; }
+    .section-top__deer {
+      width: 300px; } }
+  @media (max-width: 870px) {
+    .section-top::after, .section-top__deer {
+      display: none; } }
 
 .benefits {
   position: relative;
