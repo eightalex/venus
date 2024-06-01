@@ -12,6 +12,8 @@
             $title_arr[$last_index] = "<em>$title_arr[$last_index]</em>";
 
             $title = implode(' ', $title_arr);
+        }else{
+            $title = $post_title;
         }
     }
 
