@@ -973,10 +973,10 @@ function ud_custon_fields() {
         ));
 
     Container::make( 'post_meta', 'Content menage' )
-        ->where('post_type', '=', 'post')
-        ->or_where('post_type', '=', 'casino')
-        ->or_where('post_type', '=', 'bonus')
-        ->or_where('post_type', '=', 'page')
+        // ->where('post_type', '=', 'post')
+        // ->or_where('post_type', '=', 'casino')
+        // ->or_where('post_type', '=', 'bonus')
+        // ->or_where('post_type', '=', 'page')
         ->add_fields( array(
             Field::make('complex', 'ud_post_content', __('Content'))
                 ->setup_labels($labels['sections'])
@@ -1030,7 +1030,7 @@ function ud_custon_fields() {
                         ->set_width(25),
                     Field::make('textarea', 'gc_subtitle', __('Subtitle')),
                     Field::make('select', 'gc_category', __('Select category'))
-                        ->add_options(ud_get_casinos_options())
+                        ->add_options(ud_get_games_cats())
                         ->set_width(33),
                     Field::make('text', 'gs_count', __('Number of games to show'))
                         ->set_default_value(4)
@@ -1265,6 +1265,7 @@ function ud_custon_fields() {
 
     Container::make('post_meta', __('Additionall settings'))   
         ->where('post_type', '=', 'bonus')
+        ->or_where('post_type', '=', 'game')
         ->set_context('side')
         ->add_fields(array(
             Field::make('text', 'casinois_sidebar_title', __('Casinois sidebar title'))

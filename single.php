@@ -12,6 +12,11 @@
 			get_template_part('/theme-parts/content', 'bonus');
 			return;
 		}
+
+		if(is_singular( 'game' )){
+			get_template_part('/theme-parts/content', 'game');
+			return;
+		}
         get_template_part('/theme-parts/modules/breadcrumbs');
 
         foreach($custom_content as $part){
@@ -45,28 +50,28 @@
 		}
 
 	} elseif ( is_singular( 'game' ) ) {
-
+		get_template_part('/theme-parts/content', 'game');
 		// Get the page template if the custom post type is "Game"
 
-		$game_style = get_post_meta( get_the_ID(), 'game_style', true );
+		// $game_style = get_post_meta( get_the_ID(), 'game_style', true );
 
-		if ($game_style == 2) {
-			get_template_part( '/aces/single-game/style-1-without-sidebar' );
-		} else if ($game_style == 3) {
-			get_template_part( '/aces/single-game/style-2' );
-		} else if ($game_style == 4) {
-			get_template_part( '/aces/single-game/style-2-without-sidebar' );
-		} else if ($game_style == 5) {
-			get_template_part( '/aces/single-game/style-3' );
-		} else if ($game_style == 6) {
-			get_template_part( '/aces/single-game/style-3-without-sidebar' );
-		} else if ($game_style == 7) {
-			get_template_part( '/theme-parts/single-empty' );
-		} else if ($game_style == 8) {
-			get_template_part( '/theme-parts/single-empty-sidebar' );
-		} else {
-			get_template_part( '/aces/single-game/style-1' );
-		}
+		// if ($game_style == 2) {
+		// 	get_template_part( '/aces/single-game/style-1-without-sidebar' );
+		// } else if ($game_style == 3) {
+		// 	get_template_part( '/aces/single-game/style-2' );
+		// } else if ($game_style == 4) {
+		// 	get_template_part( '/aces/single-game/style-2-without-sidebar' );
+		// } else if ($game_style == 5) {
+		// 	get_template_part( '/aces/single-game/style-3' );
+		// } else if ($game_style == 6) {
+		// 	get_template_part( '/aces/single-game/style-3-without-sidebar' );
+		// } else if ($game_style == 7) {
+		// 	get_template_part( '/theme-parts/single-empty' );
+		// } else if ($game_style == 8) {
+		// 	get_template_part( '/theme-parts/single-empty-sidebar' );
+		// } else {
+		// 	get_template_part( '/aces/single-game/style-1' );
+		// }
 
 	} elseif ( is_singular( 'bonus' ) ) {
 		get_template_part('/theme-parts/content', 'bonus');
