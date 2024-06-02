@@ -983,7 +983,7 @@ function ud_custon_fields() {
 
     $shortcodes_codex = "You can use: [print_quote text='*Text' author_name='*Author Nane'] and [author_annatation text='*Text' rating='* 0-9' author_id='int (optional)']";
 
-    Container::make('post_meta', 'App banner')
+    Container::make( 'post_meta', 'App banner')
         // ->where('post_type', '=', 'post')
         ->where('post_type', '=', 'page')
         ->or_where('post_type', '=', 'bonus')
@@ -996,10 +996,6 @@ function ud_custon_fields() {
         ));
 
     Container::make( 'post_meta', 'Content menage' )
-        // ->where('post_type', '=', 'post')
-        // ->or_where('post_type', '=', 'casino')
-        // ->or_where('post_type', '=', 'bonus')
-        // ->or_where('post_type', '=', 'page')
         ->add_fields( array(
             Field::make('complex', 'ud_post_content', __('Content'))
                 ->setup_labels($labels['sections'])
@@ -1286,7 +1282,7 @@ function ud_custon_fields() {
                 ))
         ));
 
-    Container::make('post_meta', __('Additionall settings'))   
+    Container::make( 'post_meta', __('Additionall settings'))   
         ->where('post_type', '=', 'bonus')
         ->or_where('post_type', '=', 'game')
         ->set_context('side')
@@ -1294,7 +1290,7 @@ function ud_custon_fields() {
             Field::make('text', 'casinois_sidebar_title', __('Casinois sidebar title'))
         ));
 
-    Container::make( 'term_meta', 'Content' )
+    Container::make( 'term_meta', 'Text content' )
         ->where( 'term_taxonomy', '=', 'category' )
         ->or_where( 'term_taxonomy', '=', 'game-category' )
         ->or_where( 'term_taxonomy', '=', 'casino-category' )
@@ -1302,4 +1298,291 @@ function ud_custon_fields() {
         ->add_fields(array(
             Field::make('rich_text', 'content_editor', __('Content'))
         ));
+
+    Container::make( 'term_meta', 'Content menage' )
+        ->add_fields( array(
+            Field::make('complex', 'ud_cat_content', __('Content'))
+                ->setup_labels($labels['sections'])
+                ->set_collapsed(true)
+                ->add_fields('text-editor', __('Text editor'), array(
+                    Field::make( 'separator', 'crb_separator', $shortcodes_codex ),
+                    Field::make('rich_text', 'text_editor', __('Classic editor'))
+                ))
+                ->add_fields('card-top', __('Card'), array(
+                    Field::make('checkbox', 'card_top_power', __('Display section'))
+                        ->set_default_value('yes')
+                ))
+                ->add_fields('guide', array(
+                    Field::make('image', 'guide_bg_img', __('Background'))
+                        ->set_value_type( 'url' ),
+                    Field::make('textarea', 'guide_title', __('Title'))
+                        ->help_text("<span style='color: blue;'>".__('Leave blank to use post title')."</span>"),
+                    Field::make('textarea', 'guide_desc', __('Description')),
+                    Field::make('complex', 'guide_steps', __('Steps'))
+                        ->set_collapsed(true)
+                        ->setup_labels($labels['guide'])
+                        ->add_fields(array(
+                            Field::make('text', 'g_s_title', __('Step title'))
+                                ->set_width(75),
+                            Field::make('image', 'g_s_thmb', __('Step image'))
+                                ->set_width(25),
+                            Field::make('textarea', 'g_s_txt', __('Text'))
+                        ))
+                        ->set_header_template( '
+                        <% if (g_s_title) { %>
+                            <%- g_s_title %>
+                        <% } %>    
+                        '),
+                ))
+                ->add_fields('form-reply', array(
+                    Field::make('text', 'fr_title', __('Title'))
+                        ->set_default_value('Leave a <em>reply</em>')
+                        ->set_width(75),
+                    Field::make('image', 'fr_bg', __('Bacground'))
+                        ->set_value_type('url')
+                        ->set_width(25),
+                    Field::make('textarea', 'fr_subtitle', __('Subtitle'))
+                        ->set_default_value('Your email address will not be published. Required fields are marked')
+                ))
+                ->add_fields('game-card', __('Games'), array(
+                    Field::make('text', 'gc_title', __('Title'))
+                        ->help_text("<span style='color: blue;'>".__('Leave blank to use default text (post title + "GAMES")')."</span>")
+                        ->set_width(75),
+                    Field::make('image', 'gc_bg', __('Bacground'))
+                        ->set_value_type('url')
+                        ->set_width(25),
+                    Field::make('textarea', 'gc_subtitle', __('Subtitle')),
+                    Field::make('select', 'gc_category', __('Select category'))
+                        ->add_options(ud_get_games_cats())
+                        ->set_width(33),
+                    Field::make('text', 'gs_count', __('Number of games to show'))
+                        ->set_default_value(4)
+                        ->set_attribute('type', 'number')
+                        ->set_width(33),
+                    Field::make('checkbox', 'gs_is_filter', __('Filter'))
+                        ->set_width(33),
+                ))
+                ->add_fields('game-types', array(
+                    Field::make('text', 'game_types_title', __('Title')),
+                    Field::make('textarea', 'game_types_subtitle', __('Subtitle')),
+                    Field::make('complex', 'game_types_repeater', __('Items'))
+                        ->set_collapsed(true)
+                        ->setup_labels($labels['game_types'])
+                        ->add_fields(array(
+                            Field::make('image', 'gt_icon', __('Icon'))
+                                ->set_width(25),
+                            Field::make('text', 'gt_title', __('Title'))
+                                ->set_width(75),
+                            Field::make('textarea', 'gt_desc', __('Description'))
+                        ))
+                        ->set_header_template( '
+                        <% if (gt_title) { %>
+                            <%- gt_title %>
+                        <% } %>    
+                        ')
+                ))
+                ->add_fields('games-slider', array(
+                    Field::make('text', 'gs_title', __('Title')),
+                    Field::make('textarea', 'gs_subtitle', __('Subtitle')),
+                    Field::make('multiselect', 'gs_games', __('Games'))
+                        ->add_options(get_games_options_arr())
+                ))
+                ->add_fields('casino-card', __('Casinos'), array(
+                    Field::make('text', 'cas_title', __('Title'))
+                        ->set_default_value('Top rated <em>casinos</em>')
+                        ->set_width(50),
+                    // Field::make('image', 'cas_bg', __('Bacground'))
+                    //     ->set_value_type('url')
+                    //     ->set_width(25),
+                    Field::make('textarea', 'cas_subtitle', __('Subtitle')),
+                    Field::make('multiselect', 'cas_casionois', __('Select Casinois to show'))
+                        ->add_options(ud_get_casinos_options())
+                        ->set_width(33),
+                    Field::make('text', 'cas_count', __('Number of casinos to show'))
+                        ->set_default_value(4)
+                        ->set_attribute('type', 'number')
+                        ->set_width(33),
+                    // Field::make('select', 'cas_order_by', __('Order by'))
+                    //     ->set_width(33)
+                    //     ->add_options(array(
+                    //         'date' => __('Date'),
+                    //         'name' => __('Name'),
+                    //     ))
+                ))
+                ->add_fields('faq', 'FAQ`s', array(
+                    // Field::make('checkbox', 'faq_power', __('Include FAQ'))
+                    //     ->set_default_value('yes')
+                    //     ->set_width(50),
+                    Field::make('image', 'faq_bg', __('Background'))
+                        ->set_value_type('url')
+                        ->set_width(50),
+                    Field::make('textarea', 'faq_title', __("Title"))
+                        ->set_width(50)
+                        ->set_default_value("Shave a <em>questions?</em>"),
+                    Field::make('textarea', 'faq_subtitle', __("Subtitle")),
+                    Field::make('complex', 'faq_items', __('Items'))
+                        ->set_collapsed(true)
+                        ->setup_labels($labels['faq'])
+                        ->add_fields(array(
+                            Field::make('text', 'question', __('Question')),
+                            Field::make('textarea', 'answer', __('Answer'))
+                        ))
+                        ->set_header_template( '
+                        <% if (question) { %>
+                            <%- question %>
+                        <% } %>    
+                        ')
+                ))
+                ->add_fields('author', array(
+                    Field::make('checkbox', 'au_power', __('Include author info'))
+                        ->set_default_value('yes')
+                        ->set_width(50),
+                    Field::make('image', 'ua_bg', __('Background'))
+                        ->set_value_type('url')
+                        ->set_width(50),
+                    // Field::make('image', 'au_main_img', __('Main image'))
+                    //     ->set_value_type('url')
+                    //     ->help_text("<span style='color: blue;'>".__('Leave blank to use default image:')."<img width='50' src='".get_stylesheet_directory_uri()."/assets/images/author/picture.svg'></span>")
+                    //     ->set_width(33),
+                ))
+                ->add_fields('benefits',array(
+                    Field::make('text', 'benefits_title', __('Title'))
+                        ->set_width(75),
+                    Field::make('image', 'benefits_bg', __('Background'))
+                        ->set_width(25)
+                        ->set_value_type( 'url' ),
+                    Field::make('textarea', 'benefits_subtitle', __('Subtitle')),
+                    Field::make('text', 'advantages_title', __('Advantages list title'))
+                        ->set_width(50)
+                        ->set_default_value('Pros casino'),
+                    Field::make('text', 'flaws_title', __('Flaws list title'))
+                        ->set_width(50)
+                        ->set_default_value('Cons casino'),
+                    Field::make('complex', 'benefits_advantages', __('Advantages'))
+                        ->setup_labels($labels['advantages'])
+                        ->set_collapsed(true)
+                        ->set_width(50)
+                        ->add_fields(array(
+                            Field::make('text', 'b_adv', __('Advantage'))
+                        ))
+                        ->set_header_template( '
+                        <% if (b_adv) { %>
+                            <%- b_adv %>
+                        <% } %>    
+                        '),
+                    Field::make('complex', 'benefits_flaws', __('Flaws'))
+                        ->setup_labels($labels['flaws'])
+                        ->set_collapsed(true)
+                        ->set_width(50)
+                        ->add_fields(array(
+                            Field::make('text', 'b_flaw', __('Flaw'))
+                        ))
+                        ->set_header_template( '
+                        <% if (b_flaw) { %>
+                            <%- b_flaw %>
+                        <% } %>    
+                        ')
+                ))
+                ->add_fields('bandit', __('Simple image->text section'), array(
+                    Field::make('image', 'bandit_main_img', __('Image'))
+                        ->help_text("<span style='color: blue;'>".__('Leave blank to use default image:')."<img width='50' src='".get_stylesheet_directory_uri()."/assets/images/section/bandit.svg'></span>")
+                        ->set_width(25),
+                    Field::make('image', 'bandit_main_img_bg', __('Backgrownd for image'))
+                        ->set_value_type('url')
+                        ->set_width(25),
+                    Field::make('select', 'bandit_style_type', __('Style'))
+                        ->set_width(25)
+                        ->add_options(array(
+                            'image_right'   => __('Picture on the rigth'),
+                            'image_left'    => __('Picture on the left')
+                        )),
+                    Field::make('checkbox', 'bandit_fill_area', __('Fill area'))
+                        ->set_width(25),
+                    Field::make('text', 'bandit_title', __('Title'))
+                        ->set_width(75),
+                    Field::make('textarea', 'bandit_subtitle', __('Subtitle'))
+                ))
+                ->add_fields('tags', array(
+                    Field::make('checkbox', 'tags_power', __('Display tags'))
+                    ->set_default_value('yes')
+                    ->set_width(20),
+                    Field::make('text', 'tags_title', __('Title'))
+                        ->help_text("<span style='color: blue;'>".__('Leave blank to use default text (post title + "DETAILS")')."</span>")
+                        ->set_width(40),
+                    Field::make('textarea', 'tags_subtitle', __('Subitle'))
+                        ->set_width(40)
+                        ->help_text("<span style='color: blue;'>".__('Leave blank to use excerpt text')."</span>")
+                ))
+                ->add_fields('rating-card', __('Rating'), array(
+                    Field::make('checkbox', 'rating_power', __('Display rating'))
+                        ->set_default_value('yes')
+                        ->set_width(50),
+                    Field::make('checkbox', 'rating_games', __('Show game ratings'))
+                        ->set_width(50),
+                    Field::make('textarea', 'rating_games_title', __('Title section'))
+                        ->set_rows(2)
+                        ->set_conditional_logic( array(
+                            array(
+                                'field' => 'rating_games',
+                                'value' => true,
+                                'compare' => '=',
+                            )
+                        ) ),
+                    Field::make('textarea', 'rating_games_subtitle', __('Subtitle'))
+                        ->set_conditional_logic( array(
+                            array(
+                                'field' => 'rating_games',
+                                'value' => true,
+                                'compare' => '=',
+                            )
+                        ) ),
+                    Field::make('multiselect', 'rating_posts_list', __('Games'))
+                        ->add_options(get_games_options_arr())
+                        ->set_conditional_logic( array(
+                            array(
+                                'field' => 'rating_games',
+                                'value' => true,
+                                'compare' => '=',
+                            )
+                        ) )
+                ))
+                ->add_fields('bonus-card', __('Bonuses'), array(
+                    Field::make('checkbox', 'bonuses_power', __('Display bonuses'))
+                        ->set_default_value('yes')
+                        ->set_width(25),
+                    Field::make('checkbox', 'bonuses_filter_on', __('Filter'))
+                        ->set_default_value('yes')
+                        ->set_width(25),
+                    Field::make('select', 'bonuses_parent', __('Include'))
+                        ->add_options(array(
+                            'all'       => 'All',
+                            'children'  => 'Children',
+                            'curent'    => 'Curent category'
+                        ))
+                        ->set_width(25),
+                    Field::make('text', 'bonuses_count', __('Number of bonuses to show'))
+                        ->set_default_value(3)
+                        ->set_attribute('type', 'number')
+                        ->set_width(25),
+                    Field::make('text', 'bonuses_title', __('Title'))
+                        ->set_width(50)
+                        ->help_text("<span style='color: blue;'>".__('Leave blank to use default text (post title + "BONUSES")')."</span>"),
+                    Field::make('textarea', 'bonuses_subtitle', __('Subtitle'))
+                        ->set_width(50)
+                        ->help_text("<span style='color: blue;'>".__('Leave blank to use excerpt text')."</span>"),
+                ))
+                ->add_fields('advantages', array(
+                    Field::make('text', 'adv_title', __('Title')),
+                    Field::make('textarea', 'adv_subtitle', __('Subtitle')),
+                    Field::make('complex', 'adv_list', __('Advantage list'))
+                        ->set_collapsed(true)
+                        ->setup_labels($labels['advantages'])
+                        ->add_fields(array(
+                            Field::make('textarea', 'adv_item_txt', __('Description'))
+                                ->set_width(75),
+                            Field::make('image', 'adv_item_img', __('Thumbnail'))
+                                ->set_width(25)
+                        ))
+                ))
+        ));    
 }

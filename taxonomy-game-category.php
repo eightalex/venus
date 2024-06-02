@@ -1,7 +1,8 @@
 <?php
 
 $ID 			= get_queried_object()->term_id;
-$custom_content = carbon_get_term_meta($ID, 'content_editor');
+$content_editor = carbon_get_term_meta($ID, 'content_editor');
+$content 		= carbon_get_term_meta($ID, 'ud_cat_content');
 
 get_header();
 
@@ -14,9 +15,17 @@ if($tags){
 	get_template_part("/theme-parts/modules/tags", "list", ["tags" => $tags]);
 }
 
-if(!empty($custom_content)){
-	$part = ['text_editor' => $custom_content];
+if(!empty($content_editor)){
+	$part = ['text_editor' => $content_editor];
 	get_template_part("/theme-parts/modules/text-editor", "", ["id" => $ID, "content"=>$part]);
+}
+
+if(!empty($content)){
+	foreach($content as $part){
+		$part_tmpl = $part['_type'];
+		
+		get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part, "post_type" => 'page']);
+	}
 }
 
 get_footer(); 
