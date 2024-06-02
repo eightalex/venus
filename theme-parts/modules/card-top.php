@@ -11,6 +11,7 @@ $rating                 = floatval(get_post_meta($id, "{$post_type}_overall_rati
 $detailed_tc            = get_post_meta( $id, "{$post_type}_detailed_tc", true );
 $button_notice          = get_post_meta( $id, "{$post_type}_button_notice", true );
 $restricted_countries   = wp_get_post_terms($id, 'restricted-country');
+$review_btn_txt         = !empty(get_option('casinos_read_review_title'))?get_option('casinos_read_review_title'): "Read Review";
 // $has_country            = apply_filters('ud_has_object_with_property',$restricted_countries, 'name', 'Ukraine');
 // $has_country_str        = $has_country? __("Users from Ukraine accepted"): __("Users from Ukraine are not accepted");
 ?>
@@ -47,7 +48,7 @@ $restricted_countries   = wp_get_post_terms($id, 'restricted-country');
             endif;
             ?>
             <div class="card-top__cta">
-                <button class="card-top__button button">Betalingsmåter</button>
+                <button class="card-top__button button"><?php echo $review_btn_txt?></button>
                 <?php
                 if(!empty($button_notice)):
                 ?>

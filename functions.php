@@ -32,7 +32,7 @@ function crb_load() {
 }
 
 // CUSTOM ACTIONS
-add_action('init', 'ud_register_post_types');
+// add_action('init', 'ud_register_post_types');
 function ud_register_post_types(){
     register_post_type('faq', [
         'label' => null,
@@ -130,12 +130,13 @@ add_filter('ud_print_single_game', 'ud_print_single_game');
 function ud_print_single_game(array $data){
     extract($data);
 
-    $img_src    = $g_img_data['src'];
-    $img_alt    = $g_img_data['alt'];
-    $desc       = "";
-    $ext_lnk    = "";
-    $bn         = "";
-    $unt_d      = "";
+    $img_src        = $g_img_data['src'];
+    $img_alt        = $g_img_data['alt'];
+    $desc           = "";
+    $ext_lnk        = "";
+    $bn             = "";
+    $unt_d          = "";
+    $play_btn_txt   = !empty(get_option('games_play_now_title'))? get_option('games_play_now_title'): 'Play now';
 
     if(!empty($short_desc)){
         $desc = "<div class='game-card__subtitle'>
@@ -145,7 +146,7 @@ function ud_print_single_game(array $data){
 
     if(!empty($external_link)){
         $ext_lnk = "<div class='game-card__cta'>
-                        <a href='{$external_link}' class='game-card__button button'>Play now</a>
+                        <a href='{$external_link}' class='game-card__button button'>$play_btn_txt</a>
                     </div>";
     }
 
@@ -465,6 +466,7 @@ function ud_get_taxs($type, $id){
             'casino-est'            => 'Established',
         ];
 
+        // get_option('casinos_software_title')
         foreach($necessary_taxs as $tax_slug => $tax_name){
             $tax = wp_get_post_terms($id, $tax_slug);
 
@@ -482,12 +484,34 @@ function ud_get_taxs($type, $id){
 
 add_filter('ud_get_post_ratings', 'ud_get_post_ratings', 10, 2);
 function ud_get_post_ratings($type, $id){
+    $rating_1_name          = !empty(get_option('rating_1'))? get_option('rating_1'): "Trust & Fairness";
+    $rating_2_name          = !empty(get_option('rating_2'))? get_option('rating_2'): "Games & Software";
+    $rating_3_name          = !empty(get_option('rating_3'))? get_option('rating_3'): "Bonuses & Promotions";
+    $rating_4_name          = !empty(get_option('rating_4'))? get_option('rating_4'): "Customer Support";
+    $rating_overall_name    = !empty(get_option('rating_overall'))? get_option('rating_overall'): "Overall Rating";
+    
     $out = [
-        'Overall rating'        => floatval(get_post_meta($id, "{$type}_overall_rating", true)),
-        'Trust & Fairness'      => floatval(get_post_meta($id, "{$type}_rating_trust", true)),
-        'Bonuses & Promotions'  => floatval(get_post_meta($id, "{$type}_rating_bonus", true)),
-        'Games & Software'      => floatval(get_post_meta($id, "{$type}_rating_games", true)),
-        'Customer Support'      => floatval(get_post_meta($id, "{$type}_rating_customer", true)),
+        'overall'   => [
+                            'val'  => floatval(get_post_meta($id, "{$type}_overall_rating", true)),
+                            'name' => $rating_overall_name
+                        ],
+
+        'trust'     => [
+                            'val'  => floatval(get_post_meta($id, "{$type}_rating_trust", true)),
+                            'name' => $rating_1_name
+                        ],
+        'games'     => [
+                            'val'  => floatval(get_post_meta($id, "{$type}_rating_games", true)),
+                            'name' => $rating_2_name
+                        ],
+        'bonus'     => [
+                            'val'  => floatval(get_post_meta($id, "{$type}_rating_bonus", true)),
+                            'name' => $rating_3_name
+                        ],                        
+        'customer'     => [
+                            'val'  => floatval(get_post_meta($id, "{$type}_rating_customer", true)),
+                            'name' => $rating_4_name
+                        ],
     ];
 
     return $out;
@@ -565,8 +589,6 @@ function ud_get_bonuses($atts){
  *  'desc',
  *  'permalink',
  *  'external_link',
- *  'lnk_btn_txt' (link btn text)(opt),
- *  'ex_lnk_btn_txt' (external link btn text)(opt),
  *  'item_class' (opt)
  * ]
  */
@@ -576,8 +598,8 @@ function print_single_casino_template($data = []){
 
     $desc_html          = "";
     $external_link_html = "";
-    $lb_txt             = isset($lnk_btn_txt)? $lnk_btn_txt: 'Read review';
-    $elb_txt            = isset($ex_lnk_btn_txt)? $ex_lnk_btn_txt: 'Play now';
+    $lb_txt             = !empty(get_option('casinos_read_review_title'))? get_option('casinos_read_review_title'): 'Read review';
+    $elb_txt            = !empty(get_option('casinos_play_now_title'))? get_option('casinos_play_now_title'): 'Play now';
     $add_class          = isset($item_class)? $item_class: '';
 
     if(isset($desc) && !empty($desc)){
@@ -639,6 +661,7 @@ function print_single_bonus_card(array $data){
     $external        = "";
     $bn              = "";
     $detailed_tc     = "";$tax_info        = "";
+    $btn_txt         = !empty(get_option('bonuses_get_bonus_title'))? get_option('bonuses_get_bonus_title'): "Get Bonus";
 
     if(!empty($bonus_code) && !empty($bonus_valid_date)):
         $ds = strtotime($bonus_valid_date);
@@ -660,7 +683,7 @@ function print_single_bonus_card(array $data){
 
     if(!empty($external_link)):
         $external ="<div class='bonus-card__cta'>
-                        <a href='$external_link' target='__blank'  class='bonus-card__button button'>Play now</a>
+                        <a href='$external_link' target='__blank'  class='bonus-card__button button'>{$btn_txt}</a>
                     </div>";
     endif;
 
@@ -827,7 +850,7 @@ function get_games_options_arr(){
     $games = apply_filters('ud_get_games', ['items_number' => -1]);
 
     $out = [
-        '' => __('Choice games'),
+        '' => __('Select games'),
     ];
 
     if($games['res']->have_posts()){
@@ -917,7 +940,7 @@ function ud_get_casinos_options(){
         ''=>'Select items',
     ];
     foreach($casinois_q->posts as $casino){
-        $rat = apply_filters('ud_get_post_ratings', 'casino', $casino->ID)['Overall rating'];
+        $rat = apply_filters('ud_get_post_ratings', 'casino', $casino->ID)['overall']['val'];
         $out[$casino->ID] = $casino->post_title ." ( {$rat} )" ;
     }
     return $out;
