@@ -17,7 +17,7 @@ function filter_submenu_classes( $classes, $args ) {
 add_filter( 'nav_menu_submenu_css_class', 'filter_submenu_classes', 10, 3 );
 
 function venus_scripts() {
-    wp_enqueue_style('my_custom_style', get_stylesheet_directory_uri().'/styles/index.css');
+    wp_enqueue_style('my_custom_style', get_stylesheet_directory_uri().'/styles/index.css', array(), filemtime(get_stylesheet_directory().'/styles/index.css'));
     wp_enqueue_style('swiper_style', get_stylesheet_directory_uri().'/scripts/libs/swiper-bundle.min.css');
     wp_enqueue_script('swiper_js', get_theme_file_uri( '/scripts/libs/swiper-bundle.min.js' ), array( 'jquery' ), $GLOBALS['mercury_version'], true );
     wp_enqueue_script('app', get_theme_file_uri( '/scripts/app.js' ), array( 'jquery' ), $GLOBALS['mercury_version'], true );
@@ -489,7 +489,7 @@ function ud_get_post_ratings($type, $id){
     $rating_3_name          = !empty(get_option('rating_3'))? get_option('rating_3'): "Bonuses & Promotions";
     $rating_4_name          = !empty(get_option('rating_4'))? get_option('rating_4'): "Customer Support";
     $rating_overall_name    = !empty(get_option('rating_overall'))? get_option('rating_overall'): "Overall Rating";
-    
+
     $out = [
         'overall'   => [
                             'val'  => floatval(get_post_meta($id, "{$type}_overall_rating", true)),
@@ -507,7 +507,7 @@ function ud_get_post_ratings($type, $id){
         'bonus'     => [
                             'val'  => floatval(get_post_meta($id, "{$type}_rating_bonus", true)),
                             'name' => $rating_3_name
-                        ],                        
+                        ],
         'customer'     => [
                             'val'  => floatval(get_post_meta($id, "{$type}_rating_customer", true)),
                             'name' => $rating_4_name
@@ -995,7 +995,7 @@ function ud_custon_fields() {
                 ->set_width(25),
         ));
 
-    Container::make( 'post_meta', 'Content menage' )
+    Container::make( 'post_meta', 'Content manage' )
         ->add_fields( array(
             Field::make('complex', 'ud_post_content', __('Content'))
                 ->setup_labels($labels['sections'])
@@ -1034,7 +1034,7 @@ function ud_custon_fields() {
                     Field::make('text', 'fr_title', __('Title'))
                         ->set_default_value('Leave a <em>reply</em>')
                         ->set_width(75),
-                    Field::make('image', 'fr_bg', __('Bacground'))
+                    Field::make('image', 'fr_bg', __('Background'))
                         ->set_value_type('url')
                         ->set_width(25),
                     Field::make('textarea', 'fr_subtitle', __('Subtitle'))
@@ -1044,7 +1044,7 @@ function ud_custon_fields() {
                     Field::make('text', 'gc_title', __('Title'))
                         ->help_text("<span style='color: blue;'>".__('Leave blank to use default text (post title + "GAMES")')."</span>")
                         ->set_width(75),
-                    Field::make('image', 'gc_bg', __('Bacground'))
+                    Field::make('image', 'gc_bg', __('Background'))
                         ->set_value_type('url')
                         ->set_width(25),
                     Field::make('textarea', 'gc_subtitle', __('Subtitle')),
@@ -1087,11 +1087,11 @@ function ud_custon_fields() {
                     Field::make('text', 'cas_title', __('Title'))
                         ->set_default_value('Top rated <em>casinos</em>')
                         ->set_width(50),
-                    // Field::make('image', 'cas_bg', __('Bacground'))
+                    // Field::make('image', 'cas_bg', __('Background'))
                     //     ->set_value_type('url')
                     //     ->set_width(25),
                     Field::make('textarea', 'cas_subtitle', __('Subtitle')),
-                    Field::make('multiselect', 'cas_casionois', __('Select Casinois to show'))
+                    Field::make('multiselect', 'cas_casionois', __('Select Casinos to show'))
                         ->add_options(ud_get_casinos_options())
                         ->set_width(33),
                     Field::make('text', 'cas_count', __('Number of casinos to show'))
@@ -1183,13 +1183,13 @@ function ud_custon_fields() {
                     Field::make('image', 'bandit_main_img', __('Image'))
                         ->help_text("<span style='color: blue;'>".__('Leave blank to use default image:')."<img width='50' src='".get_stylesheet_directory_uri()."/assets/images/section/bandit.svg'></span>")
                         ->set_width(25),
-                    Field::make('image', 'bandit_main_img_bg', __('Backgrownd for image'))
+                    Field::make('image', 'bandit_main_img_bg', __('Background for image'))
                         ->set_value_type('url')
                         ->set_width(25),
                     Field::make('select', 'bandit_style_type', __('Style'))
                         ->set_width(25)
                         ->add_options(array(
-                            'image_right'   => __('Picture on the rigth'),
+                            'image_right'   => __('Picture on the right'),
                             'image_left'    => __('Picture on the left')
                         )),
                     Field::make('checkbox', 'bandit_fill_area', __('Fill area'))
@@ -1205,7 +1205,7 @@ function ud_custon_fields() {
                     Field::make('text', 'tags_title', __('Title'))
                         ->help_text("<span style='color: blue;'>".__('Leave blank to use default text (post title + "DETAILS")')."</span>")
                         ->set_width(40),
-                    Field::make('textarea', 'tags_subtitle', __('Subitle'))
+                    Field::make('textarea', 'tags_subtitle', __('Subtitle'))
                         ->set_width(40)
                         ->help_text("<span style='color: blue;'>".__('Leave blank to use excerpt text')."</span>")
                 ))
@@ -1253,7 +1253,7 @@ function ud_custon_fields() {
                         ->add_options(array(
                             'all'       => 'All',
                             'children'  => 'Children',
-                            'curent'    => 'Curent category'
+                            'curent'    => 'Current category'
                         ))
                         ->set_width(25),
                     Field::make('text', 'bonuses_count', __('Number of bonuses to show'))
@@ -1282,12 +1282,12 @@ function ud_custon_fields() {
                 ))
         ));
 
-    Container::make( 'post_meta', __('Additionall settings'))   
+    Container::make( 'post_meta', __('Additional settings'))
         ->where('post_type', '=', 'bonus')
         ->or_where('post_type', '=', 'game')
         ->set_context('side')
         ->add_fields(array(
-            Field::make('text', 'casinois_sidebar_title', __('Casinois sidebar title'))
+            Field::make('text', 'casinois_sidebar_title', __('Casinos sidebar title'))
         ));
 
     Container::make( 'term_meta', 'Text content' )
@@ -1299,7 +1299,7 @@ function ud_custon_fields() {
             Field::make('rich_text', 'content_editor', __('Content'))
         ));
 
-    Container::make( 'term_meta', 'Content menage' )
+    Container::make( 'term_meta', 'Content manage' )
         ->add_fields( array(
             Field::make('complex', 'ud_cat_content', __('Content'))
                 ->setup_labels($labels['sections'])
@@ -1338,7 +1338,7 @@ function ud_custon_fields() {
                     Field::make('text', 'fr_title', __('Title'))
                         ->set_default_value('Leave a <em>reply</em>')
                         ->set_width(75),
-                    Field::make('image', 'fr_bg', __('Bacground'))
+                    Field::make('image', 'fr_bg', __('Background'))
                         ->set_value_type('url')
                         ->set_width(25),
                     Field::make('textarea', 'fr_subtitle', __('Subtitle'))
@@ -1348,7 +1348,7 @@ function ud_custon_fields() {
                     Field::make('text', 'gc_title', __('Title'))
                         ->help_text("<span style='color: blue;'>".__('Leave blank to use default text (post title + "GAMES")')."</span>")
                         ->set_width(75),
-                    Field::make('image', 'gc_bg', __('Bacground'))
+                    Field::make('image', 'gc_bg', __('Background'))
                         ->set_value_type('url')
                         ->set_width(25),
                     Field::make('textarea', 'gc_subtitle', __('Subtitle')),
@@ -1391,11 +1391,11 @@ function ud_custon_fields() {
                     Field::make('text', 'cas_title', __('Title'))
                         ->set_default_value('Top rated <em>casinos</em>')
                         ->set_width(50),
-                    // Field::make('image', 'cas_bg', __('Bacground'))
+                    // Field::make('image', 'cas_bg', __('Background'))
                     //     ->set_value_type('url')
                     //     ->set_width(25),
                     Field::make('textarea', 'cas_subtitle', __('Subtitle')),
-                    Field::make('multiselect', 'cas_casionois', __('Select Casinois to show'))
+                    Field::make('multiselect', 'cas_casionois', __('Select Casinos to show'))
                         ->add_options(ud_get_casinos_options())
                         ->set_width(33),
                     Field::make('text', 'cas_count', __('Number of casinos to show'))
@@ -1557,7 +1557,7 @@ function ud_custon_fields() {
                         ->add_options(array(
                             'all'       => 'All',
                             'children'  => 'Children',
-                            'curent'    => 'Curent category'
+                            'curent'    => 'Current category'
                         ))
                         ->set_width(25),
                     Field::make('text', 'bonuses_count', __('Number of bonuses to show'))
@@ -1584,5 +1584,5 @@ function ud_custon_fields() {
                                 ->set_width(25)
                         ))
                 ))
-        ));    
+        ));
 }
