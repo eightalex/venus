@@ -1556,7 +1556,8 @@ body {
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
-    border-radius: 16px; }
+    border-radius: 16px;
+    background-color: #fff; }
     .casino-card__image img {
       object-fit: contain;
       width: 100%;
