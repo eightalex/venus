@@ -946,12 +946,6 @@ function ud_get_casinos_options(){
     return $out;
 }
 
-function remove_search_form_placeholder($form) {
-    $form = str_replace('placeholder="', 'placeholder=""', $form);
-    return $form;
-}
-add_filter('get_search_form', 'remove_search_form_placeholder');
-
 // CUSTOM FIELDS
 add_action( 'carbon_fields_register_fields', 'ud_custon_fields' );
 
