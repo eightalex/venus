@@ -6,6 +6,12 @@
     <meta name="viewport"
           id="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, user-scalable=yes"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600&family=Montserrat:ital,wght@0,600;0,700;0,800;1,500&family=Ubuntu&display=swap" rel="stylesheet">      
     <?php wp_head(); ?>
 </head>
 <body ontouchstart <?php body_class(); ?>>
