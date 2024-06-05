@@ -58,12 +58,9 @@ $games              = $content['gs_games'];
                                             <div class="slot__header">
                                                 <div class="slot__title"><?php echo get_the_title($game)?></div>
                                                 <div class="slot__rating-mobile">
-                                                    <!-- START: Зробити новий блок rating-mobile -->
-                                                    <!-- Та використати його в game-rating блоці -->
                                                     <div class="rating-mobile" data-rating="<?php echo $rating?>">
                                                         <img src="../assets/images/icons/star.svg" alt="star">
                                                     </div>
-                                                    <!-- END: Зробити новий блок rating-mobile -->
                                                 </div>
                                             </div>
                                             <div class="slot__rating">

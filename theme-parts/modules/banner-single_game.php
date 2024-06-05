@@ -25,11 +25,9 @@ get_template_part('/theme-parts/modules/breadcrumbs');
                     <div class="banner-casino__header">
                         <div class="banner-casino__title"><?php echo get_the_title($id)?></div>
                         <div class="banner-casino__rating">
-                            <!-- START: Такий блок вже є, але додано rating-mobile_inverted -->
                             <div class="rating-mobile rating-mobile_inverted" data-rating="<?php echo $rat?>">
                                 <img src="<?php echo get_stylesheet_directory_uri().'/assets/images/icons/star.svg'?>" alt="star">
                             </div>
-                            <!-- END: Такий блок вже є -->
                         </div>
                     </div>
                     <?php

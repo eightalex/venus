@@ -49,20 +49,17 @@
     grid-area: rating;
     display: flex;
     align-items: center;
-    gap: 8px;
     margin-top: 12px;
     margin-bottom: 24px;
     width: 100%;
-    height: 24px;
+  }
 
-    span {
-      display: inline-flex;
-      flex-shrink: 0;
-      width: 24px;
-      height: 24px;
-      background-image: url("#{$images-url}/icons/star.svg");
-      background-size: contain;
-    }
+  #{$this} &__rating-mobile {
+    display: none;
+  }
+
+  &__rating-desktop {
+    display: flex;
   }
 
   &__subtitle {
@@ -73,6 +70,10 @@
     font-style: normal;
     font-weight: 400;
     line-height: 128%; /* 20.48px */
+
+    a {
+      color: inherit;
+    }
   }
 
   &__cta {
@@ -137,23 +138,12 @@
       margin-top: 24px;
     }
 
-    &__rating {
-      gap: 12px;
+    #{$this} &__rating-mobile {
+      display: flex;
+    }
 
-      span:not(:first-child) {
-        display: none;
-      }
-
-      &::after {
-        content: "(" attr(data-rating) ")";
-        display: inline-flex;
-        color: #fff;
-        font-family: Hind, sans-serif;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 128%; /* 20.48px */
-      }
+    &__rating-desktop {
+      display: none;
     }
   }
 }
