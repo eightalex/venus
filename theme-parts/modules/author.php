@@ -3,7 +3,6 @@ extract($args);
 
 // $gc_bg = !empty($content['gc_bg'])? $content['gc_bg']: get_stylesheet_directory_uri()."/assets/images/section/bg3.jpeg";
 $author_id = get_post_field ('post_author', $id);
-// $author_mata = get_user_meta($author_id);
 if($content['au_power']):
 
 $author             = apply_filters('ud_get_author_infos', $author_id);

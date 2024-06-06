@@ -116,11 +116,13 @@ function ud_get_file_data($attach_id, $size = 'thumbnal'){
 
 add_filter('ud_get_author_infos', 'ud_get_author_infos');
 function ud_get_author_infos($author_id){
+    $ava_id     = get_user_meta($author_id, 'wp_user_avatar', true);
+    $ava_data   = apply_filters('ud_get_file_data', $ava_id);
     $infos = [
         'firs_name'          => get_user_meta($author_id, 'first_name', true),
         'last_name'          => get_user_meta($author_id, 'last_name', true),
         'desc'               => get_user_meta($author_id, 'description', true),
-        'ava_url'            => get_user_meta($author_id, 'sabox-profile-image', true)
+        'ava_url'            => $ava_data['src'] //get_user_meta($author_id, 'sabox-profile-image', true)
     ];
 
     return $infos;
