@@ -3183,3 +3183,82 @@ body {
         padding: 16px; }
       .banner-casino__title {
         font-size: 36px; } }
+
+.page-404 {
+  display: grid;
+  grid-column-gap: 120px;
+  grid-template-areas: "title image" "content image" "button image";
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  min-height: calc(100vh - 790px); }
+  .page-404__title {
+    grid-area: title;
+    width: 100%;
+    max-width: 486px; }
+    .page-404__title img {
+      width: 100%; }
+  .page-404__content {
+    grid-area: content;
+    margin-top: 17px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+  .page-404__subtitle {
+    color: #e3f666;
+    font-family: Montserrat, sans-serif;
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    text-transform: uppercase; }
+  .page-404__text {
+    margin-top: 6px;
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    text-transform: uppercase; }
+    .page-404__text em {
+      color: #e3f666;
+      font-style: normal;
+      font-weight: 800; }
+  .page-404__description {
+    margin-top: 20px;
+    color: #9197af;
+    font-family: Hind, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal; }
+  .page-404__button {
+    grid-area: button;
+    margin-top: 32px;
+    width: 100%;
+    max-width: 352px; }
+  .page-404__image {
+    grid-area: image;
+    width: 409px;
+    height: 536px; }
+    .page-404__image img {
+      object-fit: contain;
+      width: 100%;
+      height: 100%; }
+  @media (max-width: 1024px) {
+    .page-404__image {
+      display: none; } }
+  @media (max-width: 768px) {
+    .page-404 {
+      grid-template-areas: "title title" "content image" "button button";
+      grid-column-gap: 10px; }
+      .page-404__image {
+        display: block;
+        width: 140px;
+        height: 183px; }
+      .page-404__text {
+        font-size: 24px; } }
+  @media (max-width: 374px) {
+    .page-404__image {
+      display: none; } }
