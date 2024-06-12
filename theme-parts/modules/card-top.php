@@ -4,6 +4,7 @@ extract($args);
 if(!$content['card_top_power']){
     return;
 }
+
 $featured_id            = get_post_thumbnail_id();
 $featured_data          = apply_filters('ud_get_file_data', $featured_id);
 $short_desc             = get_post_meta( $id, "{$post_type}_short_desc", true );

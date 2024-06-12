@@ -77,9 +77,7 @@ $offer_detailed_tc  = get_post_meta($id, 'offer_detailed_tc', true);
                         </div>
                     </footer>
                 </div>
-                <?php
-                if(!empty($bonus_code)):
-                    ?>
+
                     <div class="banner-author__bonus">
                         <div class="bonus-widget">
                             <div class="bonus-widget__header">
@@ -87,18 +85,33 @@ $offer_detailed_tc  = get_post_meta($id, 'offer_detailed_tc', true);
                                     <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/gift.svg' ?>" alt="gift">
                                 </div>
                                 <div class="bonus-widget__heading">
-                                    <div class="bonus-widget__subtitle"><?php echo __('Bonus code') ?>:</div>
-                                    <div class="bonus-widget__title"><?php echo $bonus_code?></div>
-                                    <div class="bonus-widget__date"><?php echo __('Valid Until')?>: <?php echo $bonus_v_d_m?></div>
+                                    <?php
+                                    if(!empty($bonus_code)):
+                                        ?>
+                                        <div class="bonus-widget__subtitle"><?php echo __('Bonus code') ?>:</div>
+                                        <div class="bonus-widget__title"><?php echo $bonus_code?></div>
+                                        <?php
+                                    endif;
+
+                                    if(!empty($bonus_v_d_m)):
+                                        ?>
+                                        <div class="bonus-widget__date"><?php echo __('Valid Until')?>: <?php echo $bonus_v_d_m?></div>
+                                        <?php
+                                    endif;
+                                    ?>
                                 </div>
                             </div>
                             <div class="bonus-widget__content">
+                                <?php
+                                if(!empty($external_link)):
+                                ?>
                                 <a href="<?php echo $external_link?>" class="bonus-widget__button button"><?php echo __('Get bonus')?></a>
                                 <?php
-                                if(!empty($button_notice)):
-                                    ?>
-                                    <span><?php echo __($button_notice)?></span>
-                                    <?php
+                                    if(!empty($button_notice)):
+                                        ?>
+                                        <span><?php echo __($button_notice)?></span>
+                                        <?php
+                                    endif;
                                 endif;
                                 ?>
                             </div>
@@ -113,9 +126,7 @@ $offer_detailed_tc  = get_post_meta($id, 'offer_detailed_tc', true);
                             ?>
                         </div>
                     </div>
-                    <?php
-                endif;
-                ?>
+
             </div>
         </div>
     </div>

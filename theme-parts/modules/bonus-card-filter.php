@@ -52,6 +52,7 @@ $def_url = get_the_permalink();
                                 'bonus_valid_date'  => get_post_meta($b_id, 'bonus_valid_date', true),
                                 'tax'               => !empty($taxs)? $taxs[0]->name: '',
                             ];
+
                             
                             echo apply_filters('print_single_bonus_card', $data);
                         endwhile;

@@ -11,6 +11,8 @@ $tags 	= apply_filters('ud_get_tax_posts_tags', $posts);
 ?>
 
 <?php 
+get_template_part('/theme-parts/modules/breadcrumbs');
+
 if($tags){
 	get_template_part("/theme-parts/modules/tags", "list", ["tags" => $tags]);
 }
