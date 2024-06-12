@@ -2,6 +2,7 @@
 extract($args);
 
 $post_type = get_post_type($id);
+$current_id = $id;
 
 $args_arr = [
     'items_number'  => $content['bonuses_count']
@@ -62,8 +63,9 @@ $title_section      = !empty($content['bonuses_title'])? $content['bonuses_title
                             'tax'               => !empty($taxs)? $taxs[0]->name: '',
 
                         ];
-                        
-                        echo apply_filters('print_single_bonus_card', $data);
+                        if($current_id !== $b_id){
+                            echo apply_filters('print_single_bonus_card', $data);
+                        }
                     endwhile;
                     ?>
                 </div>

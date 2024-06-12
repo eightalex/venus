@@ -1297,6 +1297,20 @@ function ud_custon_fields() {
             Field::make('text', 'casinois_sidebar_title', __('Casinos sidebar title'))
         ));
 
+    Container::make( 'term_meta', 'App banner')
+        ->where( 'term_taxonomy', '=', 'category' )
+        ->or_where( 'term_taxonomy', '=', 'game-category' )
+        ->or_where( 'term_taxonomy', '=', 'casino-category' )
+        ->or_where( 'term_taxonomy', '=', 'bonus-category' )
+        ->add_fields(array(
+            Field::make('separator', 'hjfdcjydt', __('Main banner')),
+            Field::make('text', 'app_banner_txt', __('Title'))
+                ->help_text("<span style='color: blue;'>".__('Leave blank to use post title')."</span>")
+                ->set_width(75),
+            Field::make('image', 'app_banner_img', __('Image'))
+                ->set_width(25),
+        ));
+    
     Container::make( 'term_meta', 'Text content' )
         ->where( 'term_taxonomy', '=', 'category' )
         ->or_where( 'term_taxonomy', '=', 'game-category' )

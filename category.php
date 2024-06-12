@@ -1,6 +1,8 @@
 <?php
 
 $ID 			= get_queried_object()->term_id;
+$app_banner_img	= carbon_get_term_meta($ID, 'app_banner_img');
+$app_banner_txt	= carbon_get_term_meta($ID, 'app_banner_txt');
 $custom_content = carbon_get_term_meta($ID, 'content_editor');
 $content 		= carbon_get_term_meta($ID, 'ud_cat_content');
 
@@ -11,7 +13,8 @@ $tags 	= apply_filters('ud_get_tax_posts_tags', $posts);
 ?>
 
 <?php 
-get_template_part('/theme-parts/modules/breadcrumbs');
+
+get_template_part('/theme-parts/modules/app-banner', '', ['img' => $app_banner_img, 'txt' => $app_banner_txt]);
 
 if($tags){
 	get_template_part("/theme-parts/modules/tags", "list", ["tags" => $tags]);

@@ -31,7 +31,13 @@
                 </div>
 
                 <div class="banner__image">
+                    <?php
+                    if(!empty($img_data)):
+                    ?>
                     <img src="<?php echo $img_data['src']?>" alt="banner" class="banner__img">
+                    <?php
+                    endif;
+                    ?>
                 </div>
             </div>
         </div>

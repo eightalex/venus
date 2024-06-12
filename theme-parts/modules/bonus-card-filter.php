@@ -5,6 +5,7 @@ $terms = get_terms( array(
     'taxonomy'   => 'bonus-category',
 ) );
 
+$current_id = $id;
 $def_url = get_the_permalink();
 ?>
 <section class="section section_p_0 section_bg section_bg_2">
@@ -54,7 +55,9 @@ $def_url = get_the_permalink();
                             ];
 
                             
-                            echo apply_filters('print_single_bonus_card', $data);
+                            if($current_id !== $b_id){
+                                echo apply_filters('print_single_bonus_card', $data);
+                            }
                         endwhile;
                         ?>
                     </div>
