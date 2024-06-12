@@ -2869,6 +2869,7 @@ body {
 
 .banner-author_bonus {
   display: flex;
+  justify-content: space-between;
   gap: 35px;
   padding-top: 60px;
   padding-bottom: 60px; }
