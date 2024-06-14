@@ -9,10 +9,10 @@
                 </div>
                 <div class="page-404__content">
                     <div class="page-404__subtitle">Oops!</div>
-                    <div class="page-404__text">Something went <em>wrong!</em></div>
-                    <div class="page-404__description">Page not found.</div>
+                    <div class="page-404__text">Noe gikk <em>galt!</em></div>
+                    <div class="page-404__description">Side ikke funnet.</div>
                 </div>
-                <a href="<?php echo esc_url( home_url( '/' ) ) ?>" class="page-404__button button">Go to home page</a>
+                <a href="<?php echo esc_url( home_url( '/' ) ) ?>" class="page-404__button button">Gå til hjemmesiden</a>
                 <div class="page-404__image">
                     <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/ghost.svg" alt="ghost">
                 </div>
