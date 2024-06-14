@@ -23,7 +23,7 @@ get_template_part('/theme-parts/modules/breadcrumbs');
                 </div>
                 <div class="banner-casino__content">
                     <div class="banner-casino__header">
-                        <div class="banner-casino__title"><?php echo get_the_title($id)?></div>
+                        <h1 class="banner-casino__title"><?php echo get_the_title($id)?></h1>
                         <div class="banner-casino__rating">
                             <div class="rating-mobile rating-mobile_inverted" data-rating="<?php echo $rat?>">
                                 <img src="<?php echo get_stylesheet_directory_uri().'/assets/images/icons/star.svg'?>" alt="star">
