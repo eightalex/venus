@@ -10,7 +10,7 @@ $benefits_bg        = !empty($content['benefits_bg'])? $content['benefits_bg']: 
 
 <style>
     .benefits_section::before{
-        background-image: url(<?php echo $benefits_bg?>); 
+        background-image: url(<?php echo $benefits_bg?>);
     }
 </style>
 <section class="section section_bg benefits_section">
@@ -20,7 +20,7 @@ $benefits_bg        = !empty($content['benefits_bg'])? $content['benefits_bg']: 
                 <?php
                 if(!empty($content['benefits_title'])):
                     ?>
-                    <div class="section__title"><?php echo $content['benefits_title']?></div>
+                    <h2 class="section__title"><?php echo $content['benefits_title']?></h2>
                     <?php
                 endif;
 

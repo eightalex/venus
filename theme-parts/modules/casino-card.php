@@ -18,7 +18,7 @@ $_post__in_arr = array_filter($content['cas_casionois'],function($value) {
     return ($value !== '');
 });
 
-if(!empty($_post__in_arr)){    
+if(!empty($_post__in_arr)){
     $cas_args['post__in'] = $_post__in_arr;
 }
 
@@ -36,7 +36,7 @@ if($casinos->have_posts()):
                     <?php
                     if(!empty($content['cas_title'])):
                         ?>
-                        <div class="section__title"><?php echo $content['cas_title']?></div>
+                        <h2 class="section__title"><?php echo $content['cas_title']?></h2>
                         <?php
                     endif;
 
@@ -68,7 +68,7 @@ if($casinos->have_posts()):
                         $atts = [
                             'title'             => get_the_title(),
                             'img_src'           => $cas_img_id !== 0? $cas_img_data['src']: '',
-                            'img_alt'           => $cas_img_id !== 0? $cas_img_data['alt']: get_the_title(), 
+                            'img_alt'           => $cas_img_id !== 0? $cas_img_data['alt']: get_the_title(),
                             'rating'            => $casino_overall_rating,
                             'desc'              => $desc,
                             'permalink'         => get_the_permalink(),
@@ -81,7 +81,7 @@ if($casinos->have_posts()):
             </div>
             <?php
                 $max_pages = $casinos->max_num_pages;
-                $paged = $casinos->query['paged'];    
+                $paged = $casinos->query['paged'];
                 if($max_pages  > 1){
                     $pagenavi_items = apply_filters('my_pagination', $paged, $max_pages, "casinois-page");
                     echo "<div class='content-cards__footer'>

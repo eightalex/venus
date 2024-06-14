@@ -12,7 +12,7 @@ $title_section = !empty($content['tags_title'])? $content['tags_title']: get_the
     <div class="container">
         <div class="section__inner">
             <header class="section__header">
-                <div class="section__title"><?php echo $title_section?></div>
+                <h2 class="section__title"><?php echo $title_section?></h2>
 
                 <?php
                 if(!empty($content['tags_subtitle'])):
@@ -33,7 +33,7 @@ $title_section = !empty($content['tags_title'])? $content['tags_title']: get_the
                         $icon_url   = get_stylesheet_directory_uri()."/assets/images/icons/tags/$conv_name.svg";
 
                         $custom_title = "";
-            
+
                         switch($conv_name){
                             case "casino-language":
                                 $custom_title = get_option("casinos_languages_title");
@@ -49,14 +49,14 @@ $title_section = !empty($content['tags_title'])? $content['tags_title']: get_the
                                 break;
                             case "withdrawal-limits":
                                 $custom_title = get_option("casinos_withdrawal_limit_title");
-                                break;       
+                                break;
                             case "restricted-countries":
                                 $custom_title = get_option("casinos_restricted_countries_title");
-                                break;                         
+                                break;
                             default :
                                 $custom_title = get_option("casinos_{$conv_name}_title");
                         }
-            
+
                         if(!empty($custom_title)){
                             $name = $custom_title;
                         }else{

@@ -5,7 +5,7 @@ if(empty($content['bandit_title']) && empty($content['bandit_subtitle'])){
     return;
 }
 
-$bandit_image_id    = $content['bandit_main_img']; 
+$bandit_image_id    = $content['bandit_main_img'];
 $main_image_url     = get_stylesheet_directory_uri()."/assets/images/section/bandit.svg";
 $main_image_alt     = "automat";
 $type_class         = $content['bandit_style_type'] == 'image_right'? '': 'section_img_2';
@@ -38,7 +38,7 @@ if(!empty($bandit_image_id)){
                 <?php
                 if(!empty($content['bandit_title'])):
                     ?>
-                    <div class="section__title"><?php echo $content['bandit_title']?></div>
+                    <h2 class="section__title"><?php echo $content['bandit_title']?></h2>
                     <?php
                 endif;
 

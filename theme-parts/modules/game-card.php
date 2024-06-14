@@ -29,7 +29,7 @@ $section_title = !empty($content['gc_title'])? $content['gc_title']: get_the_tit
 
 <style>
     .section_bg_3::before{
-        background-image: url(<?php echo $gc_bg?>); 
+        background-image: url(<?php echo $gc_bg?>);
     }
 </style>
 
@@ -38,7 +38,7 @@ $section_title = !empty($content['gc_title'])? $content['gc_title']: get_the_tit
         <div class="section__inner">
 
             <header class="section__header">
-                <div class="section__title"><?php echo $section_title?></div>
+                <h2 class="section__title"><?php echo $section_title?></h2>
                 <?php
                 if(!empty($content['gc_subtitle'])):
                     ?>
@@ -61,7 +61,7 @@ $section_title = !empty($content['gc_title'])? $content['gc_title']: get_the_tit
 
                         $game_params = [
                             'g_img_data'      => apply_filters('ud_get_file_data', $g_img_id),
-                            'title'           => get_the_title(),  
+                            'title'           => get_the_title(),
                             'short_desc'      => get_post_meta( $g_id, 'game_short_desc', true ),
                             'button_notice'   => get_post_meta( $g_id, 'casino_button_notice', true ),
                             'external_link'   => !empty($gel)? esc_url( $gel ): get_the_permalink(),

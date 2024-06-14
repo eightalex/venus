@@ -28,6 +28,7 @@ body {
     position: relative;
     z-index: 1; }
   .section__title {
+    margin: 0;
     color: #fff;
     text-align: center;
     font-family: Montserrat, sans-serif;

@@ -7,7 +7,7 @@ $faq_bg = !empty($content['faq_bg'])? $content['faq_bg']: get_stylesheet_directo
 
 <style>
     .faq_section::before{
-        background-image: url(<?php echo $faq_bg?>); 
+        background-image: url(<?php echo $faq_bg?>);
     }
 </style>
 
@@ -21,7 +21,7 @@ $faq_bg = !empty($content['faq_bg'])? $content['faq_bg']: get_stylesheet_directo
                     <?php
                     if(!empty($content['faq_title'])):
                         ?>
-                        <div class="section__title"><?php echo $content['faq_title']?></div>
+                        <h2 class="section__title"><?php echo $content['faq_title']?></h2>
                         <?php
                     endif;
 

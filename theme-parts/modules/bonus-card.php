@@ -33,7 +33,7 @@ $title_section      = !empty($content['bonuses_title'])? $content['bonuses_title
     <div class="container">
         <div class="section__inner">
             <header class="section__header">
-                <div class="section__title"><?php echo $title_section?></div>
+                <h2 class="section__title"><?php echo $title_section?></h2>
                 <?php
                 if(!empty($content['bonuses_subtitle'])):
                     ?>
