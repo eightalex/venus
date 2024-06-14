@@ -23,8 +23,8 @@ $external_link          = get_post_meta($id, 'casino_external_link', true);
             <div class="card-top__image">
                 <img src="<?php echo $featured_data['src']?>" alt="<?php echo $featured_data['alt']?>">
             </div>
-            
-            <div class="card-top__title"><?php the_title()?></div>
+
+            <h1 class="card-top__title"><?php the_title()?></h1>
 
             <div class="card-top__subtitle">
                     <?php
@@ -52,7 +52,7 @@ $external_link          = get_post_meta($id, 'casino_external_link', true);
             <div class="card-top__cta">
                 <?php
                 if(!empty($external_link)):
-                    $btn_txt = !empty(get_post_meta($id, 'casino_button_title', true))? get_post_meta($id, 'casino_button_title', true):$review_btn_txt; 
+                    $btn_txt = !empty(get_post_meta($id, 'casino_button_title', true))? get_post_meta($id, 'casino_button_title', true):$review_btn_txt;
                 ?>
                 <a class="card-top__button button" href="<?php echo $external_link?>" targrt="_blank"><?php echo $btn_txt?></a>
                 <?php
