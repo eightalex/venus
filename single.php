@@ -10,12 +10,10 @@
     if(!empty($custom_content)){
 		if(is_singular( 'bonus' )){
 			get_template_part('/theme-parts/content', 'bonus');
-			return;
 		}
 
 		if(is_singular( 'game' )){
 			get_template_part('/theme-parts/content', 'game');
-			return;
 		}
         get_template_part('/theme-parts/modules/breadcrumbs');
 
@@ -23,6 +21,7 @@
             $part_tmpl = $part['_type'];
             get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part, "post_type" => $post_type]);
         }
+
     }elseif ( is_singular( 'casino' ) ) {
 
 		// Get the page template if the custom post type is "Casino"
@@ -50,7 +49,7 @@
 		}
 
 	} elseif ( is_singular( 'game' ) ) {
-		get_template_part('/theme-parts/content', 'game');
+		// get_template_part('/theme-parts/content', 'game');
 		// Get the page template if the custom post type is "Game"
 
 		// $game_style = get_post_meta( get_the_ID(), 'game_style', true );
@@ -74,7 +73,8 @@
 		// }
 
 	} elseif ( is_singular( 'bonus' ) ) {
-		get_template_part('/theme-parts/content', 'bonus');
+		// get_template_part('/theme-parts/content', 'bonus');
+
 	} elseif ( is_singular( 'slotsl' ) ) {
 
 		// Get the page template if the custom post type is "Slots Launch"
