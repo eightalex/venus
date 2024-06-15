@@ -22,7 +22,7 @@ body {
     position: relative; }
 
 .section {
-  padding: 150px 0;
+  padding: 75px 0;
   background-color: #262c3a; }
   .section__inner {
     position: relative;
@@ -181,8 +181,8 @@ body {
     padding: 0; }
   @media (max-width: 900px) {
     .section {
-      padding-top: 80px;
-      padding-bottom: 80px; }
+      padding-top: 40px;
+      padding-bottom: 40px; }
       .section_img .section__inner {
         flex-direction: column-reverse; }
       .section_img .section__image img:nth-child(1) {
@@ -2985,7 +2985,7 @@ body {
 
 .content-cards {
   padding-top: 60px;
-  padding-bottom: 135px; }
+  padding-bottom: 60px; }
   .content-cards__list {
     margin-top: 40px; }
   .content-cards__footer {

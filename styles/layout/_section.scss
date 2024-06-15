@@ -3,8 +3,8 @@
 
 .section {
   $this: &;
-  $vertical-padding: 150px;
-  $vertical-padding-mobile: 80px;
+  $vertical-padding: 75px;
+  $vertical-padding-mobile: 40px;
   $horizontal-padding: 20px;
 
   padding: $vertical-padding 0;
