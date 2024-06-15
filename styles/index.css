@@ -2093,6 +2093,7 @@ body {
 .banner {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   padding-top: 15px; }
   .banner__content {
     position: relative;

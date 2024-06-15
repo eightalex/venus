@@ -4,6 +4,7 @@
 .banner {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   padding-top: 15px;
 
   &__content {
