@@ -1,11 +1,27 @@
 @import "../variables";
 @import "../mixins";
 
+/**
+ * !! This block has the dependency on the section block
+ */
+
 .breadcrumbs {
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
   padding: 40px 0;
   font: 400 14px/128% Hind, sans-serif;
+
+  &:not(.breadcrumbs_inline) {
+    margin-bottom: -100px;
+    padding: 0;
+    height: 100px;
+
+    & + .section {
+      padding-top: 100px + $section-padding;
+    }
+  }
 
   &__inner {
     display: flex;
@@ -45,6 +61,14 @@
         height: 5px;
         background-color: var(--Grey-Light, #9197af);
         border-radius: 50%;
+      }
+    }
+  }
+
+  @include bp($section-breakpoint) {
+    &:not(.breadcrumbs_inline) {
+      & + .section {
+        padding-top: 100px + $section-padding-mobile;
       }
     }
   }

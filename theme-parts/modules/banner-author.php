@@ -29,9 +29,9 @@ $offer_detailed_tc  = get_post_meta($id, 'offer_detailed_tc', true);
         <div class="section__inner">
             <div class="banner-author banner-author_bonus">
                 <div class="banner-author__content">
-                    <?php 
-                        get_template_part('/theme-parts/modules/breadcrumbs');
-                        
+                    <?php
+                        get_template_part('/theme-parts/modules/breadcrumbs', '', ['inline' => true]);
+
                         if(!empty($bonus_cat)):
                             $cat_lnk = get_term_link($bonus_cat[0]->term_id, $tax);
                         ?>

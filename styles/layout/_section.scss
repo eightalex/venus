@@ -3,11 +3,9 @@
 
 .section {
   $this: &;
-  $vertical-padding: 75px;
-  $vertical-padding-mobile: 40px;
   $horizontal-padding: 20px;
 
-  padding: $vertical-padding 0;
+  padding: $section-padding 0;
   background-color: #262c3a;
 
   &__inner {
@@ -72,7 +70,7 @@
       left: 0;
       z-index: 0;
       width: 10000%;
-      height: 300%;
+      height: 1000%;
       transform: translateX(-50%) rotate(-25deg);
       background-image: url("#{$images-url}/section/suits_3.svg");
       background-size: 520px;
@@ -285,9 +283,9 @@
     padding: 0;
   }
 
-  @include bp(900px) {
-    padding-top: $vertical-padding-mobile;
-    padding-bottom: $vertical-padding-mobile;
+  @include bp($section-breakpoint) {
+    padding-top: $section-padding-mobile;
+    padding-bottom: $section-padding-mobile;
 
     &_img {
       #{$this} {

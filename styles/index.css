@@ -70,7 +70,7 @@ body {
       left: 0;
       z-index: 0;
       width: 10000%;
-      height: 300%;
+      height: 1000%;
       transform: translateX(-50%) rotate(-25deg);
       background-image: url("../assets/images/section/suits_3.svg");
       background-size: 520px;
@@ -594,11 +594,22 @@ body {
     .footer__list + .footer__list::before {
       content: none; } }
 
+/**
+ * !! This block has the dependency on the section block
+ */
 .breadcrumbs {
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
   padding: 40px 0;
   font: 400 14px/128% Hind, sans-serif; }
+  .breadcrumbs:not(.breadcrumbs_inline) {
+    margin-bottom: -100px;
+    padding: 0;
+    height: 100px; }
+    .breadcrumbs:not(.breadcrumbs_inline) + .section {
+      padding-top: 175px; }
   .breadcrumbs__inner {
     display: flex;
     gap: 18px;
@@ -629,6 +640,9 @@ body {
         height: 5px;
         background-color: var(--Grey-Light, #9197af);
         border-radius: 50%; }
+  @media (max-width: 900px) {
+    .breadcrumbs:not(.breadcrumbs_inline) + .section {
+      padding-top: 140px; } }
 
 .navigation__inner {
   display: flex;

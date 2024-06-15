@@ -29,7 +29,7 @@
         <div class="section__inner">
             <div class="banner">
                 <div class="banner__content">
-                    <?php get_template_part('/theme-parts/modules/breadcrumbs');?>
+                    <?php get_template_part('/theme-parts/modules/breadcrumbs', '', ['inline' => true]); ?>
 
                     <h1 class="banner__title"><?php echo $title?></h1>
                 </div>
