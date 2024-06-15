@@ -2110,7 +2110,8 @@ body {
     font-style: normal;
     font-weight: 800;
     line-height: normal;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    text-shadow: 2px 2px black, 0 0 10px rgba(0, 0, 0, 0.2); }
     .banner__title em {
       color: #e3f666;
       font-style: normal; }
