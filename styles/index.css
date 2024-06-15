@@ -609,7 +609,7 @@ body {
     padding: 0;
     height: 100px; }
     .breadcrumbs:not(.breadcrumbs_inline) + .section {
-      padding-top: 175px; }
+      padding-top: 118.75px; }
   .breadcrumbs__inner {
     display: flex;
     gap: 18px;
@@ -642,7 +642,7 @@ body {
         border-radius: 50%; }
   @media (max-width: 900px) {
     .breadcrumbs:not(.breadcrumbs_inline) + .section {
-      padding-top: 140px; } }
+      padding-top: 110px; } }
 
 .navigation__inner {
   display: flex;

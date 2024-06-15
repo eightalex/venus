@@ -19,7 +19,7 @@
     height: 100px;
 
     & + .section {
-      padding-top: 100px + $section-padding;
+      padding-top: 100px + ($section-padding / 4);
     }
   }
 
@@ -68,7 +68,7 @@
   @include bp($section-breakpoint) {
     &:not(.breadcrumbs_inline) {
       & + .section {
-        padding-top: 100px + $section-padding-mobile;
+        padding-top: 100px + ($section-padding-mobile / 4);
       }
     }
   }
