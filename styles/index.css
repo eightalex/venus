@@ -1721,6 +1721,7 @@ body {
       transform: rotate(180deg); }
   .faq__question {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 16px;
     padding: 32px;
