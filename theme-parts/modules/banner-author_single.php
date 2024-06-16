@@ -17,7 +17,7 @@ $comment_count      = get_comment_count($id);
         <div class="section__inner">
             <div class="banner-author">
                 <?php
-                    get_template_part('/theme-parts/modules/breadcrumbs');
+                    get_template_part('/theme-parts/modules/breadcrumbs', '', ['inline' => true]);
                 ?>
                 <header class="banner-author__header">
                     <div class="banner-author__title">
