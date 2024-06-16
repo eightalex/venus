@@ -15,14 +15,10 @@ $section_subtitle   = $content['game_types_subtitle'];
         <div class="section__inner">
             <header class="section__header">
                 <div class="section__title">
-                    Secrets of slot machines - <em>top 3 strategies</em>
+                    <?php echo $section_title ?>
                 </div>
                 <div class="section__subtitle">
-                    Cras in nisi id turpis cursus vulputate.
-                    Aliquam at sapien non tellus congue efficitur.
-                    Nam scelerisque quam quis turpis pellentesque,
-                    in placerat erat laoreet. Integer porttitor
-                    malesuada ante, nec aliquet dui pellentesque sit amet.
+                    <?php echo $section_subtitle ?>
                 </div>
             </header>
             <div class="section__content">
