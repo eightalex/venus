@@ -10,13 +10,13 @@ $section_title      = $content['game_types_title'];
 $section_subtitle   = $content['game_types_subtitle'];
 
 ?>
-<section class="section section_suits section_img">
+<section class="section section_suits">
     <div class="container">
         <div class="section__inner">
             <header class="section__header">
-                <div class="section__title">
+                <h2 class="section__title">
                     <?php echo $section_title ?>
-                </div>
+                </h2>
                 <div class="section__subtitle">
                     <?php echo $section_subtitle ?>
                 </div>
