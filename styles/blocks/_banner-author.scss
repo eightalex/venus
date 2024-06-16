@@ -16,7 +16,7 @@
   }
 
   &__header {
-    margin-bottom: 32px;
+    margin-top: 32px;
   }
 
   &__tags {
@@ -44,6 +44,7 @@
   &__footer {
     display: flex;
     align-items: center;
+    margin-top: 32px;
     color: #fff;
     font-family: Hind, sans-serif;
     font-size: 18px;

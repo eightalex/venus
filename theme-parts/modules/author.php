@@ -28,7 +28,7 @@ $ava                = !empty($ava_url)? $ava_url: get_stylesheet_directory_uri()
             <div class="author">
                 <div class="author__content">
                     <div class="author__name"><?php echo $firs_name?> <em><?php echo $last_name?></em></div>
-                    <div class="author__title">- Author</div>
+                    <div class="author__title"><?php echo __( 'Author' ); ?></div>
                     <div class="author__about">
                         <?php echo $author_desc?>
                     </div>

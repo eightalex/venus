@@ -10,12 +10,10 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  padding: 40px 0;
   font: 400 14px/128% Hind, sans-serif;
 
   &:not(.breadcrumbs_inline) {
     margin-bottom: -100px;
-    padding: 0;
     height: 100px;
 
     & + .section {
