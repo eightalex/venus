@@ -11,14 +11,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600&family=Montserrat:ital,wght@0,600;0,700;0,800;1,500&family=Ubuntu&display=swap" rel="stylesheet">      
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600&family=Montserrat:ital,wght@0,600;0,700;0,800;1,500&family=Ubuntu&display=swap" rel="stylesheet">
     <?php wp_head(); ?>
 </head>
 <body ontouchstart <?php body_class(); ?>>
     <?php wp_body_open(); ?>
-    <!-- <div class="space-box relative<?php if (get_theme_mod('mercury_boxed_layout')) { ?> enabled<?php } ?>"> -->
 
-    <!-- Header Start -->
     <header class="header">
         <div class="container">
             <div class="header__inner">
@@ -31,7 +29,7 @@
                         <img src="<?= get_stylesheet_directory_uri() ?>/assets/images/logo.svg" alt="Logo">
                     </a>
                 </div>
-                <div class="header__search search">
+                <div class="header__search">
                     <?php get_search_form(); ?>
                 </div>
                 <nav class="navigation">
@@ -57,4 +55,3 @@
             </div>
         </div>
     </header>
-    <!-- Header End -->

@@ -1,12 +1,8 @@
 @import "../mixins";
 
-.search {
+.search-form {
   position: relative;
   display: flex;
-
-  &__form {
-
-  }
 
   &__input {
     padding-left: 60px;
