@@ -19,7 +19,7 @@ $games              = $content['gs_games'];
                     <?php
                     if(!empty($section_title)):
                         ?>
-                        <div class="section__title section__title_s"><?php echo $section_title?></div>
+                        <h2 class="section__title section__title_s"><?php echo $section_title?></h2>
                         <?php
                     endif;
 

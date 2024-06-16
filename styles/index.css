@@ -1859,6 +1859,7 @@ body {
     max-width: 680px;
     width: 100%; }
   .guide__title {
+    margin: 0;
     color: #fff;
     font-family: Montserrat, sans-serif;
     font-size: 32px;

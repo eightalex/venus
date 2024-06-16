@@ -12,7 +12,7 @@ if(empty($content['adv_list'])){
                 <?php
                 if(!empty($content['adv_title'])):
                     ?>
-                    <div class="section__title section__title_s"><?php echo $content['adv_title']?></div>
+                    <h2 class="section__title section__title_s"><?php echo $content['adv_title']?></h2>
                     <?php
                 endif;
 

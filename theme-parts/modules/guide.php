@@ -8,7 +8,7 @@ $g_title = !empty($content['guide_title'])? $content['guide_title']: get_the_tit
         <div class="section__inner">
             <div class="guide">
                 <header class="guide__header">
-                    <div class="guide__title"><?php echo $g_title?></div>
+                    <h2 class="guide__title"><?php echo $g_title?></h2>
                     <?php
                     if(!empty($content['guide_desc'])):
                         ?>
@@ -34,8 +34,8 @@ $g_title = !empty($content['guide_title'])? $content['guide_title']: get_the_tit
                                         ?>
                                         <div class="guide__step-title"><?php echo $step['g_s_title']?></div>
                                         <?php
-                                    endif; 
-                                    
+                                    endif;
+
                                     if(!empty($step['g_s_txt'])):
                                         ?>
                                         <div class="guide__step-text">

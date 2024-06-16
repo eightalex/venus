@@ -16,7 +16,7 @@ if(empty($games)){
                 <?php
                 if(!empty($content['rating_games_title'])):
                     ?>
-                    <div class="section__title section__title_s"><?php echo $content['rating_games_title']?></div>
+                    <h2 class="section__title section__title_s"><?php echo $content['rating_games_title']?></h2>
                     <?php
                 endif;
 
@@ -71,7 +71,7 @@ if(empty($games)){
                         </li>
                         <?php
                     endforeach;
-                    ?>    
+                    ?>
                 </ul>
             </div>
         </div>
