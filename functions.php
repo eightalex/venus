@@ -991,15 +991,25 @@ function ud_custon_fields() {
     $shortcodes_codex = "You can use: [print_quote text='*Text' author_name='*Author Nane'] and [author_annatation text='*Text' rating='* 0-9' author_id='int (optional)']";
 
     Container::make( 'post_meta', 'App banner')
-        // ->where('post_type', '=', 'post')
-        ->where('post_type', '=', 'page')
+        ->where('post_type', '=', 'post')
+        ->or_where('post_type', '=', 'page')
         ->or_where('post_type', '=', 'bonus')
         ->add_fields(array(
+            Field::make('checkbox', 'app_banner_is_author', __('Auhtor banner'))
+                ->set_width(15),
             Field::make('text', 'app_banner_txt', __('Title'))
                 ->help_text("<span style='color: blue;'>".__('Leave blank to use post title')."</span>")
-                ->set_width(75),
+                ->set_width(70),
             Field::make('image', 'app_banner_img', __('Image'))
-                ->set_width(25),
+                ->set_width(15)
+                ->set_conditional_logic( array(
+                    'relation' => 'AND', // Optional, defaults to "AND"
+                    array(
+                        'field' => 'app_banner_is_author',
+                        'value' => false,
+                        'compare' => '=',
+                ))
+            ),
         ));
 
     Container::make( 'post_meta', 'Content manage' )

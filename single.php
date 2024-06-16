@@ -3,24 +3,40 @@
 <div id="post-<?php the_ID(); ?>">
 	<?php
 
-    $ID 			= get_the_ID();
-    $custom_content = carbon_get_post_meta(get_the_ID(), 'ud_post_content');
-	$post_type 		= get_post_type();
+    $ID 					= get_the_ID();
+    $custom_content 		= carbon_get_post_meta(get_the_ID(), 'ud_post_content');
+	$app_banner_is_author 	= carbon_get_post_meta(get_the_ID(), 'app_banner_is_author');
+	$app_banner_txt 		= carbon_get_post_meta(get_the_ID(), 'app_banner_txt');
+	$app_banner_img 		= carbon_get_post_meta(get_the_ID(), 'app_banner_img');
+	$post_type 				= get_post_type();
 
     if(!empty($custom_content)){
 		if(is_singular( 'bonus' )){
 			get_template_part('/theme-parts/content', 'bonus');
-		}
-
-		if(is_singular( 'game' )){
+		}elseif(is_singular( 'game' )){
 			get_template_part('/theme-parts/content', 'game');
-		}
-        get_template_part('/theme-parts/modules/breadcrumbs');
+		}elseif(is_singular( 'post' )){
+			if(!empty($app_banner_is_author) && $app_banner_is_author == true){
+				get_template_part('/theme-parts/modules/banner', 'author_single', ['id' => $ID]);
+			}else{
+				get_template_part('/theme-parts/modules/app', 'banner', ['txt' => $app_banner_txt, 'img' => $app_banner_img]);
+			}
 
-        foreach($custom_content as $part){
-            $part_tmpl = $part['_type'];
-            get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part, "post_type" => $post_type]);
-        }
+			get_template_part('/theme-parts/modules/post', 'tags', ['id' => $ID]);
+			
+			foreach($custom_content as $part){
+				$part_tmpl = $part['_type'];
+				get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part, "post_type" => $post_type]);
+			}
+
+		}else{
+			get_template_part('/theme-parts/modules/breadcrumbs');
+			
+			foreach($custom_content as $part){
+				$part_tmpl = $part['_type'];
+				get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part, "post_type" => $post_type]);
+			}
+		}
 
     }elseif ( is_singular( 'casino' ) ) {
 
@@ -49,7 +65,7 @@
 		}
 
 	} elseif ( is_singular( 'game' ) ) {
-		// get_template_part('/theme-parts/content', 'game');
+		get_template_part('/theme-parts/content', 'game');
 		// Get the page template if the custom post type is "Game"
 
 		// $game_style = get_post_meta( get_the_ID(), 'game_style', true );
@@ -73,7 +89,7 @@
 		// }
 
 	} elseif ( is_singular( 'bonus' ) ) {
-		// get_template_part('/theme-parts/content', 'bonus');
+		get_template_part('/theme-parts/content', 'bonus');
 
 	} elseif ( is_singular( 'slotsl' ) ) {
 
