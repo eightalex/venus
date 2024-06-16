@@ -996,6 +996,7 @@ function ud_custon_fields() {
         ->or_where('post_type', '=', 'bonus')
         ->add_fields(array(
             Field::make('checkbox', 'app_banner_is_author', __('Auhtor banner'))
+                ->set_default_value(true)
                 ->set_width(15),
             Field::make('text', 'app_banner_txt', __('Title'))
                 ->help_text("<span style='color: blue;'>".__('Leave blank to use post title')."</span>")
@@ -1003,7 +1004,7 @@ function ud_custon_fields() {
             Field::make('image', 'app_banner_img', __('Image'))
                 ->set_width(15)
                 ->set_conditional_logic( array(
-                    'relation' => 'AND', // Optional, defaults to "AND"
+                    'relation' => 'AND',
                     array(
                         'field' => 'app_banner_is_author',
                         'value' => false,
