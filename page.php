@@ -6,6 +6,7 @@ $custom_content 	= carbon_get_post_meta(get_the_ID(), 'ud_post_content');
 $app_banner_img		= carbon_get_post_meta(get_the_ID(), 'app_banner_img');
 $app_banner_txt		= carbon_get_post_meta(get_the_ID(), 'app_banner_txt');
 $is_main_game_page 	= (carbon_get_theme_option('default_page_game') == $ID);
+$is_main_bonus_page	= (carbon_get_theme_option('default_page_bonus') == $ID);
 
 get_header();
 
@@ -19,6 +20,9 @@ if(empty($app_banner_img)){
 if($is_main_game_page){
 	$games = apply_filters('ud_get_games', ['items_number'  => 9]);
 	get_template_part('theme-parts/modules/game-card-filter', '', ['games' => $games]);
+}elseif($is_main_bonus_page){
+	$bonuses = apply_filters('ud_get_bonuses', ['items_number'  => 9]);
+	get_template_part('theme-parts/modules/bonus-card-filter', '', ['bonuses' => $bonuses]);
 }
 
 if(!empty($custom_content)){

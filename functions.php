@@ -1648,7 +1648,9 @@ function ud_custon_fields() {
 
     Container::make( 'theme_options', __('Additional theme options') ) 
         ->add_fields( array(
-            Field::make('select', 'default_page_game', __('Main page for Game '))
-                ->add_options(apply_filters('ud_get_pages_opt', true))
+            Field::make('select', 'default_page_game', __('Main page for Games'))
+                ->add_options(apply_filters('ud_get_pages_opt', true)),
+            Field::make('select', 'default_page_bonus', __('Main page for Bonuses'))
+                ->add_options(apply_filters('ud_get_pages_opt', true)),
         ));
 }
