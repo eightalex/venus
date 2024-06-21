@@ -954,6 +954,34 @@ function ud_get_casinos_options(){
     return $out;
 }
 
+add_filter('ud_get_pages_opt', 'ud_get_pages_opt');
+function ud_get_pages_opt(){
+    $args = [
+        'post_type'         => 'page',
+        'post_status'       => 'publish',
+        'posts_per_page'    => -1
+    ];
+
+    $query = new WP_Query($args);
+    wp_reset_postdata();
+
+    $options_arr = [
+        '' => __('Select page'),
+    ];    
+
+    if($query->have_posts()){
+        while($query->have_posts()){
+            $query->the_post();
+
+            $options_arr[get_the_ID()] = get_the_title();
+        }
+    }
+
+    return $options_arr;
+}
+
+// $pages_opt_arr = apply_filters('ud_get_pages_opt', true);
+
 // CUSTOM FIELDS
 add_action( 'carbon_fields_register_fields', 'ud_custon_fields' );
 
@@ -1616,5 +1644,11 @@ function ud_custon_fields() {
                                 ->set_width(25)
                         ))
                 ))
+        ));
+
+    Container::make( 'theme_options', __('Additional theme options') ) 
+        ->add_fields( array(
+            Field::make('select', 'default_page_game', __('Main page for Game '))
+                ->add_options(apply_filters('ud_get_pages_opt', true))
         ));
 }

@@ -12,10 +12,12 @@ if(is_tax() || is_category()){
 if(is_search()) {
     $title = __('Search results');
 }
+
+$class_inline =isset($inline)? ' breadcrumbs_inline': '';
 ?>
 
-<nav class="breadcrumbs<?php echo $inline ? ' breadcrumbs_inline' : '' ?>">
-    <?php if (!$inline) : ?>
+<nav class="breadcrumbs<?php echo $class_inline;?>">
+    <?php if (!isset($inline)) : ?>
     <div class="container">
     <?php endif; ?>
         <ul class="breadcrumbs__inner">
@@ -28,7 +30,7 @@ if(is_search()) {
                 <?php echo $title ?>
             </li>
         </ul>
-    <?php if (!$inline) : ?>
+    <?php if (!isset($inline)) : ?>
     </div>
     <?php endif; ?>
 </nav>
