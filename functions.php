@@ -359,15 +359,21 @@ function ud_get_casinos(array $atts){
                             ],
     ];
 
-    if ( !empty( $category ) ) {
-		$categories_id_array = explode( ',', $category );
+    if ( !empty( $category ) || isset($_GET['casinos-cat']) ) {
+        if(!empty( $category )){
+            $categories = explode( ',', $category );
+        }
+
+        if(isset($_GET['casinos-cat'])){
+            $categories = [$_GET['casinos-cat']];
+        }
 
         $args['tax_query'] = [
                                 'relation' => 'AND',
                                 [
                                     'taxonomy' => 'casino-category',
                                     'field'    => 'id',
-                                    'terms'    => $categories_id_array
+                                    'terms'    => $categories
                                 ]
                             ];
 	}
@@ -1651,9 +1657,13 @@ function ud_custon_fields() {
 
     Container::make( 'theme_options', __('Additional theme options') ) 
         ->add_fields( array(
+            Field::make('separator', 'defpgsopt', __('Default pages settings'))
+                ->help_text(__('Set the selected pages to the "Default" template')),
             Field::make('select', 'default_page_game', __('Main page for Games'))
                 ->add_options(apply_filters('ud_get_pages_opt', true)),
             Field::make('select', 'default_page_bonus', __('Main page for Bonuses'))
                 ->add_options(apply_filters('ud_get_pages_opt', true)),
+            Field::make('select', 'default_page_casinois', __('Main page for Casinois'))
+                ->add_options(apply_filters('ud_get_pages_opt', true)),                
         ));
 }
