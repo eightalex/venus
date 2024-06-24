@@ -923,10 +923,13 @@ add_filter('ud_get_tax_posts_tags', 'ud_get_tax_posts_tags');
 function ud_get_tax_posts_tags($posts){
     $arr = [];
 
-    foreach($posts as $post){
+    foreach($posts->posts as $post){
         $p_id = $post->ID;
         $tags = get_the_tags($p_id);
 
+        if(empty($tags)){
+            return $arr;
+        }
         foreach($tags as $tag){
             if(!in_array($tag->name, $arr)){
                 array_push($arr, $tag->name);
