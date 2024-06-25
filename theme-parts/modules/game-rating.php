@@ -8,6 +8,10 @@ $games = $content['rating_posts_list'];
 if(empty($games)){
     return;
 }
+
+$play_now_txt       = !empty(get_option('games_play_now_title'))? get_option('games_play_now_title'): __('Play now');
+$read_review_txt    = !empty(get_option('games_read_review_title'))? get_option('games_read_review_title'): __('Read Review');
+
 ?>
 <section class="section section_suits">
     <div class="container">
@@ -59,11 +63,11 @@ if(empty($games)){
                                 </div>
                             </header>
                             <div class="game-rating__cta">
-                                <a href="<?php echo $permalink?>" class="game-rating__button button button_outline">Read review</a>
+                                <a href="<?php echo $permalink?>" class="game-rating__button button button_outline"><?php echo $read_review_txt?></a>
                                 <?php
                                 if(!empty($external_link)):
                                 ?>
-                                <a href="<?php echo $external_link?>" target="_blank" class="game-rating__button button">Play now</a>
+                                <a href="<?php echo $external_link?>" target="_blank" class="game-rating__button button"><?php echo $play_now_txt?></a>
                                 <?php
                                 endif;
                                 ?>

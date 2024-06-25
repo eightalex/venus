@@ -9,7 +9,8 @@ $unit_detailed  = get_post_meta( $id, 'unit_detailed_tc', true );
 $external       = get_post_meta( $id, 'game_external_link', true );
 $button_notice  = get_post_meta( $id, 'game_button_notice', true );
 $button_title   = get_post_meta( $id, 'game_button_title', true );
-$btn_txt        = !empty($button_title)? $button_title: __('PLAY NOW');
+$def_btntxt     = !empty(get_option('games_play_now_title'))? get_option('games_play_now_title'): __('PLAY NOW');
+$btn_txt        = !empty($button_title)? $button_title: $def_btntxt;
 
 
 get_template_part('/theme-parts/modules/breadcrumbs');

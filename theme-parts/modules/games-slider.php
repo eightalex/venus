@@ -8,6 +8,9 @@ if(empty($content['gs_games'])){
 $section_title      = $content['gs_title'];
 $section_subtitle   = $content['gs_subtitle'];
 $games              = $content['gs_games'];
+
+$play_now_txt       = !empty(get_option('games_play_now_title'))? get_option('games_play_now_title'): __('Play now');
+$read_review_txt    = !empty(get_option('games_read_review_title'))? get_option('games_read_review_title'): __('Read Review');
 ?>
 <section class="section section_suits">
     <div class="container">
@@ -72,7 +75,7 @@ $games              = $content['gs_games'];
                                                 <?php the_excerpt($game)?>
                                             </div>
                                             <div class="slot__footer">
-                                                <a href="<?php echo $external_link?>" class="button slot__button">Play now</a>
+                                                <a href="<?php echo $external_link?>" class="button slot__button"><?php echo $play_now_txt?></a>
                                             </div>
                                         </div>
                                     </div>

@@ -1,5 +1,8 @@
 <?php
 extract($args);
+
+$play_now_txt       = !empty(get_option('games_play_now_title'))? get_option('games_play_now_title'): __('Play now');
+$read_review_txt    = !empty(get_option('games_read_review_title'))? get_option('games_read_review_title'): __('Read Review');
 ?>
 <section class="section section_p_0 section_bg section_bg_6">
     <div class="container">
@@ -62,11 +65,11 @@ extract($args);
                                         </div>
 
                                         <div class="casino-card__cta">
-                                            <a class="casino-card__button button button_outline" href='<?php echo get_the_permalink($casino_id)?>'><?php echo __('Read review') ?></a>
+                                            <a class="casino-card__button button button_outline" href='<?php echo get_the_permalink($casino_id)?>'><?php echo $read_review_txt?></a>
                                             <?php
                                             if(!empty($casino_external_link)):
                                             ?>
-                                            <a class="casino-card__button button" href="<?php echo $casino_external_link?>"><?php echo __('Play now')?></a>
+                                            <a class="casino-card__button button" href="<?php echo $casino_external_link?>"><?php echo $play_now_txt?></a>
                                             <?php
                                             endif;
                                             ?>

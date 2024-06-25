@@ -7,7 +7,6 @@ $content_editor = carbon_get_term_meta($ID, 'content_editor');
 $content 		= carbon_get_term_meta($ID, 'ud_cat_content');
 
 $bonuses = apply_filters('ud_get_bonuses', ['items_number' => -1, 'category' => $ID]);
-// $tags 	= apply_filters('ud_get_tax_posts_tags', $posts);
 
 if(empty($app_banner_img)){
 	$app_banner_img = get_stylesheet_directory_uri()."/assets/images/banner/banner-2.svg";

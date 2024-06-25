@@ -5,6 +5,8 @@ $terms = get_terms( array(
     'taxonomy'   => 'bonus-category',
 ) );
 
+$has_filter = isset($filter) && $filter == false? false: true;
+
 $current_id = $id;
 $def_url = get_the_permalink();
 ?>
@@ -18,11 +20,16 @@ $def_url = get_the_permalink();
                     ?>
                     <div class="content-cards__switch">
                         <div class="page-switch">
-                            <a href="<?php echo $def_url ?>" class="page-switch__button <?php echo $def_active ?>">All</a>
                             <?php
+                            if($has_filter):
+                                ?>
+                                <a href="<?php echo $def_url ?>" class="page-switch__button <?php echo $def_active ?>">All</a>
+                                <?php
+                            endif;
+
                             foreach($terms as $term):
                                 $t_id   = $term->term_id;
-                                $url    = "?bonuses-cat={$t_id}";
+                                $url    = $has_filter? "?bonuses-cat={$t_id}": get_term_link($t_id);
                                 $active = isset($_GET['bonuses-cat']) && $_GET['bonuses-cat'] == $t_id? 'active': '';
                                 ?>
                                 <a href="<?php echo $url?>" data-id="<?php echo $term->term_id?>" class="page-switch__button <?php echo $active?>"><?php echo $term->name?></a>

@@ -128,6 +128,8 @@ get_template_part('/theme-parts/modules/app-banner', '', [
                             $casino_overall_rating      = floatval(get_post_meta($casino_id, 'casino_overall_rating', true));
                             $casino_external_link       = get_post_meta($casino_id, 'casino_external_link', true);
                             $desc                       = get_post_meta($casino_id, 'casino_short_desc', true);
+                            $lb_txt                     = !empty(get_option('casinos_read_review_title'))? get_option('casinos_read_review_title'): 'Read review';
+                            $elb_txt                    = !empty(get_option('casinos_play_now_title'))? get_option('casinos_play_now_title'): 'Play now';
                             ?>
                             <div class="casino-card casino-card_compact">
                                 <div class="casino-card__image">
@@ -144,11 +146,11 @@ get_template_part('/theme-parts/modules/app-banner', '', [
                                 </div>
 
                                 <div class="casino-card__cta">
-                                    <a class="casino-card__button button button_outline" href='<?php echo get_the_permalink($casino_id)?>'><?php echo __('Read review') ?></a>
+                                    <a class="casino-card__button button button_outline" href='<?php echo get_the_permalink($casino_id)?>'><?php echo $lb_txt ?></a>
                                     <?php
                                     if(!empty($casino_external_link)):
                                         ?>
-                                        <a class="casino-card__button button" href="<?php echo $casino_external_link?>"><?php echo __('Play now')?></a>
+                                        <a class="casino-card__button button" href="<?php echo $casino_external_link?>"><?php echo $elb_txt?></a>
                                     <?php
                                     endif;
                                     ?>

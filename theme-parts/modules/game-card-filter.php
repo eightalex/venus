@@ -5,6 +5,8 @@ $terms = get_terms( array(
     'taxonomy'   => 'game-category',
 ) );
 
+$has_filter = isset($filter) && $filter == false? false: true;
+
 $def_url = get_the_permalink();
 
 ?>
@@ -18,11 +20,16 @@ $def_url = get_the_permalink();
                     ?>
                     <div class="content-cards__switch">
                         <div class="page-switch">
-                            <a href="<?php echo $def_url?>" class="page-switch__button <?php echo $def_active?>">All</a>
                             <?php
+                            if($has_filter):
+                                ?>
+                                <a href="<?php echo $def_url?>" class="page-switch__button <?php echo $def_active?>">All</a>
+                                <?php
+                            endif;
+
                             foreach($terms as $term):
                                 $t_id   = $term->term_id;
-                                $url    = "?games-cat={$t_id}";
+                                $url    = $has_filter? "?games-cat={$t_id}": get_term_link($t_id);
                                 $active = isset($_GET['games-cat']) && $_GET['games-cat'] == $t_id? 'active': '';
                                 ?>
                                 <a href="<?php echo $url?>" class="page-switch__button <?php echo $active?>"><?php echo $term->name?></a>
