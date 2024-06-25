@@ -38,21 +38,42 @@
 				$left_menu_items = "";
 				$rigt_menu_items = "";
 				$menu_items = wp_get_nav_menu_items('Footer menu');
+				$menu_infos_items = wp_get_nav_menu_items('Footer - Further info');
 
-				if(!empty($menu_items)){
-					$items_count = count($menu_items);
-					foreach($menu_items as $k => $item){
-						$html = "<li class='footer__item'>
-									<a href='{$item->url}' class='footer__link'>{$item->title}</a>
-								</li>";
-						if($k < $items_count/2){
-							$left_menu_items .= $html;
-						}else{
-							$rigt_menu_items .= $html;
-						}
+				// if(!empty($menu_items)){
+				// 	$items_count = count($menu_items);
+				// 	foreach($menu_items as $k => $item){
+				// 		$html = "<li class='footer__item'>
+				// 					<a href='{$item->url}' class='footer__link'>{$item->title}</a>
+				// 				</li>";
+				// 		if($k < $items_count/2){
+				// 			$left_menu_items .= $html;
+				// 		}else{
+				// 			$rigt_menu_items .= $html;
+				// 		}
 
-					}
+				// 	}
+				// }
+
+			if(!empty($menu_items)){
+				foreach($menu_items as $k => $item){
+					$html = "<li class='footer__item'>
+								<a href='{$item->url}' class='footer__link'>{$item->title}</a>
+							</li>";
+
+					$rigt_menu_items .= $html;	
 				}
+			};
+
+			if(!empty($menu_infos_items)){
+				foreach($menu_infos_items as $k => $item){
+					$html = "<li class='footer__item'>
+								<a href='{$item->url}' class='footer__link'>{$item->title}</a>
+							</li>";
+
+					$left_menu_items .= $html;	
+				}
+			}	
 
 			if(!empty($left_menu_items)):
 				?>
