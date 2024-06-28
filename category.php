@@ -6,17 +6,16 @@ $app_banner_txt	= carbon_get_term_meta($ID, 'app_banner_txt');
 $custom_content = carbon_get_term_meta($ID, 'content_editor');
 $content 		= carbon_get_term_meta($ID, 'ud_cat_content');
 $paged 			= isset($_GET['posts-page']) ? absint( $_GET['posts-page'] )  : 1;
-$posts 			= new WP_Query(['category' => $ID, 'post_status' => 'publish', 'posts_per_page' => 6, 'paged' => $paged]);
-wp_reset_postdata();
+
 $tags 	= apply_filters('ud_get_tax_posts_tags', $posts);
 
 if(empty($app_banner_img)){
 	$app_banner_img = get_stylesheet_directory_uri()."/assets/images/banner/banner.svg";
 }
-get_header();
-?>
+get_header(); 
 
-<?php 
+$posts = new WP_Query(['category' => $ID, 'post_status' => 'publish', 'posts_per_page' => 6, 'paged' => $paged]);
+wp_reset_postdata();
 
 get_template_part('/theme-parts/modules/app-banner', '', ['img' => $app_banner_img, 'txt' => $app_banner_txt]);
 

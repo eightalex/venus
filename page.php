@@ -21,11 +21,11 @@ if($is_main_game_page){
 	$games = apply_filters('ud_get_games', ['items_number'  => 9]);
 	get_template_part('theme-parts/modules/game-card-filter', '', ['games' => $games, 'filter' => false]);
 }elseif($is_main_bonus_page){
-	$bonuses = apply_filters('ud_get_bonuses', ['items_number'  => 9]);
-	get_template_part('theme-parts/modules/bonus-card-filter', '', ['bonuses' => $bonuses, 'filter' => false]);
+	$content = ['bonuses_count' => -1];
+	get_template_part('theme-parts/modules/bonus-card', '', ['id' => $ID, 'content' => $content]);
 }elseif($is_main_casinois_page){
 	$casinois = apply_filters('ud_get_casinos', ['items_number'  => 8]);
-	get_template_part('theme-parts/modules/casinois-card-filter', '', ['casinos' => $casinois, 'filter' => false]);
+	get_template_part('theme-parts/modules/casino-card', '', ['casinos' => $casinois, 'filter' => false]);
 }
 
 if(!empty($custom_content)){

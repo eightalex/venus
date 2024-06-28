@@ -13,9 +13,7 @@ if(empty($app_banner_img)){
 }
 
 get_header();
-?>
-
-<?php 
+ 
 get_template_part('/theme-parts/modules/app-banner', '', ['img' => $app_banner_img, 'txt' => $app_banner_txt]);
 
 if($bonuses['res']->have_posts()):

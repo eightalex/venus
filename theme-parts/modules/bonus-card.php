@@ -9,10 +9,10 @@ $args_arr = [
 ];
 $tax        = 'bonus-category';
 
-if($content['bonuses_parent'] == 'curent'){
+if(isset($content['bonuses_parent']) && $content['bonuses_parent'] == 'curent'){
     $bonus_cat  = wp_get_post_terms($id, $tax);
     $args_arr['category'] = $bonus_cat[0]->term_id;
-}elseif($content['bonuses_parent'] == 'children'){
+}elseif(isset($content['bonuses_parent']) && $content['bonuses_parent'] == 'children'){
     $args_arr['parent_id'] = $id;
 }
 
@@ -22,7 +22,7 @@ if(!$bonuses['res']->have_posts()){
     return;
 }
 
-if($content['bonuses_filter_on']){
+if(isset($content['bonuses_filter_on'])){
     get_template_part('theme-parts/modules/bonus-card-filter', '', ['bonuses' => $bonuses]);
     return;
 }

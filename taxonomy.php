@@ -8,9 +8,7 @@ get_header();
 
 $posts 	= get_posts(['category' => $ID, 'post-status' => 'publish']);
 $tags 	= apply_filters('ud_get_tax_posts_tags', $posts);
-?>
-
-<?php 
+ 
 get_template_part('/theme-parts/modules/breadcrumbs');
 
 if($tags){

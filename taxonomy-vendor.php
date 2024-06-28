@@ -19,14 +19,16 @@ $q_args = [
                             ),
 ];
 
-$posts  = new WP_Query($q_args);
-wp_reset_postdata();
 
 if(empty($app_banner_img)){
 	$app_banner_img = get_stylesheet_directory_uri()."/assets/images/banner/banner.svg";
 }
 
 get_header();
+
+$posts  = new WP_Query($q_args);
+wp_reset_postdata();
+
  
 get_template_part('/theme-parts/modules/app-banner', '', ['img' => $app_banner_img, 'txt' => $app_banner_txt]);
 
