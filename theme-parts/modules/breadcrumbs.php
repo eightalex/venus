@@ -20,7 +20,13 @@ $class_inline =isset($inline)? ' breadcrumbs_inline': '';
     <?php if (!isset($inline)) : ?>
     <div class="container">
     <?php endif; ?>
-        <ul class="breadcrumbs__inner">
+
+    <?php
+    if ( function_exists('yoast_breadcrumb') ) {
+        yoast_breadcrumb(  );
+      }
+    ?>
+        <!-- <ul class="breadcrumbs__inner">
             <li class="breadcrumbs__item">
                <a href="<?php echo home_url() ?>">
                    <?php echo __('Home'); ?>
@@ -29,7 +35,7 @@ $class_inline =isset($inline)? ' breadcrumbs_inline': '';
             <li class="breadcrumbs__item">
                 <?php echo $title ?>
             </li>
-        </ul>
+        </ul> -->
     <?php if (!isset($inline)) : ?>
     </div>
     <?php endif; ?>
