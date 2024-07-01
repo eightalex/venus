@@ -20,11 +20,11 @@ $comment_count      = get_comment_count($id);
                     get_template_part('/theme-parts/modules/breadcrumbs', '', ['inline' => true]);
                 ?>
                 <header class="banner-author__header">
-                    <div class="banner-author__title">
+                    <h1 class="banner-author__title">
                         <?php
                             echo $title;
                         ?>
-                    </div>
+                    </h1>
                 </header>
                 <footer class="banner-author__footer">
                     <div class="banner-author__author">

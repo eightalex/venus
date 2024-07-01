@@ -43,9 +43,9 @@ $offer_detailed_tc  = get_post_meta($id, 'offer_detailed_tc', true);
                         endif;
                     ?>
                     <header class="banner-author__header">
-                        <div class="banner-author__title">
+                        <h1 class="banner-author__title">
                             <?php echo $title ?>
-                        </div>
+                        </h1>
                     </header>
                     <footer class="banner-author__footer">
                         <div class="banner-author__author">
