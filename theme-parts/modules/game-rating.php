@@ -54,7 +54,7 @@ $read_review_txt    = !empty(get_option('games_read_review_title'))? get_option(
                             <header class="game-rating__header">
                                 <div class="game-rating__title"><?php echo get_the_title($game)?></div>
                                 <div class="game-rating__rating-mobile" data-rating="<?php echo $rating?>">
-                                    <img src="../assets/images/icons/star.svg" alt="star">
+                                    <img src="<?php echo get_stylesheet_directory_uri().'/assets/images/icons/star.svg'?>" alt="star">
                                 </div>
                                 <div class="game-rating__rating">
                                     <?php
