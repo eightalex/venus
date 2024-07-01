@@ -4,7 +4,7 @@ extract($args);
 $play_now_txt       = !empty(get_option('games_play_now_title'))? get_option('games_play_now_title'): __('Play now');
 $read_review_txt    = !empty(get_option('games_read_review_title'))? get_option('games_read_review_title'): __('Read Review');
 ?>
-<section class="section section_p_0 section_bg section_bg_6">
+<section class="section section_bg section_bg_6">
     <div class="container">
         <div class="section__inner">
             <div class="content">
