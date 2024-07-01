@@ -2904,6 +2904,7 @@ body {
   margin-bottom: 6px; }
 
 .banner-author__title {
+  margin: 0;
   color: #fff;
   font-family: Montserrat, sans-serif;
   font-size: 56px;
