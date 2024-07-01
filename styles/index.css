@@ -601,42 +601,49 @@ body {
   z-index: 1;
   display: flex;
   align-items: center;
-  font: 400 14px/128% Hind, sans-serif; }
+  font: 400 14px/128% Hind, sans-serif;
+  /**
+    * Section dependency
+   */
+  /**
+    * Breadcrumbs inner
+   */
+  /**
+    * Breadcrumbs item
+   */
+  /**
+    * Section dependency
+  */ }
   .breadcrumbs:not(.breadcrumbs_inline) {
     margin-bottom: -100px;
     height: 100px; }
     .breadcrumbs:not(.breadcrumbs_inline) + .section {
       padding-top: 118.75px; }
-  .breadcrumbs__inner {
+  .breadcrumbs > .container > span > span,
+  .breadcrumbs > .container > span,
+  .breadcrumbs > span > span,
+  .breadcrumbs > span, .breadcrumbs__inner {
     display: flex;
     gap: 18px;
     list-style: none;
     margin: 0;
-    padding: 0; }
-  .breadcrumbs__item {
-    color: var(--Grey-Light, #9197af);
-    font: 400 14px/128% Hind, sans-serif;
+    padding: 0;
+    color: #9197af;
+    font: 400 14px/128% Hind, sans-serif; }
+  .breadcrumbs > .container > span > span > a,
+  .breadcrumbs > .container > span > span > span,
+  .breadcrumbs > span > span > a,
+  .breadcrumbs > span > span > span, .breadcrumbs__item {
+    color: inherit;
+    font: inherit;
     display: flex;
+    align-items: center;
     gap: 18px;
-    user-select: none; }
-    .breadcrumbs__item a {
-      color: inherit;
-      text-decoration: none;
-      user-select: none;
-      display: flex;
-      align-items: center; }
-      .breadcrumbs__item a:hover {
-        opacity: 0.8; }
-    .breadcrumbs__item:not(:first-child) {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center; }
-      .breadcrumbs__item:not(:first-child)::before {
-        content: " ";
-        width: 5px;
-        height: 5px;
-        background-color: var(--Grey-Light, #9197af);
-        border-radius: 50%; }
+    user-select: none;
+    text-decoration: none; }
+  .breadcrumbs > .container > span > span > a:hover,
+  .breadcrumbs > span > span > a:hover {
+    opacity: 0.8; }
   @media (max-width: 900px) {
     .breadcrumbs:not(.breadcrumbs_inline) + .section {
       padding-top: 110px; } }

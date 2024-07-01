@@ -12,6 +12,9 @@
   align-items: center;
   font: 400 14px/128% Hind, sans-serif;
 
+  /**
+    * Section dependency
+   */
   &:not(.breadcrumbs_inline) {
     margin-bottom: -100px;
     height: 100px;
@@ -21,48 +24,50 @@
     }
   }
 
+  /**
+    * Breadcrumbs inner
+   */
+  & > .container > span > span, // for yoast
+  & > .container > span,        // for yoast
+  & > span > span,              // for yoast
+  & > span,                     // for yoast
   &__inner {
     display: flex;
     gap: 18px;
     list-style: none;
     margin: 0;
     padding: 0;
+    color: #9197af;
+    font: 400 14px/128% Hind, sans-serif;
   }
 
+  /**
+    * Breadcrumbs item
+   */
+  & > .container > span > span > a,    // for yoast
+  & > .container > span > span > span, // for yoast
+  & > span > span > a,    // for yoast
+  & > span > span > span, // for yoast
   &__item {
-    color: var(--Grey-Light, #9197af);
-    font: 400 14px/128% Hind, sans-serif;
+    color: inherit;
+    font: inherit;
     display: flex;
+    align-items: center;
     gap: 18px;
     user-select: none;
+    text-decoration: none;
+  }
 
-    & a {
-      color: inherit;
-      text-decoration: none;
-      user-select: none;
-      display: flex;
-      align-items: center;
-
-      &:hover {
-        opacity: 0.8;
-      }
-    }
-
-    &:not(:first-child) {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      &::before {
-        content: " ";
-        width: 5px;
-        height: 5px;
-        background-color: var(--Grey-Light, #9197af);
-        border-radius: 50%;
-      }
+  & > .container > span > span > a,  // for yoast
+  & > span > span > a {              // for yoast
+    &:hover {
+      opacity: 0.8;
     }
   }
 
+  /**
+    * Section dependency
+  */
   @include bp($section-breakpoint) {
     &:not(.breadcrumbs_inline) {
       & + .section {
