@@ -25,7 +25,7 @@ $max_pages = $wp_query->max_num_pages;
 get_header();
 
 get_template_part('/theme-parts/modules/app-banner', '', [
-    'txt' => __( 'Search results for: ' ) . '<em>' . get_search_query() . '</em>',
+    'txt' => __( 'Søkeresultater for: ' ) . '<em>' . get_search_query() . '</em>',
     'img' => get_stylesheet_directory_uri() . '/assets/images/banner/banner-search.svg',
 ]);
 
@@ -42,9 +42,9 @@ get_template_part('/theme-parts/modules/app-banner', '', [
                                 <?php
 
                                 if ( have_posts() ) {
-                                    echo $wp_query->found_posts . ' ' . __( 'Results found' );
+                                    echo $wp_query->found_posts . ' ' . __( 'Resultater funnet' );
                                 } else {
-                                    echo __( 'Nothing found' );
+                                    echo __( 'Ingenting funnet' );
                                 }
 
                                 ?>
@@ -53,14 +53,14 @@ get_template_part('/theme-parts/modules/app-banner', '', [
 
                             if ( ! have_posts() ) {
                                 echo '<div class="search-results-list__subtitle">';
-                                echo __( 'Please try another search query.' );
+                                echo __( 'Prøv et annet søkeord.' );
                                 echo '</div>';
                             }
 
                             if ( have_posts() && $max_pages > 1 ) {
                                 echo '<div class="search-results-list__subtitle">';
                                 $current_page = max(1, get_query_var('paged'));
-                                echo __( 'Page' ) . ' ' . $current_page . ' ' . __( 'of' ) . ' ' . $max_pages;
+                                echo __( 'Side' ) . ' ' . $current_page . ' ' . __( 'av' ) . ' ' . $max_pages;
                                 echo '</div>';
                             }
 
