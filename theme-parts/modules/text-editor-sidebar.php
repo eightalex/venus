@@ -9,14 +9,9 @@ $read_review_txt    = !empty(get_option('games_read_review_title'))? get_option(
         <div class="section__inner">
             <div class="content">
                 <main class="content__main">
-                    <!-- START: TEXT-EDITOR BLOCK -->
                     <div class="variable-content">
                         <?php echo apply_filters('the_content',get_the_content());?>
                     </div>
-                    <!-- END: TEXT-EDITOR BLOCK -->
-                    <!-- SOCIAL BUTTONS -->
-
-                    <!-- END: SOCIAL BUTTONS -->
                 </main>
                 <?php
                 if(!empty($casinois)):
@@ -47,17 +42,8 @@ $read_review_txt    = !empty(get_option('games_read_review_title'))? get_option(
                                         </div>
                                         <div class="casino-card__title"><?php echo get_the_title($casino_id)?></div>
 
-                                        <div class="casino-card__rating" data-rating="<?php echo $casino_overall_rating ?>">
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
+                                        <div class="rating-mobile casino-card__rating" data-rating="<?php echo $casino_overall_rating?>">
+                                            <img src="<?php echo get_stylesheet_directory_uri().'/assets/images/icons/star.svg'?>" alt="star">
                                         </div>
 
                                         <div class="casino-card__subtitle">
