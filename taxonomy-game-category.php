@@ -19,6 +19,10 @@ $q_args = [
                             ),
 ];
 
+$terms = get_terms( array(
+    'taxonomy'   => 'game-category',
+) );
+
 get_header();
 
 $posts  = new WP_Query($q_args);
@@ -35,6 +39,29 @@ if($posts->have_posts()):
 <section class="section section_bg section_bg_3">
     <div class="container">
         <div class="section__inner">
+            <?php
+                if(!empty($terms)):
+                    $def_active = isset($_GET['games-cat'])? '': 'active';
+                    ?>
+                    <div class="content-cards__switch">
+                        <div class="page-switch">
+                            <?php
+                            foreach($terms as $term):
+                                $t_id   = $term->term_id;
+                                // $url    = $has_filter? "?games-cat={$t_id}": get_term_link($t_id);
+                                $url    = get_term_link($t_id);
+                                $active = $t_id == $ID? 'active': '';
+                                ?>
+                                <a href="<?php echo $url?>" class="page-switch__button <?php echo $active?>"><?php echo $term->name?></a>
+                                <?php
+                            endforeach;
+                            ?>
+                        </div>
+                    </div>
+                    <?php
+                endif;
+            ?>
+
             <div class="section__content">
                 <ul class="card-list">
                     <?php
@@ -48,6 +75,7 @@ if($posts->have_posts()):
                         $game_params = [
                             'g_img_data'      => apply_filters('ud_get_file_data', $g_img_id),
                             'title'           => get_the_title(),
+                            'permalink'       => get_the_permalink(),  
                             'short_desc'      => get_post_meta( $g_id, 'game_short_desc', true ),
                             'button_notice'   => get_post_meta( $g_id, 'casino_button_notice', true ),
                             'external_link'   => !empty($gel)? esc_url( $gel ): get_the_permalink(),

@@ -148,7 +148,7 @@ function ud_print_single_game(array $data){
 
     if(!empty($external_link)){
         $ext_lnk = "<div class='game-card__cta'>
-                        <a href='{$external_link}' class='game-card__button button'>$play_btn_txt</a>
+                        <a href='{$external_link}' class='game-card__button button' nofollow>$play_btn_txt</a>
                     </div>";
     }
 
@@ -166,7 +166,11 @@ function ud_print_single_game(array $data){
                 <div class='game-card__image'>
                     <img src='{$img_src}' alt='{$img_alt}'>
                 </div>
-                <div class='game-card__title'>{$title}</div>
+                <div class='game-card__title'>
+                    <a href='{$permalink}'>
+                        {$title}
+                    </a>    
+                </div>
                 {$desc}
                 {$ext_lnk}
                 <div class='game-card__info'>

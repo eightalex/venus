@@ -50,6 +50,7 @@ if($posts->have_posts()):
 							$game_params = [
 								'g_img_data'      => apply_filters('ud_get_file_data', $g_img_id),
 								'title'           => get_the_title(),
+								'permalink'       => get_the_permalink(),
 								'short_desc'      => get_post_meta( $g_id, 'game_short_desc', true ),
 								'button_notice'   => get_post_meta( $g_id, 'casino_button_notice', true ),
 								'external_link'   => !empty($gel)? esc_url( $gel ): get_the_permalink(),
