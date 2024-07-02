@@ -11,6 +11,10 @@ $cas_args = [
 	'category'       => $ID
 ];
 
+$terms = get_terms( array(
+    'taxonomy'   => 'casino-category',
+) );
+
 $casinos = apply_filters('ud_get_casinos', $cas_args);
 
 if(empty($app_banner_img)){
@@ -26,31 +30,48 @@ if($casinos->have_posts()):
 		<div class="container">
 			<div class="section__inner">
 				<div class="section__content">
-					<div class="card-list card-list_col-2">
-						<?php
-						while($casinos->have_posts()):
-							$casinos->the_post();
-	
-							$id                         = get_the_ID();
-							$cas_img_id                 = get_post_thumbnail_id();
-							$cas_img_data               = apply_filters('ud_get_file_data', $cas_img_id);
-							$desc                       = get_post_meta($id, 'casino_short_desc', true);
-							$casino_overall_rating      = floatval(get_post_meta($id, 'casino_overall_rating', true));
-							$casino_external_link       = get_post_meta($id, 'casino_external_link', true);
-	
-							$atts = [
-								'title'             => get_the_title(),
-								'img_src'           => $cas_img_id !== 0? $cas_img_data['src']: '',
-								'img_alt'           => $cas_img_id !== 0? $cas_img_data['alt']: get_the_title(),
-								'rating'            => $casino_overall_rating,
-								'desc'              => $desc,
-								'permalink'         => get_the_permalink(),
-								'external_link'     => $casino_external_link,
-							];
-							do_action('print_single_casino_template', $atts);
-						endwhile;
-						?>
-					</div>
+					<div class="content-cards">
+						<div class="content-cards__switch">
+							<div class="page-switch">
+								<?php
+								foreach($terms as $term):
+									$t_id   = $term->term_id;
+									$url    = get_term_link($t_id);
+									$active = $ID == $t_id? 'active': '';
+									?>
+									<a href="<?php echo $url?>" class="page-switch__button <?php echo $active?>"><?php echo $term->name?></a>
+									<?php
+								endforeach;
+								?>
+							</div>
+						</div>
+
+						<div class="card-list card-list_col-2" style="margin-top: 40px;">
+							<?php
+							while($casinos->have_posts()):
+								$casinos->the_post();
+		
+								$id                         = get_the_ID();
+								$cas_img_id                 = get_post_thumbnail_id();
+								$cas_img_data               = apply_filters('ud_get_file_data', $cas_img_id);
+								$desc                       = get_post_meta($id, 'casino_short_desc', true);
+								$casino_overall_rating      = floatval(get_post_meta($id, 'casino_overall_rating', true));
+								$casino_external_link       = get_post_meta($id, 'casino_external_link', true);
+		
+								$atts = [
+									'title'             => get_the_title(),
+									'img_src'           => $cas_img_id !== 0? $cas_img_data['src']: '',
+									'img_alt'           => $cas_img_id !== 0? $cas_img_data['alt']: get_the_title(),
+									'rating'            => $casino_overall_rating,
+									'desc'              => $desc,
+									'permalink'         => get_the_permalink(),
+									'external_link'     => $casino_external_link,
+								];
+								do_action('print_single_casino_template', $atts);
+							endwhile;
+							?>
+						</div>
+					</div>	
 				</div>
 				<?php
 					$max_pages = $casinos->max_num_pages;

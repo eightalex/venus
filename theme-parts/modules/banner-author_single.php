@@ -36,7 +36,7 @@ $comment_count      = get_comment_count($id);
                         </div>
                     </div>
                     <time class="banner-author__date">
-                        <?php echo $date_c_m?>3
+                        <?php echo $date_c_m?>
                     </time>
                     <div class="banner-author__icons">
                         <?php
