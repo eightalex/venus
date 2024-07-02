@@ -59,6 +59,7 @@ $def_url = get_the_permalink();
                                 'bonus_code'        => get_post_meta($b_id, 'bonus_code', true),
                                 'bonus_valid_date'  => get_post_meta($b_id, 'bonus_valid_date', true),
                                 'tax'               => !empty($taxs)? $taxs[0]->name: '',
+                                'tax_link'          => !empty($taxs)? get_term_link($taxs[0]->term_id): "",
                             ];
 
                             

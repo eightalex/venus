@@ -2,7 +2,7 @@
 extract($args);
 
 $cas_args = [
-    'items_number'   => $content['cas_count'],
+    'items_number'   => isset($content) && isset($content['cas_count'])? $content['cas_count']: 9,
 ];
 
 if(get_post_type() == 'casino'){
@@ -14,9 +14,12 @@ if(get_post_type() == 'casino'){
     $cas_args['category'] = $content['cas_category'];
 }
 
-$_post__in_arr = array_filter($content['cas_casionois'],function($value) {
-    return ($value !== '');
-});
+if(isset($content) && isset($content['cas_casionois'])){
+    $_post__in_arr = array_filter($content['cas_casionois'],function($value) {
+        return ($value !== '');
+    });
+}
+
 
 if(!empty($_post__in_arr)){
     $cas_args['post__in'] = $_post__in_arr;

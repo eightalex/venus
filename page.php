@@ -4,17 +4,23 @@ $ID 					= get_the_ID();
 $custom_content 		= carbon_get_post_meta(get_the_ID(), 'ud_post_content');
 $app_banner_img			= intval(carbon_get_post_meta(get_the_ID(), 'app_banner_img'));
 $app_banner_txt			= carbon_get_post_meta(get_the_ID(), 'app_banner_txt');
+$app_banner_is_author	= carbon_get_post_meta(get_the_ID(), 'app_banner_is_author');
 $is_main_game_page 		= (carbon_get_theme_option('default_page_game') == $ID);
 $is_main_bonus_page		= (carbon_get_theme_option('default_page_bonus') == $ID);
 $is_main_casinois_page	= (carbon_get_theme_option('default_page_casinois') == $ID);
 
 get_header();
 
-
-if(empty($app_banner_img)){
+if(empty($app_banner_img) && !$app_banner_is_author){
 	get_template_part('/theme-parts/modules/breadcrumbs');
-}else{
+
+	?>
+	<h1 class="section__title"><?php the_title()?></h1>
+	<?php
+}elseif(!empty($app_banner_img) && !$app_banner_is_author){
 	get_template_part('/theme-parts/modules/app-banner', '', ['img' => $app_banner_img, 'txt' => $app_banner_txt]);
+}elseif($app_banner_is_author){
+	get_template_part('/theme-parts/modules/banner', 'author_single', ['id' => $ID]);
 }
 
 if($is_main_game_page){
@@ -25,7 +31,8 @@ if($is_main_game_page){
 	get_template_part('theme-parts/modules/bonus-card', '', ['id' => $ID, 'content' => $content]);
 }elseif($is_main_casinois_page){
 	$casinois = apply_filters('ud_get_casinos', ['items_number'  => 8]);
-	get_template_part('theme-parts/modules/casino-card', '', ['casinos' => $casinois, 'filter' => false]);
+	// $content = ['casinos' => $casinois, 'filter' => false]; 
+	get_template_part('theme-parts/modules/casinois-card-filter', '', ['casinos' => $casinois]);
 }
 
 if(!empty($custom_content)){

@@ -14,7 +14,7 @@ if(empty($app_banner_img)){
 }
 get_header(); 
 
-$posts = new WP_Query(['category' => $ID, 'post_status' => 'publish', 'posts_per_page' => 6, 'paged' => $paged]);
+$posts = new WP_Query(['cat' => $ID, 'post_status' => 'publish', 'posts_per_page' => 6, 'paged' => $paged]);
 wp_reset_postdata();
 
 get_template_part('/theme-parts/modules/app-banner', '', ['img' => $app_banner_img, 'txt' => $app_banner_txt]);

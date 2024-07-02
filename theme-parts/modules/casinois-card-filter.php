@@ -3,6 +3,10 @@ if(isset($args)){
     extract($args);
 }
 
+if(!isset($show_all_btn)){
+    $show_all_btn = false; 
+}
+
 $terms = get_terms( array(
     'taxonomy'   => 'casino-category',
 ) );
@@ -18,21 +22,22 @@ $def_url = get_the_permalink();
             <div class="section__content">
                 <div class="content-cards">
                     <?php
-                        if(!empty($terms)):
+                        if($has_filter && !empty($terms)):
                             $def_active = isset($_GET['casinos-cat'])? '': 'active';
                             ?>
                             <div class="content-cards__switch">
                                 <div class="page-switch">
                                 <?php
-                                if($has_filter):
+                                    if($has_filter && $show_all_btn):
                                     ?>
-                                    <a href="<?php echo $def_url?>" class="page-switch__button <?php echo $def_active?>">All</a>
+                                        <a href="<?php echo $def_url?>" class="page-switch__button <?php echo $def_active?>">All</a>
                                     <?php
                                     endif;
 
                                     foreach($terms as $term):
                                         $t_id   = $term->term_id;
-                                        $url    = $has_filter? "?casinos-cat={$t_id}": get_term_link($t_id);
+                                        // $url    = $has_filter? "?casinos-cat={$t_id}": get_term_link($t_id);
+                                        $url    = get_term_link($t_id);
                                         $active = isset($_GET['casinos-cat']) && $_GET['casinos-cat'] == $t_id? 'active': '';
                                         ?>
                                         <a href="<?php echo $url?>" class="page-switch__button <?php echo $active?>"><?php echo $term->name?></a>

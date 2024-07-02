@@ -616,7 +616,7 @@ function print_single_casino_template($data = []){
     }
 
     if(isset($external_link) && !empty($external_link)){
-        $external_link_html = "<a href='{$external_link}' target='_blank' class='casino-card__button button'>{$elb_txt}</a>";
+        $external_link_html = "<a href='{$external_link}' target='_blank' class='casino-card__button button' nofollow>{$elb_txt}</a>";
     }
 
     $tmpl = "<div class='casino-card {$add_class}'>
@@ -624,7 +624,9 @@ function print_single_casino_template($data = []){
                     <img src='{$img_src}' alt='{$img_alt}'>
                 </div>
                 
-                <div class='casino-card__title'>{$title}</div>
+                <div class='casino-card__title'>
+                    <a href='{$permalink}'>{$title}</a>
+                </div>
 
                 <div class='casino-card__rating' data-rating='{$rating}'>
                     <div class='rating-mobile casino-card__rating-mobile' data-rating='{$rating}'>
@@ -711,9 +713,9 @@ function print_single_bonus_card(array $data){
                         </div>";
     endif;
 
-    if(!empty($tax)):
+    if(!empty($tax) && !empty($tax_link)):
         $tax_info = "<div class='bonus-card__tags'>
-                        <div class='bonus-card__tag'>{$tax}</div>
+                        <a class='bonus-card__tag' href='{$tax_link}'>{$tax}</a>
                     </div>";
     endif;
 

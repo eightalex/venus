@@ -16,6 +16,20 @@ if(isset($content['bonuses_parent']) && $content['bonuses_parent'] == 'curent'){
     $args_arr['parent_id'] = $id;
 }
 
+
+$title_section      = !empty($content['bonuses_title'])? $content['bonuses_title']: get_the_title()." <em>bonuses</em>";
+
+$title_conv = '<h2 class="section__title">' . $title_section . '</h2>';
+
+
+if(is_page()){
+    $is_main_casinois_page	= (carbon_get_theme_option('default_page_casinois') == $id);
+
+    if($is_main_casinois_page){
+        $title_conv = '<h1 class="section__title">' . $title_section . '</h1>';
+    }
+}
+
 $bonuses = apply_filters('ud_get_bonuses', $args_arr);
 
 if(!$bonuses['res']->have_posts()){
@@ -26,15 +40,14 @@ if(isset($content['bonuses_filter_on'])){
     get_template_part('theme-parts/modules/bonus-card-filter', '', ['bonuses' => $bonuses]);
     return;
 }
-
-$title_section      = !empty($content['bonuses_title'])? $content['bonuses_title']: get_the_title()." <em>bonuses</em>";
 ?>
 <section class="section section_suits">
     <div class="container">
         <div class="section__inner">
             <header class="section__header">
-                <h2 class="section__title"><?php echo $title_section?></h2>
                 <?php
+                echo $title_conv;
+
                 if(!empty($content['bonuses_subtitle'])):
                     ?>
                     <div class="section__subtitle">
@@ -51,7 +64,6 @@ $title_section      = !empty($content['bonuses_title'])? $content['bonuses_title
                         $bonuses['res']->the_post();
                         $b_id = get_the_ID();
                         $taxs = wp_get_post_terms($b_id, 'bonus-category');
-
                         $data = [
                             'title'             => get_the_title($b_id),
                             'short_desc'        => get_post_meta($b_id, 'bonus_short_desc', true),
@@ -61,6 +73,7 @@ $title_section      = !empty($content['bonuses_title'])? $content['bonuses_title
                             'bonus_code'        => get_post_meta($b_id, 'bonus_code', true),
                             'bonus_valid_date'  => get_post_meta($b_id, 'bonus_valid_date', true),
                             'tax'               => !empty($taxs)? $taxs[0]->name: '',
+                            'tax_link'          => !empty($taxs)? get_term_link($taxs[0]->term_id): "",
 
                         ];
                         if($current_id !== $b_id){
