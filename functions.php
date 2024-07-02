@@ -699,7 +699,7 @@ function print_single_bonus_card(array $data){
 
     if(!empty($external_link)):
         $external ="<div class='bonus-card__cta'>
-                        <a href='$external_link' target='__blank'  class='bonus-card__button button'>{$btn_txt}</a>
+                        <a href='$external_link' target='__blank' class='bonus-card__button button' nofollow>{$btn_txt}</a>
                     </div>";
     endif;
 
