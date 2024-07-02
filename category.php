@@ -1,13 +1,14 @@
 <?php
 
-$ID 			= get_queried_object()->term_id;
-$app_banner_img	= intval(carbon_get_term_meta($ID, 'app_banner_img'));
-$app_banner_txt	= carbon_get_term_meta($ID, 'app_banner_txt');
-$custom_content = carbon_get_term_meta($ID, 'content_editor');
-$content 		= carbon_get_term_meta($ID, 'ud_cat_content');
-$paged 			= isset($_GET['posts-page']) ? absint( $_GET['posts-page'] )  : 1;
-
-$tags 	= apply_filters('ud_get_tax_posts_tags', $posts);
+$ID 			    = get_queried_object()->term_id;
+$app_banner_img	    = intval(carbon_get_term_meta($ID, 'app_banner_img'));
+$app_banner_txt	    = carbon_get_term_meta($ID, 'app_banner_txt');
+$show_sidebar	    = carbon_get_term_meta($ID, 'embed_sitebar');
+$sitebar_title	    = carbon_get_term_meta($ID, 'sitebar_title');
+$sidebar_casionois	= carbon_get_term_meta($ID, 'sidebar_casionois');
+$custom_content     = carbon_get_term_meta($ID, 'content_editor');
+$content 		    = carbon_get_term_meta($ID, 'ud_cat_content');
+$paged 			    = isset($_GET['posts-page']) ? absint( $_GET['posts-page'] )  : 1;
 
 if(empty($app_banner_img)){
 	$app_banner_img = get_stylesheet_directory_uri()."/assets/images/banner/banner.svg";
@@ -16,6 +17,8 @@ get_header();
 
 $posts = new WP_Query(['cat' => $ID, 'post_status' => 'publish', 'posts_per_page' => 6, 'paged' => $paged]);
 wp_reset_postdata();
+
+$tags 	= apply_filters('ud_get_tax_posts_tags', $posts);
 
 get_template_part('/theme-parts/modules/app-banner', '', ['img' => $app_banner_img, 'txt' => $app_banner_txt]);
 
@@ -50,7 +53,12 @@ if($tags){
 												<img src="<?php echo $th_src?>" alt="image">
 											</div>
 											<div class="news-card__content">
-												<div class="news-card__title"><?php the_title($post_id)?></div>
+												<div class="news-card__title">
+                                                    <a href="<?php echo get_the_permalink()?>">
+                                                        <?php the_title()?>
+                                                    </a>
+                                                </div>
+
 												<time class="news-card__date"><?php echo $date_c_m?></time>
 												<?php
 												if(!empty($excerpt)):
@@ -78,113 +86,88 @@ if($tags){
 					endif;
 					?>
                 </main>
-                <aside class="content__sidebar">
-                    <div class="content__subtitle">
-                        News casino
-                    </div>
-                    <div class="content__sidebar-cards">
-                        <div class="casino-card casino-card_compact">
-                            <div class="casino-card__image">
-                                <img src="../assets/images/game.png" alt="casino">
+                <?php
+                if($show_sidebar && !empty($sidebar_casionois)):
+                    ?>
+                    <aside class="content__sidebar">
+                        <?php
+                        if(!empty($sitebar_title)):
+                            ?>
+                            <div class="content__subtitle">
+                                <?php echo $sitebar_title?>
                             </div>
-                            <div class="casino-card__title">Royal Casino</div>
-                            <div class="casino-card__rating" data-rating="9.0">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                            <div class="casino-card__subtitle">
-                                Get 100% up to $150 + 50 bonus spins at Royal Casino
-                            </div>
-                            <div class="casino-card__cta">
-                                <button class="casino-card__button button button_outline">Read review</button>
-                                <button class="casino-card__button button">Play now</button>
-                            </div>
+                            <?php
+                        endif;
+                        ?>
+                        <div class="content__sidebar-cards">
+                            <?php
+                                foreach($sidebar_casionois as $casino_id):
+                                    $c_th_id   = get_post_thumbnail_id($casino_id);
+                                    $c_th_data                  = apply_filters('ud_get_file_data', $c_th_id);
+                                    $c_title                    = get_the_title($casino_id);
+                                    $c_desc                     = get_post_meta($casino_id, 'casino_short_desc', true);
+									$c_overall_rating           = floatval(get_post_meta($casino_id, 'casino_overall_rating', true));
+                                    $c_pemalink                 = get_the_permalink($casino_id);
+									$c_external_link            = get_post_meta($casino_id, 'casino_external_link', true);
+                                    $lb_txt                     = !empty(get_option('casinos_read_review_title'))? get_option('casinos_read_review_title'): 'Read review';
+                                    $elb_txt                    = !empty(get_option('casinos_play_now_title'))? get_option('casinos_play_now_title'): 'Play now';
+                                ?>
+                                <div class="casino-card casino-card_compact">
+                                    <div class="casino-card__image">
+                                        <img src="<?php echo $c_th_data['src']?>" alt="<?php echo $c_th_data['alt']?>">
+                                    </div>
+
+                                    <div class="casino-card__title">
+                                        <a href="<?php echo $c_pemalink?>">
+                                            <?php echo $c_title?>   
+                                        </a>
+                                    </div>
+
+                                    <?php
+                                    if(!empty($c_overall_rating)):
+                                    ?>
+                                    <div class="casino-card__rating" data-rating="<?php echo $c_overall_rating?>">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <?php
+                                    endif;
+
+                                    if(!empty($c_desc)):
+                                        ?>
+                                        <div class="casino-card__subtitle">
+                                            <?php echo $c_desc?>
+                                        </div>
+                                        <?php
+                                    endif;
+                                    ?>
+                                    <div class="casino-card__cta">
+                                        <a href="<?php echo $c_pemalink?>" class="casino-card__button button button_outline"><?php echo $lb_txt?></a>
+                                        <?php
+                                        if(!empty($c_external_link)):
+                                            ?>
+                                            <a href="<?php echo $c_external_link?>" target="_blank" class="casino-card__button button" nofollow><?php echo $elb_txt?></a>
+                                            <?php
+                                        endif;
+                                        ?>
+                                    </div>
+                                </div>
+                                <?php
+                                endforeach;
+                            ?>
                         </div>
-                        <div class="casino-card casino-card_compact">
-                            <div class="casino-card__image">
-                                <img src="../assets/images/game.png" alt="casino">
-                            </div>
-                            <div class="casino-card__title">Royal Casino</div>
-                            <div class="casino-card__rating" data-rating="9.0">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                            <div class="casino-card__subtitle">
-                                Get 100% up to $150 + 50 bonus spins at Royal Casino
-                            </div>
-                            <div class="casino-card__cta">
-                                <button class="casino-card__button button button_outline">Read review</button>
-                                <button class="casino-card__button button">Play now</button>
-                            </div>
-                        </div>
-                        <div class="casino-card casino-card_compact">
-                            <div class="casino-card__image">
-                                <img src="../assets/images/game.png" alt="casino">
-                            </div>
-                            <div class="casino-card__title">Royal Casino</div>
-                            <div class="casino-card__rating" data-rating="9.0">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                            <div class="casino-card__subtitle">
-                                Get 100% up to $150 + 50 bonus spins at Royal Casino
-                            </div>
-                            <div class="casino-card__cta">
-                                <button class="casino-card__button button button_outline">Read review</button>
-                                <button class="casino-card__button button">Play now</button>
-                            </div>
-                        </div>
-                        <div class="casino-card casino-card_compact">
-                            <div class="casino-card__image">
-                                <img src="../assets/images/game.png" alt="casino">
-                            </div>
-                            <div class="casino-card__title">Royal Casino</div>
-                            <div class="casino-card__rating" data-rating="9.0">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                            <div class="casino-card__subtitle">
-                                Get 100% up to $150 + 50 bonus spins at Royal Casino
-                            </div>
-                            <div class="casino-card__cta">
-                                <button class="casino-card__button button button_outline">Read review</button>
-                                <button class="casino-card__button button">Play now</button>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
+                    </aside>
+                    <?php
+                endif;
+                ?>
             </div>
         </div>
     </div>

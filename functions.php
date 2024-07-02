@@ -1350,6 +1350,31 @@ function ud_custon_fields() {
         ->add_fields(array(
             Field::make('text', 'casinois_sidebar_title', __('Casinos sidebar title'))
         ));
+    Container::make( 'term_meta', 'Sidebar' )
+        ->where( 'term_taxonomy', '=', 'category' )  
+        ->add_fields(array(
+            Field::make('separator', 'catsidebar', __('Sidebar')),
+            Field::make('checkbox', 'embed_sitebar', __('Add Sitebar'))
+                ->set_width(20),
+            Field::make('text', 'sitebar_title', __('Title'))
+                ->set_width(80)
+                ->set_conditional_logic( array(
+                    array(
+                        'field'     => 'embed_sitebar',
+                        'value'     => true,
+                        'compare'   => '=',
+                    )
+                ) ), 
+            Field::make('multiselect', 'sidebar_casionois', __('Select Casinos to show'))
+                ->add_options(ud_get_casinos_options())  
+                ->set_conditional_logic( array(
+                    array(
+                        'field'     => 'embed_sitebar',
+                        'value'     => true,
+                        'compare'   => '=',
+                    )
+                ) )     
+        ));
 
     Container::make( 'term_meta', 'App banner')
         ->where( 'term_taxonomy', '=', 'category' )
