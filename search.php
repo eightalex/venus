@@ -117,7 +117,7 @@ get_template_part('/theme-parts/modules/app-banner', '', [
                 </main>
                 <aside class="content__sidebar">
                     <div class="content__subtitle">
-                        <?php echo __('Popular casino'); ?>
+                        <?php echo __('Populært kasino'); ?>
                     </div>
                     <div class="content__sidebar-cards">
                         <?php
