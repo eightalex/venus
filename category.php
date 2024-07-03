@@ -13,7 +13,7 @@ $paged 			    = isset($_GET['posts-page']) ? absint( $_GET['posts-page'] )  : 1;
 if(empty($app_banner_img)){
 	$app_banner_img = get_stylesheet_directory_uri()."/assets/images/banner/banner.svg";
 }
-get_header(); 
+get_header();
 
 $posts = new WP_Query(['cat' => $ID, 'post_status' => 'publish', 'posts_per_page' => 6, 'paged' => $paged]);
 wp_reset_postdata();
@@ -46,7 +46,7 @@ if($tags){
 									$th_src         = !empty($th_data) && !empty($th_data['src'])? $th_data['src']: 'https://via.placeholder.com/315x220';
 									$date_f         = 'F d, Y';
 									$date_c_m       = get_the_date($date_f, $post_id);
-									$excerpt        = get_the_excerpt($post_id); 
+									$excerpt        = get_the_excerpt($post_id);
 										?>
 										<div class="news-card">
 											<div class="news-card__image">
@@ -82,7 +82,7 @@ if($tags){
 								<?php echo apply_filters('my_pagination', $paged, $max_pages, "posts-page")?>
 							</div>
 						<?php
-						endif;	
+						endif;
 					endif;
 					?>
                 </main>
@@ -119,26 +119,19 @@ if($tags){
 
                                     <div class="casino-card__title">
                                         <a href="<?php echo $c_pemalink?>">
-                                            <?php echo $c_title?>   
+                                            <?php echo $c_title?>
                                         </a>
                                     </div>
 
                                     <?php
                                     if(!empty($c_overall_rating)):
-                                    ?>
-                                    <div class="casino-card__rating" data-rating="<?php echo $c_overall_rating?>">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                    <?php
+                                        ?>
+
+                                        <div class="rating-mobile casino-card__rating" data-rating="<?php echo $c_overall_rating?>">
+                                            <img src="<?php echo get_stylesheet_directory_uri().'/assets/images/icons/star.svg'?>" alt="star">
+                                        </div>
+
+                                        <?php
                                     endif;
 
                                     if(!empty($c_desc)):
@@ -182,10 +175,10 @@ if(!empty($custom_content)){
 if(!empty($content)){
 	foreach($content as $part){
 		$part_tmpl = $part['_type'];
-		
+
 		get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part, "post_type" => 'page']);
 	}
 }
 
-get_footer(); 
+get_footer();
 ?>
