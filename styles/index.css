@@ -3165,9 +3165,7 @@ body {
       height: 100%; }
   .banner-casino__header {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-wrap: wrap; }
+    flex-direction: column; }
   .banner-casino__title {
     margin: 0;
     color: #262c3a;
@@ -3178,17 +3176,28 @@ body {
     line-height: normal;
     text-transform: uppercase;
     word-break: break-all; }
+  .banner-casino__attributes {
+    display: flex;
+    gap: 16px; }
+  .banner-casino__vendor {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #262c3a;
+    font-family: Hind, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 128%; }
+    .banner-casino__vendor img {
+      object-fit: contain;
+      width: 24px;
+      height: 24px;
+      border-radius: 4px; }
   .banner-casino__subtitle {
     margin-top: 16px;
-    color: #262c3a;
-    font-family: Montserrat, sans-serif;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    color: var(--Grey-Light, #9197AF);
-    /* Paragraph/16px */
-    font-family: Hind;
+    color: #9197af;
+    font-family: Hind, sans-serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;

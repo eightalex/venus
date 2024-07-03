@@ -25,9 +25,15 @@ get_template_part('/theme-parts/modules/breadcrumbs');
                 <div class="banner-casino__content">
                     <div class="banner-casino__header">
                         <h1 class="banner-casino__title"><?php echo get_the_title($id)?></h1>
-                        <div class="banner-casino__rating">
-                            <div class="rating-mobile rating-mobile_inverted" data-rating="<?php echo $rat?>">
-                                <img src="<?php echo get_stylesheet_directory_uri().'/assets/images/icons/star.svg'?>" alt="star">
+                        <div class="banner-casino__attributes">
+                            <div class="banner-casino__rating">
+                                <div class="rating-mobile rating-mobile_inverted" data-rating="<?php echo $rat?>">
+                                    <img src="<?php echo get_stylesheet_directory_uri().'/assets/images/icons/star.svg'?>" alt="star">
+                                </div>
+                            </div>
+                            <div class="banner-casino__vendor">
+                                <img src="<?php echo get_stylesheet_directory_uri().'/assets/images/game.png'?>" alt="vendor">
+                                Vendor title
                             </div>
                         </div>
                     </div>
