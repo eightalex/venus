@@ -178,6 +178,9 @@
   }
 
   @include bp(1000px) {
+    padding: 16px;
+    border-radius: 16px;
+
     &__content {
       flex-direction: column;
       gap: 16px;

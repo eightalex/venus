@@ -16,22 +16,6 @@
     <script src="./index.js"></script>
 </head>
 <body>
-    <iframe onload="importFile(this)" src="./blocks/header.html"></iframe>
-    <iframe onload="importFile(this)" src="./blocks/banner-author.html"></iframe>
-
-    <div class="categories js-categories">
-        <div class="container">
-            <div class="categories__inner">
-                <div class="tag">Betting</div>
-                <div class="tag">Casino</div>
-                <div class="tag">Gambling</div>
-                <div class="tag">Game</div>
-                <div class="tag">Slots</div>
-                <div class="tag">Lottery news</div>
-            </div>
-        </div>
-    </div>
-
     <section class="section section_suits">
         <div class="container">
             <div class="section__inner">
@@ -143,9 +127,12 @@
                                         </div>
                                         <!-- TODO END: Використати блок rating-stars.php -->
                                         <!-- TODO END: Після цього видалити ці коменти -->
+
+                                        <!-- TODO rating-mobile окремо -->
                                         <div class="rating-mobile" data-rating="9.0">
                                             <img src="../assets/images/icons/star.svg" alt="star">
                                         </div>
+                                        <!-- TODO rating-mobile окремо -->
                                     </div>
                                     <div class="casino-inline__casino-info">
                                         *New players only
@@ -176,159 +163,48 @@
                         </div>
                     </div>
                     <!-- TODO END CASINO INLINE SHORTCODE -->
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <iframe onload="importFile(this)" src="./blocks/bandit-3.html"></iframe>
-    <iframe onload="importFile(this)" src="./blocks/game-types.html"></iframe>
+                    <h2>Casino 2 <em>shortcode</em></h2>
 
-    <section class="section section_suits">
-        <div class="container">
-            <div class="section__inner">
-                <header class="section__header">
-                    <div class="section__title section__title_s"><em>Top 11</em> slots</div>
-                    <div class="section__subtitle">
-                        Cras in nisi id turpis cursus vulputate. Aliquam at sapien non tellus congue efficitur.
-                        Nam scelerisque quam quis turpis pellentesque, in placerat erat laoreet.
-                        Integer porttitor malesuada ante, nec aliquet dui pellentesque sit amet.
-                    </div>
-                </header>
-                <div class="section__content">
-                    <div class="slider">
-                        <div class="slider__prev js-button-prev"></div>
-                        <div class="slider__inner swiper">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="slot">
-                                        <div class="slot__image">
-                                            <img src="../assets/images/game.png" alt="slot" />
-                                        </div>
-                                        <div class="slot__content">
-                                            <div class="slot__header">
-                                                <div class="slot__title">Peking Luck – 180,000 x stake</div>
-                                                <div class="slot__rating-mobile">
-                                                    <!-- START: Зробити новий блок rating-mobile -->
-                                                    <!-- Та використати його в game-rating блоці -->
-                                                    <div class="rating-mobile" data-rating="9.0">
-                                                        <img src="../assets/images/icons/star.svg" alt="star">
-                                                    </div>
-                                                    <!-- END: Зробити новий блок rating-mobile -->
-                                                </div>
-                                            </div>
-                                            <div class="slot__rating">
-                                                <!-- START: Використати блок star-rating -->
-                                                <div class="star-rating" data-rating="7">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="312" height="24" viewBox="0 0 312 24">
-                                                        <mask id="starMask">
-                                                            <rect width="312" height="24" fill="#fff"/>
-                                                            <g fill="#000">
-                                                                <use href="#starPath" x="0" y="0"/>
-                                                                <use href="#starPath" x="32" y="0"/>
-                                                                <use href="#starPath" x="64" y="0"/>
-                                                                <use href="#starPath" x="96" y="0"/>
-                                                                <use href="#starPath" x="128" y="0"/>
-                                                                <use href="#starPath" x="160" y="0"/>
-                                                                <use href="#starPath" x="192" y="0"/>
-                                                                <use href="#starPath" x="224" y="0"/>
-                                                                <use href="#starPath" x="256" y="0"/>
-                                                                <use href="#starPath" x="288" y="0"/>
-                                                            </g>
-                                                        </mask>
-                                                        <defs>
-                                                            <path id="starPath" d="M23.9374 9.20628C23.7803 8.7203 23.3493 8.37514 22.8393 8.32918L15.9123 7.7002L13.1731 1.28896C12.9712 0.8191 12.5112 0.514954 12.0001 0.514954C11.4891 0.514954 11.0291 0.8191 10.8271 1.29006L8.08797 7.7002L1.15982 8.32918C0.65077 8.37624 0.220828 8.7203 0.0628038 9.20628C-0.0952203 9.69225 0.0507185 10.2253 0.435799 10.5613L5.67183 15.1533L4.12785 21.9546C4.01487 22.4547 4.20897 22.9716 4.62389 23.2715C4.84692 23.4327 5.10785 23.5147 5.37098 23.5147C5.59786 23.5147 5.8229 23.4535 6.02487 23.3327L12.0001 19.7615L17.9732 23.3327C18.4103 23.5956 18.9612 23.5716 19.3752 23.2715C19.7904 22.9707 19.9843 22.4536 19.8713 21.9546L18.3273 15.1533L23.5633 10.5622C23.9484 10.2253 24.0955 9.69317 23.9374 9.20628Z"/>
-                                                        </defs>
-                                                        <rect width="312" height="24" fill="var(--star-rating-background, #262c3a)" mask="url(#starMask)"/>
-                                                    </svg>
-                                                </div>
-                                                <!-- END: Використати блок star-rating -->
-                                            </div>
-                                            <div class="slot__text">
-                                                Powered by Pragmatic Play, the 5 reel, 25 payline Peking Luck has a Chinese luck theme.
-                                                It has a high 96.5% RTP rate. Very volatile, it comes with a high value wild symbol
-                                                which pays 400 x stake for 5 in combination. If a wild is part of a win, your payout
-                                                is subject to a 2x multiplier.
-                                            </div>
-                                            <div class="slot__footer">
-                                                <a href="#" class="button slot__button">Play now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="slot">
-                                        <div class="slot__image">
-                                            <img src="../assets/images/game.png" alt="slot" />
-                                        </div>
-                                        <div class="slot__content">
-                                            <div class="slot__header">
-                                                <div class="slot__title">Peking Luck – 180,000 x stake</div>
-                                                <div class="slot__rating-mobile">
-                                                    <!-- START: Зробити новий блок rating-mobile -->
-                                                    <!-- Та використати його в game-rating блоці -->
-                                                    <div class="rating-mobile" data-rating="9.0">
-                                                        <img src="../assets/images/icons/star.svg" alt="star">
-                                                    </div>
-                                                    <!-- END: Зробити новий блок rating-mobile -->
-                                                </div>
-                                            </div>
-                                            <div class="slot__rating">
-                                                <!-- START: Використати блок star-rating -->
-                                                <div class="star-rating" data-rating="7">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="312" height="24" viewBox="0 0 312 24">
-                                                        <mask id="starMask">
-                                                            <rect width="312" height="24" fill="#fff"/>
-                                                            <g fill="#000">
-                                                                <use href="#starPath" x="0" y="0"/>
-                                                                <use href="#starPath" x="32" y="0"/>
-                                                                <use href="#starPath" x="64" y="0"/>
-                                                                <use href="#starPath" x="96" y="0"/>
-                                                                <use href="#starPath" x="128" y="0"/>
-                                                                <use href="#starPath" x="160" y="0"/>
-                                                                <use href="#starPath" x="192" y="0"/>
-                                                                <use href="#starPath" x="224" y="0"/>
-                                                                <use href="#starPath" x="256" y="0"/>
-                                                                <use href="#starPath" x="288" y="0"/>
-                                                            </g>
-                                                        </mask>
-                                                        <defs>
-                                                            <path id="starPath" d="M23.9374 9.20628C23.7803 8.7203 23.3493 8.37514 22.8393 8.32918L15.9123 7.7002L13.1731 1.28896C12.9712 0.8191 12.5112 0.514954 12.0001 0.514954C11.4891 0.514954 11.0291 0.8191 10.8271 1.29006L8.08797 7.7002L1.15982 8.32918C0.65077 8.37624 0.220828 8.7203 0.0628038 9.20628C-0.0952203 9.69225 0.0507185 10.2253 0.435799 10.5613L5.67183 15.1533L4.12785 21.9546C4.01487 22.4547 4.20897 22.9716 4.62389 23.2715C4.84692 23.4327 5.10785 23.5147 5.37098 23.5147C5.59786 23.5147 5.8229 23.4535 6.02487 23.3327L12.0001 19.7615L17.9732 23.3327C18.4103 23.5956 18.9612 23.5716 19.3752 23.2715C19.7904 22.9707 19.9843 22.4536 19.8713 21.9546L18.3273 15.1533L23.5633 10.5622C23.9484 10.2253 24.0955 9.69317 23.9374 9.20628Z"/>
-                                                        </defs>
-                                                        <rect width="312" height="24" fill="var(--star-rating-background, #262c3a)" mask="url(#starMask)"/>
-                                                    </svg>
-                                                </div>
-                                                <!-- END: Використати блок star-rating -->
-                                            </div>
-                                            <div class="slot__text">
-                                                Powered by Pragmatic Play, the 5 reel, 25 payline Peking Luck has a Chinese luck theme.
-                                                It has a high 96.5% RTP rate. Very volatile, it comes with a high value wild symbol
-                                                which pays 400 x stake for 5 in combination. If a wild is part of a win, your payout
-                                                is subject to a 2x multiplier.
-                                            </div>
-                                            <div class="slot__footer">
-                                                <a href="#" class="button slot__button">Play now</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                    <!-- TODO START CASINO INLINE 2 SHORTCODE -->
+                    <div class="casino-inline-2">
+                        <div class="casino-inline-2__heading">
+                            <div class="casino-inline-2__img">
+                                <img src="../assets/images/game.png" alt="game">
+                            </div>
+                            <div class="casino-inline-2__header">
+                                <div class="casino-inline-2__title">Royal bet</div>
+                                <div class="casino-inline-2__acceptance">
+                                    <img src="../assets/images/icons/check-green.svg" alt="acceptance">
+                                    Users from Montenegro are accepted
                                 </div>
                             </div>
                         </div>
-                        <div class="slider__next js-button-next"></div>
+                        <div class="casino-inline-2__content">
+                            <div class="casino-inline-2__bonus">
+                                2 x $10 free bets
+                            </div>
+                            <div class="casino-inline-2__description">
+                                18+. Minimum deposit $10. Only real money wagering with minimum 1.8 odds qualifities for the promotion. Additional T&Cs apply.
+                            </div>
+                        </div>
+                        <div class="casino-inline-2__attributes">
+                            <div class="casino-inline-2__rating">
+                                <div class="rating-mobile" data-rating="9.0">
+                                    <img src="../assets/images/icons/star.svg" alt="star">
+                                </div>
+                            </div>
+                            <a href="#" class="casino-inline-2__review">Read Review</a>
+                        </div>
+                        <div class="casino-inline-2__cta">
+                            <a href="#" class="button casino-inline-2__button">Visit</a>
+                            <span>*New players only</span>
+                        </div>
                     </div>
+                    <!-- TODO END CASINO INLINE 2 SHORTCODE -->
                 </div>
             </div>
         </div>
     </section>
-
-    <iframe onload="importFile(this)" src="./blocks/game-rating.html"></iframe>
-    <iframe onload="importFile(this)" src="./blocks/bandit-2.html"></iframe>
-    <iframe onload="importFile(this)" src="./blocks/advantages.html"></iframe>
-    <iframe onload="importFile(this)" src="./blocks/guide.html"></iframe>
-    <iframe onload="importFile(this)" src="./blocks/form-reply.html"></iframe>
-    <iframe onload="importFile(this)" src="./blocks/game-card.html"></iframe>
-    <iframe onload="importFile(this)" src="./blocks/faq.html"></iframe>
-    <iframe onload="importFile(this)" src="./blocks/author.html"></iframe>
-    <iframe onload="importFile(this)" src="./blocks/footer.html"></iframe>
 </body>
 </html>
