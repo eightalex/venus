@@ -2027,6 +2027,10 @@ body {
     font-weight: 800;
     line-height: normal;
     text-transform: uppercase; }
+    .news-card__title a {
+      color: inherit;
+      font: inherit;
+      text-decoration: none; }
   .news-card__date {
     display: flex;
     align-items: center;
