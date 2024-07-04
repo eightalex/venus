@@ -75,7 +75,7 @@ $read_review_txt    = !empty(get_option('games_read_review_title'))? get_option(
                                                 <?php the_excerpt($game)?>
                                             </div>
                                             <div class="slot__footer">
-                                                <a href="<?php echo $external_link?>" class="button slot__button"><?php echo $play_now_txt?></a>
+                                                <a href="<?php echo $external_link?>" class="button slot__button" rel="nofollow"><?php echo $play_now_txt?></a>
                                             </div>
                                         </div>
                                     </div>

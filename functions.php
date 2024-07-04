@@ -148,7 +148,7 @@ function ud_print_single_game(array $data){
 
     if(!empty($external_link)){
         $ext_lnk = "<div class='game-card__cta'>
-                        <a href='{$external_link}' class='game-card__button button' nofollow>$play_btn_txt</a>
+                        <a href='{$external_link}' class='game-card__button button' rel='nofollow'>$play_btn_txt</a>
                     </div>";
     }
 
@@ -620,7 +620,7 @@ function print_single_casino_template($data = []){
     }
 
     if(isset($external_link) && !empty($external_link)){
-        $external_link_html = "<a href='{$external_link}' target='_blank' class='casino-card__button button' nofollow>{$elb_txt}</a>";
+        $external_link_html = "<a href='{$external_link}' target='_blank' class='casino-card__button button' rel='nofollow'>{$elb_txt}</a>";
     }
 
     $tmpl = "<div class='casino-card {$add_class}'>
@@ -703,7 +703,7 @@ function print_single_bonus_card(array $data){
 
     if(!empty($external_link)):
         $external ="<div class='bonus-card__cta'>
-                        <a href='$external_link' target='__blank' class='bonus-card__button button' nofollow>{$btn_txt}</a>
+                        <a href='$external_link' target='__blank' class='bonus-card__button button' rel='nofollow'>{$btn_txt}</a>
                     </div>";
     endif;
 
@@ -1023,7 +1023,7 @@ function ud_print_casino($atts){
         };
 
         if(!empty($post_external_link)){
-            $external = "<a nofollow href='{$post_external_link}' class='button button_outline casino-inline__button'>{$elb_txt}</a>";
+            $external = "<a rel='nofollow' href='{$post_external_link}' class='button button_outline casino-inline__button'>{$elb_txt}</a>";
         }
 
         $html = "<div class='casino-inline'>
@@ -1072,7 +1072,7 @@ function ud_print_casino($atts){
         };
 
         if(!empty($post_external_link)){
-            $external = "<a nofollow href='{$post_external_link}' class='button casino-inline-2__button'>{$elb_txt}</a>";
+            $external = "<a rel='nofollow' href='{$post_external_link}' class='button casino-inline-2__button'>{$elb_txt}</a>";
         };
 
         if(!empty($post_button_notice)){

@@ -106,7 +106,7 @@ $offer_detailed_tc  = get_post_meta($id, 'offer_detailed_tc', true);
                             if(!empty($external_link)):
                                 $btn_txt = !empty(get_option('bonuses_get_bonus_title'))? get_option('bonuses_get_bonus_title'): __('Get bonus');
                             ?>
-                            <a nofollow href="<?php echo $external_link?>" class="bonus-widget__button button"><?php echo $btn_txt?></a>
+                            <a rel='nofollow' href="<?php echo $external_link?>" class="bonus-widget__button button"><?php echo $btn_txt?></a>
                             <?php
                                 if(!empty($button_notice)):
                                     ?>

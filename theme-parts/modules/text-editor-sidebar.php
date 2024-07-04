@@ -55,7 +55,7 @@ $read_review_txt    = !empty(get_option('games_read_review_title'))? get_option(
                                             <?php
                                             if(!empty($casino_external_link)):
                                             ?>
-                                            <a nofollow class="casino-card__button button" href="<?php echo $casino_external_link?>"><?php echo $play_now_txt?></a>
+                                            <a rel='nofollow' class="casino-card__button button" href="<?php echo $casino_external_link?>"><?php echo $play_now_txt?></a>
                                             <?php
                                             endif;
                                             ?>

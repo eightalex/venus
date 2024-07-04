@@ -147,7 +147,7 @@ if($tags){
                                         <?php
                                         if(!empty($c_external_link)):
                                             ?>
-                                            <a href="<?php echo $c_external_link?>" target="_blank" class="casino-card__button button" nofollow><?php echo $elb_txt?></a>
+                                            <a href="<?php echo $c_external_link?>" target="_blank" class="casino-card__button button" rel="nofollow"><?php echo $elb_txt?></a>
                                             <?php
                                         endif;
                                         ?>
