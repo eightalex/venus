@@ -8,6 +8,7 @@
 	$app_banner_is_author 	= carbon_get_post_meta(get_the_ID(), 'app_banner_is_author');
 	$app_banner_txt 		= carbon_get_post_meta(get_the_ID(), 'app_banner_txt');
 	$app_banner_img 		= carbon_get_post_meta(get_the_ID(), 'app_banner_img');
+	$intro_text 			= carbon_get_post_meta(get_the_ID(), 'intro_text');
 	$post_type 				= get_post_type();
 
     if(!empty($custom_content)){
@@ -23,6 +24,14 @@
 			}
 
 			get_template_part('/theme-parts/modules/post', 'tags', ['id' => $ID]);
+
+			if(!empty($intro_text)):
+				?>
+					<div class="section__subtitle">
+						<?php echo $intro_text?>
+					</div>
+				<?php
+			endif;	
 			
 			foreach($custom_content as $part){
 				$part_tmpl = $part['_type'];
