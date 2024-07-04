@@ -53,6 +53,7 @@ function initSearch() {
     });
 
     searchButton.addEventListener('click', function() {
+        window.scrollTo({ top: 0 });
         body.classList.add('popup-open');
         searchFormMobile.classList.add('active');
     });
