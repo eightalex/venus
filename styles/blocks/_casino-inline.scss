@@ -89,31 +89,29 @@
     flex-direction: column;
     gap: 6px;
 
-    span {
-      color: #fff;
-      font-family: Hind, sans-serif;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 128%; /* 17.92px */
+    color: #fff;
+    font-family: Hind, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 128%; /* 17.92px */
 
-      &:nth-child(2),
-      &:nth-child(3) {
-        font-family: Montserrat, sans-serif;
-        font-size: 32px;
-        font-weight: 800;
-        line-height: normal;
-        text-transform: uppercase;
-      }
+    & > :nth-child(1),
+    & > :nth-child(2) {
+      font-family: Montserrat, sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      line-height: normal;
+      text-transform: uppercase;
+    }
 
-      &:nth-child(3) {
-        font-size: 18px;
-        font-weight: 600;
-      }
+    & > :nth-child(2) {
+      font-size: 18px;
+      font-weight: 600;
+    }
 
-      &:nth-child(4) {
-        margin-top: 6px;
-      }
+    & > :nth-child(3) {
+      margin-top: 6px;
     }
   }
 
@@ -191,7 +189,7 @@
         }
       }
 
-      & > :nth-child(3) {
+      & > :nth-child(2) {
         margin-top: 16px;
 
         &::before {
@@ -216,7 +214,7 @@
 
     &__info {
       span {
-        &:nth-child(2) {
+        &:nth-child(1) {
           font-size: 24px;
         }
       }

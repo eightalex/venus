@@ -3476,26 +3476,26 @@ body {
   .casino-inline__info {
     display: flex;
     flex-direction: column;
-    gap: 6px; }
-    .casino-inline__info span {
-      color: #fff;
-      font-family: Hind, sans-serif;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 128%;
-      /* 17.92px */ }
-      .casino-inline__info span:nth-child(2), .casino-inline__info span:nth-child(3) {
-        font-family: Montserrat, sans-serif;
-        font-size: 32px;
-        font-weight: 800;
-        line-height: normal;
-        text-transform: uppercase; }
-      .casino-inline__info span:nth-child(3) {
-        font-size: 18px;
-        font-weight: 600; }
-      .casino-inline__info span:nth-child(4) {
-        margin-top: 6px; }
+    gap: 6px;
+    color: #fff;
+    font-family: Hind, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 128%;
+    /* 17.92px */ }
+    .casino-inline__info > :nth-child(1),
+    .casino-inline__info > :nth-child(2) {
+      font-family: Montserrat, sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      line-height: normal;
+      text-transform: uppercase; }
+    .casino-inline__info > :nth-child(2) {
+      font-size: 18px;
+      font-weight: 600; }
+    .casino-inline__info > :nth-child(3) {
+      margin-top: 6px; }
   .casino-inline__cta {
     display: flex;
     flex-direction: column;
@@ -3544,9 +3544,9 @@ body {
         gap: 16px; }
         .casino-inline__content > :not(:first-child)::before {
           display: none; }
-        .casino-inline__content > :nth-child(3) {
+        .casino-inline__content > :nth-child(2) {
           margin-top: 16px; }
-          .casino-inline__content > :nth-child(3)::before {
+          .casino-inline__content > :nth-child(2)::before {
             display: block;
             top: -16px;
             left: 0;
@@ -3556,7 +3556,7 @@ body {
         display: flex; }
       .casino-inline__casino-rating .rating-mobile {
         display: none; }
-      .casino-inline__info span:nth-child(2) {
+      .casino-inline__info span:nth-child(1) {
         font-size: 24px; }
       .casino-inline__cta {
         flex-direction: row; }
@@ -3604,8 +3604,7 @@ body {
     font-style: normal;
     font-weight: 800;
     line-height: normal;
-    text-transform: uppercase;
-    word-break: break-all; }
+    text-transform: uppercase; }
   .casino-inline-2__acceptance {
     display: flex;
     align-items: flex-start;
