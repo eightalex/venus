@@ -30,6 +30,8 @@ function initSwiper() {
 }
 
 function initSearch() {
+    const body = document.querySelector('body');
+
     const searchForm = document.querySelector('.js-form');
     const searchInput = searchForm.querySelector('.js-input');
     const searchButton = searchForm.querySelector('.js-button');
@@ -51,10 +53,12 @@ function initSearch() {
     });
 
     searchButton.addEventListener('click', function() {
+        body.classList.add('popup-open');
         searchFormMobile.classList.add('active');
     });
 
     closeButton.addEventListener('click', function() {
+        body.classList.remove('popup-open');
         searchFormMobile.classList.remove('active');
     });
 }

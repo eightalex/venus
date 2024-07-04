@@ -20,7 +20,7 @@ function venus_scripts() {
     wp_enqueue_style('my_custom_style', get_stylesheet_directory_uri().'/styles/index.css', array(), filemtime(get_stylesheet_directory().'/styles/index.css'));
     wp_enqueue_style('swiper_style', get_stylesheet_directory_uri().'/scripts/libs/swiper-bundle.min.css');
     wp_enqueue_script('swiper_js', get_theme_file_uri( '/scripts/libs/swiper-bundle.min.js' ), array( 'jquery' ), $GLOBALS['mercury_version'], true );
-    wp_enqueue_script('app', get_theme_file_uri( '/scripts/app.js' ), array( 'jquery' ), $GLOBALS['mercury_version'], true );
+    wp_enqueue_script('app', get_theme_file_uri( '/scripts/app.js' ), array( 'jquery' ), filemtime(get_stylesheet_directory().'/scripts/app.js'), true );
 }
 
 add_action( 'wp_enqueue_scripts', 'venus_scripts' );
