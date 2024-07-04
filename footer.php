@@ -61,7 +61,7 @@
 								<a href='{$item->url}' class='footer__link'>{$item->title}</a>
 							</li>";
 
-					$rigt_menu_items .= $html;	
+					$rigt_menu_items .= $html;
 				}
 			};
 
@@ -71,9 +71,9 @@
 								<a href='{$item->url}' class='footer__link'>{$item->title}</a>
 							</li>";
 
-					$left_menu_items .= $html;	
+					$left_menu_items .= $html;
 				}
-			}	
+			}
 
 			if(!empty($left_menu_items)):
 				?>
@@ -104,6 +104,12 @@
 </footer>
 
 <!-- Footer End -->
+
+<!-- Mobile Search Start -->
+
+<?php get_template_part('/theme-parts/mobile-search'); ?>
+
+<!-- Mobile Search End -->
 
 <!-- Mobile Menu Start -->
 

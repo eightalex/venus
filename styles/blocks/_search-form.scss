@@ -1,9 +1,14 @@
+@import "../variables";
 @import "../mixins";
 
 .search-form {
   position: relative;
   display: flex;
   margin: 0;
+
+  .mobile {
+    display: none;
+  }
 
   &__input {
     padding-left: 60px;
@@ -36,7 +41,11 @@
   @include bp(1230px) {
     display: flex;
 
-    &__input {
+    .mobile {
+      display: flex;
+    }
+
+    .desktop {
       display: none;
     }
 

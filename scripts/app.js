@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     initSwiper();
     initCategories();
+    initSearch();
 });
 
 window.addEventListener('resize', () => {
@@ -13,7 +14,6 @@ function initCategories() {
     categories.forEach((category) => {
         category.style.marginBottom = `-${category.clientHeight}px`;
         const nextElement = category.nextElementSibling;
-        console.log(nextElement.classList);
         nextElement.style.paddingTop = `${category.clientHeight}px`;
     });
 }
@@ -26,5 +26,35 @@ function initSwiper() {
             prevEl: '.js-button-prev',
             disabledClass: 'disabled',
         },
+    });
+}
+
+function initSearch() {
+    const searchForm = document.querySelector('.js-form');
+    const searchInput = searchForm.querySelector('.js-input');
+    const searchButton = searchForm.querySelector('.js-button');
+
+    const searchFormMobile = document.querySelector('.js-form-mobile');
+    const searchInputMobile = searchFormMobile.querySelector('.js-input-mobile');
+    const closeButton = searchFormMobile.querySelector('.js-close');
+
+    searchForm.addEventListener('submit', function(event) {
+        if (searchInput.value === '') {
+            event.preventDefault();
+        }
+    });
+
+    searchFormMobile.addEventListener('submit', function(event) {
+        if (searchInputMobile.value === '') {
+            event.preventDefault();
+        }
+    });
+
+    searchButton.addEventListener('click', function() {
+        searchFormMobile.classList.add('active');
+    });
+
+    closeButton.addEventListener('click', function() {
+        searchFormMobile.classList.remove('active');
     });
 }

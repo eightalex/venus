@@ -319,6 +319,8 @@ body {
   position: relative;
   display: flex;
   margin: 0; }
+  .search-form .mobile {
+    display: none; }
   .search-form__input {
     padding-left: 60px; }
   .search-form__button {
@@ -340,7 +342,9 @@ body {
   @media (max-width: 1230px) {
     .search-form {
       display: flex; }
-      .search-form__input {
+      .search-form .mobile {
+        display: flex; }
+      .search-form .desktop {
         display: none; }
       .search-form__button {
         position: static;
@@ -1544,6 +1548,8 @@ body {
     font-weight: 400;
     line-height: 128%;
     /* 20.48px */ }
+    .bonus-card__subtitle p {
+      margin: 0; }
   .bonus-card__cta {
     margin-top: 24px;
     width: 100%; }
@@ -1565,6 +1571,8 @@ body {
     .bonus-card__info:hover .tc-desc {
       visibility: visible;
       opacity: 1; }
+    .bonus-card__info p {
+      margin: 0; }
   .bonus-card__header a, .bonus-card__tag a {
     text-decoration: none;
     color: inherit; }
@@ -3709,3 +3717,52 @@ body {
         flex-direction: row;
         justify-content: flex-start;
         padding: 0; } }
+
+.search-form-mobile {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(27, 31, 40, 0.98); }
+  .search-form-mobile__close {
+    position: absolute;
+    top: 64px;
+    right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 100px;
+    background-color: #262c3a; }
+    .search-form-mobile__close img {
+      width: 20px;
+      height: 20px; }
+  .search-form-mobile__input {
+    display: flex;
+    width: 100%;
+    padding: 24px;
+    align-items: center;
+    gap: 10px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #eeeff3;
+    color: #fff;
+    background-color: transparent;
+    font-family: Montserrat, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal; }
+    .search-form-mobile__input:focus {
+      outline: none; }
+  @media (max-width: 1230px) {
+    .search-form-mobile.active {
+      display: flex; } }
