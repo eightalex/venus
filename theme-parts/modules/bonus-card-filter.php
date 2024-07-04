@@ -48,10 +48,10 @@ $def_url = get_the_permalink();
                             $bonuses['res']->the_post();
                             $b_id = get_the_ID();
                             $taxs = wp_get_post_terms($b_id, 'bonus-category');
-
-
-                            $data = [
-                                'title'             => get_the_title($b_id),
+                            $lnk    = get_the_permalink();
+                            $title  = get_the_title($b_id);
+                            $data   = [
+                                'title'             => "<a href='{$lnk}'>$title</a>",             => get_the_title($b_id),
                                 'short_desc'        => get_post_meta($b_id, 'bonus_short_desc', true),
                                 'external_link'     => get_post_meta($b_id, 'bonus_external_link', true),
                                 'button_notice'     => get_post_meta($b_id, 'bonus_button_notice', true),

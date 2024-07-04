@@ -2,7 +2,18 @@
 extract($args);
 
 // $gc_bg = !empty($content['gc_bg'])? $content['gc_bg']: get_stylesheet_directory_uri()."/assets/images/section/bg3.jpeg";
-$author_id = get_post_field ('post_author', $id);
+
+$author_id = 0;
+if(is_category() || is_tax()){
+    $sa = $content['au_select'];
+
+    if(!empty($sa)){
+        $author_id = intval($sa);
+    }
+}else{
+    $author_id = get_post_field('post_author', $id);
+};
+
 if($content['au_power']):
 
 $author             = apply_filters('ud_get_author_infos', $author_id);

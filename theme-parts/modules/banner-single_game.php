@@ -69,7 +69,7 @@ get_template_part('/theme-parts/modules/breadcrumbs');
                     if(!empty($external)):
                         ?>
                         <div class="banner-casino__cta">
-                            <a href="<?php echo $external?>" class="button banner-casino__button"><?php echo $btn_txt?></a>
+                            <a nofollow href="<?php echo $external?>" class="button banner-casino__button"><?php echo $btn_txt?></a>
                             <?php
                             if(!empty($button_notice)):
                                 ?>

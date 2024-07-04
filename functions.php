@@ -995,7 +995,24 @@ function ud_get_pages_opt(){
     return $options_arr;
 }
 
-// $pages_opt_arr = apply_filters('ud_get_pages_opt', true);
+add_filter('ud_get_authors', 'ud_get_authors');
+function ud_get_authors() {
+    $user_query = new WP_User_Query(array(
+        'capability'    => 'edit_posts',
+        'fields'        => array('ID', 'display_name')
+    ));
+
+    $authors = $user_query->get_results();
+    $author_array = [];
+
+    foreach ($authors as $user) {
+        $author_array[$user->ID] = $user->display_name;
+    }
+
+    $author_array = ['' => 'Select Author'] + $author_array;
+
+    return $author_array;
+}
 
 // CUSTOM FIELDS
 add_action( 'carbon_fields_register_fields', 'ud_custon_fields' );
@@ -1536,14 +1553,12 @@ function ud_custon_fields() {
                 ->add_fields('author', array(
                     Field::make('checkbox', 'au_power', __('Include author info'))
                         ->set_default_value('yes')
-                        ->set_width(50),
+                        ->set_width(50),    
                     Field::make('image', 'ua_bg', __('Background'))
                         ->set_value_type('url')
                         ->set_width(50),
-                    // Field::make('image', 'au_main_img', __('Main image'))
-                    //     ->set_value_type('url')
-                    //     ->help_text("<span style='color: blue;'>".__('Leave blank to use default image:')."<img width='50' src='".get_stylesheet_directory_uri()."/assets/images/author/picture.svg'></span>")
-                    //     ->set_width(33),
+                    Field::make('select', 'au_select', __('Select author'))
+                        ->add_options(apply_filters('ud_get_authors', true)),    
                 ))
                 ->add_fields('benefits',array(
                     Field::make('text', 'benefits_title', __('Title'))
