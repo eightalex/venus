@@ -7,7 +7,7 @@ $rat                = floatval(get_post_meta($id, 'game_rating_one', true));
 $vendor             = wp_get_post_terms($id, 'vendor');
 $vendor_img_id      = get_term_meta($vendor[0]->term_id, 'taxonomy-image-id', true);
 $vendor_img_data    = apply_filters('ud_get_file_data', $vendor_img_id);
-$vendor_url         = get_term_link($vendor[0]->term_id);      
+$vendor_url         = get_term_link($vendor[0]->term_id);
 $short_desc         = get_post_meta( $id, 'game_short_desc', true );
 $unit_detailed      = get_post_meta( $id, 'unit_detailed_tc', true );
 $external           = get_post_meta( $id, 'game_external_link', true );
@@ -36,14 +36,12 @@ get_template_part('/theme-parts/modules/breadcrumbs');
                             </div>
                             <?php
                             if(!empty($vendor)):
-                                $img_src = !empty($vendor_img_id) && !empty($vendor_img_data)? $vendor_img_data['src']:get_stylesheet_directory_uri().'/assets/images/game.png'; 
+                                $img_src = !empty($vendor_img_id) && !empty($vendor_img_data)? $vendor_img_data['src']:get_stylesheet_directory_uri().'/assets/images/game.png';
                             ?>
-                            <div class="banner-casino__vendor">
-                                <a href="<?php echo $vendor_url?>">
-                                    <img src="<?php echo $img_src?>" alt="<?php echo 'vendor ' . $vendor[0]->name?>">
-                                </a>    
-                                    <?php echo $vendor[0]->name?>
-                            </div>
+                            <a href="<?php echo $vendor_url?>" class="banner-casino__vendor">
+                                <img src="<?php echo $img_src?>" alt="<?php echo 'vendor ' . $vendor[0]->name?>">
+                                <?php echo $vendor[0]->name?>
+                            </a>
                             <?php
                             endif;
                             ?>

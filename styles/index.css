@@ -3188,7 +3188,8 @@ body {
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 128%; }
+    line-height: 128%;
+    text-decoration: none; }
     .banner-casino__vendor img {
       object-fit: contain;
       width: 24px;
