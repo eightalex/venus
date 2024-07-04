@@ -931,6 +931,181 @@ function ud_author_annatation($atts){
     return $html;
 }
 
+add_shortcode( 'print_casino_card', 'ud_print_casino' );
+function ud_print_casino($atts){
+    if(empty($atts) || !isset($atts['post']) || is_admin()){
+        return;
+    };
+
+    extract($atts);
+
+    $style                  = isset($atts['style'])? intval($atts['style']): 1;
+    $lb_txt                 = !empty(get_option('casinos_read_review_title'))? get_option('casinos_read_review_title'): 'Read review';
+    $elb_txt                = !empty(get_option('casinos_play_now_title'))? get_option('casinos_play_now_title'): 'Play now';
+
+    $post_id                = intval($atts['post']);
+    $post_title             = get_the_title($post_id);
+    $post_th_id             = get_post_thumbnail_id($post_id);
+    $post_th_data           = apply_filters('ud_get_file_data', $post_th_id);
+    $post_th_src            = $post_th_data['src'];
+    $post_th_alt            = $post_th_data['alt'];
+    $post_desc              = get_post_meta($post_id, 'casino_short_desc', true);
+    $post_overall_rating    = floatval(get_post_meta($post_id, 'casino_overall_rating', true));
+    $post_external_link     = get_post_meta($post_id, 'casino_external_link', true);
+    $post_link              = get_the_permalink($post_id);
+    $post_button_notice     = get_post_meta($post_id, 'casino_button_notice', true);
+    $casino_terms_desc      = get_post_meta($post_id, 'casino_terms_desc', true);
+    $casino_detailed_tc     = get_post_meta($post_id, 'casino_detailed_tc', true);
+
+    $post_rating     = "";
+    $button_notice   = "";
+    $terms_desc      = "";
+    $detailed_tc     = "";
+    $external        = "";
+
+    $html = "";
+
+    if($style == 1){
+        if(!empty($post_button_notice)){
+            $button_notice  = "<div class='casino-inline__casino-info'>
+                                    {$post_button_notice}
+                                </div>";
+        }
+
+        if(!empty($post_overall_rating)){
+            $post_rating = "<div class='casino-inline__casino-rating'>
+                                <div class='star-rating' data-rating='{$post_overall_rating}'>
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='312' height='24' viewBox='0 0 312 24'>
+                                        <mask id='starMask'>
+                                            <rect width='312' height='24' fill='#fff'/>
+                                            <g fill='#000'>
+                                                <use href='#starPath' x='0' y='0'/>
+                                                <use href='#starPath' x='32' y='0'/>
+                                                <use href='#starPath' x='64' y='0'/>
+                                                <use href='#starPath' x='96' y='0'/>
+                                                <use href='#starPath' x='128' y='0'/>
+                                                <use href='#starPath' x='160' y='0'/>
+                                                <use href='#starPath' x='192' y='0'/>
+                                                <use href='#starPath' x='224' y='0'/>
+                                                <use href='#starPath' x='256' y='0'/>
+                                                <use href='#starPath' x='288' y='0'/>
+                                            </g>
+                                        </mask>
+                                        <defs>
+                                            <path id='starPath' d='M23.9374 9.20628C23.7803 8.7203 23.3493 8.37514 22.8393 8.32918L15.9123 7.7002L13.1731 1.28896C12.9712 0.8191 12.5112 0.514954 12.0001 0.514954C11.4891 0.514954 11.0291 0.8191 10.8271 1.29006L8.08797 7.7002L1.15982 8.32918C0.65077 8.37624 0.220828 8.7203 0.0628038 9.20628C-0.0952203 9.69225 0.0507185 10.2253 0.435799 10.5613L5.67183 15.1533L4.12785 21.9546C4.01487 22.4547 4.20897 22.9716 4.62389 23.2715C4.84692 23.4327 5.10785 23.5147 5.37098 23.5147C5.59786 23.5147 5.8229 23.4535 6.02487 23.3327L12.0001 19.7615L17.9732 23.3327C18.4103 23.5956 18.9612 23.5716 19.3752 23.2715C19.7904 22.9707 19.9843 22.4536 19.8713 21.9546L18.3273 15.1533L23.5633 10.5622C23.9484 10.2253 24.0955 9.69317 23.9374 9.20628Z'/>
+                                        </defs>
+                                        <rect width='312' height='24' fill='var(--star-rating-background, #262c3a)' mask='url(#starMask)'/>
+                                    </svg>
+                                </div>
+                                <div class='rating-mobile' data-rating='{$post_overall_rating}'>
+                                    <img src='../assets/images/icons/star.svg' alt='star'>
+                                </div>
+                            </div>";
+        };
+
+        if(!empty($casino_terms_desc)){
+            $terms_desc   = "<div class='casino-inline__info'>
+                                    {$casino_terms_desc}
+                                </div>"; 
+        };
+
+        if(!empty($casino_detailed_tc)){
+            $icon = get_stylesheet_directory_uri()."/assets/images/icons/attention.svg";
+            $detailed_tc = "<div class='casino-inline__tip'>
+                                    <div class='casino-inline__tip-icon'>
+                                        <img src='{$icon}' alt='info'>
+                                    </div>
+                                    <div class='casino-inline__tip-text'>
+                                        {$casino_detailed_tc}
+                                    </div>
+                                </div>";
+        };
+
+        if(!empty($post_external_link)){
+            $external = "<a nofollow href='{$post_external_link}' class='button button_outline casino-inline__button'>{$elb_txt}</a>";
+        }
+
+        $html = "<div class='casino-inline'>
+                    <div class='casino-inline__content'>
+                        <div class='casino-inline__casino'>
+                            <div class='casino-inline__casino-img'>
+                                <img src='{$post_th_src}' alt='{$post_th_alt}'>
+                            </div>
+                            <div class='casino-inline__casino-content'>
+                                <div class='casino-inline__casino-title'>
+                                    {$post_title}
+                                </div>
+                                {$post_rating}
+                                {$button_notice}
+                            </div>
+                        </div>
+                        {$terms_desc}
+                        <div class='casino-inline__cta'>
+                            <a href='{$post_link}' class='button casino-inline__button'>{$lb_txt}</a>
+                            {$external}
+                        </div>
+                    </div>
+                    {$detailed_tc}
+                </div>";
+    }elseif($style == 2){
+        $star_icon = get_stylesheet_directory_uri()."/assets/images/icons/star.svg";
+
+        if(!empty($post_overall_rating)){
+            $post_rating = "<div class='casino-inline-2__rating'>
+                                <div class='rating-mobile' data-rating='{$post_overall_rating}'>
+                                    <img src='{$star_icon}' alt='star'>
+                                </div>
+                            </div>";
+        };
+
+        if(!empty($casino_terms_desc)){
+            $terms_desc   = "<div class='casino-inline-2__bonus'>
+                                {$casino_terms_desc}
+                            </div>"; 
+        };
+
+        if(!empty($casino_detailed_tc)){
+            $detailed_tc = "<div class='casino-inline-2__description'>
+                                {$casino_detailed_tc}
+                            </div>";
+        };
+
+        if(!empty($post_external_link)){
+            $external = "<a nofollow href='{$post_external_link}' class='button casino-inline-2__button'>{$elb_txt}</a>";
+        };
+
+        if(!empty($post_button_notice)){
+            $button_notice  = "<span>{$post_button_notice}</span>";
+        }
+
+        $html = "<div class='casino-inline-2'>
+                    <div class='casino-inline-2__heading'>
+                        <div class='casino-inline-2__img'>
+                            <img src='{$post_th_src}' alt='{$post_th_alt}'>
+                        </div>
+                        <div class='casino-inline-2__header'>
+                            <div class='casino-inline-2__title'>{$post_title}</div>
+                        </div>
+                    </div>
+                    <div class='casino-inline-2__content'>
+                        {$terms_desc}
+
+                        {$detailed_tc}
+                    </div>
+                    <div class='casino-inline-2__attributes'>
+                        {$post_rating}
+                        <a href='{$post_link}' class='casino-inline-2__review'>{$lb_txt}</a>
+                    </div>
+                    <div class='casino-inline-2__cta'>
+                        {$external}
+                        {$button_notice}
+                    </div>
+                </div>";
+    };
+
+    return $html;
+}
+
 add_filter('ud_get_tax_posts_tags', 'ud_get_tax_posts_tags');
 function ud_get_tax_posts_tags($posts){
     $arr = [];

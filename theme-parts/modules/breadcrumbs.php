@@ -3,6 +3,10 @@ if(!empty($args)){
     extract($args);
 }
 
+if(is_front_page()){
+    return;
+};
+
 $title = get_the_title();
 
 if(is_tax() || is_category()){
@@ -25,18 +29,8 @@ $class_inline =isset($inline)? ' breadcrumbs_inline': '';
     if ( function_exists('yoast_breadcrumb') ) {
         yoast_breadcrumb(  );
       }
-    ?>
-        <!-- <ul class="breadcrumbs__inner">
-            <li class="breadcrumbs__item">
-               <a href="<?php echo home_url() ?>">
-                   <?php echo __('Home'); ?>
-               </a>
-            </li>
-            <li class="breadcrumbs__item">
-                <?php echo $title ?>
-            </li>
-        </ul> -->
-    <?php if (!isset($inline)) : ?>
+
+    if (!isset($inline)) : ?>
     </div>
     <?php endif; ?>
 </nav>
