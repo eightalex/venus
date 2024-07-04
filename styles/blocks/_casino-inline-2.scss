@@ -7,7 +7,9 @@
 
   &__heading {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 16px;
     padding: 24px;
     background-color: #404556;
@@ -42,6 +44,7 @@
     font-weight: 800;
     line-height: normal;
     text-transform: uppercase;
+    text-align: center;
   }
 
   &__acceptance {
@@ -147,6 +150,8 @@
     border-radius: 16px;
 
     &__heading {
+      flex-direction: row;
+      justify-content: flex-start;
       gap: 20px;
       padding: 0 0 20px 0;
       background-color: #262c3a;

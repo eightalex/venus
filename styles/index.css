@@ -3578,7 +3578,9 @@ body {
   background-color: #262c3a; }
   .casino-inline-2__heading {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 16px;
     padding: 24px;
     background-color: #404556; }
@@ -3604,7 +3606,8 @@ body {
     font-style: normal;
     font-weight: 800;
     line-height: normal;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    text-align: center; }
   .casino-inline-2__acceptance {
     display: flex;
     align-items: flex-start;
@@ -3682,6 +3685,8 @@ body {
       padding: 16px;
       border-radius: 16px; }
       .casino-inline-2__heading {
+        flex-direction: row;
+        justify-content: flex-start;
         gap: 20px;
         padding: 0 0 20px 0;
         background-color: #262c3a; }
