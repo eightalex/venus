@@ -956,6 +956,7 @@ function ud_print_casino($atts){
     $post_button_notice     = get_post_meta($post_id, 'casino_button_notice', true);
     $casino_terms_desc      = get_post_meta($post_id, 'casino_terms_desc', true);
     $casino_detailed_tc     = get_post_meta($post_id, 'casino_detailed_tc', true);
+    $star_icon              = get_stylesheet_directory_uri().'/assets/images/icons/star.svg';
 
     $post_rating     = "";
     $button_notice   = "";
@@ -998,7 +999,7 @@ function ud_print_casino($atts){
                                     </svg>
                                 </div>
                                 <div class='rating-mobile' data-rating='{$post_overall_rating}'>
-                                    <img src='../assets/images/icons/star.svg' alt='star'>
+                                    <img src='{$star_icon}' alt='star'>
                                 </div>
                             </div>";
         };
@@ -1006,7 +1007,7 @@ function ud_print_casino($atts){
         if(!empty($casino_terms_desc)){
             $terms_desc   = "<div class='casino-inline__info'>
                                     {$casino_terms_desc}
-                                </div>"; 
+                                </div>";
         };
 
         if(!empty($casino_detailed_tc)){
@@ -1061,7 +1062,7 @@ function ud_print_casino($atts){
         if(!empty($casino_terms_desc)){
             $terms_desc   = "<div class='casino-inline-2__bonus'>
                                 {$casino_terms_desc}
-                            </div>"; 
+                            </div>";
         };
 
         if(!empty($casino_detailed_tc)){
@@ -1157,7 +1158,7 @@ function ud_get_pages_opt(){
 
     $options_arr = [
         '' => __('Select page'),
-    ];    
+    ];
 
     if($query->have_posts()){
         while($query->have_posts()){
@@ -1540,7 +1541,7 @@ function ud_custon_fields() {
         ->set_context('side')
         ->add_fields(array(
             Field::make('textarea', 'intro_text', 'Intro')
-        ));    
+        ));
 
     Container::make( 'post_meta', __('Additional settings'))
         ->where('post_type', '=', 'bonus')
@@ -1550,7 +1551,7 @@ function ud_custon_fields() {
             Field::make('text', 'casinois_sidebar_title', __('Casinos sidebar title'))
         ));
     Container::make( 'term_meta', 'Sidebar' )
-        ->where( 'term_taxonomy', '=', 'category' )  
+        ->where( 'term_taxonomy', '=', 'category' )
         ->add_fields(array(
             Field::make('separator', 'catsidebar', __('Sidebar')),
             Field::make('checkbox', 'embed_sitebar', __('Add Sitebar'))
@@ -1563,16 +1564,16 @@ function ud_custon_fields() {
                         'value'     => true,
                         'compare'   => '=',
                     )
-                ) ), 
+                ) ),
             Field::make('multiselect', 'sidebar_casionois', __('Select Casinos to show'))
-                ->add_options(ud_get_casinos_options())  
+                ->add_options(ud_get_casinos_options())
                 ->set_conditional_logic( array(
                     array(
                         'field'     => 'embed_sitebar',
                         'value'     => true,
                         'compare'   => '=',
                     )
-                ) )     
+                ) )
         ));
 
     Container::make( 'term_meta', 'App banner')
@@ -1588,7 +1589,7 @@ function ud_custon_fields() {
             Field::make('image', 'app_banner_img', __('Image'))
                 ->set_width(25),
         ));
-    
+
     Container::make( 'term_meta', 'Text content' )
         ->where( 'term_taxonomy', '=', 'category' )
         ->or_where( 'term_taxonomy', '=', 'game-category' )
@@ -1735,12 +1736,12 @@ function ud_custon_fields() {
                 ->add_fields('author', array(
                     Field::make('checkbox', 'au_power', __('Include author info'))
                         ->set_default_value('yes')
-                        ->set_width(50),    
+                        ->set_width(50),
                     Field::make('image', 'ua_bg', __('Background'))
                         ->set_value_type('url')
                         ->set_width(50),
                     Field::make('select', 'au_select', __('Select author'))
-                        ->add_options(apply_filters('ud_get_authors', true)),    
+                        ->add_options(apply_filters('ud_get_authors', true)),
                 ))
                 ->add_fields('benefits',array(
                     Field::make('text', 'benefits_title', __('Title'))
@@ -1883,7 +1884,7 @@ function ud_custon_fields() {
                 ))
         ));
 
-    Container::make( 'theme_options', __('Additional theme options') ) 
+    Container::make( 'theme_options', __('Additional theme options') )
         ->add_fields( array(
             Field::make('separator', 'defpgsopt', __('Default pages settings'))
                 ->help_text(__('Set the selected pages to the "Default" template')),
@@ -1892,6 +1893,6 @@ function ud_custon_fields() {
             Field::make('select', 'default_page_bonus', __('Main page for Bonuses'))
                 ->add_options(apply_filters('ud_get_pages_opt', true)),
             Field::make('select', 'default_page_casinois', __('Main page for Casinois'))
-                ->add_options(apply_filters('ud_get_pages_opt', true)),                
+                ->add_options(apply_filters('ud_get_pages_opt', true)),
         ));
 }
