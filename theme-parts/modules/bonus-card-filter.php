@@ -51,7 +51,7 @@ $def_url = get_the_permalink();
                             $lnk    = get_the_permalink();
                             $title  = get_the_title($b_id);
                             $data   = [
-                                'title'             => "<a href='{$lnk}'>$title</a>",             => get_the_title($b_id),
+                                'title'             => "<a href='{$lnk}'>$title</a>",
                                 'short_desc'        => get_post_meta($b_id, 'bonus_short_desc', true),
                                 'external_link'     => get_post_meta($b_id, 'bonus_external_link', true),
                                 'button_notice'     => get_post_meta($b_id, 'bonus_button_notice', true),
@@ -62,7 +62,7 @@ $def_url = get_the_permalink();
                                 'tax_link'          => !empty($taxs)? get_term_link($taxs[0]->term_id): "",
                             ];
 
-                            
+
                             if($current_id !== $b_id){
                                 echo apply_filters('print_single_bonus_card', $data);
                             }
