@@ -20,7 +20,7 @@
 
   &__close {
     position: absolute;
-    top: 64px;
+    top: 19px;
     right: 20px;
     display: flex;
     justify-content: center;
@@ -33,6 +33,12 @@
     img {
       width: 20px;
       height: 20px;
+    }
+  }
+
+  .admin-bar & {
+    &__close {
+      top: 64px;
     }
   }
 

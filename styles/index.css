@@ -826,14 +826,17 @@ body {
 .mobile-menu {
   display: none;
   position: fixed;
-  top: 132px;
+  top: 86px;
   left: 0;
   z-index: 4;
   overflow: auto;
   padding: 64px 0;
   width: 100%;
-  height: calc(100% - 132px);
+  height: calc(100% - 86px);
   background-color: #1b1f28; }
+  .admin-bar .mobile-menu {
+    top: 132px;
+    height: calc(100% - 132px); }
   .mobile-menu.active {
     display: block; }
   .mobile-menu__inner {
@@ -3811,7 +3814,7 @@ body {
   background-color: rgba(27, 31, 40, 0.98); }
   .search-form-mobile__close {
     position: absolute;
-    top: 64px;
+    top: 19px;
     right: 20px;
     display: flex;
     justify-content: center;
@@ -3823,6 +3826,8 @@ body {
     .search-form-mobile__close img {
       width: 20px;
       height: 20px; }
+  .admin-bar .search-form-mobile__close {
+    top: 64px; }
   .search-form-mobile__input {
     display: flex;
     width: 100%;

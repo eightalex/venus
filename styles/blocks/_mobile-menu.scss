@@ -1,9 +1,6 @@
 .mobile-menu {
   $header-height: 86px;
-
-  .admin-bar & {
-    $header-height: 46px + 86px;
-  }
+  $header-height-admin-bar: 46px + 86px;
 
   display: none;
 
@@ -17,6 +14,11 @@
   height: calc(100% - #{$header-height});
 
   background-color: #1b1f28;
+
+  .admin-bar & {
+    top: $header-height-admin-bar;
+    height: calc(100% - #{$header-height-admin-bar});
+  }
 
   &.active {
     display: block;
