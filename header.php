@@ -44,12 +44,13 @@
                             ));
                         }
                     ?>
-                    <div class="navigation__burger space-mobile-menu-icon">
+                    <div class="navigation__burger js-mobile-menu-button">
                         <span>
                             <span></span>
                             <span></span>
                             <span></span>
                         </span>
+                        <img src="<?= get_stylesheet_directory_uri() ?>/assets/images/icons/cross.svg" alt="Close">
                     </div>
                 </nav>
             </div>

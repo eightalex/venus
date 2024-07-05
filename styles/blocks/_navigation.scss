@@ -17,6 +17,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    cursor: pointer;
 
     a {
       display: flex;
@@ -35,16 +36,14 @@
         content: "";
         display: flex;
         flex-shrink: 0;
-        margin-left: 5px;
         width: 16px;
         height: 16px;
         background-image: url("#{$images-url}/icons/arrow-down.svg");
+        background-size: contain;
       }
     }
 
     &:hover {
-      cursor: pointer;
-
       & > a {
         color: #a3aecb;
       }
@@ -152,6 +151,22 @@
         }
       }
     }
+
+    img {
+      display: none;
+      width: 20px;
+      height: 20px;
+    }
+
+    &.active {
+      & > span {
+        display: none;
+      }
+
+      img {
+        display: block;
+      }
+    }
   }
 
   @include bp(1230px) {
@@ -170,6 +185,79 @@
       &:hover {
         cursor: pointer;
         opacity: 0.8;
+      }
+    }
+  }
+
+  .mobile-menu & {
+    &__item {
+      padding: 0 20px;
+      align-items: flex-start;
+      flex-direction: column;
+      cursor: default;
+
+      a {
+        gap: 16px;
+        height: auto;
+        font-size: 24px;
+        font-weight: 800;
+        font-family: Montserrat, sans-serif;
+        text-transform: uppercase;
+      }
+
+      &.menu-item-has-children {
+        position: relative;
+
+        & > a::after {
+          display: none;
+        }
+
+        &::after {
+          position: absolute;
+          top: 5px;
+          right: 20px;
+          content: "";
+          display: flex;
+          flex-shrink: 0;
+          width: 20px;
+          height: 20px;
+          background-image: url("#{$images-url}/icons/arrow-down.svg");
+          background-size: contain;
+        }
+      }
+
+      &:hover {
+        & > a {
+          color: #fff;
+        }
+      }
+    }
+
+    &__submenu-mobile {
+      display: none;
+
+      padding: 32px 0 0;
+      width: 100%;
+      list-style: none;
+
+      & > :not(:first-child) {
+        margin-top: 24px;
+      }
+
+      .navigation__item {
+        padding-left: 16px;
+        padding-right: 0;
+
+        a {
+          font-family: Hind, sans-serif;
+          font-size: 18px;
+          font-weight: 500;
+          line-height: normal;
+        }
+
+        &::after {
+          right: 0;
+        }
       }
     }
   }

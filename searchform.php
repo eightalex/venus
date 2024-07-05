@@ -18,7 +18,7 @@ $icon_search = get_stylesheet_directory_uri() . '/assets/images/icons/search.svg
     <button class="search-form__button desktop">
         <img src="<?= $icon_search ?>" alt="Search">
     </button>
-    <div class="search-form__button mobile js-button">
+    <div class="search-form__button mobile js-mobile-search-button">
         <img src="<?= $icon_search ?>" alt="Search">
     </div>
 </form>

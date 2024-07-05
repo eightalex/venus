@@ -8,8 +8,13 @@ function filter_menu_item_classes( $classes ) {
 add_filter( 'nav_menu_css_class', 'filter_menu_item_classes', 10, 4 );
 
 function filter_submenu_classes( $classes, $args ) {
-    if ( $args->theme_location === 'main-menu' ) {
-        $classes[] = 'navigation__submenu';
+    switch ($args->menu_class) {
+        case 'navigation__inner':
+            $classes[] = 'navigation__submenu';
+            break;
+        case 'mobile-menu__inner':
+            $classes[] = 'navigation__submenu-mobile';
+            break;
     }
     return $classes;
 }

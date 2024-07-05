@@ -36,6 +36,10 @@
       width: 20px;
       height: 20px;
     }
+
+    &.hidden {
+      visibility: hidden;
+    }
   }
 
   @include bp(1230px) {

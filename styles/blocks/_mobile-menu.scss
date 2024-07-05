@@ -1,0 +1,32 @@
+.mobile-menu {
+  $header-height: 86px;
+
+  .admin-bar & {
+    $header-height: 46px + 86px;
+  }
+
+  display: none;
+
+  position: fixed;
+  top: $header-height;
+  left: 0;
+  z-index: 4;
+  overflow: auto;
+  padding: 64px 0;
+  width: 100%;
+  height: calc(100% - #{$header-height});
+
+  background-color: #1b1f28;
+
+  &.active {
+    display: block;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+  }
+}

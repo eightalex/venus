@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initSwiper();
     initCategories();
     initSearch();
+    initMobileMenu();
 });
 
 window.addEventListener('resize', () => {
@@ -34,7 +35,7 @@ function initSearch() {
 
     const searchForm = document.querySelector('.js-form');
     const searchInput = searchForm.querySelector('.js-input');
-    const searchButton = searchForm.querySelector('.js-button');
+    const searchButton = searchForm.querySelector('.js-mobile-search-button');
 
     const searchFormMobile = document.querySelector('.js-form-mobile');
     const searchInputMobile = searchFormMobile.querySelector('.js-input-mobile');
@@ -62,4 +63,21 @@ function initSearch() {
         body.classList.remove('popup-open');
         searchFormMobile.classList.remove('active');
     });
+}
+
+function initMobileMenu() {
+    const body = document.querySelector('body');
+    const mobileMenu = document.querySelector('.js-mobile-menu');
+    const mobileMenuButton = document.querySelector('.js-mobile-menu-button');
+    const mobileSearchButton = document.querySelector('.js-mobile-search-button');
+
+    mobileMenuButton.addEventListener('click', function() {
+        window.scrollTo({ top: 0 });
+        body.classList.toggle('popup-open');
+        mobileMenu.classList.toggle('active');
+        mobileMenuButton.classList.toggle('active');
+        mobileSearchButton.classList.toggle('hidden');
+    });
+
+    // children behavior are in the script.js in the parent theme
 }
