@@ -27,8 +27,12 @@ if($is_main_game_page){
 	$games = apply_filters('ud_get_games', ['items_number'  => 9]);
 	get_template_part('theme-parts/modules/game-card-filter', '', ['games' => $games, 'filter' => false]);
 }elseif($is_main_bonus_page){
-	$content = ['bonuses_count' => -1];
-	get_template_part('theme-parts/modules/bonus-card', '', ['id' => $ID, 'content' => $content]);
+	// $content = ['bonuses_count' => -1];
+	// get_template_part('theme-parts/modules/bonus-card', '', ['id' => $ID, 'content' => $content]);
+	$bonuses = apply_filters('ud_get_bonuses', ['bonuses_count' => -1]);
+	$b_args = ['bonuses' => $bonuses];
+	$bonuses = apply_filters('ud_get_bonuses', $b_args);
+	get_template_part('theme-parts/modules/bonus-card-filter', '', ['id' => $ID, 'bonuses' => $bonuses]);
 }elseif($is_main_casinois_page){
 	$casinois = apply_filters('ud_get_casinos', ['items_number'  => 8]);
 	// $content = ['casinos' => $casinois, 'filter' => false]; 

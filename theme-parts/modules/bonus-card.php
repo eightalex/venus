@@ -36,7 +36,7 @@ if(!$bonuses['res']->have_posts()){
     return;
 }
 
-if(isset($content['bonuses_filter_on'])){
+if(isset($content['bonuses_filter_on']) && $content['bonuses_filter_on']){
     get_template_part('theme-parts/modules/bonus-card-filter', '', ['bonuses' => $bonuses]);
     return;
 }
