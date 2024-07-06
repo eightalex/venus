@@ -24,16 +24,19 @@ $btn_txt                = !empty(get_option('casinos_play_now_title'))? get_opti
         <div class="section__inner">
             <div class="rating-card">
                 <?php
-                if(is_array($terms_desc_arr)):
-                ?>
-                <div class="rating-card__tags">
-                    <div class="rating-card__tag"><?php echo str_replace('<p>', '',$terms_desc_arr[0])?></div>
-                </div>
-                <div class="rating-card__about">
-                    <div class="rating-card__price"><?php echo $terms_desc_arr[1]?></div>
-                    <div class="rating-card__title"><?php echo $terms_desc_arr[2]?></div>
-                    <div class="rating-card__subtitle"><?php echo str_replace('</p>', '',$terms_desc_arr[3])?></div>
-                </div>
+                if(is_array($terms_desc_arr) && !empty($terms_desc_arr)) :
+                    ?>
+                    <div class="rating-card__tags">
+                        <div class="rating-card__tag"><?php echo str_replace('<p>', '',$terms_desc_arr[0])?></div>
+                    </div>
+                    <?php endif;
+                    if (count($terms_desc_arr) > 1 && !empty($terms_desc_arr[1])) :
+                    ?>
+                    <div class="rating-card__about">
+                        <div class="rating-card__price"><?php echo $terms_desc_arr[1]?></div>
+                        <div class="rating-card__title"><?php echo $terms_desc_arr[2]?></div>
+                        <div class="rating-card__subtitle"><?php echo str_replace('</p>', '',$terms_desc_arr[3])?></div>
+                    </div>
                 <?php
                 endif;
                 ?>
