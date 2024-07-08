@@ -29,7 +29,8 @@ $def_url = get_the_permalink();
 
                             foreach($terms as $term):
                                 $t_id   = $term->term_id;
-                                $url    = $has_filter? "?bonuses-cat={$t_id}": get_term_link($t_id);
+                                // $url    = $has_filter? "?bonuses-cat={$t_id}": get_term_link($t_id);
+                                $url    = $has_filter? get_term_link($t_id): "$bonuses-cat={$t_id}";
                                 $active = isset($_GET['bonuses-cat']) && $_GET['bonuses-cat'] == $t_id? 'active': '';
                                 ?>
                                 <a href="<?php echo $url?>" data-id="<?php echo $term->term_id?>" class="page-switch__button <?php echo $active?>"><?php echo $term->name?></a>
