@@ -50,6 +50,10 @@
     font-style: normal;
     font-weight: 400;
     line-height: 128%; /* 20.48px */
+
+    &_single {
+      margin-bottom: 33px;
+    }
   }
 
   &__content {
@@ -173,6 +177,10 @@
         margin-left: 0;
         margin-right: 0;
         text-align: left;
+
+        &_single {
+          margin-bottom: 40px;
+        }
       }
 
       &__image {
@@ -267,6 +275,10 @@
       &__subtitle {
         margin-top: 16px;
         color: #fff;
+
+        &_single {
+          margin-bottom: 16px;
+        }
       }
 
       &__image {

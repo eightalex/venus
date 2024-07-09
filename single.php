@@ -27,12 +27,20 @@
 
 			if(!empty($intro_text)):
 				?>
-					<div class="section__subtitle">
-						<?php echo $intro_text?>
-					</div>
+                    <section class="section section_suits section_p_0">
+                        <div class="container">
+                            <div class="section__inner">
+                                <header class="section__header">
+                                    <div class="section__subtitle section__subtitle_single">
+                                        <?php echo $intro_text?>
+                                    </div>
+                                </header>
+                            </div>
+                        </div>
+                    </section>
 				<?php
-			endif;	
-			
+			endif;
+
 			foreach($custom_content as $part){
 				$part_tmpl = $part['_type'];
 				get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part, "post_type" => $post_type]);
@@ -40,7 +48,7 @@
 
 		}else{
 			get_template_part('/theme-parts/modules/breadcrumbs');
-			
+
 			foreach($custom_content as $part){
 				$part_tmpl = $part['_type'];
 				get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part, "post_type" => $post_type]);

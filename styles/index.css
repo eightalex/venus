@@ -57,6 +57,8 @@ body {
     font-weight: 400;
     line-height: 128%;
     /* 20.48px */ }
+    .section__subtitle_single {
+      margin-bottom: 33px; }
   .section__content {
     margin-top: 80px; }
   .section_suits {
@@ -126,6 +128,8 @@ body {
     margin-left: 0;
     margin-right: 0;
     text-align: left; }
+    .section_img .section__subtitle_single {
+      margin-bottom: 40px; }
   .section_img .section__image img:nth-child(1) {
     position: relative;
     z-index: 1;
@@ -177,6 +181,8 @@ body {
   .section_img-v2 .section__subtitle {
     margin-top: 16px;
     color: #fff; }
+    .section_img-v2 .section__subtitle_single {
+      margin-bottom: 16px; }
   .section_img-v2 .section__image img:nth-child(1) {
     width: 350px; }
   .section_p_0 {
