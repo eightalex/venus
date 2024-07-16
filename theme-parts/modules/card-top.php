@@ -54,7 +54,7 @@ $external_link          = get_post_meta($id, 'casino_external_link', true);
                 if(!empty($external_link)):
                     $btn_txt = !empty(get_post_meta($id, 'casino_button_title', true))? get_post_meta($id, 'casino_button_title', true):$review_btn_txt;
                 ?>
-                <a class="card-top__button button" href="<?php echo $external_link?>" targrt="_blank"><?php echo $btn_txt?></a>
+                <a class="card-top__button button" href="<?php echo $external_link?>" targrt="_blank" rel="nofollow"><?php echo $btn_txt?></a>
                 <?php
                 endif;
 

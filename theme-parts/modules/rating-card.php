@@ -44,7 +44,7 @@ $btn_txt                = !empty(get_option('casinos_play_now_title'))? get_opti
                     <?php
                     if(!empty($external_link)):
                         ?>
-                        <a href="<?php echo $external_link?>" target="__blank" class="rating-card__button button"><?php echo $btn_txt?></a>
+                        <a href="<?php echo $external_link?>" target="__blank" rel="nofollow" class="rating-card__button button"><?php echo $btn_txt?></a>
                         <span><?php echo get_post_meta($id, "{$post_type}_button_notice", true)?></span>
                         <?php
                     endif;
