@@ -31,9 +31,9 @@
                         <div class="container">
                             <div class="section__inner">
                                 <header class="section__header">
-                                    <div class="section__subtitle section__subtitle_single">
+                                    <p class="section__subtitle section__subtitle_single">
                                         <?php echo $intro_text?>
-                                    </div>
+                                    </p>
                                 </header>
                             </div>
                         </div>
