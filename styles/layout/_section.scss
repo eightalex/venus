@@ -52,6 +52,9 @@
     line-height: 128%; /* 20.48px */
 
     &_single {
+      margin-left: 0;
+      margin-right: 0;
+      max-width: unset;
       margin-bottom: 33px;
     }
   }
