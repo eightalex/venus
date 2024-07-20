@@ -1542,7 +1542,6 @@ function ud_custon_fields() {
         ));
 
     Container::make( 'post_meta', 'Intro text' )
-        ->where('post_type', '=', 'post')
         ->set_context('side')
         ->add_fields(array(
             Field::make('textarea', 'intro_text', 'Intro')
