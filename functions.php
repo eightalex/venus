@@ -1594,6 +1594,11 @@ function ud_custon_fields() {
                 ->set_width(25),
         ));
 
+    Container::make( 'term_meta', 'Intro text' )
+        ->add_fields(array(
+            Field::make('textarea', 'intro_text', 'Intro')
+        ));    
+
     Container::make( 'term_meta', 'Text content' )
         ->where( 'term_taxonomy', '=', 'category' )
         ->or_where( 'term_taxonomy', '=', 'game-category' )

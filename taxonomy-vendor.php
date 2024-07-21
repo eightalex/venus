@@ -3,6 +3,7 @@
 $ID 			= get_queried_object()->term_id;
 $app_banner_img	= intval(carbon_get_term_meta($ID, 'app_banner_img'));
 $app_banner_txt	= carbon_get_term_meta($ID, 'app_banner_txt');
+$intro_text 	= carbon_get_term_meta($ID, 'intro_text');
 $content_editor = carbon_get_term_meta($ID, 'content_editor');
 $content 		= carbon_get_term_meta($ID, 'ud_cat_content');
 
@@ -31,6 +32,10 @@ wp_reset_postdata();
 
  
 get_template_part('/theme-parts/modules/app-banner', '', ['img' => $app_banner_img, 'txt' => $app_banner_txt]);
+
+if(!empty($intro_text)):
+	get_template_part('/theme-parts/modules/intro-text', '', ['text'=>$intro_text]);
+endif;
 
 if($posts->have_posts()):
 	?>

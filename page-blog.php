@@ -8,6 +8,7 @@ $ID 			= get_the_ID();
 $custom_content = carbon_get_post_meta(get_the_ID(), 'ud_post_content');
 $app_banner_img	= carbon_get_post_meta(get_the_ID(), 'app_banner_img');
 $app_banner_txt	= carbon_get_post_meta(get_the_ID(), 'app_banner_txt');
+$intro_text 	= carbon_get_post_meta($ID, 'intro_text');
 
 get_header();
 
@@ -17,6 +18,9 @@ if(empty($app_banner_img)){
 	get_template_part('/theme-parts/modules/app-banner', '', ['img' => $app_banner_img, 'txt' => $app_banner_txt]);
 }
 
+if(!empty($intro_text)):
+	get_template_part('/theme-parts/modules/intro-text', '', ['text'=>$intro_text]);
+endif;
 ?>
 <!-- TODO: need replace in special module, and include -->
 <section class="section section_bg section_bg_6">

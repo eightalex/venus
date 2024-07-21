@@ -1,5 +1,6 @@
 <?php
 $p_id                   = get_the_ID();
+$intro_text 			= carbon_get_post_meta($p_id, 'intro_text');
 $casinois_list          = get_post_meta($p_id, 'bonus_parent_casino', true);
 $casinois_list_title    = carbon_get_post_meta($p_id, 'casinois_sidebar_title');
 $custom_content         = carbon_get_post_meta($p_id, 'ud_post_content');
@@ -26,6 +27,8 @@ $casinois = new WP_Query($q_arr);
 wp_reset_postdata();
 
 get_template_part('/theme-parts/modules/banner', 'author', ['id' => $p_id]);
+
+get_template_part('/theme-parts/modules/intro-text', '', ['text'=>$intro_text]);
 
 get_template_part('/theme-parts/modules/text-editor-sidebar', '', ['casinois' => $casinois, 'casinois_list_title' => $casinois_list_title] );
 

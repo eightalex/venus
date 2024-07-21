@@ -3,6 +3,7 @@
 $ID 			    = get_queried_object()->term_id;
 $app_banner_img	    = intval(carbon_get_term_meta($ID, 'app_banner_img'));
 $app_banner_txt	    = carbon_get_term_meta($ID, 'app_banner_txt');
+$intro_text 		= carbon_get_term_meta($ID, 'intro_text');
 $show_sidebar	    = carbon_get_term_meta($ID, 'embed_sitebar');
 $sitebar_title	    = carbon_get_term_meta($ID, 'sitebar_title');
 $sidebar_casionois	= carbon_get_term_meta($ID, 'sidebar_casionois');
@@ -25,6 +26,10 @@ get_template_part('/theme-parts/modules/app-banner', '', ['img' => $app_banner_i
 if($tags){
 	get_template_part("/theme-parts/modules/tags", "list", ["tags" => $tags]);
 }
+
+if(!empty($intro_text)):
+	get_template_part('/theme-parts/modules/intro-text', '', ['text'=>$intro_text]);
+endif;
 
 ?>
 <section class="section section_bg section_bg_6">

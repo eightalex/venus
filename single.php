@@ -4,11 +4,11 @@
 	<?php
 
     $ID 					= get_the_ID();
-    $custom_content 		= carbon_get_post_meta(get_the_ID(), 'ud_post_content');
-	$app_banner_is_author 	= carbon_get_post_meta(get_the_ID(), 'app_banner_is_author');
-	$app_banner_txt 		= carbon_get_post_meta(get_the_ID(), 'app_banner_txt');
-	$app_banner_img 		= carbon_get_post_meta(get_the_ID(), 'app_banner_img');
-	$intro_text 			= carbon_get_post_meta(get_the_ID(), 'intro_text');
+    $custom_content 		= carbon_get_post_meta($ID, 'ud_post_content');
+	$app_banner_is_author 	= carbon_get_post_meta($ID, 'app_banner_is_author');
+	$app_banner_txt 		= carbon_get_post_meta($ID, 'app_banner_txt');
+	$app_banner_img 		= carbon_get_post_meta($ID, 'app_banner_img');
+	$intro_text 			= carbon_get_post_meta($ID, 'intro_text');
 	$post_type 				= get_post_type();
 
     if(!empty($custom_content)){
@@ -26,19 +26,7 @@
 			get_template_part('/theme-parts/modules/post', 'tags', ['id' => $ID]);
 
 			if(!empty($intro_text)):
-				?>
-                    <section class="section section_suits section_p_0">
-                        <div class="container">
-                            <div class="section__inner">
-                                <header class="section__header">
-                                    <p class="section__subtitle section__subtitle_single">
-                                        <?php echo $intro_text?>
-                                    </p>
-                                </header>
-                            </div>
-                        </div>
-                    </section>
-				<?php
+				get_template_part('/theme-parts/modules/intro-text', '', ['text'=>$intro_text]);
 			endif;
 
 			foreach($custom_content as $part){
