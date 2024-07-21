@@ -222,7 +222,6 @@ function ud_get_games(array $atts){
 		$args = array(
 			'posts_per_page' => $items_number,
 			'post_type'      => 'game',
-			// 'post__not_in'   => $exclude_id_array,
 			'post_status'    => 'publish',
 			'tax_query' => array(
 				'relation' => 'AND',
@@ -248,7 +247,6 @@ function ud_get_games(array $atts){
 		$args = array(
 			'posts_per_page' => $items_number,
 			'post_type'      => 'game',
-			// 'post__not_in'   => $exclude_id_array,
 			'post_status'    => 'publish',
 			'tax_query' => array(
 				array(
@@ -268,7 +266,6 @@ function ud_get_games(array $atts){
 		$args = array(
 			'posts_per_page' => $items_number,
 			'post_type'      => 'game',
-			// 'post__not_in'   => $exclude_id_array,
 			'post_status'    => 'publish',
 			'tax_query' => array(
 				array(
@@ -300,7 +297,6 @@ function ud_get_games(array $atts){
 		$args = array(
 			'posts_per_page' => $items_number,
 			'post_type'      => 'game',
-			// 'post__not_in'   => $exclude_id_array,
 			'post_status'    => 'publish',
 			'meta_query' => array(
 		        array(
@@ -315,13 +311,15 @@ function ud_get_games(array $atts){
 		$args = array(
 			'posts_per_page' => $items_number,
 			'post_type'      => 'game',
-			// 'post__not_in'   => $exclude_id_array,
 			'post_status'    => 'publish',
 			'orderby'        => $orderby,
 			'order'          => $order
 		);
 
 	}
+
+    
+    $args['post__not_in'] = [$exclude_id];
 
     $paged = isset($_GET['games-page'])? $_GET['games-page']: 1;
 
@@ -1193,6 +1191,23 @@ function ud_get_authors() {
     $author_array = ['' => 'Select Author'] + $author_array;
 
     return $author_array;
+}
+
+add_filter('ud_has_children', 'ud_has_children', 10, 2);
+function ud_has_children($postid, $posttype = "post"){
+    $args = array(
+        'post_parent' => $postid,
+        'post_type'   => $posttype,
+        'numberposts' => -1,
+    );
+    
+    $children = get_children( $args );
+    
+    if ( !empty( $children ) ) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 // CUSTOM FIELDS

@@ -1,18 +1,23 @@
 <?php
 extract($args);
 
-$gc_bg = !empty($content['gc_bg'])? $content['gc_bg']: get_stylesheet_directory_uri()."/assets/images/section/bg3.jpeg";
+$gc_bg        = !empty($content['gc_bg'])? $content['gc_bg']: get_stylesheet_directory_uri()."/assets/images/section/bg3.jpeg";
+$has_children = apply_filters('ud_has_children', $id, 'game');
 
 $q_params = [
-    'category'      => $content['gc_category'],
     'items_number'  => $content['gs_count'],
+    'exclude_id'    => $id,
 ];
 
-if($post_type !== "page"){
+if(!empty($content['gc_category'])){
+    $q_params['category']   = $content['gc_category'];
+}
+
+if($post_type !== "page" && $has_children){
     $q_params['parent_id'] = $id;
 }
-$games = apply_filters('ud_get_games', $q_params);
 
+$games = apply_filters('ud_get_games', $q_params);
 
 if(!$games['res']->have_posts()){
     return;
