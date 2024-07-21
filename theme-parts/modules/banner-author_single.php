@@ -8,6 +8,7 @@ $author_full_name   = $author_info['firs_name'] . " " . $author_info['last_name'
 $date_create        = get_queried_object()->post_date;
 $date_c_u           = strtotime($date_create);
 $date_f             = 'F d, Y';
+$post_modify        = get_the_modified_date('F d, Y');
 $date_c_m           = date($date_f, $date_c_u);
 $view_count         = function_exists( 'pvc_get_post_views' )? pvc_get_post_views($id): 0;
 $comment_count      = get_comment_count($id);
@@ -36,7 +37,10 @@ $comment_count      = get_comment_count($id);
                         </div>
                     </div>
                     <time class="banner-author__date">
-                        <?php echo $date_c_m?>
+                        <?php
+                          echo "Oppdatert " . $post_modify;
+                        ?>
+                        <!-- <?php echo $date_c_m?> -->
                     </time>
                     <div class="banner-author__icons">
                         <?php
