@@ -1,11 +1,12 @@
 <?php
 
-$ID 			= get_queried_object()->term_id;
-$app_banner_img	= intval(carbon_get_term_meta($ID, 'app_banner_img'));
-$app_banner_txt	= carbon_get_term_meta($ID, 'app_banner_txt');
-$intro_text 	= carbon_get_term_meta($ID, 'intro_text');
-$content_editor = carbon_get_term_meta($ID, 'content_editor');
-$content 		= carbon_get_term_meta($ID, 'ud_cat_content');
+$ID 				= get_queried_object()->term_id;
+$app_banner_img		= intval(carbon_get_term_meta($ID, 'app_banner_img'));
+$app_banner_txt		= carbon_get_term_meta($ID, 'app_banner_txt');
+$intro_text 		= carbon_get_term_meta($ID, 'intro_text');
+$content_editor 	= carbon_get_term_meta($ID, 'content_editor');
+$content 			= carbon_get_term_meta($ID, 'ud_cat_content');
+$main_casinois_page	= carbon_get_theme_option('default_page_casinois');
 
 $cas_args = [
     'items_number'   => 9,
@@ -39,6 +40,12 @@ if($casinos->have_posts()):
 						<div class="content-cards__switch">
 							<div class="page-switch">
 								<?php
+								if($main_casinois_page && !empty($main_casinois_page)):
+									?>
+									<a href="<?php echo get_the_permalink($main_casinois_page)?>" class="page-switch__button">AllE</a>
+									<?php
+								endif;
+
 								foreach($terms as $term):
 									$t_id   = $term->term_id;
 									$url    = get_term_link($t_id);

@@ -1,11 +1,12 @@
 <?php
 
-$ID 			= get_queried_object()->term_id;
-$app_banner_img	= intval(carbon_get_term_meta($ID, 'app_banner_img'));
-$app_banner_txt	= carbon_get_term_meta($ID, 'app_banner_txt');
-$intro_text 	= carbon_get_term_meta($ID, 'intro_text');
-$content_editor = carbon_get_term_meta($ID, 'content_editor');
-$content 		= carbon_get_term_meta($ID, 'ud_cat_content');
+$ID 			    = get_queried_object()->term_id;
+$app_banner_img	    = intval(carbon_get_term_meta($ID, 'app_banner_img'));
+$app_banner_txt	    = carbon_get_term_meta($ID, 'app_banner_txt');
+$intro_text 	    = carbon_get_term_meta($ID, 'intro_text');
+$content_editor     = carbon_get_term_meta($ID, 'content_editor');
+$content 		    = carbon_get_term_meta($ID, 'ud_cat_content');
+$main_bonus_page    = carbon_get_theme_option('default_page_bonus');
 
 $terms = get_terms( array(
     'taxonomy'   => 'bonus-category',
@@ -34,11 +35,17 @@ if($bonuses['res']->have_posts()):
             <div class="content-cards">
                 <?php
                 if(!empty($terms)):
-                    $def_active = isset($_GET['bonuses-cat'])? '': 'active';
+                    $def_active = isset($_GET['bonuses-cat'])? '': 'active'; 
                     ?>
                     <div class="content-cards__switch">
                         <div class="page-switch">
                             <?php
+                            if($main_bonus_page && !empty($main_bonus_page)):
+                                ?>
+                                <a href="<?php echo get_the_permalink($main_bonus_page)?>" class="page-switch__button">AllE</a>
+                                <?php
+                            endif;
+
                             foreach($terms as $term):
                                 $t_id   = $term->term_id;
                                 $url    = get_term_link($t_id);

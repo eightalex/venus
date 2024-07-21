@@ -11,9 +11,13 @@ $terms = get_terms( array(
     'taxonomy'   => 'casino-category',
 ) );
 
-$has_filter = isset($filter) && $filter == false? false: true;
+$has_filter         = isset($filter) && $filter == false? false: true;
+$main_casinois_page	= carbon_get_theme_option('default_page_casinois');
+$def_url            = get_the_permalink();
 
-$def_url = get_the_permalink();
+if($main_casinois_page && !empty($main_casinois_page)){
+    $def_url = get_the_permalink($main_casinois_page);
+}
 ?>
 
 <section class="section section_suits section_p_0">
@@ -29,7 +33,7 @@ $def_url = get_the_permalink();
                             <?php
                                 if($has_filter && $show_all_btn):
                                 ?>
-                                    <a href="<?php echo $def_url?>" class="page-switch__button <?php echo $def_active?>">All</a>
+                                    <a href="<?php echo $def_url?>" class="page-switch__button <?php echo $def_active?>">AllE</a>
                                 <?php
                                 endif;
 

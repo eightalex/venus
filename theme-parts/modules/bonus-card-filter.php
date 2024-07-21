@@ -7,8 +7,13 @@ $terms = get_terms( array(
 
 $has_filter = isset($filter) && $filter == false? false: true;
 
-$current_id = $id;
-$def_url = get_the_permalink();
+$current_id         = $id;
+$def_url            = get_the_permalink();
+$main_bonus_page    = carbon_get_theme_option('default_page_bonus');
+
+if($main_bonus_page && !empty($main_bonus_page)){
+    $def_url = get_the_permalink($main_bonus_page);
+}
 ?>
 <section class="section section_p_0 section_bg section_bg_2">
     <div class="container">
@@ -23,7 +28,7 @@ $def_url = get_the_permalink();
                             <?php
                             if($has_filter):
                                 ?>
-                                <a href="<?php echo $def_url ?>" class="page-switch__button <?php echo $def_active ?>">All</a>
+                                <a href="<?php echo $def_url ?>" class="page-switch__button">AllE</a>
                                 <?php
                             endif;
 

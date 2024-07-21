@@ -5,10 +5,13 @@ $terms = get_terms( array(
     'taxonomy'   => 'game-category',
 ) );
 
-$has_filter = isset($filter) && $filter == false? false: true;
+$has_filter     = isset($filter) && $filter == false? false: true;
+$def_url        = get_the_permalink();
+$main_game_page = carbon_get_theme_option('default_page_game');
 
-$def_url = get_the_permalink();
-
+if($main_game_page && !empty($main_game_page)){
+    $def_url = get_the_permalink($main_game_page);
+}
 ?>
 <section class="section section_p_0 section_bg section_bg_2">
     <div class="container">
@@ -23,7 +26,7 @@ $def_url = get_the_permalink();
                             <?php
                             if($has_filter):
                                 ?>
-                                <a href="<?php echo $def_url?>" class="page-switch__button <?php echo $def_active?>">All</a>
+                                <a href="<?php echo $def_url?>" class="page-switch__button <?php echo $def_active?>">AllE</a>
                                 <?php
                             endif;
 
