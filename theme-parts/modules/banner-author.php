@@ -88,7 +88,7 @@ $offer_detailed_tc  = get_post_meta($id, 'offer_detailed_tc', true);
                                 <?php
                                 if(!empty($bonus_code)):
                                     ?>
-                                    <div class="bonus-widget__subtitle"><?php echo __('Bonus code') ?>:</div>
+                                    <!-- <div class="bonus-widget__subtitle"><?php echo __('Bonus code') ?>:</div> -->
                                     <div class="bonus-widget__title"><?php echo $bonus_code?></div>
                                     <?php
                                 endif;
