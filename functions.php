@@ -19,6 +19,11 @@ function filter_submenu_classes( $classes, $args ) {
     return $classes;
 }
 
+add_action( 'admin_enqueue_scripts', 'load_admin_custom_style' );
+function load_admin_custom_style() {
+    wp_enqueue_style( 'admin_custom_css', get_stylesheet_directory_uri() . '/styles/admin-custom-styles.css', false, false );
+}
+
 add_filter( 'nav_menu_submenu_css_class', 'filter_submenu_classes', 10, 3 );
 
 function venus_scripts() {

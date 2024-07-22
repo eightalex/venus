@@ -1,6 +1,10 @@
 <?php
 extract($args); 
 
+if(!comments_open( $id )){
+    return;
+}
+
 $f_args = array(
    'class_form' => 'form-reply__form',
    'comment_notes_after' => '',
