@@ -1251,9 +1251,9 @@ function ud_custon_fields() {
     $shortcodes_codex = "You can use: [print_quote text='*Text' author_name='*Author Nane'] and [author_annatation text='*Text' rating='* 0-9' author_id='int (optional)']";
 
     Container::make( 'post_meta', 'App banner')
-        ->where('post_type', '=', 'post')
-        ->or_where('post_type', '=', 'page')
-        ->or_where('post_type', '=', 'bonus')
+        // ->where('post_type', '=', 'post')
+        // ->or_where('post_type', '=', 'page')
+        // ->or_where('post_type', '=', 'bonus')
         ->add_fields(array(
             Field::make('checkbox', 'app_banner_is_author', __('Auhtor banner'))
                 ->set_default_value(true)
@@ -1573,6 +1573,7 @@ function ud_custon_fields() {
         ->add_fields(array(
             Field::make('text', 'casinois_sidebar_title', __('Casinos sidebar title'))
         ));
+
     Container::make( 'term_meta', 'Sidebar' )
         ->where( 'term_taxonomy', '=', 'category' )
         ->add_fields(array(

@@ -21,14 +21,15 @@ if($main_bonus_page && !empty($main_bonus_page)){
             <div class="content-cards">
                 <?php
                 if(!empty($terms)):
-                    $def_active = isset($_GET['bonuses-cat'])? '': 'active';
+                    $def_active = (is_page() && $current_id == $main_bonus_page)? 'active': '';
+
                     ?>
                     <div class="content-cards__switch">
                         <div class="page-switch">
                             <?php
                             if($has_filter):
                                 ?>
-                                <a href="<?php echo $def_url ?>" class="page-switch__button">AllE</a>
+                                <a href="<?php echo $def_url ?>" class="page-switch__button <?php echo $def_active?>">AllE</a>
                                 <?php
                             endif;
 

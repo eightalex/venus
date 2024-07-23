@@ -23,6 +23,8 @@ $external_link      = get_post_meta($id, 'bonus_external_link', true);
 $button_notice      = get_post_meta($id, 'bonus_button_notice', true);
 $offer_detailed_tc  = get_post_meta($id, 'offer_detailed_tc', true);
 
+$show_tags          = false;
+
 ?>
 <section class="section section_p_0 section_suits">
     <div class="container">
@@ -32,7 +34,7 @@ $offer_detailed_tc  = get_post_meta($id, 'offer_detailed_tc', true);
                     <?php
                         get_template_part('/theme-parts/modules/breadcrumbs', '', ['inline' => true]);
 
-                        if(!empty($bonus_cat)):
+                        if(!empty($bonus_cat) && $show_tags):
                             $cat_lnk = get_term_link($bonus_cat[0]->term_id, $tax);
                         ?>
 

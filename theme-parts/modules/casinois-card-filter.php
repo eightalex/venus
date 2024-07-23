@@ -27,6 +27,10 @@ if($main_casinois_page && !empty($main_casinois_page)){
                 <?php
                     if($has_filter && !empty($terms)):
                         $def_active = isset($_GET['casinos-cat'])? '': 'active';
+
+                        if(is_page() && $id == $main_casinois_page){
+                            $def_active = 'active';
+                        }
                         ?>
                         <div class="content-cards__switch">
                             <div class="page-switch">

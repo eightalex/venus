@@ -5,7 +5,7 @@ $terms = get_terms( array(
     'taxonomy'   => 'game-category',
 ) );
 
-$has_filter     = isset($filter) && $filter == false? false: true;
+$has_filter     = !isset($filter) || $filter == false? false: true;
 $def_url        = get_the_permalink();
 $main_game_page = carbon_get_theme_option('default_page_game');
 
@@ -19,7 +19,7 @@ if($main_game_page && !empty($main_game_page)){
             <div class="content-cards">
                 <?php
                 if(!empty($terms)):
-                    $def_active = isset($_GET['games-cat'])? '': 'active';
+                    $def_active = (is_page() && $id == $main_game_page)? 'active': '';
                     ?>
                     <div class="content-cards__switch">
                         <div class="page-switch">
