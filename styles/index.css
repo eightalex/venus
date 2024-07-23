@@ -3583,17 +3583,16 @@ body {
     font-weight: 400;
     line-height: 128%;
     /* 17.92px */ }
-    .casino-inline__info > :nth-child(1),
     .casino-inline__info > :nth-child(2) {
       font-family: Montserrat, sans-serif;
       font-size: 32px;
       font-weight: 800;
       line-height: normal;
       text-transform: uppercase; }
-    .casino-inline__info > :nth-child(2) {
+    .casino-inline__info > :nth-child(3) {
       font-size: 18px;
       font-weight: 600; }
-    .casino-inline__info > :nth-child(3) {
+    .casino-inline__info > :nth-child(4) {
       margin-top: 6px; }
   .casino-inline__cta {
     display: flex;

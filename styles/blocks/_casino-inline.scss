@@ -96,7 +96,6 @@
     font-weight: 400;
     line-height: 128%; /* 17.92px */
 
-    & > :nth-child(1),
     & > :nth-child(2) {
       font-family: Montserrat, sans-serif;
       font-size: 32px;
@@ -105,12 +104,12 @@
       text-transform: uppercase;
     }
 
-    & > :nth-child(2) {
+    & > :nth-child(3) {
       font-size: 18px;
       font-weight: 600;
     }
 
-    & > :nth-child(3) {
+    & > :nth-child(4) {
       margin-top: 6px;
     }
   }
