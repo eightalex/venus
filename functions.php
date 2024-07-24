@@ -697,6 +697,7 @@ function print_single_bonus_card(array $data){
         $df = date('M d, Y', $ds);
 
         $bonus_code_html = "<div class='bonus-card__gift-content'>
+                                <span></span>
                                 <span>{$bonus_code}</span>
                                 <span>Valid Until: {$df}</span>
                             </div>";
