@@ -132,7 +132,8 @@ function ud_get_author_infos($author_id){
         'firs_name'          => get_user_meta($author_id, 'first_name', true),
         'last_name'          => get_user_meta($author_id, 'last_name', true),
         'desc'               => get_user_meta($author_id, 'description', true),
-        'ava_url'            => $ava_data['src'] //get_user_meta($author_id, 'sabox-profile-image', true)
+        'ava_url'            => $ava_data['src'], //get_user_meta($author_id, 'sabox-profile-image', true)
+        'role'               => get_user_meta($author_id, 'wp_capabilities', true)   
     ];
 
     return $infos;
@@ -915,20 +916,23 @@ function ud_author_annatation($atts){
     extract($atts);
     $text           = isset($text)? $text: '';
     $author         = isset($author_id)? $author_id: get_queried_object()->post_author;
-    $rating         = isset($rating)? $rating: '';
+    $rating         = isset($rating)? "<div class='quote-author__rating'>
+                                            {$rating}
+                                        </div>": "";
     $author_info    = apply_filters('ud_get_author_infos', $author);
     $ava            = $author_info['ava_url'];
     $full_name      = $author_info['firs_name'] . " " . $author_info['last_name'];
+    $roles          = array_keys($author_info['role']); 
+    $roles_str      = '<span class="author_role">' . implode(',', $roles) . '</span>';   // TODO : add styles
 
     $html = "<blockquote class='quote-author'>
                 <header class='quote-author__header'>
                     <cite class='quote-author__author'>
                         <img src='{$ava}' alt='author'>
                         {$full_name}
+                        {$roles_str}
                     </cite>
-                    <div class='quote-author__rating'>
-                        {$rating}
-                    </div>
+                    {$rating}
                 </header>
                 <p class='quote-author__text'>
                     {$text}
