@@ -9,6 +9,7 @@ $intro_text 			= carbon_get_post_meta($ID, 'intro_text');
 $is_main_game_page 		= (carbon_get_theme_option('default_page_game') == $ID);
 $is_main_bonus_page		= (carbon_get_theme_option('default_page_bonus') == $ID);
 $is_main_casinois_page	= (carbon_get_theme_option('default_page_casinois') == $ID);
+$is_paginavi 			= apply_filters('is_paginavi', 0);
 
 get_header();
 
@@ -44,14 +45,16 @@ if($is_main_game_page){
 	get_template_part('theme-parts/modules/casinois-card-filter', '', ['casinos' => $casinois]);
 }
 
-if(!empty($custom_content)){
-	foreach($custom_content as $part){
-		$part_tmpl = $part['_type'];
-		
-		get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part, "post_type" => 'page']);
+if(!$is_paginavi){
+	if(!empty($custom_content)){
+		foreach($custom_content as $part){
+			$part_tmpl = $part['_type'];
+			
+			get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part, "post_type" => 'page']);
+		}
+	}else{
+		get_template_part("/theme-parts/modules/text", "editor", ['content' => ['text_editor' => get_the_content()]]);
 	}
-}else{
-    get_template_part("/theme-parts/modules/text", "editor", ['content' => ['text_editor' => get_the_content()]]);
 }
 
 get_footer(); 

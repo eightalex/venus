@@ -1220,6 +1220,28 @@ function ud_has_children($postid, $posttype = "post"){
     }
 }
 
+add_filter('is_paginavi', 'ud_is_paginavi');
+function ud_is_paginavi(){
+    $get_params           	= $_GET;
+
+    $pagi_lnks              = [
+        'posts-page',
+        'bonuses-page',
+        'casinois-page',
+        'games-page'
+    ];
+
+    $is_paginavi = false;
+
+    foreach($get_params as $p => $v){
+        if(in_array($p, $pagi_lnks)  && intval($v) > 1){
+            $is_paginavi = true;
+        }
+    }
+
+    return $is_paginavi;
+}
+
 // CUSTOM FIELDS
 add_action( 'carbon_fields_register_fields', 'ud_custon_fields' );
 

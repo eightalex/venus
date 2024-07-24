@@ -10,6 +10,7 @@ $sidebar_casionois	= carbon_get_term_meta($ID, 'sidebar_casionois');
 $custom_content     = carbon_get_term_meta($ID, 'content_editor');
 $content 		    = carbon_get_term_meta($ID, 'ud_cat_content');
 $paged 			    = isset($_GET['posts-page']) ? absint( $_GET['posts-page'] )  : 1;
+$is_paginavi 		= apply_filters('is_paginavi', 0);
 
 if(empty($app_banner_img)){
 	$app_banner_img = get_stylesheet_directory_uri()."/assets/images/banner/banner.svg";
@@ -171,18 +172,19 @@ endif;
     </div>
 </section>
 <?php
-
-if(!empty($custom_content)){
-	$part = ['text_editor' => $custom_content];
-	get_template_part("/theme-parts/modules/text-editor", "", ["id" => $ID, "content"=>$part]);
-}
-
-if(!empty($content)){
-	foreach($content as $part){
-		$part_tmpl = $part['_type'];
-
-		get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part, "post_type" => 'page']);
-	}
+if(!$is_paginavi){
+    if(!empty($custom_content)){
+        $part = ['text_editor' => $custom_content];
+        get_template_part("/theme-parts/modules/text-editor", "", ["id" => $ID, "content"=>$part]);
+    }
+    
+    if(!empty($content)){
+        foreach($content as $part){
+            $part_tmpl = $part['_type'];
+    
+            get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part, "post_type" => 'page']);
+        }
+    }
 }
 
 get_footer();

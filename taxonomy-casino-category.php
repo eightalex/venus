@@ -7,6 +7,7 @@ $intro_text 		= carbon_get_term_meta($ID, 'intro_text');
 $content_editor 	= carbon_get_term_meta($ID, 'content_editor');
 $content 			= carbon_get_term_meta($ID, 'ud_cat_content');
 $main_casinois_page	= carbon_get_theme_option('default_page_casinois');
+$is_paginavi 		= apply_filters('is_paginavi', 0);
 
 $cas_args = [
     'items_number'   => 9,
@@ -42,7 +43,7 @@ if($casinos->have_posts()):
 								<?php
 								if($main_casinois_page && !empty($main_casinois_page)):
 									?>
-									<a href="<?php echo get_the_permalink($main_casinois_page)?>" class="page-switch__button">AllE</a>
+									<a href="<?php echo get_the_permalink($main_casinois_page)?>" class="page-switch__button">alle nettkasinoer</a>
 									<?php
 								endif;
 
@@ -101,16 +102,18 @@ if($casinos->have_posts()):
 <?php
 endif;
 
-if(!empty($content_editor)){
-	$part = ['text_editor' => $content_editor];
-	get_template_part("/theme-parts/modules/text-editor", "", ["id" => $ID, "content"=>$part]);
-}
-
-if(!empty($content)){
-	foreach($content as $part){
-		$part_tmpl = $part['_type'];
-		
-		get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part, "post_type" => 'page']);
+if(!$is_paginavi){
+	if(!empty($content_editor)){
+		$part = ['text_editor' => $content_editor];
+		get_template_part("/theme-parts/modules/text-editor", "", ["id" => $ID, "content"=>$part]);
+	}
+	
+	if(!empty($content)){
+		foreach($content as $part){
+			$part_tmpl = $part['_type'];
+			
+			get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part, "post_type" => 'page']);
+		}
 	}
 }
 
