@@ -1066,9 +1066,10 @@ function ud_print_casino($atts){
                             </div>";
         };
 
-        if(!empty($casino_terms_desc)){
+        // Central-top text content. May be $post_desc or $casino_terms_desc
+        if(!empty($post_desc)){
             $terms_desc   = "<div class='casino-inline-2__bonus'>
-                                {$casino_terms_desc}
+                                {$post_desc}
                             </div>";
         };
 
