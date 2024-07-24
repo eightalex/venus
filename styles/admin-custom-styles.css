@@ -1,3 +1,4 @@
-.block-editor .cf-complex__inserter-menu {
+.block-editor .cf-complex__inserter-menu,
+.cf-complex__inserter-menu {
     z-index: 100 !important;
 }
