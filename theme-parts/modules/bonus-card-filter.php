@@ -29,7 +29,7 @@ if($main_bonus_page && !empty($main_bonus_page)){
                             <?php
                             if($has_filter):
                                 ?>
-                                <a href="<?php echo $def_url ?>" class="page-switch__button <?php echo $def_active?>">AllE</a>
+                                <a href="<?php echo $def_url ?>" class="page-switch__button <?php echo $def_active?>">alle casino bonuser</a>
                                 <?php
                             endif;
 

@@ -4,7 +4,7 @@ if(isset($args)){
 }
 
 if(!isset($show_all_btn)){
-    $show_all_btn = false;
+    $show_all_btn = true;
 }
 
 $terms = get_terms( array(
@@ -37,7 +37,7 @@ if($main_casinois_page && !empty($main_casinois_page)){
                             <?php
                                 if($has_filter && $show_all_btn):
                                 ?>
-                                    <a href="<?php echo $def_url?>" class="page-switch__button <?php echo $def_active?>">AllE</a>
+                                    <a href="<?php echo $def_url?>" class="page-switch__button <?php echo $def_active?>">alle nettkasinoer</a>
                                 <?php
                                 endif;
 

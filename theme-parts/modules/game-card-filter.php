@@ -26,7 +26,7 @@ if($main_game_page && !empty($main_game_page)){
                             <?php
                             if($has_filter):
                                 ?>
-                                <a href="<?php echo $def_url?>" class="page-switch__button <?php echo $def_active?>">AllE</a>
+                                <a href="<?php echo $def_url?>" class="page-switch__button <?php echo $def_active?>">Alle spilleautomater</a>
                                 <?php
                             endif;
 

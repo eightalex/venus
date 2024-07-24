@@ -30,7 +30,7 @@ endif;
 
 if($is_main_game_page){
 	$games = apply_filters('ud_get_games', ['items_number'  => 9]);
-	get_template_part('theme-parts/modules/game-card-filter', '', ['games' => $games, 'filter' => false]);
+	get_template_part('theme-parts/modules/game-card-filter', '', ['games' => $games, 'filter' => true]);
 }elseif($is_main_bonus_page){
 	// $content = ['bonuses_count' => -1];
 	// get_template_part('theme-parts/modules/bonus-card', '', ['id' => $ID, 'content' => $content]);
