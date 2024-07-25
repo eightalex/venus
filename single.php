@@ -17,23 +17,7 @@
 		}elseif(is_singular( 'game' )){
 			get_template_part('/theme-parts/content', 'game');
 		}elseif(is_singular( 'post' )){
-			if(!empty($app_banner_is_author) && $app_banner_is_author == true){
-				get_template_part('/theme-parts/modules/banner', 'author_single', ['id' => $ID]);
-			}else{
-				get_template_part('/theme-parts/modules/app', 'banner', ['txt' => $app_banner_txt, 'img' => $app_banner_img]);
-			}
-
-			get_template_part('/theme-parts/modules/post', 'tags', ['id' => $ID]);
-
-			if(!empty($intro_text)):
-				get_template_part('/theme-parts/modules/intro-text', '', ['text'=>$intro_text]);
-			endif;
-
-			foreach($custom_content as $part){
-				$part_tmpl = $part['_type'];
-				get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part, "post_type" => $post_type]);
-			}
-
+            include_once('theme-parts/content-article.php');
 		}else{
 			get_template_part('/theme-parts/modules/breadcrumbs');
 
