@@ -8,10 +8,14 @@ $terms = get_terms( array(
 $has_filter     = !isset($filter) || $filter == false? false: true;
 $def_url        = get_the_permalink();
 $main_game_page = carbon_get_theme_option('default_page_game');
+$def_active     = (is_page() && $id == $main_game_page)? 'active': '';
+
 
 if($main_game_page && !empty($main_game_page)){
     $def_url = get_the_permalink($main_game_page);
 }
+
+
 ?>
 <section class="section section_p_0 section_bg section_bg_2">
     <div class="container">
@@ -19,7 +23,6 @@ if($main_game_page && !empty($main_game_page)){
             <div class="content-cards">
                 <?php
                 if(!empty($terms)):
-                    $def_active = (is_page() && $id == $main_game_page)? 'active': '';
                     ?>
                     <div class="content-cards__switch">
                         <div class="page-switch">
@@ -32,8 +35,9 @@ if($main_game_page && !empty($main_game_page)){
 
                             foreach($terms as $term):
                                 $t_id   = $term->term_id;
-                                $url    = $has_filter? "?games-cat={$t_id}": get_term_link($t_id);
-                                $active = isset($_GET['games-cat']) && $_GET['games-cat'] == $t_id? 'active': '';
+                                // $url    = $has_filter? "?games-cat={$t_id}": get_term_link($t_id);
+                                $url    = get_term_link($t_id);
+                                $active = $t_id == $ID? 'active': '';
                                 ?>
                                 <a href="<?php echo $url?>" class="page-switch__button <?php echo $active?>"><?php echo $term->name?></a>
                                 <?php

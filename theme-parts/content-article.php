@@ -60,7 +60,9 @@ if($q_posts->have_posts()):
                                             </a>
                                         </div>
 
-                                        <time class="news-card__date"><?php echo $post_modify?></time>
+                                        <time class="news-card__date">
+                                            <?php echo $post_modify?>
+                                        </time>
                                         <?php
                                         if(!empty($excerpt)):
                                             ?>
