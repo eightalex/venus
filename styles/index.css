@@ -3119,8 +3119,6 @@ body {
   .banner-author__footer {
     flex-direction: column;
     align-items: flex-start; }
-  .banner-author__date {
-    display: none; }
   .banner-author__icons {
     margin-top: 24px;
     margin-left: 0; } }
