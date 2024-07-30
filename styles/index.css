@@ -2226,7 +2226,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 130px; }
+    padding-top: 30px; }
   .banner__breadcrumbs {
     padding: 0; }
   .banner__title {
@@ -2952,6 +2952,7 @@ body {
   .quote-author__author {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 16px;
     color: #fff;
     font-family: Hind, sans-serif;
@@ -2961,9 +2962,13 @@ body {
     line-height: normal; }
     .quote-author__author img {
       object-fit: cover;
+      margin: 0;
       width: 50px;
       height: 50px;
       border-radius: 50%; }
+    .quote-author__author span {
+      font-size: 16px;
+      color: #9197af; }
   .quote-author__rating {
     display: flex;
     align-items: center;
@@ -3126,6 +3131,8 @@ body {
 .content-cards {
   padding-top: 60px;
   padding-bottom: 60px; }
+  .content-cards_p_0 {
+    padding: 0; }
   .content-cards__list {
     margin-top: 40px; }
   .content-cards__footer {
@@ -3133,13 +3140,14 @@ body {
 
 .page-switch {
   display: flex;
+  flex-wrap: wrap;
   gap: 6px; }
   .page-switch__button {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    width: 230px;
+    min-width: 230px;
     color: #9197af;
     border-radius: 16px;
     background-color: #262c3a;
@@ -3158,7 +3166,6 @@ body {
       background-color: #353c4b; }
   @media (max-width: 768px) {
     .page-switch {
-      flex-wrap: wrap;
       justify-content: center; } }
 
 .tag {
