@@ -20,12 +20,6 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 16px;
-    color: #fff;
-    font-family: Hind, sans-serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
 
     img {
       object-fit: cover;
@@ -34,11 +28,22 @@
       height: 50px;
       border-radius: 50%;
     }
+  }
 
-    span {
-      font-size: 16px;
-      color: #9197af;
-    }
+  &__name {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    font-family: Hind, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  &__role {
+    font-size: 16px;
+    color: #9197af;
   }
 
   &__rating {

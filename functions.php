@@ -133,7 +133,7 @@ function ud_get_author_infos($author_id){
         'last_name'          => get_user_meta($author_id, 'last_name', true),
         'desc'               => get_user_meta($author_id, 'description', true),
         'ava_url'            => $ava_data['src'], //get_user_meta($author_id, 'sabox-profile-image', true)
-        'role'               => get_user_meta($author_id, 'wp_capabilities', true)   
+        'role'               => get_user_meta($author_id, 'wp_capabilities', true)
     ];
 
     return $infos;
@@ -324,7 +324,7 @@ function ud_get_games(array $atts){
 
 	}
 
-    
+
     $args['post__not_in'] = [$exclude_id];
 
     $paged = isset($_GET['games-page'])? $_GET['games-page']: 1;
@@ -923,15 +923,17 @@ function ud_author_annatation($atts){
     $author_info    = apply_filters('ud_get_author_infos', $author);
     $ava            = $author_info['ava_url'];
     $full_name      = $author_info['firs_name'] . " " . $author_info['last_name'];
-    $roles          = array_keys($author_info['role']); 
-    $roles_str      = '<span class="author_role">' . implode(',', $roles) . '</span>';   // TODO : add styles
+    $roles          = array_keys($author_info['role']);
+    $roles_str      = '<span class="quote-author__role">' . implode(',', $roles) . '</span>';   // TODO : add styles
 
     $html = "<blockquote class='quote-author'>
                 <header class='quote-author__header'>
                     <cite class='quote-author__author'>
                         <img src='{$ava}' alt='author'>
-                        {$full_name}
-                        {$roles_str}
+                        <span class='quote-author__name'>
+                            {$full_name}
+                            {$roles_str}
+                        </span>
                     </cite>
                     {$rating}
                 </header>
@@ -1210,9 +1212,9 @@ function ud_has_children($postid, $posttype = "post"){
         'post_type'   => $posttype,
         'numberposts' => -1,
     );
-    
+
     $children = get_children( $args );
-    
+
     if ( !empty( $children ) ) {
         return true;
     } else {
@@ -1645,7 +1647,7 @@ function ud_custon_fields() {
     Container::make( 'term_meta', 'Intro text' )
         ->add_fields(array(
             Field::make('textarea', 'intro_text', 'Intro')
-        ));    
+        ));
 
     Container::make( 'term_meta', 'Text content' )
         ->where( 'term_taxonomy', '=', 'category' )

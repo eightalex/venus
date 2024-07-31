@@ -2953,22 +2953,25 @@ body {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 16px;
-    color: #fff;
-    font-family: Hind, sans-serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal; }
+    gap: 16px; }
     .quote-author__author img {
       object-fit: cover;
       margin: 0;
       width: 50px;
       height: 50px;
       border-radius: 50%; }
-    .quote-author__author span {
-      font-size: 16px;
-      color: #9197af; }
+  .quote-author__name {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    font-family: Hind, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal; }
+  .quote-author__role {
+    font-size: 16px;
+    color: #9197af; }
   .quote-author__rating {
     display: flex;
     align-items: center;
