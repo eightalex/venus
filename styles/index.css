@@ -938,22 +938,21 @@ body {
     display: flex;
     align-items: center;
     margin-top: 32px; }
-    .card-top__cta span {
+  .card-top__cta-text {
+    margin-left: 24px;
+    padding-left: 24px;
+    border-left: 1px solid #fff; }
+    .card-top__cta-text span {
       display: flex;
       align-items: center;
+      margin-top: 10px;
       font-family: Hind, sans-serif;
       font-size: 14px;
       font-weight: 400;
       line-height: 128%; }
-      .card-top__cta span::before {
-        content: "";
-        display: flex;
-        width: 1px;
-        height: 64px;
-        background-color: #fff;
-        margin-right: 24px;
-        margin-left: 24px; }
   .card-top__button {
+    padding-left: 20px;
+    padding-right: 20px;
     text-decoration: none; }
   .card-top__info {
     display: flex;
@@ -988,8 +987,18 @@ body {
         flex-direction: column;
         gap: 16px;
         width: 100%; }
-        .card-top__cta span::before {
-          display: none; } }
+      .card-top__cta-text {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-left: 0;
+        padding-left: 0;
+        border: none; }
+        .card-top__cta-text span {
+          margin-top: 0; } }
+  @media (max-width: 375px) {
+    .card-top__cta-text {
+      flex-direction: column; } }
 
 .section-top {
   position: relative;
@@ -1473,12 +1482,17 @@ body {
   list-style: none; }
   .card-list_col-2 {
     grid-template-columns: repeat(2, 1fr); }
+  .card-list_col-3 {
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center; }
   @media (max-width: 1230px) {
     .card-list {
       grid-template-columns: repeat(2, auto);
       justify-content: center; }
       .card-list_col-2 {
-        grid-template-columns: auto; } }
+        grid-template-columns: auto; }
+      .card-list_col-3 {
+        grid-template-columns: repeat(2, auto); } }
   @media (max-width: 768px) {
     .card-list {
       grid-template-columns: auto; } }
@@ -2225,12 +2239,13 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-bottom: 130px;
     padding-top: 30px; }
   .banner__breadcrumbs {
     padding: 0; }
   .banner__title {
     margin-top: 32px;
-    margin-bottom: 130px;
+    margin-bottom: 32px;
     color: #fff;
     font-family: Montserrat, sans-serif;
     font-size: 56px;
@@ -2282,7 +2297,7 @@ body {
     .banner {
       flex-direction: column;
       align-items: center; }
-      .banner__title {
+      .banner__content {
         margin-bottom: 0; }
       .banner__image {
         margin-right: 0;
@@ -3110,6 +3125,9 @@ body {
   .banner-author__icon span {
     font: inherit; }
 
+.banner-author__bonus {
+  flex-shrink: 0; }
+
 @media (max-width: 1024px) {
   .banner-author_bonus {
     flex-wrap: wrap; }
@@ -3128,7 +3146,9 @@ body {
     align-items: flex-start; }
   .banner-author__icons {
     margin-top: 24px;
-    margin-left: 0; } }
+    margin-left: 0; }
+  .banner-author__bonus {
+    flex-shrink: 1; } }
 
 .content-cards {
   padding-top: 60px;
@@ -3192,13 +3212,14 @@ body {
     color: #262c3a; }
 
 .bonus-widget {
-  max-width: 350px;
+  max-width: 477px;
   width: 100%;
   background-color: #fff;
   border-radius: 16px; }
   .bonus-widget__header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 20px;
     padding: 15px 32px;
     border-radius: 16px 16px 0 0;
@@ -3241,6 +3262,8 @@ body {
       font-style: normal;
       font-weight: 400;
       line-height: 128%; }
+    .bonus-widget__content p {
+      margin: 0; }
   .bonus-widget__button {
     width: 100%; }
   .bonus-widget__footer {
@@ -3331,19 +3354,26 @@ body {
     font-weight: 400;
     line-height: 128%; }
   .banner-casino__cta {
-    margin-top: 32px;
-    max-width: 350px; }
-    .banner-casino__cta span {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin-top: 32px; }
+  .banner-casino__cta-text {
+    display: flex;
+    flex-direction: column;
+    padding-left: 32px;
+    border-left: 1px solid #9a9b9e; }
+    .banner-casino__cta-text span {
       display: block;
-      margin-top: 12px;
+      margin-top: 10px;
       color: #9197af;
       font-family: Hind, sans-serif;
       font-size: 14px;
       font-style: normal;
       font-weight: 400;
-      line-height: 128%;
-      text-align: center; }
+      line-height: 128%; }
   .banner-casino__button {
+    max-width: 330px;
     width: 100%; }
   @media (max-width: 1024px) {
     .banner-casino {
@@ -3355,6 +3385,21 @@ body {
         height: 335px; }
       .banner-casino__title {
         font-size: 36px; } }
+  @media (max-width: 768px) {
+    .banner-casino__cta {
+      flex-direction: column;
+      gap: 12px; }
+    .banner-casino__cta-text {
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+      padding: 0;
+      border: none; }
+      .banner-casino__cta-text span {
+        margin-top: 0; } }
+  @media (max-width: 375px) {
+    .banner-casino__cta-text {
+      flex-direction: column; } }
 
 .page-404 {
   display: grid;
@@ -3873,3 +3918,24 @@ body {
   @media (max-width: 1230px) {
     .search-form-mobile.active {
       display: flex; } }
+
+.date-inline {
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  font-family: Hind, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400; }
+  .date-inline::before {
+    content: "";
+    flex-shrink: 0;
+    display: inline-flex;
+    margin-right: 12px;
+    width: 24px;
+    height: 24px;
+    background-image: url("../assets/images/icons/time-white.svg"); }
+  .date-inline_grey {
+    color: #9a9b9e; }
+    .date-inline_grey::before {
+      background-image: url("../assets/images/icons/time-grey.svg"); }

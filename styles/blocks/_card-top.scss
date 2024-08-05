@@ -111,28 +111,27 @@
     display: flex;
     align-items: center;
     margin-top: 32px;
+  }
+
+  &__cta-text {
+    margin-left: 24px;
+    padding-left: 24px;
+    border-left: 1px solid #fff;
 
     span {
       display: flex;
       align-items: center;
+      margin-top: 10px;
       font-family: Hind, sans-serif;
       font-size: 14px;
       font-weight: 400;
       line-height: 128%;
-
-      &::before {
-        content: "";
-        display: flex;
-        width: 1px;
-        height: 64px;
-        background-color: #fff;
-        margin-right: 24px;
-        margin-left: 24px;
-      }
     }
   }
 
   &__button {
+    padding-left: 20px;
+    padding-right: 20px;
     text-decoration: none;
   }
 
@@ -179,12 +178,25 @@
       flex-direction: column;
       gap: 16px;
       width: 100%;
+    }
+
+    &__cta-text {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-left: 0;
+      padding-left: 0;
+      border: none;
 
       span {
-        &::before {
-          display: none;
-        }
+        margin-top: 0;
       }
+    }
+  }
+
+  @include bp(s) {
+    &__cta-text {
+      flex-direction: column;
     }
   }
 }

@@ -118,6 +118,10 @@
     }
   }
 
+  &__bonus {
+    flex-shrink: 0;
+  }
+
   @include bp(l) {
     &_bonus {
       flex-wrap: wrap;
@@ -149,6 +153,10 @@
     &__icons {
       margin-top: 24px;
       margin-left: 0;
+    }
+
+    &__bonus {
+      flex-shrink: 1;
     }
   }
 }

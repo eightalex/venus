@@ -17,6 +17,8 @@
         }
     }
 
+    $date = ucfirst(get_the_date('F j, Y'));
+
     if(gettype($img) == 'integer'){
         $img_data = apply_filters('ud_get_file_data', $img);
     }elseif(gettype($img) == 'string'){
@@ -32,6 +34,9 @@
                     <?php get_template_part('/theme-parts/modules/breadcrumbs', '', ['inline' => true]); ?>
 
                     <h1 class="banner__title"><?php echo $title?></h1>
+                    <?php if(!empty($date)): ?>
+                        <time class="banner__date date-inline"><?php echo $date; ?></time>
+                    <?php endif; ?>
                 </div>
 
                 <div class="banner__image">

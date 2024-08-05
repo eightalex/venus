@@ -1,0 +1,30 @@
+@import "../variables";
+@import "../mixins";
+
+.date-inline {
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  font-family: Hind, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+
+  &::before {
+    content: "";
+    flex-shrink: 0;
+    display: inline-flex;
+    margin-right: 12px;
+    width: 24px;
+    height: 24px;
+    background-image: url("#{$images-url}/icons/time-white.svg");
+  }
+
+  &_grey {
+    color: #9a9b9e;
+
+    &::before {
+      background-image: url("#{$images-url}/icons/time-grey.svg");
+    }
+  }
+}

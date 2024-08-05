@@ -93,23 +93,32 @@
   }
 
   &__cta {
+    display: flex;
+    align-items: center;
+    gap: 32px;
     margin-top: 32px;
-    max-width: 350px;
+  }
+
+  &__cta-text {
+    display: flex;
+    flex-direction: column;
+    padding-left: 32px;
+    border-left: 1px solid #9a9b9e;
 
     span {
       display: block;
-      margin-top: 12px;
+      margin-top: 10px;
       color: #9197af;
       font-family: Hind, sans-serif;
       font-size: 14px;
       font-style: normal;
       font-weight: 400;
       line-height: 128%;
-      text-align: center;
     }
   }
 
   &__button {
+    max-width: 330px;
     width: 100%;
   }
 
@@ -125,6 +134,31 @@
 
     &__title {
       font-size: 36px;
+    }
+  }
+
+  @include bp(m) {
+    &__cta {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    &__cta-text {
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+      padding: 0;
+      border: none;
+
+      span {
+        margin-top: 0;
+      }
+    }
+  }
+
+  @include bp(s) {
+    &__cta-text {
+      flex-direction: column;
     }
   }
 }
