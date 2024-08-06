@@ -2119,6 +2119,7 @@ body {
   gap: 24px;
   padding: 32px;
   max-width: 380px;
+  width: 100%;
   border-radius: 16px;
   background: #1b1f28; }
   .news-card__image {
