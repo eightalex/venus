@@ -31,22 +31,26 @@ foreach($custom_content as $part){
 
 if($q_posts->have_posts()):
 ?>
-<section class="section section_bg section_bg_6">
+<section class="section section_suits">
     <div class="container">
         <div class="section__inner">
-            <div class="card-list card-list_col-3">
-                <?php
-                while($q_posts->have_posts()):
-                    $q_posts->the_post();
-                    $post_id 		= get_the_ID();
-                    $th_id   		= get_post_thumbnail_id($post_id);
-                    $th_data 		= apply_filters('ud_get_file_data', $th_id);
-                    $th_src         = !empty($th_data) && !empty($th_data['src'])? $th_data['src']: 'https://via.placeholder.com/315x220';
-                    $date_f         = 'F d, Y';
-                    $post_modify    = get_the_modified_date($date_f, $post_id);
-                    // $date_c_m       = get_the_date($date_f, $post_id);
-                    $excerpt        = get_the_excerpt($post_id);
-                    ?>
+            <header class="section__header">
+                <div class="section__title">Flere artikler</div>
+            </header>
+            <div class="section__content">
+                <div class="card-list card-list_col-3">
+                    <?php
+                    while($q_posts->have_posts()):
+                        $q_posts->the_post();
+                        $post_id 		= get_the_ID();
+                        $th_id   		= get_post_thumbnail_id($post_id);
+                        $th_data 		= apply_filters('ud_get_file_data', $th_id);
+                        $th_src         = !empty($th_data) && !empty($th_data['src'])? $th_data['src']: 'https://via.placeholder.com/315x220';
+                        $date_f         = 'F d, Y';
+                        $post_modify    = get_the_modified_date($date_f, $post_id);
+                        // $date_c_m       = get_the_date($date_f, $post_id);
+                        $excerpt        = get_the_excerpt($post_id);
+                        ?>
                         <div class="news-card">
                             <div class="news-card__image">
                                 <img src="<?php echo $th_src?>" alt="image">
@@ -67,14 +71,15 @@ if($q_posts->have_posts()):
                                     <div class="news-card__text">
                                         <?php echo $excerpt?>
                                     </div>
-                                    <?php
+                                <?php
                                 endif;
                                 ?>
                             </div>
                         </div>
                     <?php
-                endwhile;
-                ?>
+                    endwhile;
+                    ?>
+                </div>
             </div>
         </div>
     </div>
