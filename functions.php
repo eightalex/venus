@@ -1955,3 +1955,21 @@ function ud_custon_fields() {
                 ->add_options(apply_filters('ud_get_pages_opt', true)),
         ));
 }
+
+add_filter('the_content', 'add_carbon_fields_content_to_post', 20);
+
+function add_carbon_fields_content_to_post($content) {
+    $post_id        = get_the_ID();
+    $custom_content = carbon_get_post_meta($post_id, 'ud_post_content');
+
+    foreach ($custom_content as $part) {
+        $part_tmpl = $part['_type'];
+
+        if ($part_tmpl == 'text-editor') {
+            $content = $part['text_editor'];
+        }
+    }
+
+    return $content;
+}
+
