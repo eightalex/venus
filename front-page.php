@@ -2,7 +2,7 @@
 get_header();
 
 $ID 			= get_the_ID();
-$app_banner_img	= carbon_get_post_meta(get_the_ID(), 'app_banner_img');
+$app_banner_img	= intval(carbon_get_post_meta(get_the_ID(), 'app_banner_img'));
 $app_banner_txt	= carbon_get_post_meta(get_the_ID(), 'app_banner_txt');
 $custom_content = carbon_get_post_meta(get_the_ID(), 'ud_post_content');
 

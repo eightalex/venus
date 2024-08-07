@@ -6,7 +6,7 @@ Template Name: Blog Page
 $casinois 		= apply_filters('ud_get_casinos', []);
 $ID 			= get_the_ID();
 $custom_content = carbon_get_post_meta(get_the_ID(), 'ud_post_content');
-$app_banner_img	= carbon_get_post_meta(get_the_ID(), 'app_banner_img');
+$app_banner_img	= intval(carbon_get_post_meta(get_the_ID(), 'app_banner_img'));
 $app_banner_txt	= carbon_get_post_meta(get_the_ID(), 'app_banner_txt');
 $intro_text 	= carbon_get_post_meta($ID, 'intro_text');
 
