@@ -7,7 +7,7 @@
     $custom_content 		= carbon_get_post_meta($ID, 'ud_post_content');
 	$app_banner_is_author 	= carbon_get_post_meta($ID, 'app_banner_is_author');
 	$app_banner_txt 		= carbon_get_post_meta($ID, 'app_banner_txt');
-	$app_banner_img 		= carbon_get_post_meta($ID, 'app_banner_img');
+	$app_banner_img 		= intval(carbon_get_post_meta($ID, 'app_banner_img'));
 	$intro_text 			= carbon_get_post_meta($ID, 'intro_text');
 	$post_type 				= get_post_type();
 
