@@ -66,7 +66,7 @@ $date                   = ucfirst(get_the_modified_date('F j, Y'));
                 </div>
             </div>
             <!-- <div class="card-top__info">
-                <?php echo $has_country_str?>
+                <?php //echo $has_country_str?>
             </div> -->
         </div>
     </div>

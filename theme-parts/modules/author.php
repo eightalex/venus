@@ -29,7 +29,7 @@ $ava                = !empty($ava_url)? $ava_url: get_stylesheet_directory_uri()
 
 <!-- <style>
     .section_bg_3::before{
-        background-image: url(<?php echo $gc_bg?>);
+        background-image: url(<?php //echo $gc_bg?>);
     }
 </style> -->
 
