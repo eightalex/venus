@@ -12,7 +12,22 @@ $post_modify        = get_the_modified_date('F d, Y');
 $date_c_m           = date($date_f, $date_c_u);
 $view_count         = function_exists( 'pvc_get_post_views' )? pvc_get_post_views($id): 0;
 $comment_count      = get_comment_count($id);
+$app_banner_img	    = intval(carbon_get_post_meta(get_the_ID(), 'app_banner_img'));
+
+if($app_banner_img){
+    $img_data = apply_filters('ud_get_file_data', $app_banner_img);
+}
+
 ?>
+
+<?php if (!empty($img_data)): ?>
+    <style>
+       .section_bg::before{
+           background-image: url("<?php echo $img_data['src'] ?>");
+       }
+    </style>
+<?php endif; ?>
+
 <section class="section section_bg section_bg_7">
     <div class="container">
         <div class="section__inner">
@@ -40,7 +55,7 @@ $comment_count      = get_comment_count($id);
                         <?php
                           echo "Oppdatert " . $post_modify;
                         ?>
-                        <!-- <?php echo $date_c_m?> -->
+                        <!-- <?php //echo $date_c_m?> -->
                     </time>
                     <div class="banner-author__icons">
                         <?php

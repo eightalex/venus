@@ -1292,15 +1292,7 @@ function ud_custon_fields() {
                 ->help_text("<span style='color: blue;'>".__('Leave blank to use post title')."</span>")
                 ->set_width(70),
             Field::make('image', 'app_banner_img', __('Image'))
-                ->set_width(15)
-                ->set_conditional_logic( array(
-                    'relation' => 'AND',
-                    array(
-                        'field' => 'app_banner_is_author',
-                        'value' => false,
-                        'compare' => '=',
-                ))
-            ),
+                ->set_width(15),
         ));
 
     Container::make( 'post_meta', 'Content manage' )
