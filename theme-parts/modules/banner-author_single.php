@@ -22,13 +22,13 @@ if($app_banner_img){
 
 <?php if (!empty($img_data)): ?>
     <style>
-       .section_bg::before{
+       .section_custom_bg::before{
            background-image: url("<?php echo $img_data['src'] ?>");
        }
     </style>
 <?php endif; ?>
 
-<section class="section section_bg section_bg_7">
+<section class="section section_bg section_bg_7 section_custom_bg">
     <div class="container">
         <div class="section__inner">
             <div class="banner-author">
