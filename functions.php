@@ -1945,6 +1945,17 @@ function ud_custon_fields() {
                 ->add_options(apply_filters('ud_get_pages_opt', true)),
             Field::make('select', 'default_page_casinois', __('Main page for Casinois'))
                 ->add_options(apply_filters('ud_get_pages_opt', true)),
+        ))
+        ->add_fields( array(
+            Field::make('separator', 'footer_settings', __('Footer Settings')),
+            Field::make('complex', 'logos', __('Logos'))
+                ->add_fields(array(
+                    Field::make('image', 'logo_image', __('Logo Image'))
+                        ->set_help_text('Upload a logo image'),
+                    Field::make('text', 'logo_link', __('Logo Link'))
+                        ->set_help_text('Enter the link for the logo')
+                ))
+                ->set_help_text('Upload a logos to display in the footer'),
         ));
 }
 

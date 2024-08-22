@@ -1,9 +1,9 @@
 <!-- Footer Start -->
 
 <?php
-	$logo_id = get_theme_mod( 'custom_logo' );
-
-	$logo_data = apply_filters('ud_get_file_data', $logo_id);
+$logo_id = get_theme_mod( 'custom_logo' );
+$logo_data = apply_filters('ud_get_file_data', $logo_id);
+$logos = carbon_get_theme_option('logos');
 ?>
 <footer class="footer">
 	<div class="container footer__container">
@@ -92,14 +92,18 @@
 			endif;
 			?>
 		</nav>
-		<div class="footer__social">
-			<a href="#" class="footer__social-link">
-				<img src=<?php echo get_stylesheet_directory_uri()."/assets/images/icons/social/hjelpelinjen.png"?> alt="hjelpelinjen" style="height: 29px;">
-			</a>
-			<a href="#" class="footer__social-link">
-				<img src=<?php echo get_stylesheet_directory_uri()."/assets/images/icons/social/spill_ansvarlig.svg"?> alt="spill_ansvarlig">
-			</a>
-		</div>
+        <?php if (!empty($logos)): ?>
+            <div class="footer__social">
+                <?php foreach ($logos as $logo): ?>
+                    <?php
+                    $img = apply_filters('ud_get_file_data', $logo['logo_image']);
+                    ?>
+                    <a href="<?php echo $logo['logo_link'] ?: '#' ?>" class="footer__social-link">
+                        <img src="<?php echo $img['src'] ?>" alt="<?php echo $img['alt'] ?: 'Logo' ?>">
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
 	</div>
 </footer>
 
