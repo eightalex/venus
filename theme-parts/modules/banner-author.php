@@ -12,6 +12,7 @@ $date_create        = get_queried_object()->post_date;
 $date_c_u           = strtotime($date_create);
 $date_f             = 'F d, Y';
 $date_c_m           = date($date_f, $date_c_u);
+$date_update        = ucfirst(get_the_modified_date('F j, Y'));
 $view_count         = function_exists( 'pvc_get_post_views' )? pvc_get_post_views($id): 0;
 $comment_count      = get_comment_count($id);
 $bonus_code         = get_post_meta($id, 'bonus_code', true);
@@ -59,7 +60,7 @@ $show_tags          = false;
                             </div>
                         </div>
                         <time class="banner-author__date">
-                            <?php echo $date_c_m?>
+                            <?php echo $date_update ?>
                         </time>
                         <div class="banner-author__icons">
                             <?php
