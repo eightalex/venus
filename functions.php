@@ -1244,6 +1244,15 @@ function ud_is_paginavi(){
     return $is_paginavi;
 }
 
+add_action('wp_head', 'add_custom_meta_tags');
+function add_custom_meta_tags(){
+    $is_paginavi = apply_filters('is_paginavi', true);
+
+    if($is_paginavi){
+        echo '<meta name="robots" content="noindex,follow">';
+    }
+}
+
 // CUSTOM FIELDS
 add_action( 'carbon_fields_register_fields', 'ud_custon_fields' );
 
