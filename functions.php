@@ -551,6 +551,8 @@ function ud_get_bonuses($atts){
         'paged'          => $paged,
         'post__not_in'   => isset($exclude_id)? [$exclude_id]: [],
         'post_status'    => 'publish',
+        'orderby'        => 'modified',
+        'order'          => 'DESC',
     );
 
     if(!empty($parent_id)){
@@ -1244,13 +1246,17 @@ function ud_is_paginavi(){
     return $is_paginavi;
 }
 
-add_action('wp_head', 'add_custom_meta_tags');
-function add_custom_meta_tags(){
+add_filter( 'wp_robots', 'modify_robots_meta_tag' );
+function modify_robots_meta_tag( $robots ) {
     $is_paginavi = apply_filters('is_paginavi', true);
 
-    if($is_paginavi){
-        echo '<meta name="robots" content="noindex,follow">';
+    if( $is_paginavi ) {
+        // Модифікуємо директиви robots
+        $robots['noindex'] = true;
+        $robots['follow'] = true;
     }
+
+    return $robots;
 }
 
 // CUSTOM FIELDS
