@@ -94,16 +94,29 @@ $logos = carbon_get_theme_option('logos');
 		</nav>
         <?php if (!empty($logos)): ?>
             <div class="footer__social">
+                <?php $site_url = home_url(); ?>
                 <?php foreach ($logos as $logo): ?>
                     <?php
                     $img = apply_filters('ud_get_file_data', $logo['logo_image']);
+                    $link_url = $logo['logo_link'] ?: '#';
+
+                    if ( ! empty( $link_url ) && strpos( $link_url, $site_url ) === false && strpos( $link_url, 'http' ) === 0 ) {
+                        $rel = 'rel="nofollow"';
+                    } else {
+                        $rel = '';
+                    }
+
+                    $link_url_escaped = esc_url( $link_url );
+                    $img_src = esc_url( $img['src'] );
+                    $img_alt = esc_attr( $img['alt'] ?: 'Logo' );
                     ?>
-                    <a href="<?php echo $logo['logo_link'] ?: '#' ?>" class="footer__social-link">
-                        <img src="<?php echo $img['src'] ?>" alt="<?php echo $img['alt'] ?: 'Logo' ?>">
+                    <a href="<?php echo $link_url_escaped; ?>" class="footer__social-link" <?php echo $rel; ?>>
+                        <img src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>">
                     </a>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
+
 	</div>
 </footer>
 
