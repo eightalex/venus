@@ -2436,7 +2436,12 @@ body {
     .variable-content h1 {
       font-size: 36px; }
     .variable-content h2 {
-      font-size: 24px; } }
+      font-size: 24px; }
+    .variable-content table {
+      overflow: hidden;
+      display: flex; }
+      .variable-content table tbody {
+        overflow-x: auto; } }
 
 .game-rating {
   display: flex;

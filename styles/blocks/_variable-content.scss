@@ -99,6 +99,15 @@
     h2 {
       font-size: 24px;
     }
+
+    table {
+      overflow: hidden;
+      display: flex;
+
+      tbody {
+        overflow-x: auto;
+      }
+    }
   }
 }
 
