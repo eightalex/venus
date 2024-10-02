@@ -1958,10 +1958,8 @@ function ud_custon_fields() {
                 ->add_options(apply_filters('ud_get_pages_opt', true)),
             Field::make('select', 'default_page_bonus', __('Main page for Bonuses'))
                 ->add_options(apply_filters('ud_get_pages_opt', true)),
-            Field::make('select', 'default_page_casinois', __('Main page for Casinois'))
+            Field::make('select', 'default_page_casinois', __('Main page for Casinos'))
                 ->add_options(apply_filters('ud_get_pages_opt', true)),
-        ))
-        ->add_fields( array(
             Field::make('separator', 'footer_settings', __('Footer Settings')),
             Field::make('complex', 'logos', __('Logos'))
                 ->add_fields(array(
@@ -1971,6 +1969,14 @@ function ud_custon_fields() {
                         ->set_help_text('Enter the link for the logo')
                 ))
                 ->set_help_text('Upload a logos to display in the footer'),
+            Field::make('separator', 'float_bar_settings', __('Float Bar Settings')),
+            Field::make('checkbox', 'float_bar_show', __('Show'))
+                ->set_help_text('Enable or disable the Float Bar'),
+            Field::make('select', 'float_bar_casino', __('Casino'))
+                ->add_options(ud_get_casinos_options())
+                ->set_help_text('Select an casino to display in the Float Bar'),
+            Field::make('text', 'float_bar_button_text', __('Button text'))
+                ->set_help_text('Enter the text for the button'),
         ));
 }
 

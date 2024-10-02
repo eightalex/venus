@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    initFloatBar();
     initSwiper();
     initCategories();
     initSearch();
@@ -80,4 +81,37 @@ function initMobileMenu() {
     });
 
     // children behavior are in the script.js in the parent theme
+}
+
+function initFloatBar() {
+    const floatBar = document.querySelector('.js-float-bar');
+    const breakpoint = 120;
+
+    if (floatBar.classList.contains('d-none')) {
+        return;
+    }
+
+    window.addEventListener('scroll', debounce(() => {
+        if (window.scrollY > breakpoint) {
+            floatBar.classList.add('active');
+        } else {
+            floatBar.classList.remove('active');
+        }
+    }, 100));
+}
+
+function debounce(func, wait, immediate) {
+    let timeout;
+    return function() {
+        const context = this;
+        const args = arguments;
+        const later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        const callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
 }

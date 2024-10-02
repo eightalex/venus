@@ -1,0 +1,118 @@
+@import "../variables";
+@import "../mixins";
+
+.float-bar {
+    transform: translateY(120px);
+    opacity: 0;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 3; // highest z-index in the project
+    width: 100%;
+    height: 120px;
+    background-color: #262c3a;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
+
+    transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+
+    &.active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    &.d-none {
+        display: none;
+    }
+
+    &__inner {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+
+    &__casino {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        width: 100%;
+    }
+
+    &__casino-info {
+
+    }
+
+    &__title {
+        font-family: Montserrat, sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: #fff;
+    }
+
+    &__logo {
+        overflow: hidden;
+        display: flex;
+        width: 80px;
+        height: 80px;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        border-radius: 16px;
+        background-color: #fff;
+
+        img {
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__rating {
+        margin-top: 5px;
+    }
+
+    &__rating-mobile {
+        display: none;
+    }
+
+    &__button {
+        margin-left: auto;
+        min-width: 240px;
+    }
+
+    @include bp(m) {
+        height: 100px;
+
+        &__casino {
+            gap: 16px;
+        }
+
+        &__title {
+            font-size: 20px;
+        }
+
+        &__logo {
+            width: 60px;
+            height: 60px;
+        }
+
+        &__rating-desktop {
+            display: none;
+        }
+
+        &__rating-mobile {
+            display: flex;
+        }
+
+        &__button {
+            min-width: 200px;
+        }
+    }
+
+    @include bp(500px) {
+        &__button {
+            padding: 20px;
+            min-width: auto;
+        }
+    }
+}

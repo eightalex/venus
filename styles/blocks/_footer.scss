@@ -6,6 +6,10 @@
   padding-top: 80px;
   background-color: #1b1f28;
 
+  &_float-bar {
+    margin-bottom: 120px;
+  }
+
   &__container {
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -168,6 +172,10 @@
   }
 
   @include bp(m) {
+    &_float-bar {
+      margin-bottom: 100px;
+    }
+
     &__logo {
       max-width: 300px;
       width: 100%;

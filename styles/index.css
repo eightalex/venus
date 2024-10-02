@@ -22,10 +22,15 @@ body {
   width: 100%; }
   .container.relative {
     position: relative; }
+  .container.full-height {
+    height: 100%; }
 
 .section {
   padding: 75px 0;
   background-color: #262c3a; }
+  .section--overlay {
+    position: relative;
+    z-index: 1; }
   .section__inner {
     position: relative;
     z-index: 1; }
@@ -65,6 +70,21 @@ body {
       margin-bottom: 33px; }
   .section__content {
     margin-top: 80px; }
+  .section__overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    mix-blend-mode: overlay; }
+    .section__overlay-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1; }
   .section_suits {
     position: relative;
     overflow: hidden;
@@ -98,6 +118,7 @@ body {
       height: 100%;
       background-size: cover;
       background-color: lightgray;
+      background-position: center;
       mix-blend-mode: overlay;
       filter: blur(8px); }
     .section_bg_n {
@@ -106,7 +127,7 @@ body {
       opacity: 0.32;
       background-image: url("../assets/images/section/bg1.png"); }
     .section_bg_2::before {
-      background-image: url("../assets/images/section/bg2.jpeg"); }
+      background-image: url("../assets/images/section/bg2.webp"); }
     .section_bg_5::before {
       background-image: url("../assets/images/section/bg5.png"); }
     .section_bg_6::before {
@@ -173,7 +194,7 @@ body {
       opacity: 0.24;
       width: 100%;
       height: 100%;
-      background-image: url("../assets/images/lights-1.png");
+      background-image: url("../assets/images/lights-1.webp");
       -moz-transform: scaleX(-1);
       -o-transform: scaleX(-1);
       -webkit-transform: scaleX(-1);
@@ -491,6 +512,8 @@ body {
   overflow: hidden;
   padding-top: 80px;
   background-color: #1b1f28; }
+  .footer_float-bar {
+    margin-bottom: 120px; }
   .footer__container {
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -597,6 +620,8 @@ body {
         flex-wrap: wrap;
         justify-content: center; } }
   @media (max-width: 768px) {
+    .footer_float-bar {
+      margin-bottom: 100px; }
     .footer__logo {
       max-width: 300px;
       width: 100%;
@@ -1097,7 +1122,7 @@ body {
     opacity: 0.24;
     width: 100%;
     height: 100%;
-    background-image: url("../assets/images/lights-1.png"); }
+    background-image: url("../assets/images/lights-1.webp"); }
   .benefits__title {
     position: relative;
     z-index: 1;
@@ -1285,7 +1310,7 @@ body {
     opacity: 0.24;
     width: 100%;
     height: 100%;
-    background-image: url("../assets/images/lights-1.png");
+    background-image: url("../assets/images/lights-1.webp");
     -moz-transform: scaleX(-1);
     -o-transform: scaleX(-1);
     -webkit-transform: scaleX(-1);
@@ -2334,7 +2359,7 @@ body {
       opacity: 0.24;
       width: 100%;
       height: 100%;
-      background-image: url("../assets/images/lights-1.png"); }
+      background-image: url("../assets/images/lights-1.webp"); }
   .advantages__text {
     position: relative;
     z-index: 2;
@@ -3951,3 +3976,76 @@ body {
     color: #9a9b9e; }
     .date-inline_grey::before {
       background-image: url("../assets/images/icons/time-grey.svg"); }
+
+.float-bar {
+  transform: translateY(120px);
+  opacity: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  height: 120px;
+  background-color: #262c3a;
+  box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out; }
+  .float-bar.active {
+    transform: translateY(0);
+    opacity: 1; }
+  .float-bar.d-none {
+    display: none; }
+  .float-bar__inner {
+    display: flex;
+    align-items: center;
+    height: 100%; }
+  .float-bar__casino {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    width: 100%; }
+  .float-bar__title {
+    font-family: Montserrat, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff; }
+  .float-bar__logo {
+    overflow: hidden;
+    display: flex;
+    width: 80px;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 16px;
+    background-color: #fff; }
+    .float-bar__logo img {
+      object-fit: contain;
+      width: 100%;
+      height: 100%; }
+  .float-bar__rating {
+    margin-top: 5px; }
+  .float-bar__rating-mobile {
+    display: none; }
+  .float-bar__button {
+    margin-left: auto;
+    min-width: 240px; }
+  @media (max-width: 768px) {
+    .float-bar {
+      height: 100px; }
+      .float-bar__casino {
+        gap: 16px; }
+      .float-bar__title {
+        font-size: 20px; }
+      .float-bar__logo {
+        width: 60px;
+        height: 60px; }
+      .float-bar__rating-desktop {
+        display: none; }
+      .float-bar__rating-mobile {
+        display: flex; }
+      .float-bar__button {
+        min-width: 200px; } }
+  @media (max-width: 500px) {
+    .float-bar__button {
+      padding: 20px;
+      min-width: auto; } }

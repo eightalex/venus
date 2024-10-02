@@ -1,11 +1,14 @@
 <!-- Footer Start -->
 
 <?php
+
 $logo_id = get_theme_mod('custom_logo');
 $logo_data = apply_filters('ud_get_file_data', $logo_id);
 $logos = carbon_get_theme_option('logos');
+$float_bar_show = carbon_get_theme_option('float_bar_show');
+
 ?>
-<footer class="footer">
+<footer class="footer <?php echo $float_bar_show ? 'footer_float-bar' : '' ?>">
     <div class="container footer__container">
         <div class="footer__info">
             <a class="footer__logo" href="<?php echo get_home_url() ?>">
@@ -110,6 +113,12 @@ $logos = carbon_get_theme_option('logos');
 </footer>
 
 <!-- Footer End -->
+
+<!-- Float bar Start -->
+
+<?php get_template_part('/theme-parts/float-bar'); ?>
+
+<!-- Float bar End -->
 
 <!-- Mobile Search Start -->
 
