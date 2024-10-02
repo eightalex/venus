@@ -8,6 +8,11 @@
   padding: $section-padding 0;
   background-color: #262c3a;
 
+  &--overlay {
+    position: relative;
+    z-index: 1;
+  }
+
   &__inner {
     position: relative;
     z-index: 1;
@@ -64,6 +69,25 @@
     margin-top: 80px;
   }
 
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    mix-blend-mode: overlay;
+
+    &-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+  }
+
   &_suits {
     position: relative;
     overflow: hidden;
@@ -102,6 +126,7 @@
       height: 100%;
       background-size: cover;
       background-color: lightgray;
+      background-position: center;
       mix-blend-mode: overlay;
       filter: blur(8px);
     }
@@ -119,7 +144,7 @@
 
     &_2 {
       &::before {
-        background-image: url("#{$images-url}/section/bg2.jpeg");
+        background-image: url("#{$images-url}/section/bg2.webp");
       }
     }
 
