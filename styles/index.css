@@ -38,7 +38,8 @@ body {
     font-style: normal;
     font-weight: 800;
     line-height: normal;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    word-break: break-all; }
     .section__title em {
       color: #e3f666;
       font-style: inherit; }
@@ -573,6 +574,7 @@ body {
     display: flex;
     height: 34px; }
     .footer__social-link img {
+      width: auto;
       height: 100%; }
     .footer__social-link:hover {
       opacity: 0.5; }
@@ -1757,7 +1759,10 @@ body {
     .casino-card {
       grid-template-areas: "image title" "image rating" "image ." "subtitle subtitle" "cta cta";
       column-gap: 20px;
-      padding: 16px; }
+      padding: 16px;
+      width: calc(100vw - 16px); }
+      .casino-card__title a {
+        word-break: break-all; }
       .casino-card__subtitle {
         margin-top: 24px; }
       .casino-card .casino-card__rating-mobile {

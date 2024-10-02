@@ -121,6 +121,13 @@
       "cta cta";
     column-gap: 20px;
     padding: 16px;
+    width: calc(100vw - 16px);
+
+    &__title {
+      a {
+        word-break: break-all;
+      }
+    }
 
     &__subtitle {
       margin-top: 24px;
