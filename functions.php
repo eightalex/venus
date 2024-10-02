@@ -919,14 +919,14 @@ function ud_author_annatation($atts){
     extract($atts);
     $text           = isset($text)? $text: '';
     $author         = isset($author_id)? $author_id: get_queried_object()->post_author;
-    $rating         = isset($rating)? "<div class='quote-author__rating'>
-                                            {$rating}
-                                        </div>": "";
+    $author_role    = isset($author_role)? $author_role: '';
+    $rating         = isset($rating)? "<div class='quote-author__rating'>{$rating}</div>": "";
     $author_info    = apply_filters('ud_get_author_infos', $author);
     $ava            = $author_info['ava_url'];
     $full_name      = $author_info['firs_name'] . " " . $author_info['last_name'];
     $roles          = array_keys($author_info['role']);
-    $roles_str      = '<span class="quote-author__role">' . implode(',', $roles) . '</span>';   // TODO : add styles
+    $roles_str      = implode(',', $roles);
+    $role_result    = $author_role == '' ? $roles_str : $author_role;
 
     $html = "<blockquote class='quote-author'>
                 <header class='quote-author__header'>
@@ -934,7 +934,7 @@ function ud_author_annatation($atts){
                         <img src='{$ava}' alt='author'>
                         <span class='quote-author__name'>
                             {$full_name}
-                            {$roles_str}
+                            <span class='quote-author__role'>{$role_result}</span>
                         </span>
                     </cite>
                     {$rating}
@@ -1293,7 +1293,7 @@ function ud_custon_fields() {
         ]
     ];
 
-    $shortcodes_codex = "You can use: [print_quote text='*Text' author_name='*Author Nane'] and [author_annatation text='*Text' rating='* 0-9' author_id='int (optional)']";
+    $shortcodes_codex = "You can use: [print_quote text='*Text' author_name='*Author Name'] and [author_annatation text='*Text' rating='* 0-9' author_id='int (optional)' author_role='*Role (optional)']";
 
     Container::make( 'post_meta', 'App banner')
         // ->where('post_type', '=', 'post')
