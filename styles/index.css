@@ -1939,7 +1939,10 @@ body {
     font-style: normal;
     font-weight: 800;
     line-height: normal;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    text-decoration: none; }
+    .author__name:hover {
+      opacity: 0.8; }
     .author__name em {
       color: #e3f666;
       font-style: inherit; }
@@ -3115,7 +3118,10 @@ body {
 .banner-author__author {
   display: flex;
   align-items: center;
-  gap: 16px; }
+  gap: 16px;
+  text-decoration: none; }
+  .banner-author__author:hover {
+    opacity: 0.8; }
 
 .banner-author__avatar {
   overflow: hidden;
@@ -3129,6 +3135,8 @@ body {
     height: 100%; }
 
 .banner-author__name {
+  display: block;
+  color: #fff;
   font: inherit; }
 
 .banner-author__date {

@@ -8,6 +8,7 @@ $title              = !empty($banner_txt)? $banner_txt: get_the_title();
 $author_id          = get_queried_object()->post_author;
 $author_info        = apply_filters('ud_get_author_infos', $author_id);
 $author_full_name   = $author_info['firs_name'] . " " . $author_info['last_name'];
+$author_link        = get_author_posts_url($author_id);
 $date_create        = get_queried_object()->post_date;
 $date_c_u           = strtotime($date_create);
 $date_f             = 'F d, Y';
@@ -51,14 +52,14 @@ $show_tags          = false;
                         </h1>
                     </header>
                     <footer class="banner-author__footer">
-                        <div class="banner-author__author">
-                            <div class="banner-author__avatar">
+                        <a class="banner-author__author" href="<?php echo $author_link ?>">
+                            <span class="banner-author__avatar">
                                 <img src="<?php echo $author_info['ava_url']?>" alt="avatar">
-                            </div>
-                            <div class="banner-author__name">
+                            </span>
+                            <span class="banner-author__name">
                                 <?php echo __('by')?> <?php echo $author_full_name?>
-                            </div>
-                        </div>
+                            </span>
+                        </a>
                         <time class="banner-author__date">
                             <?php echo $date_update ?>
                         </time>

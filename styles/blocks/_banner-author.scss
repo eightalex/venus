@@ -58,6 +58,11 @@
     display: flex;
     align-items: center;
     gap: 16px;
+    text-decoration: none;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   &__avatar {
@@ -75,6 +80,8 @@
   }
 
   &__name {
+    display: block;
+    color: #fff;
     font: inherit;
   }
 

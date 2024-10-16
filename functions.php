@@ -2009,3 +2009,10 @@ function add_carbon_fields_content_to_post($content) {
     }
 }
 
+add_filter( 'body_class', 'remove_author_body_class' );
+function remove_author_body_class( $classes ) {
+    if ( is_author() ) {
+        $classes = array_diff( $classes, array( 'author' ) );
+    }
+    return $classes;
+}
