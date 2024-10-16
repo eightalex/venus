@@ -1413,6 +1413,9 @@ function ud_custon_fields() {
                         ->set_default_value(4)
                         ->set_attribute('type', 'number')
                         ->set_width(33),
+                    Field::make('checkbox', 'cas_show_pagination', __('Show pagination'))
+                        ->set_default_value('yes')
+                        ->set_width(33),
                     // Field::make('select', 'cas_order_by', __('Order by'))
                     //     ->set_width(33)
                     //     ->add_options(array(
@@ -1767,6 +1770,9 @@ function ud_custon_fields() {
                     Field::make('text', 'cas_count', __('Number of casinos to show'))
                         ->set_default_value(4)
                         ->set_attribute('type', 'number')
+                        ->set_width(33),
+                    Field::make('checkbox', 'cas_show_pagination', __('Show pagination'))
+                        ->set_default_value('yes')
                         ->set_width(33),
                     // Field::make('select', 'cas_order_by', __('Order by'))
                     //     ->set_width(33)

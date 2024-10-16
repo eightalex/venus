@@ -5,6 +5,8 @@ $cas_args = [
     'items_number'   => isset($content) && isset($content['cas_count'])? $content['cas_count']: 9,
 ];
 
+$show_pagination = isset($content) && isset($content['cas_show_pagination']) ? $content['cas_show_pagination'] : false;
+
 if(get_post_type() == 'casino'){
     $term_data = wp_get_post_terms($id, 'casino-category');
 
@@ -85,7 +87,7 @@ if($casinos->have_posts()):
             <?php
                 $max_pages = $casinos->max_num_pages;
                 $paged = $casinos->query['paged'];
-                if($max_pages  > 1){
+                if($show_pagination && $max_pages > 1){
                     $pagenavi_items = apply_filters('my_pagination', $paged, $max_pages, "casinois-page");
                     echo "<div class='content-cards__footer'>
                                 {$pagenavi_items}
