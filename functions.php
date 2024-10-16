@@ -80,11 +80,11 @@ function ud_register_post_types(){
 add_filter( 'comment_form_defaults', 'ud_customise_comment_fields');
 function ud_customise_comment_fields( $default ) {
     $default[ 'comment_field' ] = '<div class="form-reply__input input-label">
-                                <label for="comment" class="input-label__label">Comment*</label>
-                                <textarea id="comment" name="comment" class="input input_textarea" placeholder="Type your text here"></textarea>
+                                <label for="comment" class="input-label__label">Kommentar*</label>
+                                <textarea id="comment" name="comment" class="input input_textarea" placeholder="Skriv din tekst her"></textarea>
                             </div>';
     $default['class_submit'] = 'form-reply__button button';
-    $default['label_submit'] = 'Post Comment';
+    $default['label_submit'] = 'Post Kommentar';
     $default['submit_button' ] = '<button class="%3$s">%4$s</button>';
     $default['submit_field'] = '<div class="form-reply__cta">%1$s %2$s</div>';
 
@@ -185,7 +185,7 @@ function ud_print_single_game(array $data){
                 {$desc}
                 {$ext_lnk}
                 <div class='game-card__info'>
-                    T&Cs Apply
+                    Regler og vilkår gjelder
                     {$bn}
 
                     {$unt_d}
@@ -701,7 +701,7 @@ function print_single_bonus_card(array $data){
         $bonus_code_html = "<div class='bonus-card__gift-content'>
                                 <span></span>
                                 <span>{$bonus_code}</span>
-                                <span>Valid Until: {$df}</span>
+                                <span>Gyldig til: {$df}</span>
                             </div>";
 
     endif;
@@ -749,7 +749,7 @@ function print_single_bonus_card(array $data){
                 $external
 
                 <div class='bonus-card__info'>
-                    T&Cs Apply
+                    Regler og vilkår gjelder
                     $bn
 
                     $detailed_tc
