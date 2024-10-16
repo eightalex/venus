@@ -1,7 +1,14 @@
 <?php
 
+extract($args); // => $id, $post_type
+
+if ($post_type === 'casino') {
+    $casino_id = $id ?: carbon_get_theme_option('float_bar_casino');
+} else {
+    $casino_id = carbon_get_theme_option('float_bar_casino');
+}
+
 $float_bar_show        = carbon_get_theme_option('float_bar_show');
-$casino_id             = carbon_get_theme_option('float_bar_casino');
 $casino                = get_post_meta($casino_id, 'casino', true);
 $casino_title          = get_the_title($casino_id);
 $casino_img_id         = get_post_thumbnail_id($casino_id);
