@@ -99,7 +99,7 @@ $show_tags          = false;
 
                                 if(!empty($bonus_v_d_m)):
                                     ?>
-                                    <div class="bonus-widget__date"><?php echo __('Valid Until')?>: <?php echo $bonus_v_d_m?></div>
+                                    <div class="bonus-widget__date">Gyldig til: <?php echo $bonus_v_d_m?></div>
                                     <?php
                                 endif;
                                 ?>
