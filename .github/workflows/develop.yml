@@ -19,4 +19,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME_DEV }}
           password: ${{ secrets.FTP_PASSWORD_DEV }}
           local-dir: ./
-          server-dir: /temp-theme/
+          server-dir: /wp-content/themes/venus/
