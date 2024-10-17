@@ -6,6 +6,14 @@ $app_banner_img	= intval(carbon_get_post_meta(get_the_ID(), 'app_banner_img'));
 $app_banner_txt	= carbon_get_post_meta(get_the_ID(), 'app_banner_txt');
 $custom_content = carbon_get_post_meta(get_the_ID(), 'ud_post_content');
 
+
+
+echo '<pre>';
+print_r($custom_content);
+echo '</pre>';
+
+
+
 if(empty($app_banner_img)){
 	get_template_part('/theme-parts/modules/breadcrumbs');
 }else{
