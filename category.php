@@ -108,15 +108,18 @@ endif;
                         <div class="content__sidebar-cards">
                             <?php
                                 foreach($sidebar_casionois as $casino_id):
-                                    $c_th_id   = get_post_thumbnail_id($casino_id);
-                                    $c_th_data                  = apply_filters('ud_get_file_data', $c_th_id);
-                                    $c_title                    = get_the_title($casino_id);
-                                    $c_desc                     = get_post_meta($casino_id, 'casino_short_desc', true);
-									$c_overall_rating           = floatval(get_post_meta($casino_id, 'casino_overall_rating', true));
-                                    $c_pemalink                 = get_the_permalink($casino_id);
-									$c_external_link            = get_post_meta($casino_id, 'casino_external_link', true);
-                                    $lb_txt                     = !empty(get_option('casinos_read_review_title'))? get_option('casinos_read_review_title'): 'Read review';
-                                    $elb_txt                    = !empty(get_option('casinos_play_now_title'))? get_option('casinos_play_now_title'): 'Play now';
+                                    if(get_post_type($casino_id) !== 'casino'){
+                                        continue;
+                                    }
+                                    $c_th_id          = get_post_thumbnail_id($casino_id);
+                                    $c_th_data        = apply_filters('ud_get_file_data', $c_th_id);
+                                    $c_title          = get_the_title($casino_id);
+                                    $c_desc           = get_post_meta($casino_id, 'casino_short_desc', true);
+									$c_overall_rating = floatval(get_post_meta($casino_id, 'casino_overall_rating', true));
+                                    $c_pemalink       = get_the_permalink($casino_id);
+									$c_external_link  = get_post_meta($casino_id, 'casino_external_link', true);
+                                    $lb_txt           = !empty(get_option('casinos_read_review_title'))? get_option('casinos_read_review_title'): 'Read review';
+                                    $elb_txt          = !empty(get_option('casinos_play_now_title'))? get_option('casinos_play_now_title'): 'Play now';
                                 ?>
                                 <div class="casino-card casino-card_compact">
                                     <div class="casino-card__image">
@@ -177,11 +180,11 @@ if(!$is_paginavi){
         $part = ['text_editor' => $custom_content];
         get_template_part("/theme-parts/modules/text-editor", "", ["id" => $ID, "content"=>$part]);
     }
-    
+
     if(!empty($content)){
         foreach($content as $part){
             $part_tmpl = $part['_type'];
-    
+
             get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part, "post_type" => 'page']);
         }
     }
