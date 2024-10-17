@@ -1124,6 +1124,14 @@ function ud_print_casino($atts){
     return $html;
 }
 
+add_shortcode('year', "ud_set_present_year");
+function ud_set_present_year() {
+    if(is_admin()){
+        return;
+    }
+    return date("Y");
+}
+
 add_filter('ud_get_tax_posts_tags', 'ud_get_tax_posts_tags');
 function ud_get_tax_posts_tags($posts){
     $arr = [];
@@ -2016,3 +2024,7 @@ function remove_author_body_class( $classes ) {
     }
     return $classes;
 }
+
+add_filter("the_title", function($title) {
+    return do_shortcode($title);
+});

@@ -21,14 +21,14 @@ $faq_bg = !empty($content['faq_bg'])? $content['faq_bg']: get_stylesheet_directo
                     <?php
                     if(!empty($content['faq_title'])):
                         ?>
-                        <h2 class="section__title"><?php echo $content['faq_title']?></h2>
+                        <h2 class="section__title"><?php echo do_shortcode($content['faq_title'])?></h2>
                         <?php
                     endif;
 
                     if(!empty($content['faq_subtitle'])):
                         ?>
                         <div class="section__subtitle">
-                            <?php echo $content['faq_subtitle']?>
+                            <?php echo do_shortcode($content['faq_subtitle'])?>
                         </div>
                         <?php
                     endif;
@@ -46,10 +46,10 @@ $faq_bg = !empty($content['faq_bg'])? $content['faq_bg']: get_stylesheet_directo
                         <li class="faq__item">
                             <input class="faq__trigger" type="checkbox" id="question-<?php echo $i?>">
                             <label class="faq__question" for="question-<?php echo $i?>">
-                                <?php echo $item['question']?>
+                                <?php echo do_shortcode($item['question'])?>
                             </label>
                             <div class="faq__answer">
-                                <?php echo wpautop($item['answer'])?>
+                                <?php echo do_shortcode(wpautop($item['answer']))?>
                             </div>
                         </li>
                         <?php
