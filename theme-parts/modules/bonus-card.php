@@ -46,12 +46,12 @@ if(isset($content['bonuses_filter_on']) && $content['bonuses_filter_on']){
         <div class="section__inner">
             <header class="section__header">
                 <?php
-                echo $title_conv;
+                echo do_shortcode( $title_conv );
 
                 if(!empty($content['bonuses_subtitle'])):
                     ?>
                     <div class="section__subtitle">
-                        <?php echo $content['bonuses_subtitle']?>
+                        <?php echo do_shortcode( $content['bonuses_subtitle'] )?>
                     </div>
                     <?php
                 endif;

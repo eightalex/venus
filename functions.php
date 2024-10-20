@@ -2025,6 +2025,17 @@ function remove_author_body_class( $classes ) {
     return $classes;
 }
 
-add_filter("the_title", function($title) {
-    return do_shortcode($title);
+add_filter("the_title", "with_do_shortcode");
+add_filter("the_content", "with_do_shortcode");
+
+function with_do_shortcode($txt) {
+    if (is_admin()) {
+        return $txt;
+    }
+    return do_shortcode($txt);
+}
+
+add_filter('wpseo_breadcrumb_single_link_info', function ($link_info) {
+    $link_info['text'] = do_shortcode($link_info['text']);
+    return $link_info;
 });

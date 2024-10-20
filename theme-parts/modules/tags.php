@@ -12,13 +12,13 @@ $title_section = !empty($content['tags_title'])? $content['tags_title']: get_the
     <div class="container">
         <div class="section__inner">
             <header class="section__header">
-                <h2 class="section__title"><?php echo $title_section?></h2>
+                <h2 class="section__title"><?php echo do_shortcode( $title_section )?></h2>
 
                 <?php
                 if(!empty($content['tags_subtitle'])):
                     ?>
                     <div class="section__subtitle">
-                        <?php echo $content['tags_subtitle']?>
+                        <?php echo do_shortcode( $content['tags_subtitle'] )?>
                     </div>
                     <?php
                 endif;

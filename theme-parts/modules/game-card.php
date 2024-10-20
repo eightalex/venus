@@ -43,12 +43,12 @@ $section_title = !empty($content['gc_title'])? $content['gc_title']: get_the_tit
         <div class="section__inner">
 
             <header class="section__header">
-                <h2 class="section__title"><?php echo $section_title?></h2>
+                <h2 class="section__title"><?php echo do_shortcode( $section_title )?></h2>
                 <?php
                 if(!empty($content['gc_subtitle'])):
                     ?>
                     <div class="section__subtitle">
-                        <?php echo $content['gc_subtitle']?>
+                        <?php echo do_shortcode( $content['gc_subtitle'] )?>
                     </div>
                     <?php
                 endif;
