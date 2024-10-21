@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .variable-content {
   display: flex;
@@ -91,7 +91,7 @@
     border-radius: 16px;
   }
 
-  @include bp(m) {
+  @include mixins.bp(m) {
     h1 {
       font-size: 36px;
     }

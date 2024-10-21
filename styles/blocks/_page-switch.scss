@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .page-switch {
   display: flex;
@@ -34,7 +34,7 @@
     }
   }
 
-  @include bp(m) {
+  @include mixins.bp(m) {
     justify-content: center;
   }
 }

@@ -1,4 +1,4 @@
-@import "../mixins";
+@use "../mixins";
 
 .header {
   position: relative;
@@ -26,7 +26,7 @@
     margin-right: auto;
   }
 
-  @include bp(1230px) {
+  @include mixins.bp(1230px) {
     &__inner {
       justify-content: flex-start;
       height: 86px;
@@ -38,7 +38,7 @@
     }
   }
 
-  @include bp(s) {
+  @include mixins.bp(s) {
     &__logo {
       margin-right: 24px;
       width: 135px;

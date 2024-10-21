@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .float-bar {
     transform: translateY(120px);
@@ -80,7 +80,7 @@
         min-width: 240px;
     }
 
-    @include bp(m) {
+    @include mixins.bp(m) {
         height: 100px;
 
         &__casino {
@@ -109,7 +109,7 @@
         }
     }
 
-    @include bp(500px) {
+    @include mixins.bp(500px) {
         &__button {
             padding: 20px;
             min-width: auto;

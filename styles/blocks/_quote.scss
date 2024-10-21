@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .quote {
   position: relative;
@@ -39,7 +39,7 @@
     line-height: 128%;
   }
 
-  @include bp(m) {
+  @include mixins.bp(m) {
     padding: 24px 24px 40px;
     background-color: #1b1f28;
 

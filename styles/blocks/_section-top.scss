@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .section-top {
   position: relative;
@@ -20,7 +20,7 @@
     width: 300%;
     height: 300%;
     transform: translateX(-50%) rotate(-25deg);
-    background-image: url("#{$images-url}/section/suits_3.svg");
+    background-image: url("#{variables.$images-url}/section/suits_3.svg");
     background-size: 520px;
     background-repeat: repeat;
     background-position: 0 0;
@@ -73,7 +73,7 @@
     z-index: 1;
   }
 
-  @include bp(1180px) {
+  @include mixins.bp(1180px) {
     &::after {
       top: calc(50% - 20px);
       width: 400px;
@@ -85,7 +85,7 @@
     }
   }
 
-  @include bp(1130px) {
+  @include mixins.bp(1130px) {
     &::after {
       top: calc(50% + 100px);
       width: 300px;
@@ -97,7 +97,7 @@
     }
   }
 
-  @include bp(870px) {
+  @include mixins.bp(870px) {
     &::after,
     &__deer {
       display: none;

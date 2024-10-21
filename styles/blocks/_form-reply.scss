@@ -1,4 +1,4 @@
-@import "../mixins";
+@use "../mixins";
 
 .form-reply {
   display: flex;
@@ -86,7 +86,7 @@
     width: 100%;
   }
 
-  @include bp(l) {
+  @include mixins.bp(l) {
     padding: 24px 16px;
 
     &__title {
