@@ -17,14 +17,6 @@ jobs:
         with:
           node-version: '16'
 
-      - name: 📦 Cache node_modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
       - name: 📥 Install dependencies
         run: npm install
 
@@ -40,9 +32,11 @@ jobs:
           local-dir: ./
           server-dir: /wp-content/themes/venus/
           exclude: |
-            node_modules/
-            .git/
-            .github/
+            **/node_modules/**
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/node_modules/**
             package.json
             package-lock.json
             gulpfile.js
