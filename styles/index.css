@@ -244,6 +244,11 @@ body {
       .section_p_0 {
         padding: 0; } }
 
+  @media (max-width: 400px) {
+    .section__title {
+      font-size: 30px; }
+  }
+
 .content {
   display: grid;
   grid-template-columns: 1fr 335px;
@@ -1667,6 +1672,11 @@ body {
         font-size: 32px;
         font-weight: 800;
         text-transform: uppercase; }
+      @media (max-width: 400px) {
+        .bonus-card__gift-content span:nth-child(2) {
+          font-size: 30px;
+        }
+      }
       .bonus-card__gift-content span:nth-child(3) {
         font-size: 12px; }
   .bonus-card__subtitle {
@@ -1922,6 +1932,10 @@ body {
     .faq__answer {
       padding: 0 16px; } }
 
+  @media (max-width: 400px) {
+    .faq__question {
+      font-size: 20px; }}
+
 .author {
   display: flex;
   align-items: center;
@@ -2001,6 +2015,11 @@ body {
         font-size: 36px; }
       .author__title {
         margin-top: 10px; } }
+
+  @media (max-width: 400px) { 
+    .author__name {
+      font-size: 30px; }
+  }
 
 .guide {
   padding-bottom: 200px; }
@@ -2476,6 +2495,11 @@ body {
       .variable-content table tbody {
         overflow-x: auto; } }
 
+  @media (max-width: 400px) {
+    .variable-content h1 {
+      font-size: 30px; } }
+    .variable-content h2 {
+      font-size: 20px; }
 .game-rating {
   display: flex;
   flex-direction: column;
@@ -3195,6 +3219,11 @@ body {
   .banner-author__bonus {
     flex-shrink: 1; } }
 
+@media (max-width: 400px) {
+  .banner-author__title {
+    font-size: 30px; }
+}
+
 .content-cards {
   padding-top: 60px;
   padding-bottom: 60px; }
@@ -3442,6 +3471,9 @@ body {
       border: none; }
       .banner-casino__cta-text span {
         margin-top: 0; } }
+  @media (max-width: 400px) {
+    .banner-casino__title {
+      font-size: 30px; } }
   @media (max-width: 375px) {
     .banner-casino__cta-text {
       flex-direction: column; } }
