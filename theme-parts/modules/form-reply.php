@@ -49,13 +49,13 @@ $fr_bg = !empty($content['fr_bg'])? $content['fr_bg']: get_stylesheet_directory_
                         <?php
                         if(!empty($content['fr_title'])):
                             ?>
-                            <div class="form-reply__title"><?php echo $content['fr_title']?></div>
+                            <div class="form-reply__title"><?php echo do_shortcode( $content['fr_title'] )?></div>
                             <?php
                         endif;
 
                         if(!empty($content['fr_subtitle'])):
                             ?>
-                            <div class="form-reply__subtitle"><?php echo $content['fr_subtitle']?></div>
+                            <div class="form-reply__subtitle"><?php echo do_shortcode( $content['fr_subtitle'] )?></div>
                             <?php
                         endif;
                         ?>

@@ -93,7 +93,7 @@ $show_tags          = false;
                                 if(!empty($bonus_code)):
                                     ?>
                                     <!-- <div class="bonus-widget__subtitle"><?php echo __('Bonus code') ?>:</div> -->
-                                    <div class="bonus-widget__title"><?php echo $bonus_code?></div>
+                                    <div class="bonus-widget__title"><?php echo do_shortcode( $bonus_code )?></div>
                                     <?php
                                 endif;
 
@@ -110,11 +110,11 @@ $show_tags          = false;
                             if(!empty($external_link)):
                                 $btn_txt = !empty(get_option('bonuses_get_bonus_title'))? get_option('bonuses_get_bonus_title'): __('Get bonus');
                             ?>
-                            <a rel='nofollow' href="<?php echo $external_link?>" class="bonus-widget__button button"><?php echo $btn_txt?></a>
+                            <a rel='nofollow' href="<?php echo $external_link?>" class="bonus-widget__button button"><?php echo do_shortcode($btn_txt);?></a>
                             <?php
                                 if(!empty($button_notice)):
                                     ?>
-                                    <span><?php echo __($button_notice)?></span>
+                                    <span><?php echo do_shortcode( __($button_notice) )?></span>
                                     <?php
                                 endif;
                             endif;
@@ -124,7 +124,7 @@ $show_tags          = false;
                         if(!empty($offer_detailed_tc)):
                         ?>
                         <div class="bonus-widget__footer">
-                            <?php echo $offer_detailed_tc?>
+                            <?php echo do_shortcode( $offer_detailed_tc );?>
                         </div>
                         <?php
                         endif;

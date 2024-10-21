@@ -10,7 +10,7 @@ if(empty($text)){
         <div class="section__inner">
             <header class="section__header">
                 <p class="section__subtitle section__subtitle_single">
-                    <?php echo $text?>
+                    <?php echo do_shortcode( $text )?>
                 </p>
             </header>
         </div>

@@ -21,7 +21,7 @@ $read_review_txt    = !empty(get_option('games_read_review_title'))? get_option(
                         if(!empty($casinois_list_title)):
                             ?>
                             <div class="content__subtitle">
-                                <?php echo $casinois_list_title?>
+                                <?php echo do_shortcode( $casinois_list_title )?>
                             </div>
                             <?php
                         endif;
@@ -47,7 +47,7 @@ $read_review_txt    = !empty(get_option('games_read_review_title'))? get_option(
                                         </div>
 
                                         <div class="casino-card__subtitle">
-                                            <?php echo $desc?>
+                                            <?php echo do_shortcode( $desc )?>
                                         </div>
 
                                         <div class="casino-card__cta">
