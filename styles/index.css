@@ -2016,7 +2016,7 @@ body {
       .author__title {
         margin-top: 10px; } }
 
-  @media (max-width: 400px) { 
+  @media (max-width: 400px) {
     .author__name {
       font-size: 30px; }
   }

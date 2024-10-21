@@ -1,5 +1,6 @@
-@import "../variables";
-@import "../mixins";
+@use "sass:math";
+@use "../variables";
+@use "../mixins";
 
 /**
  * !! This block has the dependency on the section block
@@ -20,7 +21,7 @@
     height: 100px;
 
     & + .section {
-      padding-top: 100px + ($section-padding / 4);
+      padding-top: 100px + math.div(variables.$section-padding, 4);
     }
   }
 
@@ -68,10 +69,10 @@
   /**
     * Section dependency
   */
-  @include bp($section-breakpoint) {
+  @include mixins.bp(variables.$section-breakpoint) {
     &:not(.breadcrumbs_inline) {
       & + .section {
-        padding-top: 100px + ($section-padding-mobile / 4);
+        padding-top: 100px + math.div(variables.$section-padding-mobile, 4);
       }
     }
   }

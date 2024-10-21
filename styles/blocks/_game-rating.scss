@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .game-rating {
   display: flex;
@@ -69,13 +69,13 @@
     min-width: 248px;
   }
 
-  @include bp(1100px) {
+  @include mixins.bp(1100px) {
     &__button {
       min-width: 140px;
     }
   }
 
-  @include bp(830px) {
+  @include mixins.bp(830px) {
     &__item {
       display: grid;
       grid-template-areas:
@@ -101,7 +101,7 @@
     }
   }
 
-  @include bp(370px) {
+  @include mixins.bp(370px) {
     &__button {
       min-width: auto;
     }

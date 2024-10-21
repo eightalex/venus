@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .rating-card {
   position: relative;
@@ -17,8 +17,8 @@
   background: linear-gradient(180deg, #0bb9f8 50.52%, #0a8ef2 100%);
 
   &::before {
-    @include lights-bg();
-    @include horizontal-flip();
+    @include mixins.lights-bg();
+    @include mixins.horizontal-flip();
   }
 
   &::after {
@@ -30,7 +30,7 @@
     opacity: 0.24;
     width: 310px;
     height: 340px;
-    background-image: url("#{$images-url}/rating-card/heart.svg");
+    background-image: url("#{variables.$images-url}/rating-card/heart.svg");
     background-repeat: no-repeat;
     mix-blend-mode: color-burn;
   }
@@ -160,7 +160,7 @@
         display: inline-flex;
         width: 24px;
         height: 24px;
-        background-image: url("#{$images-url}/icons/star.svg");
+        background-image: url("#{variables.$images-url}/icons/star.svg");
         background-size: contain;
       }
     }
@@ -212,12 +212,12 @@
       display: inline-flex;
       width: 16px;
       height: 16px;
-      background-image: url("#{$images-url}/icons/star.svg");
+      background-image: url("#{variables.$images-url}/icons/star.svg");
       background-size: contain;
     }
   }
 
-  @include bp(1050px) {
+  @include mixins.bp(1050px) {
     padding: 24px 16px;
     grid-template-areas:
       "tags"
@@ -246,7 +246,7 @@
     }
   }
 
-  @include bp(m) {
+  @include mixins.bp(m) {
     &__button {
       padding-left: 40px;
       padding-right: 40px;

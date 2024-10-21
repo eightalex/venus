@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .quote-author {
   margin: 0;
@@ -67,7 +67,7 @@
       display: flex;
       width: 24px;
       height: 24px;
-      background-image: url("#{$images-url}/icons/star.svg");
+      background-image: url("#{variables.$images-url}/icons/star.svg");
     }
   }
 
@@ -81,7 +81,7 @@
     line-height: 128%;
   }
 
-  @include bp(m) {
+  @include mixins.bp(m) {
     padding: 24px;
 
     &__rating {

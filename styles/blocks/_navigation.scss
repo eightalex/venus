@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .navigation {
   $this: &;
@@ -38,7 +38,7 @@
         flex-shrink: 0;
         width: 16px;
         height: 16px;
-        background-image: url("#{$images-url}/icons/arrow-down.svg");
+        background-image: url("#{variables.$images-url}/icons/arrow-down.svg");
         background-size: contain;
       }
     }
@@ -169,7 +169,7 @@
     }
   }
 
-  @include bp(1230px) {
+  @include mixins.bp(1230px) {
     &__inner {
       display: none;
     }
@@ -221,7 +221,7 @@
           flex-shrink: 0;
           width: 20px;
           height: 20px;
-          background-image: url("#{$images-url}/icons/arrow-down.svg");
+          background-image: url("#{variables.$images-url}/icons/arrow-down.svg");
           background-size: contain;
         }
       }

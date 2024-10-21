@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .advantages {
   display: flex;
@@ -18,7 +18,7 @@
     background-image: linear-gradient(180deg, #0bb9f8 50.52%, #0a8ef2 100%);
 
     &::before {
-      @include lights-bg();
+      @include mixins.lights-bg();
     }
   }
 
@@ -59,11 +59,11 @@
     }
   }
 
-  @include bp(1180px) {
+  @include mixins.bp(1180px) {
     flex-direction: column;
   }
 
-  @include bp(360px) {
+  @include mixins.bp(360px) {
     &__item {
       padding: 50px 24px;
       min-height: auto;

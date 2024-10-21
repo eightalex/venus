@@ -22,14 +22,14 @@ $read_review_txt    = !empty(get_option('games_read_review_title'))? get_option(
                     <?php
                     if(!empty($section_title)):
                         ?>
-                        <h2 class="section__title section__title_s"><?php echo $section_title?></h2>
+                        <h2 class="section__title section__title_s"><?php echo do_shortcode( $section_title )?></h2>
                         <?php
                     endif;
 
                     if(!empty($section_subtitle)):
                         ?>
                         <div class="section__subtitle">
-                            <?php echo $section_subtitle?>
+                            <?php echo do_shortcode( $section_subtitle )?>
                         </div>
                         <?php
                     endif;

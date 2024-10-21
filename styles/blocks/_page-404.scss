@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .page-404 {
   display: grid;
@@ -91,13 +91,13 @@
     }
   }
 
-  @include bp(l) {
+  @include mixins.bp(l) {
     &__image {
       display: none;
     }
   }
 
-  @include bp(m) {
+  @include mixins.bp(m) {
     grid-template-areas:
       "title title"
       "content image"
@@ -115,7 +115,7 @@
     }
   }
 
-  @include bp(374px) {
+  @include mixins.bp(374px) {
     &__image {
       display: none;
     }

@@ -1,5 +1,6 @@
-@import "../variables";
-@import "../mixins";
+@use "sass:math";
+@use "../variables";
+@use "../mixins";
 
 .star-rating {
   position: relative;
@@ -23,7 +24,7 @@
   }
 
   @for $i from 1 through 100 {
-    &[data-rating^="#{$i/10}"]::before {
+    &[data-rating^="#{math.div($i, 10)}"]::before {
       width: $i * 1%;
     }
   }

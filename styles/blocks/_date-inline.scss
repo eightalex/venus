@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .date-inline {
   display: inline-flex;
@@ -17,14 +17,14 @@
     margin-right: 12px;
     width: 24px;
     height: 24px;
-    background-image: url("#{$images-url}/icons/time-white.svg");
+    background-image: url("#{variables.$images-url}/icons/time-white.svg");
   }
 
   &_grey {
     color: #9a9b9e;
 
     &::before {
-      background-image: url("#{$images-url}/icons/time-grey.svg");
+      background-image: url("#{variables.$images-url}/icons/time-grey.svg");
     }
   }
 }

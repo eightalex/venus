@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .search-form {
   position: relative;
@@ -42,7 +42,7 @@
     }
   }
 
-  @include bp(1230px) {
+  @include mixins.bp(1230px) {
     display: flex;
 
     .mobile {

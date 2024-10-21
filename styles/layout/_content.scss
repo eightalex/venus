@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .content {
   display: grid;
@@ -74,12 +74,12 @@
     display: flex;
   }
 
-  @include bp(1230px) {
+  @include mixins.bp(1230px) {
     grid-template-columns: 380px 335px;
     justify-content: center;
   }
 
-  @include bp(830px) {
+  @include mixins.bp(830px) {
     grid-template-columns: auto;
 
     &__sidebar {

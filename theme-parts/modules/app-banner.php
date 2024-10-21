@@ -33,7 +33,7 @@
                 <div class="banner__content">
                     <?php get_template_part('/theme-parts/modules/breadcrumbs', '', ['inline' => true]); ?>
 
-                    <h1 class="banner__title"><?php echo $title?></h1>
+                    <h1 class="banner__title"><?php echo do_shortcode($title); ?></h1>
                     <?php if(!empty($date) && !is_tax()): ?>
                         <time class="banner__date date-inline"><?php echo $date; ?></time>
                     <?php endif; ?>

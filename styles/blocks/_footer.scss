@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .footer {
   overflow: hidden;
@@ -141,7 +141,7 @@
     }
   }
 
-  @include bp(l) {
+  @include mixins.bp(l) {
     padding-top: 60px;
 
     &__container {
@@ -171,7 +171,7 @@
     }
   }
 
-  @include bp(m) {
+  @include mixins.bp(m) {
     &_float-bar {
       margin-bottom: 100px;
     }

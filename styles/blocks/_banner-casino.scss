@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .banner-casino {
   display: flex;
@@ -122,7 +122,7 @@
     width: 100%;
   }
 
-  @include bp(l) {
+  @include mixins.bp(l) {
     flex-direction: column;
 
     &__image {
@@ -137,7 +137,7 @@
     }
   }
 
-  @include bp(m) {
+  @include mixins.bp(m) {
     &__cta {
       flex-direction: column;
       gap: 12px;
@@ -156,7 +156,7 @@
     }
   }
 
-  @include bp(s) {
+  @include mixins.bp(s) {
     &__cta-text {
       flex-direction: column;
     }

@@ -38,14 +38,14 @@ if(!empty($bandit_image_id)){
                 <?php
                 if(!empty($content['bandit_title'])):
                     ?>
-                    <h2 class="section__title"><?php echo $content['bandit_title']?></h2>
+                    <h2 class="section__title"><?php echo do_shortcode($content['bandit_title']);?></h2>
                     <?php
                 endif;
 
                 if(!empty($content['bandit_subtitle'])):
                 ?>
                 <div class="section__subtitle">
-                    <?php echo $content['bandit_subtitle']?>
+                    <?php echo do_shortcode($content['bandit_subtitle']);?>
                 </div>
                 <?php
                 endif;

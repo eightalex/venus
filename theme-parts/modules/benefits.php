@@ -20,14 +20,14 @@ $benefits_bg        = !empty($content['benefits_bg'])? $content['benefits_bg']: 
                 <?php
                 if(!empty($content['benefits_title'])):
                     ?>
-                    <h2 class="section__title"><?php echo $content['benefits_title']?></h2>
+                    <h2 class="section__title"><?php echo do_shortcode( $content['benefits_title'] );?></h2>
                     <?php
                 endif;
 
                 if(!empty($content['benefits_subtitle'])):
                     ?>
                     <div class="section__subtitle">
-                        <?php echo $content['benefits_subtitle']?>
+                        <?php echo do_shortcode( $content['benefits_subtitle'] );?>
                     </div>
                     <?php
                 endif;
@@ -42,7 +42,7 @@ $benefits_bg        = !empty($content['benefits_bg'])? $content['benefits_bg']: 
                         <?php
                         if(!empty($content['advantages_title'])):
                             ?>
-                            <div class="benefits__title"><?php echo $content['advantages_title']?></div>
+                            <div class="benefits__title"><?php echo do_shortcode( $content['advantages_title'] );?></div>
                             <?php
                         endif;
                         ?>
@@ -50,7 +50,7 @@ $benefits_bg        = !empty($content['benefits_bg'])? $content['benefits_bg']: 
                             <?php
                             foreach($content['benefits_advantages'] as $item):
                                 ?>
-                                <li class="benefits__item"><?php echo $item['b_adv']?></li>
+                                <li class="benefits__item"><?php echo do_shortcode( $item['b_adv'] );?></li>
                                 <?php
                             endforeach;
                             ?>
@@ -65,7 +65,7 @@ $benefits_bg        = !empty($content['benefits_bg'])? $content['benefits_bg']: 
                         <?php
                         if(!empty($content['flaws_title'])):
                             ?>
-                            <div class="benefits__title"><?php echo $content['flaws_title']?></div>
+                            <div class="benefits__title"><?php echo do_shortcode( $content['flaws_title'] );?></div>
                             <?php
                         endif;
                         ?>
@@ -73,7 +73,7 @@ $benefits_bg        = !empty($content['benefits_bg'])? $content['benefits_bg']: 
                             <?php
                             foreach($content['benefits_flaws'] as $item):
                                 ?>
-                                <li class="benefits__item"><?php echo $item['b_flaw']?></li>
+                                <li class="benefits__item"><?php echo do_shortcode( $item['b_flaw'] );?></li>
                                 <?php
                             endforeach;
                             ?>

@@ -1,3 +1,5 @@
+@use "../mixins";
+
 .author {
   display: flex;
   align-items: center;
@@ -87,7 +89,7 @@
     }
   }
 
-  @include bp(l) {
+  @include mixins.bp(l) {
     display: flex;
     flex-direction: column;
     gap: 32px;

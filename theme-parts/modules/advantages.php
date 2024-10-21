@@ -12,14 +12,14 @@ if(empty($content['adv_list'])){
                 <?php
                 if(!empty($content['adv_title'])):
                     ?>
-                    <h2 class="section__title section__title_s"><?php echo $content['adv_title']?></h2>
+                    <h2 class="section__title section__title_s"><?php echo do_shortcode($content['adv_title'])?></h2>
                     <?php
                 endif;
 
                 if(!empty($content['adv_subtitle'])):
                 ?>
                 <div class="section__subtitle">
-                    <?php echo $content['adv_subtitle']?>
+                    <?php echo do_shortcode($content['adv_subtitle'])?>
                 </div>
                 <?php
                 endif;
@@ -35,7 +35,7 @@ if(empty($content['adv_list'])){
                             if(!empty($adv['adv_item_txt'])):
                             ?>
                             <div class="advantages__text">
-                                <?php echo $adv['adv_item_txt']?>
+                                <?php echo do_shortcode($adv['adv_item_txt'])?>
                             </div>
                             <?php
                             endif;
