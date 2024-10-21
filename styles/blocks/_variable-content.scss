@@ -109,6 +109,16 @@
       }
     }
   }
+
+  @include bp($small-mobile-breakpoint) {
+    h1 {
+      font-size: $small-mobile-title-font-size;
+    }
+
+    h2 {
+      font-size: $small-mobile-subtitle-font-size;
+    }
+  }
 }
 
 

@@ -83,4 +83,10 @@
       padding: 0 16px;
     }
   }
+
+  @include bp($small-mobile-breakpoint) {
+    &__question {
+      font-size: $small-mobile-subtitle-font-size;
+    }
+  }
 }

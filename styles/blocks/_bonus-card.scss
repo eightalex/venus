@@ -110,6 +110,10 @@
         font-size: 32px;
         font-weight: 800;
         text-transform: uppercase;
+        
+        @include bp($small-mobile-breakpoint) {
+          font-size: $small-mobile-title-font-size;
+        }
       }
 
       &:nth-child(3) {

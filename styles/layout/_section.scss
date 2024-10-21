@@ -395,4 +395,10 @@
       padding: 0;
     }
   }
+
+  @include bp($small-mobile-breakpoint) {
+    &__title {
+      font-size: $small-mobile-title-font-size;
+    }
+  }
 }
