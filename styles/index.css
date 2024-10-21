@@ -1,3 +1,7 @@
+:root {
+  --action-color: #0BAFF7;
+}
+
 body {
   box-sizing: border-box;
   margin: 0;
@@ -988,7 +992,7 @@ body {
     padding: 16px;
     width: 100%;
     border-radius: 12px;
-    background-color: #0baff7;
+    background-color: var(--action-color);
     font-family: Hind, sans-serif;
     font-size: 14px;
     font-weight: 400; }
@@ -1415,7 +1419,7 @@ body {
     align-items: center;
     padding: 28px 32px;
     border-radius: 16px;
-    background: #0baff7; }
+    background: var(--action-color); }
     .rating-card__overall-rating var {
       display: flex;
       align-items: center;
@@ -2452,10 +2456,10 @@ body {
     color: #e3f666;
     font-style: normal; }
   .variable-content a {
-    color: inherit;
-    text-decoration: underline; }
+    color: var(--action-color);
+    text-decoration: none; }
     .variable-content a:hover {
-      text-decoration: none; }
+      text-decoration: underline; }
   .variable-content table tbody tr td {
     font-family: Hind, sans-serif;
     font-size: 16px;
