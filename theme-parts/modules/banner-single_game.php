@@ -52,7 +52,7 @@ get_template_part('/theme-parts/modules/breadcrumbs');
                     if(!empty($short_desc)):
                         ?>
                         <div class="banner-casino__subtitle">
-                            <?php echo $short_desc?>
+                            <?php echo do_shortcode( $short_desc );?>
                         </div>
                         <?php
                     endif;
@@ -60,7 +60,7 @@ get_template_part('/theme-parts/modules/breadcrumbs');
                     if(!empty($unit_detailed)):
                         ?>
                         <div class="banner-casino__text">
-                            <?php echo $unit_detailed?>
+                            <?php echo do_shortcode( $unit_detailed );?>
                         </div>
                         <?php
                     endif;
@@ -68,7 +68,7 @@ get_template_part('/theme-parts/modules/breadcrumbs');
                     if(!empty($external)):
                         ?>
                         <div class="banner-casino__cta">
-                            <a rel='nofollow' href="<?php echo $external?>" class="button banner-casino__button"><?php echo $btn_txt?></a>
+                            <a rel='nofollow' href="<?php echo $external?>" class="button banner-casino__button"><?php echo do_shortcode( $btn_txt )?></a>
                             <div class="banner-casino__cta-text">
                                 <?php if(!empty($date) && !is_tax()): ?>
                                     <time class="banner-casino__date date-inline date-inline_grey"><?php echo $date; ?></time>
@@ -76,7 +76,7 @@ get_template_part('/theme-parts/modules/breadcrumbs');
                                 <?php
                                 if(!empty($button_notice)):
                                     ?>
-                                    <span><?php echo $button_notice?></span>
+                                    <span><?php echo do_shortcode( $button_notice );?></span>
                                 <?php
                                 endif;
                                 ?>

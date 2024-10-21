@@ -30,7 +30,7 @@ if($app_banner_img){
                 <header class="banner-author__header">
                     <h1 class="banner-author__title">
                         <?php
-                            echo $title;
+                            echo do_shortcode($title);
                         ?>
                     </h1>
                 </header>

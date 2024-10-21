@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .search-results-list {
   display: flex;
@@ -38,7 +38,7 @@
     gap: 18px;
   }
 
-  @include bp(1230px) {
+  @include mixins.bp(1230px) {
     &__title {
       font-size: 20px;
     }

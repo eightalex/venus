@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .game-types {
   display: grid;
@@ -55,7 +55,7 @@
     line-height: 128%;
   }
 
-  @include bp(m) {
+  @include mixins.bp(m) {
     grid-template-columns: 1fr;
     grid-row-gap: 16px;
 

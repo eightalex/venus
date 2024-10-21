@@ -1,4 +1,4 @@
-@import "../mixins";
+@use "../mixins";
 
 .input {
   display: flex;
@@ -17,7 +17,7 @@
   border: 1px solid #404556;
   background-color: #1b1f28;
 
-  @include autofill(#1b1f28);
+  @include mixins.autofill(#1b1f28);
 
   &_search {
     padding: 14px 24px;

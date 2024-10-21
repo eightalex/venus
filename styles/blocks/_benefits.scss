@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .benefits {
   $this: &;
@@ -15,7 +15,7 @@
   }
 
   &::before {
-    @include lights-bg();
+    @include mixins.lights-bg();
   }
 
   &__title {
@@ -62,7 +62,7 @@
       flex-shrink: 0;
       width: 32px;
       height: 32px;
-      background-image: url("#{$images-url}/icons/check-green.svg");
+      background-image: url("#{variables.$images-url}/icons/check-green.svg");
       background-size: contain;
       background-repeat: no-repeat;
     }
@@ -73,14 +73,14 @@
 
     #{$this}__item {
       &::before {
-        background-image: url("#{$images-url}/icons/cross-red.svg");
+        background-image: url("#{variables.$images-url}/icons/cross-red.svg");
       }
     }
   }
 
   &_negative li {
     &::before {
-      background-image: url("#{$images-url}/icons/cross-red.svg");
+      background-image: url("#{variables.$images-url}/icons/cross-red.svg");
     }
   }
 
@@ -96,14 +96,14 @@
       z-index: 1;
       width: 279px;
       height: 360px;
-      background-image: url("#{$images-url}/benefits/bg-1.svg");
+      background-image: url("#{variables.$images-url}/benefits/bg-1.svg");
       background-size: contain;
     }
   }
 
   &_clubs {
     &::before {
-      @include horizontal-flip();
+      @include mixins.horizontal-flip();
     }
 
     &::after {
@@ -114,12 +114,12 @@
       z-index: 1;
       width: 316px;
       height: 361px;
-      background-image: url("#{$images-url}/benefits/bg-2.svg");
+      background-image: url("#{variables.$images-url}/benefits/bg-2.svg");
       background-size: contain;
     }
   }
 
-  @include bp(l) {
+  @include mixins.bp(l) {
     #{$this} {
       &__list {
         row-gap: 12px;
@@ -132,7 +132,7 @@
     }
   }
 
-  @include bp(m) {
+  @include mixins.bp(m) {
     display: flex;
     flex-direction: column;
     margin-left: auto;
@@ -162,7 +162,7 @@
 
     &_clubs {
       &::before {
-        @include horizontal-flip-reset();
+        @include mixins.horizontal-flip-reset();
       }
 
       &::after {

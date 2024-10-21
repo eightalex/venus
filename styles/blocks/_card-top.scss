@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .card-top {
   display: flex;
@@ -88,7 +88,7 @@
       display: flex;
       width: 26px;
       height: 26px;
-      background-image: url("#{$images-url}/icons/star.svg");
+      background-image: url("#{variables.$images-url}/icons/star.svg");
       margin-right: 12px;
     }
   }
@@ -162,7 +162,7 @@
     }
   }
 
-  @include bp(m) {
+  @include mixins.bp(m) {
     max-width: none;
 
     &__title {
@@ -194,7 +194,7 @@
     }
   }
 
-  @include bp(s) {
+  @include mixins.bp(s) {
     &__cta-text {
       flex-direction: column;
     }

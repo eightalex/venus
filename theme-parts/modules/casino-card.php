@@ -41,14 +41,14 @@ if($casinos->have_posts()):
                     <?php
                     if(!empty($content['cas_title'])):
                         ?>
-                        <h2 class="section__title"><?php echo $content['cas_title']?></h2>
+                        <h2 class="section__title"><?php echo do_shortcode( $content['cas_title'] )?></h2>
                         <?php
                     endif;
 
                     if(!empty($content['cas_subtitle'])):
                         ?>
                         <div class="section__subtitle">
-                            <?php echo $content['cas_subtitle']?>
+                            <?php echo do_shortcode( $content['cas_subtitle'] ) ?>
                         </div>
                         <?php
                     endif;

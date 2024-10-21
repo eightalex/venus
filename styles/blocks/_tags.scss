@@ -1,4 +1,4 @@
-@import "../mixins";
+@use "../mixins";
 
 .tags {
   margin: 0;
@@ -60,7 +60,7 @@
     list-style: none;
   }
 
-  @include bp(l) {
+  @include mixins.bp(l) {
     &__card {
       flex-direction: column;
       gap: 20px;

@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .pagination {
   display: flex;
@@ -13,7 +13,7 @@
     padding: 24px;
     width: 24px;
     height: 24px;
-    background-image: url("#{$images-url}/icons/arrow-left.svg");
+    background-image: url("#{variables.$images-url}/icons/arrow-left.svg");
     background-position: center;
     background-size: 24px;
     background-repeat: no-repeat;
@@ -56,7 +56,7 @@
     }
   }
 
-  @include bp(380px) {
+  @include mixins.bp(380px) {
     a.prev,
     a.next {
       padding: 20px;
@@ -74,7 +74,7 @@
     }
   }
 
-  @include bp(s) {
+  @include mixins.bp(s) {
     gap: 3px;
   }
 }

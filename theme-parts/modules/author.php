@@ -33,7 +33,7 @@ $author_link        = get_author_posts_url($author_id);
                     <a class="author__name" href="<?php echo $author_link ?>"><?php echo $firs_name?> <em><?php echo $last_name?></em></a>
                     <div class="author__title"><?php echo __( 'Author' ); ?></div>
                     <div class="author__about">
-                        <?php echo $author_desc?>
+                        <?php echo do_shortcode($author_desc); ?>
                     </div>
                 </div>
                 <div class="author__image">

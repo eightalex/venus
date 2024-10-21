@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .casino-inline-2 {
   display: flex;
@@ -144,7 +144,7 @@
     width: 150px;
   }
 
-  @include bp(1000px) {
+  @include mixins.bp(1000px) {
     flex-direction: column;
     padding: 16px;
     border-radius: 16px;

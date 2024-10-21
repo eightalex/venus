@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .banner {
   display: flex;
@@ -70,7 +70,7 @@
     }
   }
 
-  @include bp(m) {
+  @include mixins.bp(m) {
     &__breadcrumbs {
       display: none;
     }
@@ -91,7 +91,7 @@
     }
   }
 
-  @include bp(600px) {
+  @include mixins.bp(600px) {
     flex-direction: column;
     align-items: center;
 

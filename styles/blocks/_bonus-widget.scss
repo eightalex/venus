@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .bonus-widget {
   max-width: 477px;
@@ -92,7 +92,7 @@
     line-height: 128%;
   }
 
-  @include bp(s) {
+  @include mixins.bp(s) {
     &__header {
       flex-wrap: wrap;
     }

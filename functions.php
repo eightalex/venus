@@ -1124,6 +1124,14 @@ function ud_print_casino($atts){
     return $html;
 }
 
+add_shortcode('year', "ud_set_present_year");
+function ud_set_present_year() {
+    if(is_admin()){
+        return;
+    }
+    return date("Y");
+}
+
 add_filter('ud_get_tax_posts_tags', 'ud_get_tax_posts_tags');
 function ud_get_tax_posts_tags($posts){
     $arr = [];
@@ -2016,3 +2024,18 @@ function remove_author_body_class( $classes ) {
     }
     return $classes;
 }
+
+add_filter("the_title", "with_do_shortcode");
+add_filter("the_content", "with_do_shortcode");
+
+function with_do_shortcode($txt) {
+    if (is_admin()) {
+        return $txt;
+    }
+    return do_shortcode($txt);
+}
+
+add_filter('wpseo_breadcrumb_single_link_info', function ($link_info) {
+    $link_info['text'] = do_shortcode($link_info['text']);
+    return $link_info;
+});

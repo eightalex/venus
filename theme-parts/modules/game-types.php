@@ -15,10 +15,10 @@ $section_subtitle   = $content['game_types_subtitle'];
         <div class="section__inner">
             <header class="section__header">
                 <h2 class="section__title">
-                    <?php echo $section_title ?>
+                    <?php echo do_shortcode( $section_title )?>
                 </h2>
                 <div class="section__subtitle">
-                    <?php echo $section_subtitle ?>
+                    <?php echo do_shortcode( $section_subtitle ) ?>
                 </div>
             </header>
             <div class="section__content">
@@ -44,7 +44,7 @@ $section_subtitle   = $content['game_types_subtitle'];
                                 if(!empty($title)):
                                     ?>
                                     <div class="game-types__title">
-                                        <?php echo $title?>
+                                        <?php echo do_shortcode( $title )?>
                                     </div>
                                 <?php
                                 endif;
@@ -54,7 +54,7 @@ $section_subtitle   = $content['game_types_subtitle'];
                             if(!empty($desc)):
                                 ?>
                                 <div class="game-types__text">
-                                    <?php echo $desc?>
+                                    <?php echo do_shortcode( $desc )?>
                                 </div>
                             <?php
                             endif;

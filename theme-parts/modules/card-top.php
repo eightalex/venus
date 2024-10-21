@@ -32,7 +32,7 @@ $date                   = ucfirst(get_the_modified_date('F j, Y'));
                     if(!empty($short_desc)):
                         ?>
                         <span>
-                            <?php echo $short_desc?>
+                            <?php echo do_shortcode( $short_desc );?>
                         </span>
                         <?php
                     endif;
@@ -45,7 +45,7 @@ $date                   = ucfirst(get_the_modified_date('F j, Y'));
             if(!empty($detailed_tc)):
             ?>
             <div class="card-top__text">
-                <?php echo $detailed_tc?>
+                <?php echo do_shortcode( $detailed_tc );?>
             </div>
             <?php
             endif;
@@ -61,7 +61,7 @@ $date                   = ucfirst(get_the_modified_date('F j, Y'));
                     <?php if(!empty($date) && !is_tax()): ?>
                         <time class="card-top__date date-inline"><?php echo $date; ?></time>
                     <?php endif; if(!empty($button_notice)): ?>
-                        <span><?php echo $button_notice?></span>
+                        <span><?php echo do_shortcode( $button_notice );?></span>
                     <?php endif; ?>
                 </div>
             </div>

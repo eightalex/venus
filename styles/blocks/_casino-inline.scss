@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .casino-inline {
   display: flex;
@@ -161,7 +161,7 @@
     }
   }
 
-  @include bp(1100px) {
+  @include mixins.bp(1100px) {
     &__casino-rating {
       .star-rating {
         display: none;
@@ -173,7 +173,7 @@
     }
   }
 
-  @include bp(1000px) {
+  @include mixins.bp(1000px) {
     padding: 16px;
     border-radius: 16px;
 
@@ -227,7 +227,7 @@
     }
   }
 
-  @include bp(550px) {
+  @include mixins.bp(550px) {
     &__casino-img {
       width: 112px;
       height: 112px;

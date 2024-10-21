@@ -20,7 +20,7 @@ $read_review_txt    = !empty(get_option('games_read_review_title'))? get_option(
                 <?php
                 if(!empty($content['rating_games_title'])):
                     ?>
-                    <h2 class="section__title section__title_s"><?php echo $content['rating_games_title']?></h2>
+                    <h2 class="section__title section__title_s"><?php echo do_shortcode( $content['rating_games_title'] )?></h2>
                     <?php
                 endif;
 
@@ -28,7 +28,7 @@ $read_review_txt    = !empty(get_option('games_read_review_title'))? get_option(
                 ?>
                 <div class="section__subtitle">
                     <?php
-                        echo $content['rating_games_subtitle'];
+                        echo do_shortcode( $content['rating_games_subtitle'] );
                     ?>
                 </div>
                 <?php
