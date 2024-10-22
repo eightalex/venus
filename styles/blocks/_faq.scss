@@ -83,9 +83,9 @@
     }
   }
 
-  @include bp($small-mobile-breakpoint) {
+  @include mixins.bp(variables.$small-mobile-breakpoint) {
     &__question {
-      font-size: $small-mobile-subtitle-font-size;
+      font-size: variables.$small-mobile-subtitle-font-size;
     }
   }
 }

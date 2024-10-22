@@ -1,3 +1,6 @@
+@use '../mixins';
+@use "../variables";
+
 .bonus-card {
   $this: &;
 
@@ -111,8 +114,8 @@
         font-weight: 800;
         text-transform: uppercase;
         
-        @include bp($small-mobile-breakpoint) {
-          font-size: $small-mobile-title-font-size;
+        @include mixins.bp(variables.$small-mobile-breakpoint) {
+          font-size: variables.$small-mobile-title-font-size;
         }
       }
 

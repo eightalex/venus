@@ -110,13 +110,13 @@
     }
   }
 
-  @include bp($small-mobile-breakpoint) {
+  @include mixins.bp(variables.$small-mobile-breakpoint) {
     h1 {
-      font-size: $small-mobile-title-font-size;
+      font-size: variables.$small-mobile-title-font-size;
     }
 
     h2 {
-      font-size: $small-mobile-subtitle-font-size;
+      font-size: variables.$small-mobile-subtitle-font-size;
     }
   }
 }
