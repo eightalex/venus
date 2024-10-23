@@ -115,7 +115,7 @@
         text-transform: uppercase;
         
         @include mixins.bp(variables.$small-mobile-breakpoint) {
-          font-size: variables.$small-mobile-title-font-size;
+          font-size: variables.$font-size-title-s;
         }
       }
 

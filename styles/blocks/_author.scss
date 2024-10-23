@@ -107,7 +107,7 @@
 
   @include mixins.bp(variables.$small-mobile-breakpoint) {
     &__name {
-      font-size: variables.$small-mobile-title-font-size;
+      font-size: variables.$font-size-title-s;
     }
   }
 }
