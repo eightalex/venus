@@ -62,7 +62,7 @@ $external_link          = get_post_meta($id, 'casino_external_link', true);
                     <?php endif; ?>
                 </div>
                 <div class="card-top__cta-text">
-                    <?php get_template_part("/theme-parts/modules/post-info") ?>
+                    <?php get_template_part("/theme-parts/modules/post-info", null, ['show_activities' => true]) ?>
                 </div>
             </div>
             <!-- <div class="card-top__info">

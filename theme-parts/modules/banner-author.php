@@ -41,7 +41,7 @@ $show_tags          = false;
                             <?php echo $title ?>
                         </h1>
                     </header>
-                    <?php get_template_part("/theme-parts/modules/post-info", null, ['tag' => 'footer']) ?>
+                    <?php get_template_part("/theme-parts/modules/post-info", null, ['tag' => 'footer', 'show_activities' => true]) ?>
                 </div>
 
                 <div class="banner-author__bonus">

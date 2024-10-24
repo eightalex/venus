@@ -32,7 +32,7 @@
                     <?php get_template_part('/theme-parts/modules/breadcrumbs', '', ['inline' => true]); ?>
 
                     <h1 class="banner__title"><?php echo do_shortcode($title); ?></h1>
-                    <?php get_template_part("/theme-parts/modules/post-info", null, ['hide_activities' => true]) ?>
+                    <?php get_template_part("/theme-parts/modules/post-info") ?>
                 </div>
 
                 <div class="banner__image">

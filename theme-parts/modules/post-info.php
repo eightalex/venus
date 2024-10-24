@@ -1,5 +1,5 @@
 <?php
-extract($args); // tag: string, hide_activities: boolean, light: boolean
+extract($args); // tag: string, show_activities: boolean, light: boolean
 
 $main_tag            = $tag ? $tag : 'div';
 $light_class        = isset($light) && $light ? ' pi__light' : '';
@@ -38,7 +38,7 @@ if (!is_tax() && !empty($post_published_date)) { // TODO: Add published and upda
                 <?php }?>
             </div>
         </div>
-        <?php if ((isset($hide_activities) && !$hide_activities) || ($view_count || $comment_count)) { ?>
+        <?php if (isset($show_activities) && $show_activities && ($view_count || $comment_count)) { ?>
         <div class="post-info__activities">
             <?php if(intval($view_count) > 0): ?>
                 <div class="post-info__activity">

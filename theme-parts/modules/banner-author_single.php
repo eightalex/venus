@@ -23,7 +23,7 @@ if($app_banner_img){
                         ?>
                     </h1>
                 </header>
-                <?php get_template_part("/theme-parts/modules/post-info", null, ['tag' => 'footer']) ?>
+                <?php get_template_part("/theme-parts/modules/post-info", null, ['tag' => 'footer', 'show_activities' => true]) ?>
             </div>
         </div>
     </div>

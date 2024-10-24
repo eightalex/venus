@@ -76,7 +76,7 @@ get_template_part('/theme-parts/modules/breadcrumbs');
                                 <?php endif;?>
                             </div>
                             <div class="banner-casino__cta-text">
-                                <?php get_template_part("/theme-parts/modules/post-info", null, ['hide_activities' => true, 'light' => true]) ?>
+                                <?php get_template_part("/theme-parts/modules/post-info", null, ['light' => true]) ?>
                             </div>
                         </div>
                         <?php
