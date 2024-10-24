@@ -95,18 +95,21 @@
   &__cta {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 24px;
     margin-top: 32px;
+    width: 100%;
   }
 
-  &__cta-text {
-    display: flex;
-    flex-direction: column;
-    padding-left: 32px;
-    border-left: 1px solid #9a9b9e;
+  &__cta-button {
+    flex: 1 1 100%;
+    width: 100%;
 
-    span {
+    .button {
+      width: 100%;
+    }
+    .notice {
       display: block;
+      text-align: center;
       margin-top: 10px;
       color: #9197af;
       font-family: Hind, sans-serif;
@@ -117,10 +120,13 @@
     }
   }
 
-  &__button {
-    max-width: 330px;
-    width: 100%;
+  &__cta-text {
+    display: flex;
+    flex-direction: column;
+    padding-left: 32px;
+    border-left: 1px solid #9a9b9e;
   }
+
 
   @include mixins.bp(l) {
     flex-direction: column;
@@ -137,28 +143,17 @@
     }
   }
 
-  @include mixins.bp(m) {
+  @include mixins.bp(500px) {
     &__cta {
       flex-direction: column;
-      gap: 12px;
     }
 
     &__cta-text {
-      flex-direction: row;
-      align-items: center;
-      gap: 16px;
-      padding: 0;
-      border: none;
-
-      span {
-        margin-top: 0;
-      }
+      padding: 20px 0 0;
+      border-left: none;
+      border-top: 1px solid #9a9b9e;
     }
   }
 
-  @include mixins.bp(s) {
-    &__cta-text {
-      flex-direction: column;
-    }
-  }
+
 }
