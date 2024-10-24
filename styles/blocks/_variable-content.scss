@@ -64,11 +64,11 @@
   }
 
   a {
-    color: inherit;
-    text-decoration: underline;
+    color: variables.$action-color;
+    text-decoration: none;
 
     &:hover {
-      text-decoration: none;
+      text-decoration: underline;
     }
   }
 
