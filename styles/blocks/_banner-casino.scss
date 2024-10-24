@@ -161,4 +161,10 @@
       flex-direction: column;
     }
   }
+
+  @include mixins.bp(variables.$small-mobile-breakpoint) {
+    &__title {
+      font-size: variables.$font-size-title-s;
+    }
+  }
 }
