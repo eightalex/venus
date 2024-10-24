@@ -2,7 +2,7 @@
 extract($args); // tag: string, show_activities: boolean, light: boolean
 
 $main_tag            = $tag ? $tag : 'div';
-$light_class        = isset($light) && $light ? '_light' : '';
+$light_class         = isset($light) && $light ? '_light' : '';
 $author_id           = get_the_author_meta("ID");
 $author_link         = get_author_posts_url($author_id);
 $author_info         = apply_filters('ud_get_author_infos', $author_id);
