@@ -1302,7 +1302,7 @@ function ud_custon_fields() {
     ];
 
     $shortcodes_codex = "You can use: [print_quote text='*Text' author_name='*Author Name'] and [author_annatation text='*Text' rating='* 0-9' author_id='int (optional)' author_role='*Role (optional)']";
-
+    $today_date = date('Y-m-d');
     Container::make( 'post_meta', 'App banner')
         // ->where('post_type', '=', 'post')
         // ->or_where('post_type', '=', 'page')
@@ -1963,7 +1963,42 @@ function ud_custon_fields() {
                         ))
                 ))
         ));
-
+    Container::make('term_meta', "Dates and Author")
+        ->where('term_taxonomy', '=', 'category')->add_fields(
+            array(
+                Field::make('separator', 'dates_and_author', 'Dates and Author'),
+                Field::make('date', 'published_date', 'Published date')
+                    ->set_width(100)
+                    ->set_default_value($today_date),
+                Field::make('checkbox', 'modify_updated_date', 'Change updated date')
+                    ->set_width(20),
+                Field::make('date', 'updated_date', 'Updated date')
+                    ->set_width(50)
+                    ->set_default_value($today_date)
+                    ->set_conditional_logic( array(
+                        array(
+                            'field'     => 'modify_updated_date',
+                            'value'     => true,
+                            'compare'   => '=',
+                        )
+                    ) ),
+                Field::make('text', 'updated_date_auto', 'Updated date (auto)')
+                    ->set_width(50)
+                    ->set_attribute('readOnly', true)
+                    ->set_default_value($today_date)
+                    ->set_conditional_logic( array(
+                        array(
+                            'field'     => 'modify_updated_date',
+                            'value'     => false,
+                            'compare'   => '=',
+                        )
+                    ) ),
+                Field::make('select', 'author_id', 'Author')
+                    ->set_default_value('1')
+                    ->set_width(100)
+                    ->set_options(ud_get_authors())
+            )
+        );
     Container::make( 'theme_options', __('Additional theme options') )
         ->add_fields( array(
             Field::make('separator', 'defpgsopt', __('Default pages settings'))
@@ -1993,6 +2028,10 @@ function ud_custon_fields() {
                 ->set_help_text('Enter the text for the button'),
         ));
 }
+
+add_action('carbon_fields_term_meta_container_saved', function($term_id) {
+    carbon_set_term_meta($term_id, 'updated_date_auto', date('Y-m-d'));
+});
 
 add_filter('the_content', 'add_carbon_fields_content_to_post', 20);
 
