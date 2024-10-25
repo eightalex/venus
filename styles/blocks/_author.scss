@@ -1,4 +1,5 @@
 @use "../mixins";
+@use "../variables";
 
 .author {
   display: flex;
@@ -101,6 +102,12 @@
 
     &__title {
       margin-top: 10px;
+    }
+  }
+
+  @include mixins.bp(variables.$small-mobile-breakpoint) {
+    &__name {
+      font-size: variables.$font-size-title-s;
     }
   }
 }
