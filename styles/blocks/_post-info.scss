@@ -9,6 +9,7 @@
     row-gap: 25px;
     column-gap: 75px;
     color: #fff;
+    text-shadow: 2px 2px 0 #2d2b39, 0 0 10px rgba(45, 43, 57, .3);
     font-family: Hind, sans-serif;
     font-size: 18px;
     font-style: normal;
@@ -17,6 +18,7 @@
 
 		&_light {
 			color: #A3A0A0;
+      text-shadow: none;
 		}
   }
   &__about {
