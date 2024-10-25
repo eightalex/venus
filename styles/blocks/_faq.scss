@@ -85,7 +85,7 @@
 
   @include mixins.bp(variables.$small-mobile-breakpoint) {
     &__question {
-      font-size: variables.$$font-size-subtitle-s;
+      font-size: variables.$font-size-subtitle-s;
     }
   }
 }
