@@ -7,7 +7,6 @@
   font-size: variables.$font-size-title-m;
   position: relative;
   padding: 1em;
-  min-height: 320px;
   border-radius: 16px;
   background: linear-gradient(266deg, #c285f8 0%, #c896f3 79.08%, #8c37d7 100%);
 
@@ -45,6 +44,7 @@
     &::after {
       right: 40px;
       background-image: url("#{variables.$images-url}/benefits/bg-2.svg");
+      background-position: right;
     }
   }
 
@@ -125,6 +125,7 @@
       top: -21px;
       left: 15px;
       height: 200px;
+      background-position: left;
     }
   
     &_clubs {
