@@ -11,9 +11,11 @@ $term_id		     = get_queried_object()->term_id;
 
 if (is_tax() || $term_id ) {
     $tax_content = carbon_get_term_meta($term_id, 'ud_cat_content');
-    $author = array_shift(array_filter($tax_content, function($part) {
+    $filtered_array = array_filter($tax_content, function($part) {
         return isset($part['_type']) && $part['_type'] === 'author';
-    }));
+    });
+
+    $author = array_shift($filtered_array);
     $cbn_published_date = strtotime(carbon_get_term_meta($term_id, 'published_date'));
     $cbn_updated_date = strtotime(carbon_get_term_meta($term_id, 'updated_date'));
     $cbn_updated_date_auto =strtotime(carbon_get_term_meta($term_id, 'updated_date_auto'));
