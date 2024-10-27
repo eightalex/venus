@@ -58,11 +58,9 @@ echo "<{$main_tag} class='post-info__container{$light_class}'>";
         <?php endif ?>
         <?php if ($post_published_date):?>
         <div class="post-info__date">
-            <?php if ($post_published_date) {?>
             <time datetime="<?php echo get_the_date('c') ?>">
                 <?php echo "Publisert: " . $post_published_date; ?>
             </time>
-            <?php }?>
             <?php if ($post_modified_date) {?>
             <time datetime="<?php echo get_the_modified_date('c') ?>">
                 <?php echo "Oppdatert: " . $post_modified_date; ?>

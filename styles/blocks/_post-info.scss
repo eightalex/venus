@@ -16,10 +16,10 @@
     font-weight: 500;
     line-height: normal;
 
-		&_light {
-			color: #A3A0A0;
+    &_light {
+      color: #A3A0A0;
       text-shadow: none;
-		}
+    }
   }
   &__about {
     display: flex;
@@ -33,7 +33,7 @@
     align-items: center;
     gap: 16px;
     text-decoration: none;
-		color: inherit;
+    color: inherit;
 
     &:hover {
       opacity: 0.8;
@@ -46,7 +46,7 @@
     height: 50px;
     border-radius: 100px;
     background-color: #fff;
-		color: #000;
+    color: #000;
 
     img {
       object-fit: cover;
@@ -57,7 +57,7 @@
 
   &__name {
     display: block;
-		color: inherit;
+    color: inherit;
     font: inherit;
   }
 
@@ -70,7 +70,7 @@
 
     time {
       min-width: max-content;
-			font-size: 16px;
+      font-size: 16px;
     }
   }
 
