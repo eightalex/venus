@@ -7,6 +7,7 @@ $read_review_txt    = !empty(get_option('games_read_review_title'))? get_option(
 <section class="section section_bg section_bg_6">
     <div class="container">
         <div class="section__inner">
+        <?php  get_template_part('/theme-parts/modules/characteristic-table'); ?>
             <div class="content">
                 <main class="content__main">
                     <div class="variable-content">
