@@ -1273,7 +1273,17 @@ add_action( 'carbon_fields_register_fields', 'ud_custon_fields' );
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 
+$custom_field_dates_taxonomy = [
+    'category' => 'category',
+    'casino-category' => 'casino-category',
+    'game-category' => 'game-category',
+    'vendor' => 'vendor',
+    'bonus-category' => 'bonus-category'
+];
+
 function ud_custon_fields() {
+    global $custom_field_dates_taxonomy;
+
     $labels = [
         'sections' => [
             'singular_name' => __('Section'),
@@ -1302,7 +1312,7 @@ function ud_custon_fields() {
     ];
 
     $shortcodes_codex = "You can use: [print_quote text='*Text' author_name='*Author Name'] and [author_annatation text='*Text' rating='* 0-9' author_id='int (optional)' author_role='*Role (optional)']";
-
+    
     Container::make( 'post_meta', 'App banner')
         // ->where('post_type', '=', 'post')
         // ->or_where('post_type', '=', 'page')
@@ -1963,7 +1973,40 @@ function ud_custon_fields() {
                         ))
                 ))
         ));
-
+    Container::make('term_meta', "Taxonomy Date")
+        ->where('term_taxonomy', '=', $custom_field_dates_taxonomy['category'])
+        ->or_where('term_taxonomy', '=', $custom_field_dates_taxonomy['casino-category'])
+        ->or_where('term_taxonomy', '=', $custom_field_dates_taxonomy['game-category'])
+        ->or_where('term_taxonomy', '=', $custom_field_dates_taxonomy['vendor'])
+        ->or_where('term_taxonomy', '=', $custom_field_dates_taxonomy['bonus-category'])
+        ->add_fields(
+            array(
+                Field::make('separator', 'dates_and_author', 'Taxonomy Date'),
+                Field::make('date', 'published_date', 'Published date')
+                    ->set_width(100),
+                Field::make('checkbox', 'modify_updated_date', 'Change updated date')
+                    ->set_width(20),
+                Field::make('date', 'updated_date', 'Updated date')
+                    ->set_width(50)
+                    ->set_conditional_logic( array(
+                        array(
+                            'field'     => 'modify_updated_date',
+                            'value'     => true,
+                            'compare'   => '=',
+                        )
+                    ) ),
+                Field::make('text', 'updated_date_auto', 'Updated date (auto)')
+                    ->set_width(50)
+                    ->set_attribute('readOnly', true)
+                    ->set_conditional_logic( array(
+                        array(
+                            'field'     => 'modify_updated_date',
+                            'value'     => false,
+                            'compare'   => '=',
+                        )
+                    ) ),
+            )
+        );
     Container::make( 'theme_options', __('Additional theme options') )
         ->add_fields( array(
             Field::make('separator', 'defpgsopt', __('Default pages settings'))
@@ -1993,6 +2036,25 @@ function ud_custon_fields() {
                 ->set_help_text('Enter the text for the button'),
         ));
 }
+
+add_action('carbon_fields_term_meta_container_saved', function($term_id) {
+    global $custom_field_dates_taxonomy;
+    $date_format = 'Y-m-d';
+    $taxonomy = get_term($term_id)->taxonomy;
+    
+    if ($custom_field_dates_taxonomy[$taxonomy]) {
+        $saved_published_date = get_the_date($date_format);
+        $today_date = date($date_format);
+        $published_date = carbon_get_term_meta($term_id, 'published_date');
+
+        if (!$published_date) {
+            $published_date_value = $saved_published_date ? $saved_published_date : $today_date;
+            carbon_set_term_meta($term_id, 'published_date', $published_date_value);
+        }
+
+        carbon_set_term_meta($term_id, 'updated_date_auto', $today_date);
+    }
+});
 
 add_filter('the_content', 'add_carbon_fields_content_to_post', 20);
 
