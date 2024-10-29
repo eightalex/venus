@@ -1336,6 +1336,15 @@ function ud_custon_fields() {
                 <% } %>    
                 ')
         ));
+    Container::make('post_meta', 'Slot Demo Mode')
+        ->where('post_type', '=', 'game')
+        ->add_fields(array(
+            Field::make('text', 'slot_demo_mode_url', 'Slot Demo Mode URL')
+                ->set_width(100),
+            Field::make('textarea', 'slot_demo_subtitle', 'Subtitle')
+                ->set_width(100)
+                ->set_default_value('Spillet gratis i demoversjon eller spill for ekte penger hos et av våre anbefalte casinoer!')
+        ));
     Container::make( 'post_meta', 'App banner')
         // ->where('post_type', '=', 'post')
         // ->or_where('post_type', '=', 'page')
