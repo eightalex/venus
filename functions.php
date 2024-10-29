@@ -1316,11 +1316,12 @@ function ud_custon_fields() {
     ];
 
     $shortcodes_codex = "You can use: [print_quote text='*Text' author_name='*Author Name'] and [author_annatation text='*Text' rating='* 0-9' author_id='int (optional)' author_role='*Role (optional)']";
+    
     Container::make('post_meta', 'Table of characteristics')
         ->where('post_type', '=', 'game')
         ->add_fields(array(
             Field::make('text', 'characteristics_title', 'Characteristics title')
-                ->set_default_value('Egenskaper for spilleautomater')
+                ->set_default_value('Egenskaper for <em>spilleautomater</em>')
                 ->set_width(100),
             Field::make('complex', 'characteristics_attributes', 'Characteristics')
                 ->set_collapsed(true)
