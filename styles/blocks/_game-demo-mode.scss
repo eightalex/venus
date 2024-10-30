@@ -1,60 +1,98 @@
 @use '../variables';
 
 .game-demo-mode {
-	border: 1px solid #5A5A5A;
-	background-color: variables.$dark-grey-2;
-	border-radius: 16px;
-	color: #fff;
-	font-size: variables.$font-size-title-s;
-	margin-bottom: 1.25em;
-	padding: 20px;
+  $parent: &;
 
-	&__container {
-		max-width: 500px;
-		margin: 0 auto;
-		text-align: center;
-	}
+  border: 1px solid #5A5A5A;
+  background-color: variables.$dark-grey-2;
+  border-radius: 16px;
+  color: #fff;
+  font-size: variables.$font-size-title-s;
+  margin-bottom: 1.25em;
+  padding: 20px;
 
-	&__image {
-		border-radius: 16px;
-		width: 100%;
-		max-width: 400px;
-		aspect-ratio: 5/3;
-		object-fit: cover;
-	}
+  &__iframe-wrapper {
+    display: none;
+    position: relative;
+    margin-bottom: 20px;
 
-	&__title {
-		margin: 0.5em 0;
-		font-size: 1em;
-	}
+    #game-demo-mode-close {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      border: none;
+      background-color: red;
+      width: 30px;
+      height: 30px;
+      border-radius: 30px;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+  }
 
-	&__subtitle {
-		font-size: 0.75em;
-		margin: 0.75em 0 1em;
-	}
+  &.show-demo {
+    #{$parent} {
+      &__iframe-wrapper {
+        display: block;
+      }
+      &__image, &__title, &__subtitle {
+        display: none;
+      }
+    }
+    #game-demo-mode__demo-btn {
+      display: none;
+    }
+  }
 
-	&__actions {
-		margin-bottom: 0.75em;
-		max-width: 455px;
-		width: 100%;
-		display: flex;
-		gap: 0.4em;
-		justify-content: center;
+  &__container {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+  }
 
-		.button {
-			flex: 1 1 100%;
-		}
-	}
+  &__image {
+    border-radius: 16px;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 5/3;
+    object-fit: cover;
+  }
 
-	&__notice {
-		display: inline-block;
-		margin: 0;
-		font-size: 0.58em;
-		line-height: 1.28;
-		color: variables.$light-grey;
-		font-family: variables.$font-secondary;
-		* {
-			margin: 0;
-		}
-	}
+  &__title {
+    margin: 0.5em 0;
+    font-size: 1em;
+  }
+
+  &__subtitle {
+    font-size: 0.75em;
+    margin: 0.75em 0 1em;
+  }
+
+  &__actions {
+    margin-bottom: 0.75em;
+    max-width: 455px;
+    width: 100%;
+    display: flex;
+    gap: 0.4em;
+    justify-content: center;
+
+    .button {
+      flex: 1 1 100%;
+    }
+  }
+
+  &__notice {
+    display: inline-block;
+    margin: 0;
+    font-size: 0.58em;
+    line-height: 1.28;
+    color: variables.$light-grey;
+    font-family: variables.$font-secondary;
+    * {
+      margin: 0;
+    }
+  }
 }

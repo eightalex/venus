@@ -7,12 +7,23 @@ $post_image_data  = apply_filters('ud_get_file_data', $post_image_id);
 $button_play_txt  = get_post_meta( $post_id, 'game_button_title', true );
 $button_play_link = get_post_meta( $post_id, 'game_external_link', true );
 $demo_notice      = get_post_meta($post_id, 'unit_detailed_tc', true);
+$demo_url         = carbon_get_post_meta($post_id, 'slot_demo_mode_url');
 
 // die(print_r($post_image_data));
+if ($demo_url):
 ?>
 
-<div class="game-demo-mode">
-    <div class="game-demo-mode__container">
+<div class="game-demo-mode" id="game-demo-mode-container">
+    <div class="game-demo-mode__iframe-wrapper" 
+        id="game-demo-mode-iframe-wrapper" 
+        data-demo-src="<?php echo esc_url($demo_url) ?>"
+    >
+        <button id="game-demo-mode-close">
+            <span class="bx-next dashicons dashicons-no-alt"></span>
+        </button>
+    </div>
+    <div class="game-demo-mode__container" id="game-demo-mode__container">
+       
         <?php if ($post_image_data && $post_image_data['src']): ?>
             <img 
             class="game-demo-mode__image" 
@@ -42,3 +53,4 @@ $demo_notice      = get_post_meta($post_id, 'unit_detailed_tc', true);
         <?php endif ?>
     </div>
 </div>
+<?php endif ?>
