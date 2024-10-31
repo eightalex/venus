@@ -2,7 +2,8 @@
 extract($args);
 
 $cas_args = [
-    'items_number'   => isset($content) && isset($content['cas_count'])? $content['cas_count']: 9,
+    'items_number' => isset($content) && isset($content['cas_count'])? $content['cas_count']: 9,
+    'order_by' => isset($content) && isset($content['cas_order_by']) ? $content['cas_order_by'] : ''
 ];
 
 $show_pagination = isset($content) && isset($content['cas_show_pagination']) ? $content['cas_show_pagination'] : false;
