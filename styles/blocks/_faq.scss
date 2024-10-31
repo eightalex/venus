@@ -71,4 +71,21 @@
     font-weight: 400;
     line-height: 128%; /* 20.48px */
   }
+
+  @include mixins.bp(m) {
+    &__question {
+      padding: 24px 16px;
+      font-size: 24px;
+    }
+
+    &__answer {
+      padding: 0 16px;
+    }
+  }
+
+  @include mixins.bp(variables.$small-mobile-breakpoint) {
+    &__question {
+      font-size: variables.$font-size-subtitle-s;
+    }
+  }
 }

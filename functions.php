@@ -1274,7 +1274,17 @@ add_action( 'carbon_fields_register_fields', 'ud_custon_fields' );
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 
+$custom_field_dates_taxonomy = [
+    'category' => 'category',
+    'casino-category' => 'casino-category',
+    'game-category' => 'game-category',
+    'vendor' => 'vendor',
+    'bonus-category' => 'bonus-category'
+];
+
 function ud_custon_fields() {
+    global $custom_field_dates_taxonomy;
+
     $labels = [
         'sections' => [
             'singular_name' => __('Section'),
@@ -1411,20 +1421,23 @@ function ud_custon_fields() {
                     Field::make('text', 'cas_title', __('Title'))
                         ->set_default_value('Top rated <em>casinos</em>')
                         ->set_width(50),
-                    // Field::make('image', 'cas_bg', __('Background'))
-                    //     ->set_value_type('url')
-                    //     ->set_width(25),
                     Field::make('textarea', 'cas_subtitle', __('Subtitle')),
                     Field::make('multiselect', 'cas_casionois', __('Select Casinos to show'))
                         ->add_options(ud_get_casinos_options())
-                        ->set_width(33),
+                        ->set_width(65),
                     Field::make('text', 'cas_count', __('Number of casinos to show'))
                         ->set_default_value(4)
                         ->set_attribute('type', 'number')
-                        ->set_width(33),
+                        ->set_width(15),
                     Field::make('checkbox', 'cas_show_pagination', __('Show pagination'))
                         ->set_default_value('yes')
-                        ->set_width(33),
+                        ->set_width(10),
+                    Field::make('checkbox', 'casino_card_v2', __('Card version 2'))
+                        ->set_default_value('no')
+                        ->set_width(10),
+                    // Field::make('image', 'cas_bg', __('Background'))
+                    //     ->set_value_type('url')
+                    //     ->set_width(25),
                     // Field::make('select', 'cas_order_by', __('Order by'))
                     //     ->set_width(33)
                     //     ->add_options(array(
@@ -1615,6 +1628,20 @@ function ud_custon_fields() {
             Field::make('textarea', 'intro_text', 'Intro')
         ));
 
+    Container::make( 'post_meta', 'Promotional Description V2' )
+        ->where('post_type', '=', 'casino')
+        ->add_fields(array(
+            Field::make('text', 'promo_text_title', __('Title'))
+                ->set_width(25),
+            Field::make('text', 'promo_text_price', __('Price'))
+                ->set_width(25),
+            Field::make('text', 'promo_text_price_2', __('Price (second line)'))
+                ->help_text('(Optional)')
+                ->set_width(25),
+            Field::make('text', 'promo_text_subtitle', __('Subtitle'))
+                ->set_width(25),
+        ));
+
     Container::make( 'post_meta', __('Additional settings'))
         ->where('post_type', '=', 'bonus')
         ->or_where('post_type', '=', 'game')
@@ -1780,7 +1807,7 @@ function ud_custon_fields() {
                         ->set_default_value(4)
                         ->set_attribute('type', 'number')
                         ->set_width(33),
-                    Field::make('checkbox', 'cas_show_pagination', __('Show pagination'))
+                    Field::make('checkbox', 'cas_show_pagination', __('Show pagination 1'))
                         ->set_default_value('yes')
                         ->set_width(33),
                     // Field::make('select', 'cas_order_by', __('Order by'))
@@ -1964,7 +1991,40 @@ function ud_custon_fields() {
                         ))
                 ))
         ));
-
+    Container::make('term_meta', "Taxonomy Date")
+        ->where('term_taxonomy', '=', $custom_field_dates_taxonomy['category'])
+        ->or_where('term_taxonomy', '=', $custom_field_dates_taxonomy['casino-category'])
+        ->or_where('term_taxonomy', '=', $custom_field_dates_taxonomy['game-category'])
+        ->or_where('term_taxonomy', '=', $custom_field_dates_taxonomy['vendor'])
+        ->or_where('term_taxonomy', '=', $custom_field_dates_taxonomy['bonus-category'])
+        ->add_fields(
+            array(
+                Field::make('separator', 'dates_and_author', 'Taxonomy Date'),
+                Field::make('date', 'published_date', 'Published date')
+                    ->set_width(100),
+                Field::make('checkbox', 'modify_updated_date', 'Change updated date')
+                    ->set_width(20),
+                Field::make('date', 'updated_date', 'Updated date')
+                    ->set_width(50)
+                    ->set_conditional_logic( array(
+                        array(
+                            'field'     => 'modify_updated_date',
+                            'value'     => true,
+                            'compare'   => '=',
+                        )
+                    ) ),
+                Field::make('text', 'updated_date_auto', 'Updated date (auto)')
+                    ->set_width(50)
+                    ->set_attribute('readOnly', true)
+                    ->set_conditional_logic( array(
+                        array(
+                            'field'     => 'modify_updated_date',
+                            'value'     => false,
+                            'compare'   => '=',
+                        )
+                    ) ),
+            )
+        );
     Container::make( 'theme_options', __('Additional theme options') )
         ->add_fields( array(
             Field::make('separator', 'defpgsopt', __('Default pages settings'))
@@ -1994,6 +2054,25 @@ function ud_custon_fields() {
                 ->set_help_text('Enter the text for the button'),
         ));
 }
+
+add_action('carbon_fields_term_meta_container_saved', function($term_id) {
+    global $custom_field_dates_taxonomy;
+    $date_format = 'Y-m-d';
+    $taxonomy = get_term($term_id)->taxonomy;
+
+    if ($custom_field_dates_taxonomy[$taxonomy]) {
+        $saved_published_date = get_the_date($date_format);
+        $today_date = date($date_format);
+        $published_date = carbon_get_term_meta($term_id, 'published_date');
+
+        if (!$published_date) {
+            $published_date_value = $saved_published_date ? $saved_published_date : $today_date;
+            carbon_set_term_meta($term_id, 'published_date', $published_date_value);
+        }
+
+        carbon_set_term_meta($term_id, 'updated_date_auto', $today_date);
+    }
+});
 
 add_filter('the_content', 'add_carbon_fields_content_to_post', 20);
 

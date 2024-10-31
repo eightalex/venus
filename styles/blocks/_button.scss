@@ -1,4 +1,6 @@
 .button {
+  $this: &;
+
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -30,6 +32,15 @@
     background-color: #f5509d;
   }
 
+  &:link {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  &:visited {
+    color: #fff;
+  }
+
   &_outline {
     border: 1px solid var(--Red, #f5509d);
     background-color: transparent;
@@ -45,12 +56,41 @@
     }
   }
 
-  &:link {
-    color: #fff;
-    text-decoration: none;
-  }
+  &_v2 {
+    background: #e3f666;
+    box-shadow: 0 0 20px 0 rgba(227, 246, 102, 0.25);
 
-  &:visited {
-    color: #fff;
+    color: #000;
+
+    &:hover {
+      background: #ecff9c;
+    }
+
+    &:active {
+      background: #e3f666;
+    }
+
+    &:link {
+      color: #000;
+    }
+
+    &:visited {
+      color: #000;
+    }
+
+    &#{$this}_outline {
+      border: 1px solid #e3f666;
+      background-color: transparent;
+
+      color: #fff;
+
+      &:hover {
+        background-color: rgba(#e3f666, 0.1);
+      }
+
+      &:active {
+        background-color: transparent;
+      }
+    }
   }
 }
