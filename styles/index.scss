@@ -25,6 +25,7 @@
 @use "blocks/game-card";
 @use "blocks/bonus-card";
 @use "blocks/casino-card";
+@use "blocks/casino-card-v2";
 @use "blocks/form-reply";
 @use "blocks/faq";
 @use "blocks/author";
@@ -57,4 +58,5 @@
 @use "blocks/search-form-mobile";
 @use "blocks/date-inline";
 @use "blocks/float-bar";
-@use "blocks/post-info"
+@use "blocks/info-tooltip";
+@use "blocks/post-info";
