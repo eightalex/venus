@@ -152,8 +152,9 @@ function ud_print_single_game(array $data){
     $play_btn_txt   = !empty(get_option('games_play_now_title'))? get_option('games_play_now_title'): 'Play now';
 
     if(!empty($short_desc)){
+        $trimmed_short_desc = wp_trim_words($short_desc, 15, '... <a class="game-card__subtitle_link" href="' . get_the_permalink() . '">les mer</a>');
         $desc = "<div class='game-card__subtitle'>
-                    {$short_desc}
+                    {$trimmed_short_desc}
                 </div>";
     }
 
