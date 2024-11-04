@@ -1309,10 +1309,43 @@ function ud_custon_fields() {
         'game_types' => [
             'singular_name' => __('Game Type'),
             'plural_name'   => __('Game Types'),
-        ]
+        ],
+        'characteristics' => [
+            'singular_name' => __('Attribute'),
+            'plural_name'   => __('Attributes'),
+        ],
     ];
 
     $shortcodes_codex = "You can use: [print_quote text='*Text' author_name='*Author Name'] and [author_annatation text='*Text' rating='* 0-9' author_id='int (optional)' author_role='*Role (optional)']";
+    
+    Container::make('post_meta', 'Table of characteristics')
+        ->where('post_type', '=', 'game')
+        ->add_fields(array(
+            Field::make('text', 'characteristics_title', 'Characteristics title')
+                ->set_default_value('Egenskaper for <em>spilleautomater</em>')
+                ->set_width(100),
+            Field::make('complex', 'characteristics_attributes', 'Characteristics')
+                ->set_collapsed(true)
+                ->setup_labels($labels['characteristics'])
+                ->add_fields(array(
+                    Field::make('text', 'attribute', __('Attribute'))->set_width(50),
+                    Field::make('text', 'attribute_value', __('Attribute value'))->set_width(50)
+                ))
+                ->set_header_template( '
+                <% if (attribute) { %>
+                    <%- attribute %>
+                <% } %>    
+                ')
+        ));
+    Container::make('post_meta', 'Slot Demo Mode')
+        ->where('post_type', '=', 'game')
+        ->add_fields(array(
+            Field::make('text', 'slot_demo_mode_url', 'Slot Demo Mode URL')
+                ->set_width(100),
+            Field::make('textarea', 'slot_demo_subtitle', 'Subtitle')
+                ->set_width(100)
+                ->set_default_value('Spillet gratis i demoversjon eller spill for ekte penger hos et av våre anbefalte casinoer!')
+        ));
 
     Container::make( 'post_meta', 'App banner')
         // ->where('post_type', '=', 'post')

@@ -1,0 +1,55 @@
+@use '../variables';
+@use '../mixins';
+
+.characteristic-table {
+  font-size: variables.$font-size-title-m;
+  &__title {
+    font-size: inherit;
+    margin-bottom: 1.1em;
+  }
+  &__container {
+    column-count: 2;
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-gap: 0.6em;
+    -moz-column-gap: 0.6em;
+    -webkit-column-gap: 0.6em;
+    margin-bottom: 1.1em;
+  }
+  &__table {
+    color: #fff;
+    margin: 0 auto;
+    width: 100%;
+    border-collapse: collapse;
+    
+
+    tr {
+      background-color: variables.$dark-grey;
+      font-size: 0.6em;
+
+      &:nth-child(2n) {
+        background-color: variables.$dark-grey-2;
+      }
+
+      td {
+        padding: 0.5em 1em;
+        
+        &:nth-child(2) {
+          text-align: right;
+          color: variables.$highlight-color;
+          text-transform: uppercase;
+          font-size: calc(1em - 2px);
+        }
+      }
+    }
+  }
+
+  @include mixins.bp(m) {
+    font-size: variables.$font-size-title-s;
+    &__container {
+      column-count: auto;
+      -moz-column-count: auto;
+      -webkit-column-count: auto;
+    }
+  }
+}
