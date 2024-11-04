@@ -8,6 +8,10 @@
   padding: 0;
   list-style: none;
 
+  &_col-1 {
+    grid-template-columns: auto;
+  }
+
   &_col-2 {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -20,6 +24,10 @@
   @include mixins.bp(1230px) {
     grid-template-columns: repeat(2, auto);
     justify-content: center;
+
+    &_col-1 {
+      grid-template-columns: auto;
+    }
 
     &_col-2 {
       grid-template-columns: auto;

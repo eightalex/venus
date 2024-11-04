@@ -10,9 +10,9 @@
     "about cta"
     "content content";
   grid-template-columns: 1fr 330px;
-  margin-top: 80px;
-  margin-bottom: 80px;
-  padding: 60px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  padding: 30px 40px;
   border-radius: 16px;
   background: linear-gradient(180deg, #0bb9f8 50.52%, #0a8ef2 100%);
 
@@ -65,10 +65,10 @@
   }
 
   &__price {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     color: #e3f666;
     font-family: Montserrat, sans-serif;
-    font-size: 48px;
+    font-size: variables.$font-size-title-l;
     font-style: normal;
     font-weight: 800;
     line-height: normal;
@@ -105,7 +105,7 @@
     span {
       display: flex;
       justify-content: center;
-      margin-top: 24px;
+      margin-top: 8px;
       color: #fff;
       text-align: center;
       font-family: Hind, sans-serif;
@@ -127,8 +127,8 @@
     z-index: 1;
     display: flex;
     gap: 40px;
-    margin-top: 32px;
-    padding: 32px;
+    margin-top: 16px;
+    padding: 24px;
     border-radius: 16px;
     background: #0a8ef2;
   }
@@ -137,7 +137,7 @@
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    padding: 28px 32px;
+    padding: 16px 20px;
     border-radius: 16px;
     background: variables.$action-color;
 
@@ -148,7 +148,7 @@
       color: #fff;
       text-align: center;
       font-family: Montserrat, sans-serif;
-      font-size: 56px;
+      font-size: 46px;
       font-style: normal;
       font-weight: 800;
       line-height: normal;
@@ -181,15 +181,11 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    column-gap: 80px;
-    row-gap: 24px;
+    column-gap: 60px;
+    row-gap: 16px;
     margin: 0;
     padding: 0;
     list-style: none;
-  }
-
-  &__item {
-
   }
 
   &__name {
@@ -204,7 +200,7 @@
   &__rating {
     display: flex;
     gap: 8px;
-    margin-top: 12px;
+    margin-top: 8px;
     width: 100%;
     height: 16px;
 

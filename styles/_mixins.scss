@@ -68,3 +68,11 @@
   height: 100%;
   background-image: url("#{variables.$images-url}/lights-1.webp");
 }
+
+@mixin text-link() {
+  color: variables.$action-color;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}

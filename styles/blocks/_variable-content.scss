@@ -64,12 +64,7 @@
   }
 
   a {
-    color: variables.$action-color;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
+    @include mixins.text-link();
   }
 
   table {
