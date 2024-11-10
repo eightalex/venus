@@ -1347,7 +1347,7 @@ function ud_custon_fields() {
     ];
 
     $shortcodes_codex = "You can use: [print_quote text='*Text' author_name='*Author Name'] and [author_annatation text='*Text' rating='* 0-9' author_id='int (optional)' author_role='*Role (optional)']";
-    
+
     Container::make( 'post_meta', 'App banner')
         // ->where('post_type', '=', 'post')
         // ->or_where('post_type', '=', 'page')
@@ -1451,7 +1451,34 @@ function ud_custon_fields() {
                     Field::make('multiselect', 'gs_games', __('Games'))
                         ->add_options(get_games_options_arr())
                 ))
-                ->add_fields('casino-card', __('Casinos'), getCasinoCardFields())
+                ->add_fields('casino-card', __('Casinos'), array(
+                    Field::make('text', 'cas_title', __('Title'))
+                        ->set_default_value('Top rated <em>casinos</em>')
+                        ->set_width(50),
+                    Field::make('textarea', 'cas_subtitle', __('Subtitle')),
+                    Field::make('multiselect', 'cas_casionois', __('Select Casinos to show'))
+                        ->add_options(ud_get_casinos_options())
+                        ->set_width(65),
+                    Field::make('text', 'cas_count', __('Number of casinos to show'))
+                        ->set_default_value(4)
+                        ->set_attribute('type', 'number')
+                        ->set_width(15),
+                    Field::make('checkbox', 'cas_show_pagination', __('Show pagination'))
+                        ->set_default_value('yes')
+                        ->set_width(10),
+                    Field::make('checkbox', 'casino_card_v2', __('Card version 2'))
+                        ->set_default_value('no')
+                        ->set_width(10),
+                    // Field::make('image', 'cas_bg', __('Background'))
+                    //     ->set_value_type('url')
+                    //     ->set_width(25),
+                    // Field::make('select', 'cas_order_by', __('Order by'))
+                    //     ->set_width(33)
+                    //     ->add_options(array(
+                    //         'date' => __('Date'),
+                    //         'name' => __('Name'),
+                    //     ))
+                ))
                 ->add_fields('faq', 'FAQ`s', array(
                     // Field::make('checkbox', 'faq_power', __('Include FAQ'))
                     //     ->set_default_value('yes')
@@ -1635,6 +1662,20 @@ function ud_custon_fields() {
             Field::make('textarea', 'intro_text', 'Intro')
         ));
 
+    Container::make( 'post_meta', 'Promotional Description V2' )
+        ->where('post_type', '=', 'casino')
+        ->add_fields(array(
+            Field::make('text', 'promo_text_title', __('Title'))
+                ->set_width(25),
+            Field::make('text', 'promo_text_price', __('Price'))
+                ->set_width(25),
+            Field::make('text', 'promo_text_price_2', __('Price (second line)'))
+                ->help_text('(Optional)')
+                ->set_width(25),
+            Field::make('text', 'promo_text_subtitle', __('Subtitle'))
+                ->set_width(25),
+        ));
+
     Container::make( 'post_meta', __('Additional settings'))
         ->where('post_type', '=', 'bonus')
         ->or_where('post_type', '=', 'game')
@@ -1785,7 +1826,31 @@ function ud_custon_fields() {
                     Field::make('multiselect', 'gs_games', __('Games'))
                         ->add_options(get_games_options_arr())
                 ))
-                ->add_fields('casino-card', __('Casinos'), getCasinoCardFields())
+                ->add_fields('casino-card', __('Casinos'), array(
+                    Field::make('text', 'cas_title', __('Title'))
+                        ->set_default_value('Top rated <em>casinos</em>')
+                        ->set_width(50),
+                    // Field::make('image', 'cas_bg', __('Background'))
+                    //     ->set_value_type('url')
+                    //     ->set_width(25),
+                    Field::make('textarea', 'cas_subtitle', __('Subtitle')),
+                    Field::make('multiselect', 'cas_casionois', __('Select Casinos to show'))
+                        ->add_options(ud_get_casinos_options())
+                        ->set_width(33),
+                    Field::make('text', 'cas_count', __('Number of casinos to show'))
+                        ->set_default_value(4)
+                        ->set_attribute('type', 'number')
+                        ->set_width(33),
+                    Field::make('checkbox', 'cas_show_pagination', __('Show pagination 1'))
+                        ->set_default_value('yes')
+                        ->set_width(33),
+                    // Field::make('select', 'cas_order_by', __('Order by'))
+                    //     ->set_width(33)
+                    //     ->add_options(array(
+                    //         'date' => __('Date'),
+                    //         'name' => __('Name'),
+                    //     ))
+                ))
                 ->add_fields('faq', 'FAQ`s', array(
                     // Field::make('checkbox', 'faq_power', __('Include FAQ'))
                     //     ->set_default_value('yes')
@@ -2028,7 +2093,7 @@ add_action('carbon_fields_term_meta_container_saved', function($term_id) {
     global $custom_field_dates_taxonomy;
     $date_format = 'Y-m-d';
     $taxonomy = get_term($term_id)->taxonomy;
-    
+
     if ($custom_field_dates_taxonomy[$taxonomy]) {
         $saved_published_date = get_the_date($date_format);
         $today_date = date($date_format);
