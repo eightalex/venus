@@ -85,6 +85,7 @@ if($casinos->have_posts()):
                         $promo_text_price      = carbon_get_post_meta($id, 'promo_text_price') ?: 'Temp text';
                         $promo_text_price_2    = carbon_get_post_meta($id, 'promo_text_price_2'); // optional
                         $promo_text_subtitle   = carbon_get_post_meta($id, 'promo_text_subtitle') ?: 'Temp text';
+                        $detailed_tc           = get_post_meta($id, 'casino_detailed_tc', true);
 
                         ?>
 
@@ -109,14 +110,9 @@ if($casinos->have_posts()):
                                         </div>
                                     </div>
                                     <div class="casino-card-v2__clarification">
-                                        <span>*New players only</span>
+                                        <span>*Kun nye spillere</span>
                                         <i class="info-tooltip">
-                                            <span>
-                                                New players only. Welcome Bonus - 100% bonus on your first deposit up to
-                                                €/$/£200 Unless otherwise stated. This bonus only applies for deposits of
-                                                €/$/£10 or higher! All you need to do is just deposit the money in your
-                                                website.com account and you will receive this bonus instantly!
-                                            </span>
+                                            <span><?= $detailed_tc ?></span>
                                         </i>
                                     </div>
                                 </div>
