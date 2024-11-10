@@ -362,16 +362,24 @@ function ud_get_casinos(array $atts){
         'post__not_in'   => isset($exclude_id_array)? $exclude_id_array: [],
         'post_status'    => 'publish',
         'order'          => 'DESC',
-        'orderby'        => 'meta_value_num',
-        'meta_key'       => 'casino_overall_rating',
-        'meta_query'     => [
-                                [
-                                    'key'    => 'casino_overall_rating',
-                                    'type'   => 'NUMERIC',
-                                    'compare' => 'EXISTS'
-                                ]
-                            ],
     ];
+
+    if (empty($order_by)) {
+        $args['orderby'] = 'post__in';
+    } else {
+        if ($order_by === 'rating') {
+            $args['orderby'] = 'meta_value_num';
+            $args['meta_key'] = 'casino_overall_rating';
+            $args['meta_query'] = [
+                [
+                    'key'    => 'casino_overall_rating',
+                    'type'   => 'NUMERIC',
+                    'compare' => 'EXISTS'
+                ]
+            ];
+        }
+    }
+
 
     if ( !empty( $category ) || isset($_GET['casinos-cat']) ) {
         if(!empty( $category )){
@@ -1284,6 +1292,33 @@ $custom_field_dates_taxonomy = [
 
 function ud_custon_fields() {
     global $custom_field_dates_taxonomy;
+
+    function getCasinoCardFields() {
+        return array(
+            Field::make('text', 'cas_title', __('Title'))
+                        ->set_default_value('Top rated <em>casinos</em>')
+                        ->set_width(50),
+            // Field::make('image', 'cas_bg', __('Background'))
+            //     ->set_value_type('url')
+            //     ->set_width(25),
+            Field::make('textarea', 'cas_subtitle', __('Subtitle')),
+            Field::make('multiselect', 'cas_casionois', __('Select Casinos to show'))
+                ->add_options(ud_get_casinos_options())
+                ->set_width(40),
+            Field::make('text', 'cas_count', __('Number of casinos to show'))
+                ->set_default_value(4)
+                ->set_attribute('type', 'number')
+                ->set_width(20),
+            Field::make('checkbox', 'cas_show_pagination', __('Show pagination'))
+                ->set_default_value('yes')
+                ->set_width(20),
+            Field::make('select', 'cas_order_by', __('Order by'))
+              ->set_width(20)
+              ->add_options(array(
+                '' => __('Default'),
+                'rating' => __('Rating'),
+            )));
+    }
 
     $labels = [
         'sections' => [
