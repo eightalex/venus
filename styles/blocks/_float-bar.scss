@@ -115,4 +115,13 @@
             min-width: auto;
         }
     }
+
+    @media (max-height: 590px) {
+        height: 90px;
+
+        &__logo  {
+            width: 70px;
+            height: 70px;
+        }
+    }
 }

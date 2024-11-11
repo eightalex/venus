@@ -37,6 +37,9 @@
     #{$parent} {
       &__iframe-wrapper {
         display: block;
+        & > iframe {
+          height: min(78vh, 600px);
+        }
       }
       &__image, &__title, &__subtitle {
         display: none;
