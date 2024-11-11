@@ -1293,33 +1293,6 @@ $custom_field_dates_taxonomy = [
 function ud_custon_fields() {
     global $custom_field_dates_taxonomy;
 
-    function getCasinoCardFields() {
-        return array(
-            Field::make('text', 'cas_title', __('Title'))
-                        ->set_default_value('Top rated <em>casinos</em>')
-                        ->set_width(50),
-            // Field::make('image', 'cas_bg', __('Background'))
-            //     ->set_value_type('url')
-            //     ->set_width(25),
-            Field::make('textarea', 'cas_subtitle', __('Subtitle')),
-            Field::make('multiselect', 'cas_casionois', __('Select Casinos to show'))
-                ->add_options(ud_get_casinos_options())
-                ->set_width(40),
-            Field::make('text', 'cas_count', __('Number of casinos to show'))
-                ->set_default_value(4)
-                ->set_attribute('type', 'number')
-                ->set_width(20),
-            Field::make('checkbox', 'cas_show_pagination', __('Show pagination'))
-                ->set_default_value('yes')
-                ->set_width(20),
-            Field::make('select', 'cas_order_by', __('Order by'))
-              ->set_width(20)
-              ->add_options(array(
-                '' => __('Default'),
-                'rating' => __('Rating'),
-            )));
-    }
-
     $labels = [
         'sections' => [
             'singular_name' => __('Section'),
@@ -1493,6 +1466,12 @@ function ud_custon_fields() {
                     Field::make('multiselect', 'cas_casionois', __('Select Casinos to show'))
                         ->add_options(ud_get_casinos_options())
                         ->set_width(65),
+                    Field::make('select', 'cas_order_by', __('Order by'))
+                        ->set_width(20)
+                        ->add_options(array(
+                            '' => __('Default'),
+                            'rating' => __('Rating'),
+                        )),
                     Field::make('text', 'cas_count', __('Number of casinos to show'))
                         ->set_default_value(4)
                         ->set_attribute('type', 'number')
@@ -1870,11 +1849,17 @@ function ud_custon_fields() {
                     Field::make('textarea', 'cas_subtitle', __('Subtitle')),
                     Field::make('multiselect', 'cas_casionois', __('Select Casinos to show'))
                         ->add_options(ud_get_casinos_options())
-                        ->set_width(33),
+                        ->set_width(50),
+                            Field::make('select', 'cas_order_by', __('Order by'))
+                        ->set_width(25)
+                        ->add_options(array(
+                            '' => __('Default'),
+                            'rating' => __('Rating'),
+                        )),
                     Field::make('text', 'cas_count', __('Number of casinos to show'))
                         ->set_default_value(4)
                         ->set_attribute('type', 'number')
-                        ->set_width(33),
+                        ->set_width(25),
                     Field::make('checkbox', 'cas_show_pagination', __('Show pagination 1'))
                         ->set_default_value('yes')
                         ->set_width(33),
