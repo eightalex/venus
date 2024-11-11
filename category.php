@@ -1,5 +1,7 @@
 <?php
 
+global $float_bar_casino_id;
+
 $ID 			    = get_queried_object()->term_id;
 $app_banner_img	    = intval(carbon_get_term_meta($ID, 'app_banner_img'));
 $app_banner_txt	    = carbon_get_term_meta($ID, 'app_banner_txt');
@@ -47,12 +49,17 @@ endif;
 								while($posts->have_posts()):
 									$posts->the_post();
 									$post_id 		= get_the_ID();
+                                    $is_first_post  = $posts->current_post === 0;
 									$th_id   		= get_post_thumbnail_id($post_id);
 									$th_data 		= apply_filters('ud_get_file_data', $th_id);
 									$th_src         = !empty($th_data) && !empty($th_data['src'])? $th_data['src']: 'https://via.placeholder.com/315x220';
 									$date_f         = 'F d, Y';
 									$date_c_m       = get_the_date($date_f, $post_id);
 									$excerpt        = get_the_excerpt($post_id);
+
+                                    if ($is_first_post) {
+                                        $float_bar_casino_id = $post_id;
+                                    }
 										?>
 										<div class="news-card">
 											<div class="news-card__image">

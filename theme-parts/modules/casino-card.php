@@ -1,6 +1,8 @@
 <?php
 extract($args);
 
+global $float_bar_casino_id;
+
 $cas_args = [
     'items_number' => isset($content) && isset($content['cas_count'])? $content['cas_count']: 9,
     'order_by' => isset($content) && isset($content['cas_order_by']) ? $content['cas_order_by'] : ''
@@ -87,6 +89,10 @@ if($casinos->have_posts()):
                         $promo_text_subtitle   = carbon_get_post_meta($id, 'promo_text_subtitle') ?: 'Temp text';
                         $detailed_tc           = get_post_meta($id, 'casino_detailed_tc', true);
 
+                        if ($is_first_casino) {
+                            $float_bar_casino_id = $id;
+                        }
+
                         ?>
 
                         <div class="casino-card-v2">
@@ -145,11 +151,16 @@ if($casinos->have_posts()):
                             $casinos->the_post();
 
                             $id                         = get_the_ID();
+                            $is_first_casino            = $casinos->current_post === 0;
                             $cas_img_id                 = get_post_thumbnail_id();
                             $cas_img_data               = apply_filters('ud_get_file_data', $cas_img_id);
                             $desc                       = get_post_meta($id, 'casino_short_desc', true);
                             $casino_overall_rating      = floatval(get_post_meta($id, 'casino_overall_rating', true));
                             $casino_external_link       = get_post_meta($id, 'casino_external_link', true);
+
+                            if ($is_first_casino) {
+                                $float_bar_casino_id = $id;
+                            }
 
                             $atts = [
                                 'title'             => get_the_title(),

@@ -1,5 +1,8 @@
 <?php
 
+global $float_bar_casino_id;
+$float_bar_casino_id = null;
+
 function filter_menu_item_classes( $classes ) {
     $classes[] = 'navigation__item';
     return $classes;
@@ -1352,7 +1355,7 @@ function ud_custon_fields() {
     ];
 
     $shortcodes_codex = "You can use: [print_quote text='*Text' author_name='*Author Name'] and [author_annatation text='*Text' rating='* 0-9' author_id='int (optional)' author_role='*Role (optional)']";
-    
+
     Container::make('post_meta', 'Table of characteristics')
         ->where('post_type', '=', 'game')
         ->add_fields(array(
