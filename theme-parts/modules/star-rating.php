@@ -10,11 +10,12 @@
  */
 extract($args);
 
-$number_of_stars = $number_of_stars ?: 10;
+$id = $id ?? '';
+$number_of_stars = $number_of_stars ?? 10;
 $width_of_star = 32;
 $pad = 8; // padding between stars
 $image_width = ($number_of_stars * $width_of_star) - $pad;
-$bg_stars = $bg_stars ? 'star-rating_with-bg' : '';
+$bg_stars = isset($bg_stars) && $bg_stars ? 'star-rating_with-bg' : '';
 
 ?>
 
@@ -43,7 +44,7 @@ $bg_stars = $bg_stars ? 'star-rating_with-bg' : '';
         <rect
             width="<?= $image_width ?>"
             height="24"
-            fill="<?= $bg_color ?: '#262c3a' ?>"
+            fill="<?= $bg_color ?? '#262c3a' ?>"
             mask="url(#starMask<?= $id ?>)"
         />
     </svg>
