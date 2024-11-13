@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initCategories();
     initSearch();
     initMobileMenu();
+    initDemoGame();
 });
 
 window.addEventListener('resize', () => {
@@ -114,4 +115,35 @@ function debounce(func, wait, immediate) {
         timeout = setTimeout(later, wait);
         if (callNow) func.apply(context, args);
     };
+}
+
+function initDemoGame() {
+    const demoButton = document.getElementById('game-demo-mode__demo-btn');
+    const closeDemoButton = document.getElementById('game-demo-mode-close');
+    const demoContainer = document.getElementById('game-demo-mode-container');
+    const showDemoClass = 'show-demo'
+
+    if (!demoButton) return;
+
+    demoButton.addEventListener("click", () => {       
+        const iframeWrapper = document.getElementById('game-demo-mode-iframe-wrapper');
+        const iframeElement = iframeWrapper.querySelector('iframe');
+
+        if (!iframeElement) {
+            const iframe = document.createElement('iframe')
+            iframe.src = iframeWrapper.dataset.demoSrc;
+            iframe.width = "100%";
+            iframe.height = "600px";
+
+            iframeWrapper.append(iframe);
+        }
+        demoContainer.classList.add(showDemoClass);
+        
+    })
+
+    if (!closeDemoButton) return;
+
+    closeDemoButton.addEventListener('click', () => {
+        demoContainer.classList.remove(showDemoClass)
+    })
 }

@@ -1,5 +1,8 @@
 <?php
 
+global $float_bar_casino_id;
+$float_bar_casino_id = null;
+
 function filter_menu_item_classes( $classes ) {
     $classes[] = 'navigation__item';
     return $classes;
@@ -80,11 +83,11 @@ function ud_register_post_types(){
 add_filter( 'comment_form_defaults', 'ud_customise_comment_fields');
 function ud_customise_comment_fields( $default ) {
     $default[ 'comment_field' ] = '<div class="form-reply__input input-label">
-                                <label for="comment" class="input-label__label">Comment*</label>
-                                <textarea id="comment" name="comment" class="input input_textarea" placeholder="Type your text here"></textarea>
+                                <label for="comment" class="input-label__label">Kommentar*</label>
+                                <textarea id="comment" name="comment" class="input input_textarea" placeholder="Skriv din tekst her"></textarea>
                             </div>';
     $default['class_submit'] = 'form-reply__button button';
-    $default['label_submit'] = 'Post Comment';
+    $default['label_submit'] = 'Post Kommentar';
     $default['submit_button' ] = '<button class="%3$s">%4$s</button>';
     $default['submit_field'] = '<div class="form-reply__cta">%1$s %2$s</div>';
 
@@ -152,8 +155,9 @@ function ud_print_single_game(array $data){
     $play_btn_txt   = !empty(get_option('games_play_now_title'))? get_option('games_play_now_title'): 'Play now';
 
     if(!empty($short_desc)){
+        $trimmed_short_desc = wp_trim_words($short_desc, 15, '... <a class="game-card__subtitle_link" href="' . get_the_permalink() . '">les mer</a>');
         $desc = "<div class='game-card__subtitle'>
-                    {$short_desc}
+                    {$trimmed_short_desc}
                 </div>";
     }
 
@@ -185,7 +189,7 @@ function ud_print_single_game(array $data){
                 {$desc}
                 {$ext_lnk}
                 <div class='game-card__info'>
-                    T&Cs Apply
+                    Regler og vilkår gjelder
                     {$bn}
 
                     {$unt_d}
@@ -361,16 +365,24 @@ function ud_get_casinos(array $atts){
         'post__not_in'   => isset($exclude_id_array)? $exclude_id_array: [],
         'post_status'    => 'publish',
         'order'          => 'DESC',
-        'orderby'        => 'meta_value_num',
-        'meta_key'       => 'casino_overall_rating',
-        'meta_query'     => [
-                                [
-                                    'key'    => 'casino_overall_rating',
-                                    'type'   => 'NUMERIC',
-                                    'compare' => 'EXISTS'
-                                ]
-                            ],
     ];
+
+    if (empty($order_by)) {
+        $args['orderby'] = 'post__in';
+    } else {
+        if ($order_by === 'rating') {
+            $args['orderby'] = 'meta_value_num';
+            $args['meta_key'] = 'casino_overall_rating';
+            $args['meta_query'] = [
+                [
+                    'key'    => 'casino_overall_rating',
+                    'type'   => 'NUMERIC',
+                    'compare' => 'EXISTS'
+                ]
+            ];
+        }
+    }
+
 
     if ( !empty( $category ) || isset($_GET['casinos-cat']) ) {
         if(!empty( $category )){
@@ -701,7 +713,7 @@ function print_single_bonus_card(array $data){
         $bonus_code_html = "<div class='bonus-card__gift-content'>
                                 <span></span>
                                 <span>{$bonus_code}</span>
-                                <span>Valid Until: {$df}</span>
+                                <span>Gyldig til: {$df}</span>
                             </div>";
 
     endif;
@@ -749,7 +761,7 @@ function print_single_bonus_card(array $data){
                 $external
 
                 <div class='bonus-card__info'>
-                    T&Cs Apply
+                    Regler og vilkår gjelder
                     $bn
 
                     $detailed_tc
@@ -1124,6 +1136,14 @@ function ud_print_casino($atts){
     return $html;
 }
 
+add_shortcode('year', "ud_set_present_year");
+function ud_set_present_year() {
+    if(is_admin()){
+        return;
+    }
+    return date("Y");
+}
+
 add_filter('ud_get_tax_posts_tags', 'ud_get_tax_posts_tags');
 function ud_get_tax_posts_tags($posts){
     $arr = [];
@@ -1265,7 +1285,18 @@ add_action( 'carbon_fields_register_fields', 'ud_custon_fields' );
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 
+$custom_field_dates_taxonomy = [
+    'category' => 'category',
+    'casino-category' => 'casino-category',
+    'game-category' => 'game-category',
+    'vendor' => 'vendor',
+    'bonus-category' => 'bonus-category'
+];
+
 function ud_custon_fields() {
+    global $custom_field_dates_taxonomy;
+
+
     $labels = [
         'sections' => [
             'singular_name' => __('Section'),
@@ -1290,10 +1321,43 @@ function ud_custon_fields() {
         'game_types' => [
             'singular_name' => __('Game Type'),
             'plural_name'   => __('Game Types'),
-        ]
+        ],
+        'characteristics' => [
+            'singular_name' => __('Attribute'),
+            'plural_name'   => __('Attributes'),
+        ],
     ];
 
     $shortcodes_codex = "You can use: [print_quote text='*Text' author_name='*Author Name'] and [author_annatation text='*Text' rating='* 0-9' author_id='int (optional)' author_role='*Role (optional)']";
+
+    Container::make('post_meta', 'Table of characteristics')
+        ->where('post_type', '=', 'game')
+        ->add_fields(array(
+            Field::make('text', 'characteristics_title', 'Characteristics title')
+                ->set_default_value('Egenskaper for <em>spilleautomater</em>')
+                ->set_width(100),
+            Field::make('complex', 'characteristics_attributes', 'Characteristics')
+                ->set_collapsed(true)
+                ->setup_labels($labels['characteristics'])
+                ->add_fields(array(
+                    Field::make('text', 'attribute', __('Attribute'))->set_width(50),
+                    Field::make('text', 'attribute_value', __('Attribute value'))->set_width(50)
+                ))
+                ->set_header_template( '
+                <% if (attribute) { %>
+                    <%- attribute %>
+                <% } %>    
+                ')
+        ));
+    Container::make('post_meta', 'Slot Demo Mode')
+        ->where('post_type', '=', 'game')
+        ->add_fields(array(
+            Field::make('text', 'slot_demo_mode_url', 'Slot Demo Mode URL')
+                ->set_width(100),
+            Field::make('textarea', 'slot_demo_subtitle', 'Subtitle')
+                ->set_width(100)
+                ->set_default_value('Spillet gratis i demoversjon eller spill for ekte penger hos et av våre anbefalte casinoer!')
+        ));
 
     Container::make( 'post_meta', 'App banner')
         // ->where('post_type', '=', 'post')
@@ -1402,26 +1466,29 @@ function ud_custon_fields() {
                     Field::make('text', 'cas_title', __('Title'))
                         ->set_default_value('Top rated <em>casinos</em>')
                         ->set_width(50),
-                    // Field::make('image', 'cas_bg', __('Background'))
-                    //     ->set_value_type('url')
-                    //     ->set_width(25),
                     Field::make('textarea', 'cas_subtitle', __('Subtitle')),
                     Field::make('multiselect', 'cas_casionois', __('Select Casinos to show'))
                         ->add_options(ud_get_casinos_options())
-                        ->set_width(33),
+                        ->set_width(65),
+                    Field::make('select', 'cas_order_by', __('Order by'))
+                        ->set_width(20)
+                        ->add_options(array(
+                            '' => __('Default'),
+                            'rating' => __('Rating'),
+                        )),
                     Field::make('text', 'cas_count', __('Number of casinos to show'))
                         ->set_default_value(4)
                         ->set_attribute('type', 'number')
-                        ->set_width(33),
+                        ->set_width(15),
                     Field::make('checkbox', 'cas_show_pagination', __('Show pagination'))
                         ->set_default_value('yes')
-                        ->set_width(33),
-                    // Field::make('select', 'cas_order_by', __('Order by'))
-                    //     ->set_width(33)
-                    //     ->add_options(array(
-                    //         'date' => __('Date'),
-                    //         'name' => __('Name'),
-                    //     ))
+                        ->set_width(50),
+                    Field::make('checkbox', 'casino_card_v2', __('Card version 2'))
+                        ->set_default_value('no')
+                        ->set_width(50),
+                    // Field::make('image', 'cas_bg', __('Background'))
+                    //     ->set_value_type('url')
+                    //     ->set_width(25),
                 ))
                 ->add_fields('faq', 'FAQ`s', array(
                     // Field::make('checkbox', 'faq_power', __('Include FAQ'))
@@ -1606,6 +1673,20 @@ function ud_custon_fields() {
             Field::make('textarea', 'intro_text', 'Intro')
         ));
 
+    Container::make( 'post_meta', 'Promotional Description V2' )
+        ->where('post_type', '=', 'casino')
+        ->add_fields(array(
+            Field::make('text', 'promo_text_title', __('Title'))
+                ->set_width(25),
+            Field::make('text', 'promo_text_price', __('Price'))
+                ->set_width(25),
+            Field::make('text', 'promo_text_price_2', __('Price (second line)'))
+                ->help_text('(Optional)')
+                ->set_width(25),
+            Field::make('text', 'promo_text_subtitle', __('Subtitle'))
+                ->set_width(25),
+        ));
+
     Container::make( 'post_meta', __('Additional settings'))
         ->where('post_type', '=', 'bonus')
         ->or_where('post_type', '=', 'game')
@@ -1766,20 +1847,20 @@ function ud_custon_fields() {
                     Field::make('textarea', 'cas_subtitle', __('Subtitle')),
                     Field::make('multiselect', 'cas_casionois', __('Select Casinos to show'))
                         ->add_options(ud_get_casinos_options())
-                        ->set_width(33),
+                        ->set_width(50),
+                    Field::make('select', 'cas_order_by', __('Order by'))
+                        ->set_width(20)
+                        ->add_options(array(
+                            '' => __('Default'),
+                            'rating' => __('Rating'),
+                        )),
                     Field::make('text', 'cas_count', __('Number of casinos to show'))
                         ->set_default_value(4)
                         ->set_attribute('type', 'number')
-                        ->set_width(33),
-                    Field::make('checkbox', 'cas_show_pagination', __('Show pagination'))
+                        ->set_width(30),
+                    Field::make('checkbox', 'cas_show_pagination', __('Show pagination 1'))
                         ->set_default_value('yes')
                         ->set_width(33),
-                    // Field::make('select', 'cas_order_by', __('Order by'))
-                    //     ->set_width(33)
-                    //     ->add_options(array(
-                    //         'date' => __('Date'),
-                    //         'name' => __('Name'),
-                    //     ))
                 ))
                 ->add_fields('faq', 'FAQ`s', array(
                     // Field::make('checkbox', 'faq_power', __('Include FAQ'))
@@ -1955,7 +2036,40 @@ function ud_custon_fields() {
                         ))
                 ))
         ));
-
+    Container::make('term_meta', "Taxonomy Date")
+        ->where('term_taxonomy', '=', $custom_field_dates_taxonomy['category'])
+        ->or_where('term_taxonomy', '=', $custom_field_dates_taxonomy['casino-category'])
+        ->or_where('term_taxonomy', '=', $custom_field_dates_taxonomy['game-category'])
+        ->or_where('term_taxonomy', '=', $custom_field_dates_taxonomy['vendor'])
+        ->or_where('term_taxonomy', '=', $custom_field_dates_taxonomy['bonus-category'])
+        ->add_fields(
+            array(
+                Field::make('separator', 'dates_and_author', 'Taxonomy Date'),
+                Field::make('date', 'published_date', 'Published date')
+                    ->set_width(100),
+                Field::make('checkbox', 'modify_updated_date', 'Change updated date')
+                    ->set_width(20),
+                Field::make('date', 'updated_date', 'Updated date')
+                    ->set_width(50)
+                    ->set_conditional_logic( array(
+                        array(
+                            'field'     => 'modify_updated_date',
+                            'value'     => true,
+                            'compare'   => '=',
+                        )
+                    ) ),
+                Field::make('text', 'updated_date_auto', 'Updated date (auto)')
+                    ->set_width(50)
+                    ->set_attribute('readOnly', true)
+                    ->set_conditional_logic( array(
+                        array(
+                            'field'     => 'modify_updated_date',
+                            'value'     => false,
+                            'compare'   => '=',
+                        )
+                    ) ),
+            )
+        );
     Container::make( 'theme_options', __('Additional theme options') )
         ->add_fields( array(
             Field::make('separator', 'defpgsopt', __('Default pages settings'))
@@ -1985,6 +2099,25 @@ function ud_custon_fields() {
                 ->set_help_text('Enter the text for the button'),
         ));
 }
+
+add_action('carbon_fields_term_meta_container_saved', function($term_id) {
+    global $custom_field_dates_taxonomy;
+    $date_format = 'Y-m-d';
+    $taxonomy = get_term($term_id)->taxonomy;
+
+    if ($custom_field_dates_taxonomy[$taxonomy]) {
+        $saved_published_date = get_the_date($date_format);
+        $today_date = date($date_format);
+        $published_date = carbon_get_term_meta($term_id, 'published_date');
+
+        if (!$published_date) {
+            $published_date_value = $saved_published_date ? $saved_published_date : $today_date;
+            carbon_set_term_meta($term_id, 'published_date', $published_date_value);
+        }
+
+        carbon_set_term_meta($term_id, 'updated_date_auto', $today_date);
+    }
+});
 
 add_filter('the_content', 'add_carbon_fields_content_to_post', 20);
 
@@ -2016,3 +2149,18 @@ function remove_author_body_class( $classes ) {
     }
     return $classes;
 }
+
+add_filter("the_title", "with_do_shortcode");
+add_filter("the_content", "with_do_shortcode");
+
+function with_do_shortcode($txt) {
+    if (is_admin()) {
+        return $txt;
+    }
+    return do_shortcode($txt);
+}
+
+add_filter('wpseo_breadcrumb_single_link_info', function ($link_info) {
+    $link_info['text'] = do_shortcode($link_info['text']);
+    return $link_info;
+});

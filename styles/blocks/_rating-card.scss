@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .rating-card {
   position: relative;
@@ -10,15 +10,15 @@
     "about cta"
     "content content";
   grid-template-columns: 1fr 330px;
-  margin-top: 80px;
-  margin-bottom: 80px;
-  padding: 60px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  padding: 30px 40px;
   border-radius: 16px;
   background: linear-gradient(180deg, #0bb9f8 50.52%, #0a8ef2 100%);
 
   &::before {
-    @include lights-bg();
-    @include horizontal-flip();
+    @include mixins.lights-bg();
+    @include mixins.horizontal-flip();
   }
 
   &::after {
@@ -30,7 +30,7 @@
     opacity: 0.24;
     width: 310px;
     height: 340px;
-    background-image: url("#{$images-url}/rating-card/heart.svg");
+    background-image: url("#{variables.$images-url}/rating-card/heart.svg");
     background-repeat: no-repeat;
     mix-blend-mode: color-burn;
   }
@@ -65,10 +65,10 @@
   }
 
   &__price {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     color: #e3f666;
     font-family: Montserrat, sans-serif;
-    font-size: 48px;
+    font-size: variables.$font-size-title-l;
     font-style: normal;
     font-weight: 800;
     line-height: normal;
@@ -105,7 +105,7 @@
     span {
       display: flex;
       justify-content: center;
-      margin-top: 24px;
+      margin-top: 8px;
       color: #fff;
       text-align: center;
       font-family: Hind, sans-serif;
@@ -127,8 +127,8 @@
     z-index: 1;
     display: flex;
     gap: 40px;
-    margin-top: 32px;
-    padding: 32px;
+    margin-top: 16px;
+    padding: 24px;
     border-radius: 16px;
     background: #0a8ef2;
   }
@@ -137,9 +137,9 @@
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    padding: 28px 32px;
+    padding: 16px 20px;
     border-radius: 16px;
-    background: #0baff7;
+    background: variables.$action-color;
 
     var {
       display: flex;
@@ -148,7 +148,7 @@
       color: #fff;
       text-align: center;
       font-family: Montserrat, sans-serif;
-      font-size: 56px;
+      font-size: 46px;
       font-style: normal;
       font-weight: 800;
       line-height: normal;
@@ -160,7 +160,7 @@
         display: inline-flex;
         width: 24px;
         height: 24px;
-        background-image: url("#{$images-url}/icons/star.svg");
+        background-image: url("#{variables.$images-url}/icons/star.svg");
         background-size: contain;
       }
     }
@@ -181,15 +181,11 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    column-gap: 80px;
-    row-gap: 24px;
+    column-gap: 60px;
+    row-gap: 16px;
     margin: 0;
     padding: 0;
     list-style: none;
-  }
-
-  &__item {
-
   }
 
   &__name {
@@ -204,7 +200,7 @@
   &__rating {
     display: flex;
     gap: 8px;
-    margin-top: 12px;
+    margin-top: 8px;
     width: 100%;
     height: 16px;
 
@@ -212,12 +208,12 @@
       display: inline-flex;
       width: 16px;
       height: 16px;
-      background-image: url("#{$images-url}/icons/star.svg");
+      background-image: url("#{variables.$images-url}/icons/star.svg");
       background-size: contain;
     }
   }
 
-  @include bp(1050px) {
+  @include mixins.bp(1050px) {
     padding: 24px 16px;
     grid-template-areas:
       "tags"
@@ -246,7 +242,7 @@
     }
   }
 
-  @include bp(m) {
+  @include mixins.bp(m) {
     &__button {
       padding-left: 40px;
       padding-right: 40px;

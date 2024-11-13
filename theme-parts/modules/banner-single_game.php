@@ -15,7 +15,6 @@ $button_notice      = get_post_meta( $id, 'game_button_notice', true );
 $button_title       = get_post_meta( $id, 'game_button_title', true );
 $def_btntxt         = !empty(get_option('games_play_now_title'))? get_option('games_play_now_title'): __('PLAY NOW');
 $btn_txt            = !empty($button_title)? $button_title: $def_btntxt;
-$date               = ucfirst(get_the_modified_date('F j, Y'));
 
 get_template_part('/theme-parts/modules/breadcrumbs');
 ?>
@@ -52,7 +51,7 @@ get_template_part('/theme-parts/modules/breadcrumbs');
                     if(!empty($short_desc)):
                         ?>
                         <div class="banner-casino__subtitle">
-                            <?php echo $short_desc?>
+                            <?php echo do_shortcode( $short_desc );?>
                         </div>
                         <?php
                     endif;
@@ -60,7 +59,7 @@ get_template_part('/theme-parts/modules/breadcrumbs');
                     if(!empty($unit_detailed)):
                         ?>
                         <div class="banner-casino__text">
-                            <?php echo $unit_detailed?>
+                            <?php echo do_shortcode( $unit_detailed );?>
                         </div>
                         <?php
                     endif;
@@ -68,18 +67,16 @@ get_template_part('/theme-parts/modules/breadcrumbs');
                     if(!empty($external)):
                         ?>
                         <div class="banner-casino__cta">
-                            <a rel='nofollow' href="<?php echo $external?>" class="button banner-casino__button"><?php echo $btn_txt?></a>
+                            <div class="banner-casino__cta-button">
+                                <a rel='nofollow' href="<?php echo $external?>" class="button banner-casino__button">
+                                    <?php echo do_shortcode( $btn_txt )?>
+                                </a>
+                                <?php if(!empty($button_notice)): ?>
+                                    <span class="notice"><?php echo do_shortcode( $button_notice );?></span>
+                                <?php endif;?>
+                            </div>
                             <div class="banner-casino__cta-text">
-                                <?php if(!empty($date) && !is_tax()): ?>
-                                    <time class="banner-casino__date date-inline date-inline_grey"><?php echo $date; ?></time>
-                                <?php endif; ?>
-                                <?php
-                                if(!empty($button_notice)):
-                                    ?>
-                                    <span><?php echo $button_notice?></span>
-                                <?php
-                                endif;
-                                ?>
+                                <?php get_template_part("/theme-parts/modules/post-info", null, ['light' => true]) ?>
                             </div>
                         </div>
                         <?php

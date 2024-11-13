@@ -1,3 +1,6 @@
+@use '../mixins';
+@use "../variables";
+
 .bonus-card {
   $this: &;
 
@@ -110,6 +113,10 @@
         font-size: 32px;
         font-weight: 800;
         text-transform: uppercase;
+        
+        @include mixins.bp(variables.$small-mobile-breakpoint) {
+          font-size: variables.$font-size-title-s;
+        }
       }
 
       &:nth-child(3) {
@@ -177,6 +184,26 @@
       &:link {
         color: inherit;
       }
+    }
+  }
+  @media (max-height: 590px) {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    &__header {
+      font-size: variables.$font-size-subtitle-s;
+      margin: 16px 0;
+    }
+    &__subtitle {
+      margin-top: 16px;
+    }
+    &__cta {
+      margin-top: 16px;
+    }
+    &__gift-content span:nth-child(2) {
+      font-size: variables.$font-size-title-s;
+    }
+    &__img {
+      width: 60px;
     }
   }
 }

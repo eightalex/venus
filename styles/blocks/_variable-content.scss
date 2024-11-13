@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .variable-content {
   display: flex;
@@ -64,12 +64,7 @@
   }
 
   a {
-    color: inherit;
-    text-decoration: underline;
-
-    &:hover {
-      text-decoration: none;
-    }
+    @include mixins.text-link();
   }
 
   table {
@@ -91,7 +86,7 @@
     border-radius: 16px;
   }
 
-  @include bp(m) {
+  @include mixins.bp(m) {
     h1 {
       font-size: 36px;
     }
@@ -107,6 +102,16 @@
       tbody {
         overflow-x: auto;
       }
+    }
+  }
+
+  @include mixins.bp(variables.$small-mobile-breakpoint) {
+    h1 {
+      font-size: variables.$font-size-title-s;
+    }
+
+    h2 {
+      font-size: variables.$font-size-subtitle-s;
     }
   }
 }

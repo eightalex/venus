@@ -113,4 +113,4 @@
 
 </div>
 
-<?php get_footer(); ?>
+<?php get_footer( null, [ 'id' => $ID, 'post_type' => $post_type ] ); ?>

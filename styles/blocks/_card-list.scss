@@ -1,4 +1,4 @@
-@import "../mixins";
+@use "../mixins";
 
 .card-list {
   display: grid;
@@ -7,6 +7,10 @@
   margin: 0;
   padding: 0;
   list-style: none;
+
+  &_col-1 {
+    grid-template-columns: auto;
+  }
 
   &_col-2 {
     grid-template-columns: repeat(2, 1fr);
@@ -17,9 +21,13 @@
     justify-items: center;
   }
 
-  @include bp(1230px) {
+  @include mixins.bp(1230px) {
     grid-template-columns: repeat(2, auto);
     justify-content: center;
+
+    &_col-1 {
+      grid-template-columns: auto;
+    }
 
     &_col-2 {
       grid-template-columns: auto;
@@ -30,7 +38,7 @@
     }
   }
 
-  @include bp(m) {
+  @include mixins.bp(m) {
     grid-template-columns: auto;
   }
 }

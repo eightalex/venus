@@ -14,7 +14,6 @@ $button_notice          = get_post_meta( $id, "{$post_type}_button_notice", true
 $restricted_countries   = wp_get_post_terms($id, 'restricted-country');
 $review_btn_txt         = !empty(get_option('casinos_read_review_title'))?get_option('casinos_read_review_title'): "Read Review";
 $external_link          = get_post_meta($id, 'casino_external_link', true);
-$date                   = ucfirst(get_the_modified_date('F j, Y'));
 // $has_country            = apply_filters('ud_has_object_with_property',$restricted_countries, 'name', 'Ukraine');
 // $has_country_str        = $has_country? __("Users from Ukraine accepted"): __("Users from Ukraine are not accepted");
 ?>
@@ -32,7 +31,7 @@ $date                   = ucfirst(get_the_modified_date('F j, Y'));
                     if(!empty($short_desc)):
                         ?>
                         <span>
-                            <?php echo $short_desc?>
+                            <?php echo do_shortcode( $short_desc );?>
                         </span>
                         <?php
                     endif;
@@ -45,24 +44,25 @@ $date                   = ucfirst(get_the_modified_date('F j, Y'));
             if(!empty($detailed_tc)):
             ?>
             <div class="card-top__text">
-                <?php echo $detailed_tc?>
+                <?php echo do_shortcode( $detailed_tc );?>
             </div>
             <?php
             endif;
             ?>
             <div class="card-top__cta">
-                <?php if(!empty($external_link)):
+                <div class="card-top__cta-button">
+                    <?php if(!empty($external_link)):
                     $btn_txt = !empty(get_post_meta($id, 'casino_button_title', true))? get_post_meta($id, 'casino_button_title', true):$review_btn_txt;
-                ?>
-                <a class="card-top__button button" href="<?php echo $external_link?>" targrt="_blank" rel="nofollow"><?php echo $btn_txt?></a>
-                <?php endif; ?>
-
-                <div class="card-top__cta-text">
-                    <?php if(!empty($date) && !is_tax()): ?>
-                        <time class="card-top__date date-inline"><?php echo $date; ?></time>
-                    <?php endif; if(!empty($button_notice)): ?>
-                        <span><?php echo $button_notice?></span>
+                    ?>
+                    <a class="card-top__button button" href="<?php echo $external_link?>" targrt="_blank" rel="nofollow"><?php echo $btn_txt?></a>
                     <?php endif; ?>
+                    
+                    <?php if(!empty($button_notice)): ?>
+                    <span class="notice"><?php echo do_shortcode( $button_notice );?></span>
+                    <?php endif; ?>
+                </div>
+                <div class="card-top__cta-text">
+                    <?php get_template_part("/theme-parts/modules/post-info", null, ['show_activities' => true]) ?>
                 </div>
             </div>
             <!-- <div class="card-top__info">

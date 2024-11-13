@@ -1,11 +1,11 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .section {
   $this: &;
   $horizontal-padding: 20px;
 
-  padding: $section-padding 0;
+  padding: variables.$section-padding 0;
   background-color: #262c3a;
 
   &--overlay {
@@ -18,16 +18,12 @@
     z-index: 1;
   }
 
-  &__header {
-
-  }
-
   &__title {
     margin: 0;
     color: #fff;
     text-align: center;
     font-family: Montserrat, sans-serif;
-    font-size: 48px;
+    font-size: variables.$font-size-title-l;
     font-style: normal;
     font-weight: 800;
     line-height: normal;
@@ -66,7 +62,7 @@
   }
 
   &__content {
-    margin-top: 80px;
+    margin-top: 45px;
   }
 
   &__overlay {
@@ -104,7 +100,7 @@
       width: 10000%;
       height: 1000%;
       transform: translateX(-50%) rotate(-25deg);
-      background-image: url("#{$images-url}/section/suits_3.svg");
+      background-image: url("#{variables.$images-url}/section/suits_3.svg");
       background-size: 520px;
       background-repeat: repeat;
       background-position: 0 0;
@@ -138,13 +134,13 @@
     &_1 {
       &::before {
         opacity: 0.32;
-        background-image: url("#{$images-url}/section/bg1.png");
+        background-image: url("#{variables.$images-url}/section/bg1.png");
       }
     }
 
     &_2 {
       &::before {
-        background-image: url("#{$images-url}/section/bg2.webp");
+        background-image: url("#{variables.$images-url}/section/bg2.webp");
       }
     }
 
@@ -162,13 +158,13 @@
 
     &_5 {
       &::before {
-        background-image: url("#{$images-url}/section/bg5.png");
+        background-image: url("#{variables.$images-url}/section/bg5.png");
       }
     }
 
     &_6 {
       &::before {
-        background-image: url("#{$images-url}/section/bg6.jpeg");
+        background-image: url("#{variables.$images-url}/section/bg6.jpeg");
       }
     }
 
@@ -177,7 +173,7 @@
 
       &::before {
         opacity: 1;
-        background-image: url("#{$images-url}/section/bg7.png");
+        background-image: url("#{variables.$images-url}/section/bg7.png");
         background-position: center;
         filter: none;
       }
@@ -288,8 +284,8 @@
         background: linear-gradient(180deg, #0bb9f8 50%, #0a8ef2 100%);
 
         &::before {
-          @include lights-bg();
-          @include horizontal-flip();
+          @include mixins.lights-bg();
+          @include mixins.horizontal-flip();
         }
       }
 
@@ -324,9 +320,9 @@
     padding: 0;
   }
 
-  @include bp($section-breakpoint) {
-    padding-top: $section-padding-mobile;
-    padding-bottom: $section-padding-mobile;
+  @include mixins.bp(variables.$section-breakpoint) {
+    padding-top: variables.$section-padding-mobile;
+    padding-bottom: variables.$section-padding-mobile;
 
     &_img {
       #{$this} {
@@ -380,7 +376,7 @@
     }
 
     &__title {
-      font-size: 36px;
+      font-size: variables.$font-size-title-m;
 
       &_s {
         font-size: 24px;
@@ -388,11 +384,17 @@
     }
 
     &__content {
-      margin-top: 60px;
+      margin-top: 35px;
     }
 
     &_p_0 {
       padding: 0;
+    }
+  }
+
+  @include mixins.bp(variables.$small-mobile-breakpoint) {
+    &__title {
+      font-size: variables.$font-size-title-s;
     }
   }
 }

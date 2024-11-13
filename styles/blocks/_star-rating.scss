@@ -1,5 +1,6 @@
-@import "../variables";
-@import "../mixins";
+@use "sass:math";
+@use "../variables";
+@use "../mixins";
 
 .star-rating {
   position: relative;
@@ -8,22 +9,37 @@
 
   svg {
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
 
-  &::before {
+  @mixin star-background {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 0;
-    width: 0;
     height: 100%;
     background-color: var(--star-rating-color, #e3f666);
   }
 
+  &::after {
+    @include star-background;
+
+    z-index: 1;
+    width: 100%;
+  }
+
+  &_with-bg {
+    &::before {
+      @include star-background;
+
+      z-index: 0;
+      opacity: 0.3;
+      width: 100%;
+    }
+  }
+
   @for $i from 1 through 100 {
-    &[data-rating^="#{$i/10}"]::before {
+    &[data-rating^="#{math.div($i, 10)}"]::after {
       width: $i * 1%;
     }
   }

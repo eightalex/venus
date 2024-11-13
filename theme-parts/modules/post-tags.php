@@ -12,7 +12,7 @@ if(empty($tags)){
                 <?php
                 foreach($tags as $tag):
                     ?>
-                    <div class="tag"><?php echo $tag->name?></div>
+                    <div class="tag"><?php echo do_shortcode( $tag->name )?></div>
                     <?php
                 endforeach;
                 ?>

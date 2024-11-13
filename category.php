@@ -1,5 +1,7 @@
 <?php
 
+global $float_bar_casino_id;
+
 $ID 			    = get_queried_object()->term_id;
 $app_banner_img	    = intval(carbon_get_term_meta($ID, 'app_banner_img'));
 $app_banner_txt	    = carbon_get_term_meta($ID, 'app_banner_txt');
@@ -47,12 +49,17 @@ endif;
 								while($posts->have_posts()):
 									$posts->the_post();
 									$post_id 		= get_the_ID();
+                                    $is_first_post  = $posts->current_post === 0;
 									$th_id   		= get_post_thumbnail_id($post_id);
 									$th_data 		= apply_filters('ud_get_file_data', $th_id);
 									$th_src         = !empty($th_data) && !empty($th_data['src'])? $th_data['src']: 'https://via.placeholder.com/315x220';
 									$date_f         = 'F d, Y';
 									$date_c_m       = get_the_date($date_f, $post_id);
 									$excerpt        = get_the_excerpt($post_id);
+
+                                    if ($is_first_post) {
+                                        $float_bar_casino_id = $post_id;
+                                    }
 										?>
 										<div class="news-card">
 											<div class="news-card__image">
@@ -108,15 +115,18 @@ endif;
                         <div class="content__sidebar-cards">
                             <?php
                                 foreach($sidebar_casionois as $casino_id):
-                                    $c_th_id   = get_post_thumbnail_id($casino_id);
-                                    $c_th_data                  = apply_filters('ud_get_file_data', $c_th_id);
-                                    $c_title                    = get_the_title($casino_id);
-                                    $c_desc                     = get_post_meta($casino_id, 'casino_short_desc', true);
-									$c_overall_rating           = floatval(get_post_meta($casino_id, 'casino_overall_rating', true));
-                                    $c_pemalink                 = get_the_permalink($casino_id);
-									$c_external_link            = get_post_meta($casino_id, 'casino_external_link', true);
-                                    $lb_txt                     = !empty(get_option('casinos_read_review_title'))? get_option('casinos_read_review_title'): 'Read review';
-                                    $elb_txt                    = !empty(get_option('casinos_play_now_title'))? get_option('casinos_play_now_title'): 'Play now';
+                                    if(get_post_type($casino_id) !== 'casino'){
+                                        continue;
+                                    }
+                                    $c_th_id          = get_post_thumbnail_id($casino_id);
+                                    $c_th_data        = apply_filters('ud_get_file_data', $c_th_id);
+                                    $c_title          = get_the_title($casino_id);
+                                    $c_desc           = get_post_meta($casino_id, 'casino_short_desc', true);
+									$c_overall_rating = floatval(get_post_meta($casino_id, 'casino_overall_rating', true));
+                                    $c_pemalink       = get_the_permalink($casino_id);
+									$c_external_link  = get_post_meta($casino_id, 'casino_external_link', true);
+                                    $lb_txt           = !empty(get_option('casinos_read_review_title'))? get_option('casinos_read_review_title'): 'Read review';
+                                    $elb_txt          = !empty(get_option('casinos_play_now_title'))? get_option('casinos_play_now_title'): 'Play now';
                                 ?>
                                 <div class="casino-card casino-card_compact">
                                     <div class="casino-card__image">
@@ -177,11 +187,11 @@ if(!$is_paginavi){
         $part = ['text_editor' => $custom_content];
         get_template_part("/theme-parts/modules/text-editor", "", ["id" => $ID, "content"=>$part]);
     }
-    
+
     if(!empty($content)){
         foreach($content as $part){
             $part_tmpl = $part['_type'];
-    
+
             get_template_part("/theme-parts/modules/$part_tmpl", "", ["id" => $ID, "content"=>$part, "post_type" => 'page']);
         }
     }

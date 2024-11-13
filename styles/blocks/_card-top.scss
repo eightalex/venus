@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .card-top {
   display: flex;
@@ -88,7 +88,7 @@
       display: flex;
       width: 26px;
       height: 26px;
-      background-image: url("#{$images-url}/icons/star.svg");
+      background-image: url("#{variables.$images-url}/icons/star.svg");
       margin-right: 12px;
     }
   }
@@ -111,29 +111,33 @@
     display: flex;
     align-items: center;
     margin-top: 32px;
+    gap: 24px;
+    width: 100%;
   }
 
-  &__cta-text {
-    margin-left: 24px;
-    padding-left: 24px;
-    border-left: 1px solid #fff;
+  &__cta-button {
+    flex: 1 1 100%;
+    width: 100%;
 
-    span {
-      display: flex;
-      align-items: center;
+    .button {
+      width: 100%;
+    }
+    .notice {
       margin-top: 10px;
       font-family: Hind, sans-serif;
       font-size: 14px;
       font-weight: 400;
       line-height: 128%;
+      text-align: center;
     }
   }
 
-  &__button {
-    padding-left: 20px;
-    padding-right: 20px;
-    text-decoration: none;
+  &__cta-text {
+    padding-left: 24px;
+    border-left: 1px solid #fff;
   }
+
+
 
   &__info {
     display: flex;
@@ -142,7 +146,7 @@
     padding: 16px;
     width: 100%;
     border-radius: 12px;
-    background-color: #0baff7;
+    background-color: variables.$action-color;
     font-family: Hind, sans-serif;
     font-size: 14px;
     font-weight: 400;
@@ -162,7 +166,7 @@
     }
   }
 
-  @include bp(m) {
+  @include mixins.bp(m) {
     max-width: none;
 
     &__title {
@@ -174,29 +178,16 @@
       align-items: flex-start;
     }
 
-    &__cta {
-      flex-direction: column;
-      gap: 16px;
-      width: 100%;
-    }
-
-    &__cta-text {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-left: 0;
-      padding-left: 0;
-      border: none;
-
-      span {
-        margin-top: 0;
-      }
-    }
   }
 
-  @include bp(s) {
-    &__cta-text {
+  @include mixins.bp(500px) {
+    &__cta {
       flex-direction: column;
+    }
+    &__cta-text {
+      padding: 20px 0 0;
+      border-left: none;
+      border-top: 1px solid #fff;
     }
   }
 }

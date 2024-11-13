@@ -43,12 +43,12 @@ $section_title = !empty($content['gc_title'])? $content['gc_title']: get_the_tit
         <div class="section__inner">
 
             <header class="section__header">
-                <h2 class="section__title"><?php echo $section_title?></h2>
+                <h2 class="section__title"><?php echo do_shortcode( $section_title )?></h2>
                 <?php
                 if(!empty($content['gc_subtitle'])):
                     ?>
                     <div class="section__subtitle">
-                        <?php echo $content['gc_subtitle']?>
+                        <?php echo do_shortcode( $content['gc_subtitle'] )?>
                     </div>
                     <?php
                 endif;
@@ -68,7 +68,7 @@ $section_title = !empty($content['gc_title'])? $content['gc_title']: get_the_tit
                             'g_img_data'      => apply_filters('ud_get_file_data', $g_img_id),
                             'title'           => get_the_title(),
                             'permalink'       => get_the_permalink(),
-                            'short_desc'      => get_post_meta( $g_id, 'game_short_desc', true ),
+                            'short_desc'      => do_shortcode(get_post_meta( $g_id, 'game_short_desc', true )),
                             'button_notice'   => get_post_meta( $g_id, 'casino_button_notice', true ),
                             'external_link'   => !empty($gel)? esc_url( $gel ): get_the_permalink(),
                             'unit_detailed'   => get_post_meta( $g_id, 'unit_detailed_tc', true ),

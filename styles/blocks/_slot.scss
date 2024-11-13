@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .slot {
   box-sizing: border-box;
@@ -79,7 +79,7 @@
     min-width: 250px;
   }
 
-  @include bp(m) {
+  @include mixins.bp(m) {
     flex-direction: column;
     gap: 20px;
     padding: 15px;

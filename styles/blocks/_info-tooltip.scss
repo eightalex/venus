@@ -1,0 +1,76 @@
+@use "sass:math";
+@use "../variables";
+@use "../mixins";
+
+.info-tooltip {
+    $height-of-info-icon: 14px;
+    $height-of-triangle: 6px;
+
+    position: relative;
+    z-index: 3; // highest z-index in the project
+    display: flex;
+    width: 14px;
+    height: 14px;
+    background-image: url("#{variables.$images-url}/icons/info.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+
+    &:hover {
+        & > span {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    & > span {
+        opacity: 0;
+        visibility: hidden;
+
+        position: absolute;
+        top: $height-of-info-icon + $height-of-triangle;
+        left: -115px;
+        z-index: 1;
+        padding: 10px 12px;
+        max-width: 770px;
+        width: 100vw;
+        border-radius: 16px;
+        background-color: #d9d9d9;
+        color: #000;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 140%;
+        cursor: default;
+        user-select: none;
+
+        transition: opacity 150ms ease-in;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: -$height-of-triangle;
+            left: 116px;
+            width: 0;
+            height: 0;
+            border-left: $height-of-triangle solid transparent;
+            border-right: $height-of-triangle solid transparent;
+            border-bottom: $height-of-triangle solid #d9d9d9;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+
+    @include mixins.bp(940px) {
+        span {
+            left: -245px;
+            max-width: 340px;
+
+            &::before {
+                left: 246px;
+            }
+        }
+    }
+}

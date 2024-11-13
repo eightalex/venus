@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .banner-author {
   &_bonus {
@@ -27,7 +27,7 @@
   }
 
   &__title {
-    margin: 0;
+    margin: 0 0 32px;
     color: #fff;
     font-family: Montserrat, sans-serif;
     font-size: 56px;
@@ -42,94 +42,11 @@
     }
   }
 
-  &__footer {
-    display: flex;
-    align-items: center;
-    margin-top: 32px;
-    color: #fff;
-    font-family: Hind, sans-serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
-
-  &__author {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    text-decoration: none;
-
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-
-  &__avatar {
-    overflow: hidden;
-    width: 50px;
-    height: 50px;
-    border-radius: 100px;
-    background-color: #fff;
-
-    img {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  &__name {
-    display: block;
-    color: #fff;
-    font: inherit;
-  }
-
-  &__date {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-left: 16px;
-    font: inherit;
-
-    &::before {
-      content: "";
-      display: inline-flex;
-      width: 8px;
-      height: 8px;
-      border-radius: 4px;
-      background-color: #fff;
-    }
-  }
-
-  &__icons {
-    display: flex;
-    align-items: center;
-    gap: 32px;
-    margin-left: 75px;
-  }
-
-  &__icon {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    img {
-      object-fit: contain;
-      width: 24px;
-      height: 24px;
-    }
-
-    span {
-      font: inherit;
-    }
-  }
-
   &__bonus {
     flex-shrink: 0;
   }
 
-  @include bp(l) {
+  @include mixins.bp(l) {
     &_bonus {
       flex-wrap: wrap;
     }
@@ -139,7 +56,7 @@
     }
   }
 
-  @include bp(700px) {
+  @include mixins.bp(700px) {
     &__breadcrumbs {
       display: none;
     }
@@ -157,13 +74,14 @@
       align-items: flex-start;
     }
 
-    &__icons {
-      margin-top: 24px;
-      margin-left: 0;
-    }
-
     &__bonus {
       flex-shrink: 1;
+    }
+  }
+
+  @include mixins.bp(variables.$small-mobile-breakpoint) {
+    &__title {
+      font-size: variables.$font-size-title-s;
     }
   }
 }

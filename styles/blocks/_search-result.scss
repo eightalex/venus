@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .search-result {
   display: flex;
@@ -60,7 +60,7 @@
       display: flex;
       width: 24px;
       height: 24px;
-      background-image: url("#{$images-url}/icons/time.svg");
+      background-image: url("#{variables.$images-url}/icons/time.svg");
     }
   }
 
@@ -79,7 +79,7 @@
     }
   }
 
-  @include bp(1230px) {
+  @include mixins.bp(1230px) {
     flex-direction: column;
     padding: 16px;
 

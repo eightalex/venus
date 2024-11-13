@@ -34,8 +34,8 @@ $btn_txt                = !empty(get_option('casinos_play_now_title'))? get_opti
                     ?>
                     <div class="rating-card__about">
                         <div class="rating-card__price"><?php echo $terms_desc_arr[1]?></div>
-                        <div class="rating-card__title"><?php echo $terms_desc_arr[2]?></div>
-                        <div class="rating-card__subtitle"><?php echo str_replace('</p>', '',$terms_desc_arr[3])?></div>
+                        <div class="rating-card__title"><?php echo do_shortcode( $terms_desc_arr[2] )?></div>
+                        <div class="rating-card__subtitle"><?php echo do_shortcode( str_replace('</p>', '',$terms_desc_arr[3]) )?></div>
                     </div>
                 <?php
                 endif;
@@ -44,8 +44,8 @@ $btn_txt                = !empty(get_option('casinos_play_now_title'))? get_opti
                     <?php
                     if(!empty($external_link)):
                         ?>
-                        <a href="<?php echo $external_link?>" target="__blank" rel="nofollow" class="rating-card__button button"><?php echo $btn_txt?></a>
-                        <span><?php echo get_post_meta($id, "{$post_type}_button_notice", true)?></span>
+                        <a href="<?php echo $external_link?>" target="__blank" rel="nofollow" class="rating-card__button button"><?php echo do_shortcode( $btn_txt )?></a>
+                        <span><?php echo do_shortcode( get_post_meta($id, "{$post_type}_button_notice", true) )?></span>
                         <?php
                     endif;
                     ?>

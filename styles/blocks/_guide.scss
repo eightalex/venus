@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .guide {
   $this: &;
@@ -145,7 +145,7 @@
     }
   }
 
-  @include bp(1250px) {
+  @include mixins.bp(1250px) {
     &__step {
       &::after {
         width: 100px;
@@ -169,7 +169,7 @@
     }
   }
 
-  @include bp(900px) {
+  @include mixins.bp(900px) {
     padding-bottom: 500px;
 
     &__content {

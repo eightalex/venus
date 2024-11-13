@@ -5,17 +5,7 @@ $banner_txt         = carbon_get_post_meta($id, 'app_banner_txt');
 $tax                = 'bonus-category';
 $bonus_cat          = wp_get_post_terms($id, $tax);
 $title              = !empty($banner_txt)? $banner_txt: get_the_title();
-$author_id          = get_queried_object()->post_author;
-$author_info        = apply_filters('ud_get_author_infos', $author_id);
-$author_full_name   = $author_info['firs_name'] . " " . $author_info['last_name'];
-$author_link        = get_author_posts_url($author_id);
-$date_create        = get_queried_object()->post_date;
-$date_c_u           = strtotime($date_create);
 $date_f             = 'F d, Y';
-$date_c_m           = date($date_f, $date_c_u);
-$date_update        = ucfirst(get_the_modified_date('F j, Y'));
-$view_count         = function_exists( 'pvc_get_post_views' )? pvc_get_post_views($id): 0;
-$comment_count      = get_comment_count($id);
 $bonus_code         = get_post_meta($id, 'bonus_code', true);
 $bonus_valid_date   = get_post_meta($id, 'bonus_valid_date', true);
 $bonus_v_d_u        = strtotime($bonus_valid_date);
@@ -51,35 +41,7 @@ $show_tags          = false;
                             <?php echo $title ?>
                         </h1>
                     </header>
-                    <footer class="banner-author__footer">
-                        <a class="banner-author__author" href="<?php echo $author_link ?>">
-                            <span class="banner-author__avatar">
-                                <img src="<?php echo $author_info['ava_url']?>" alt="avatar">
-                            </span>
-                            <span class="banner-author__name">
-                                <?php echo __('by')?> <?php echo $author_full_name?>
-                            </span>
-                        </a>
-                        <time class="banner-author__date">
-                            <?php echo $date_update ?>
-                        </time>
-                        <div class="banner-author__icons">
-                            <?php
-                            if(intval($view_count) > 0):
-                            ?>
-                            <div class="banner-author__icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/icons/eye.svg' ?>" alt="views icon">
-                                <span><?php echo $view_count?></span>
-                            </div>
-                            <?php
-                            endif;
-                            ?>
-                            <div class="banner-author__icon">
-                                <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/icons/comment.svg' ?>" alt="views icon">
-                                <span><?php echo $comment_count['total_comments']?></span>
-                            </div>
-                        </div>
-                    </footer>
+                    <?php get_template_part("/theme-parts/modules/post-info", null, ['tag' => 'footer', 'show_activities' => true]) ?>
                 </div>
 
                 <div class="banner-author__bonus">
@@ -93,13 +55,13 @@ $show_tags          = false;
                                 if(!empty($bonus_code)):
                                     ?>
                                     <!-- <div class="bonus-widget__subtitle"><?php echo __('Bonus code') ?>:</div> -->
-                                    <div class="bonus-widget__title"><?php echo $bonus_code?></div>
+                                    <div class="bonus-widget__title"><?php echo do_shortcode( $bonus_code )?></div>
                                     <?php
                                 endif;
 
                                 if(!empty($bonus_v_d_m)):
                                     ?>
-                                    <div class="bonus-widget__date"><?php echo __('Valid Until')?>: <?php echo $bonus_v_d_m?></div>
+                                    <div class="bonus-widget__date">Gyldig til: <?php echo $bonus_v_d_m?></div>
                                     <?php
                                 endif;
                                 ?>
@@ -110,11 +72,11 @@ $show_tags          = false;
                             if(!empty($external_link)):
                                 $btn_txt = !empty(get_option('bonuses_get_bonus_title'))? get_option('bonuses_get_bonus_title'): __('Get bonus');
                             ?>
-                            <a rel='nofollow' href="<?php echo $external_link?>" class="bonus-widget__button button"><?php echo $btn_txt?></a>
+                            <a rel='nofollow' href="<?php echo $external_link?>" class="bonus-widget__button button"><?php echo do_shortcode($btn_txt);?></a>
                             <?php
                                 if(!empty($button_notice)):
                                     ?>
-                                    <span><?php echo __($button_notice)?></span>
+                                    <span><?php echo do_shortcode( __($button_notice) )?></span>
                                     <?php
                                 endif;
                             endif;
@@ -124,7 +86,7 @@ $show_tags          = false;
                         if(!empty($offer_detailed_tc)):
                         ?>
                         <div class="bonus-widget__footer">
-                            <?php echo $offer_detailed_tc?>
+                            <?php echo do_shortcode( $offer_detailed_tc );?>
                         </div>
                         <?php
                         endif;
