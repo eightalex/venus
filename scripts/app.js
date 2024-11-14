@@ -88,7 +88,7 @@ function initFloatBar() {
     const floatBar = document.querySelector('.js-float-bar');
     const breakpoint = 120;
 
-    if (floatBar.classList.contains('d-none')) {
+    if (floatBar === null) {
         return;
     }
 
@@ -125,7 +125,7 @@ function initDemoGame() {
 
     if (!demoButton) return;
 
-    demoButton.addEventListener("click", () => {       
+    demoButton.addEventListener("click", () => {
         const iframeWrapper = document.getElementById('game-demo-mode-iframe-wrapper');
         const iframeElement = iframeWrapper.querySelector('iframe');
 
@@ -138,7 +138,7 @@ function initDemoGame() {
             iframeWrapper.append(iframe);
         }
         demoContainer.classList.add(showDemoClass);
-        
+
     })
 
     if (!closeDemoButton) return;
