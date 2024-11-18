@@ -1,0 +1,113 @@
+.table-of-contents {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 15px 0;
+    max-width: 500px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #263238;
+    user-select: none;
+    transition: padding 200ms;
+
+    &.hidden {
+        overflow: hidden;
+        padding: 0;
+
+        ul {
+            max-height: 0 !important;
+
+            li {
+                opacity: 0;
+
+                a {
+                    font-size: 0;
+                }
+            }
+        }
+
+        h2.table-of-contents__title {
+            margin-bottom: 0;
+            padding: 15px 15px;
+
+            &::after {
+                transform: rotate(180deg);
+            }
+
+            &:hover {
+                &::after {
+                    transform: rotate(0);
+                }
+            }
+        }
+    }
+
+    h2.table-of-contents__title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        padding: 0 15px;
+        color: #fff;
+        font-size: 25px;
+        font-weight: 800;
+        cursor: pointer;
+        transition: margin-bottom 200ms, padding 200ms;
+
+        &::after {
+            content: "";
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-top: 7px solid #fff;
+            transition: transform 200ms;
+        }
+
+        &:hover {
+            &::after {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        transition: max-height 200ms;
+
+        li {
+            overflow: hidden;
+            opacity: 1;
+            transition: opacity 100ms;
+
+            a {
+                position: relative;
+                display: block;
+                color: #fff;
+                padding: 5px 15px;
+                transition: background-color 200ms;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: -50%;
+                    width: 50%;
+                    height: 100%;
+                    transition: background-color 200ms;
+                }
+
+                &:hover {
+                    background-color: #37474f;
+                    text-decoration: none;
+
+                    &::before {
+                        background-color: #37474f;
+                    }
+                }
+            }
+        }
+    }
+}

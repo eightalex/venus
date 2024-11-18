@@ -34,6 +34,7 @@ function venus_scripts() {
     wp_enqueue_style('swiper_style', get_stylesheet_directory_uri().'/scripts/libs/swiper-bundle.min.css');
     wp_enqueue_script('swiper_js', get_theme_file_uri( '/scripts/libs/swiper-bundle.min.js' ), array( 'jquery' ), $GLOBALS['mercury_version'], true );
     wp_enqueue_script('app', get_theme_file_uri( '/scripts/app.js' ), array( 'jquery' ), filemtime(get_stylesheet_directory().'/scripts/app.js'), true );
+    wp_enqueue_script('table-of-contents', get_theme_file_uri( '/scripts/table-of-contents.js' ), array( 'jquery' ), filemtime(get_stylesheet_directory().'/scripts/table-of-contents.js'), true );
 }
 
 add_action( 'wp_enqueue_scripts', 'venus_scripts' );
@@ -2118,29 +2119,6 @@ add_action('carbon_fields_term_meta_container_saved', function($term_id) {
         carbon_set_term_meta($term_id, 'updated_date_auto', $today_date);
     }
 });
-
-add_filter('the_content', 'add_carbon_fields_content_to_post', 20);
-
-function add_carbon_fields_content_to_post($content) {
-    if (is_singular()) {
-        $post_id        = get_the_ID();
-        $custom_content = carbon_get_post_meta($post_id, 'ud_post_content');
-
-        if (empty($custom_content)) {
-            return $content;
-        }
-
-        foreach ($custom_content as $part) {
-            $part_tmpl = $part['_type'];
-
-            if ($part_tmpl == 'text-editor') {
-                $content .= $part['text_editor'];
-            }
-        }
-
-        return $content;
-    }
-}
 
 add_filter( 'body_class', 'remove_author_body_class' );
 function remove_author_body_class( $classes ) {
