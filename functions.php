@@ -34,6 +34,7 @@ function venus_scripts() {
     wp_enqueue_style('swiper_style', get_stylesheet_directory_uri().'/scripts/libs/swiper-bundle.min.css');
     wp_enqueue_script('swiper_js', get_theme_file_uri( '/scripts/libs/swiper-bundle.min.js' ), array( 'jquery' ), $GLOBALS['mercury_version'], true );
     wp_enqueue_script('app', get_theme_file_uri( '/scripts/app.js' ), array( 'jquery' ), filemtime(get_stylesheet_directory().'/scripts/app.js'), true );
+    wp_enqueue_script('table-of-contents', get_theme_file_uri( '/scripts/table-of-contents.js' ), array( 'jquery' ), filemtime(get_stylesheet_directory().'/scripts/table-of-contents.js'), true );
 }
 
 add_action( 'wp_enqueue_scripts', 'venus_scripts' );
@@ -1208,6 +1209,34 @@ function ud_get_pages_opt(){
     return $options_arr;
 }
 
+add_filter('ud_get_all_posts_opt', 'ud_get_all_posts_opt');
+function ud_get_all_posts_opt() {
+    $args = array(
+        'post_type'      => 'post',
+        'posts_per_page' => -1,
+        'post_status'    => 'publish',
+        'orderby'        => 'modified',
+        'order'          => 'DESC',
+    );
+
+    $query = new WP_Query($args);
+    wp_reset_postdata();
+
+    $options_arr = [
+        '' => __('Select post'),
+    ];
+
+    if($query->have_posts()){
+        while($query->have_posts()){
+            $query->the_post();
+
+            $options_arr[get_the_ID()] = get_the_title();
+        }
+    }
+
+    return $options_arr;
+}
+
 add_filter('ud_get_authors', 'ud_get_authors');
 function ud_get_authors() {
     $user_query = new WP_User_Query(array(
@@ -2097,6 +2126,13 @@ function ud_custon_fields() {
                 ->set_help_text('Select an casino to display in the Float Bar'),
             Field::make('text', 'float_bar_button_text', __('Button text'))
                 ->set_help_text('Enter the text for the button'),
+            Field::make('separator', 'toc_settings', __('Table of Contents Settings')),
+            Field::make('multiselect', 'toc_excluded_pages', __('Exclude pages'))
+                ->add_options(apply_filters('ud_get_pages_opt', true))
+                ->set_help_text('Excluded pages will not display the Table of Contents'),
+            Field::make('multiselect', 'toc_excluded_posts', __('Exclude posts'))
+                ->add_options(apply_filters('ud_get_all_posts_opt', true))
+                ->set_help_text('Excluded posts will not display the Table of Contents'),
         ));
 }
 
@@ -2118,29 +2154,6 @@ add_action('carbon_fields_term_meta_container_saved', function($term_id) {
         carbon_set_term_meta($term_id, 'updated_date_auto', $today_date);
     }
 });
-
-add_filter('the_content', 'add_carbon_fields_content_to_post', 20);
-
-function add_carbon_fields_content_to_post($content) {
-    if (is_singular()) {
-        $post_id        = get_the_ID();
-        $custom_content = carbon_get_post_meta($post_id, 'ud_post_content');
-
-        if (empty($custom_content)) {
-            return $content;
-        }
-
-        foreach ($custom_content as $part) {
-            $part_tmpl = $part['_type'];
-
-            if ($part_tmpl == 'text-editor') {
-                $content .= $part['text_editor'];
-            }
-        }
-
-        return $content;
-    }
-}
 
 add_filter( 'body_class', 'remove_author_body_class' );
 function remove_author_body_class( $classes ) {
