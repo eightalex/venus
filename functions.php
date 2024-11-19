@@ -137,7 +137,8 @@ function ud_get_author_infos($author_id){
         'last_name'          => get_user_meta($author_id, 'last_name', true),
         'desc'               => get_user_meta($author_id, 'description', true),
         'ava_url'            => $ava_data['src'], //get_user_meta($author_id, 'sabox-profile-image', true)
-        'role'               => get_user_meta($author_id, 'wp_capabilities', true)
+        'role'               => get_user_meta($author_id, 'wp_capabilities', true),
+        'author_page_link'            => carbon_get_user_meta($author_id, 'author_page_link'),
     ];
 
     return $infos;
@@ -2065,6 +2066,7 @@ function ud_custon_fields() {
                         ))
                 ))
         ));
+
     Container::make('term_meta', "Taxonomy Date")
         ->where('term_taxonomy', '=', $custom_field_dates_taxonomy['category'])
         ->or_where('term_taxonomy', '=', $custom_field_dates_taxonomy['casino-category'])
@@ -2099,6 +2101,7 @@ function ud_custon_fields() {
                     ) ),
             )
         );
+
     Container::make( 'theme_options', __('Additional theme options') )
         ->add_fields( array(
             Field::make('separator', 'defpgsopt', __('Default pages settings'))
@@ -2134,6 +2137,12 @@ function ud_custon_fields() {
                 ->add_options(apply_filters('ud_get_all_posts_opt', true))
                 ->set_help_text('Excluded posts will not display the Table of Contents'),
         ));
+
+    Container::make( 'user_meta', 'Additional settings' )
+        ->add_fields( array(
+            Field::make('select', 'author_page_link', __('Author page'))
+                ->add_options(apply_filters('ud_get_pages_opt', true)),
+        ) );
 }
 
 add_action('carbon_fields_term_meta_container_saved', function($term_id) {

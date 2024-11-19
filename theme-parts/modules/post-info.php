@@ -24,7 +24,7 @@ if (is_tax() || $term_id ) {
     if ($cbn_published_date) {
         $post_published_date = date_i18n($date_f, $cbn_published_date);
     }
-    
+
     if ($cbn_updated_date || $cbn_updated_date_auto) {
         $post_modified_date      = $is_changed_updated_date
         ? date_i18n($date_f, $cbn_updated_date)
@@ -32,11 +32,11 @@ if (is_tax() || $term_id ) {
     }
 
     $author_id = isset($author) ? $author['au_select'] : $author_id;
-    
+
 }
 
-$author_link         = get_author_posts_url($author_id);
 $author_info         = apply_filters('ud_get_author_infos', $author_id);
+$author_page_link    = $author_info['author_page_link'];
 $author_full_name    = $author_info['firs_name'] . " " . $author_info['last_name'];
 $view_count          = function_exists( 'pvc_get_post_views' ) ? pvc_get_post_views($id): 0;
 $comment_count       = get_comment_count(get_the_ID())['total_comments'];
@@ -47,7 +47,7 @@ echo "<{$main_tag} class='post-info__container{$light_class}'>";
     <?php if ($author_id || $post_published_date):?>
     <div class="post-info__about">
         <?php if ($author_id):?>
-        <a class="post-info__author" href="<?php echo $author_link ?>">
+        <a class="post-info__author" href="<?php echo $author_page_link ?>">
             <span class="post-info__avatar">
                 <img src="<?php echo $author_info['ava_url']?>" alt="<?php echo $author_full_name ?>">
             </span>
@@ -86,6 +86,6 @@ echo "<{$main_tag} class='post-info__container{$light_class}'>";
         <?php } ?>
     </div>
     <?php } ?>
-<?php 
+<?php
 echo "</{$main_tag}>";
  ?>
