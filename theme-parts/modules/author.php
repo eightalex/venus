@@ -21,7 +21,7 @@ $author_desc        = $author['desc'];
 $main_image_meta    = isset($content['au_main_img'])? $content['au_main_img']: '';
 $ava_url            = $author['ava_url'];
 $ava                = !empty($ava_url)? $ava_url: get_stylesheet_directory_uri()."/assets/images/author/picture.svg";
-$author_link        = get_author_posts_url($author_id);
+$author_page_link   = $author['author_page_link'];
 
 ?>
 
@@ -30,7 +30,7 @@ $author_link        = get_author_posts_url($author_id);
         <div class="section__inner">
             <div class="author">
                 <div class="author__content">
-                    <a class="author__name" href="<?php echo $author_link ?>"><?php echo $firs_name?> <em><?php echo $last_name?></em></a>
+                    <a class="author__name" href="<?php echo $author_page_link ?>"><?php echo $firs_name?> <em><?php echo $last_name?></em></a>
                     <div class="author__title"><?php echo __( 'Author' ); ?></div>
                     <div class="author__about">
                         <?php echo do_shortcode($author_desc); ?>
