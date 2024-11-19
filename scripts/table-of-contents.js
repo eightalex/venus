@@ -25,7 +25,7 @@ function generateTableOfContents() {
 
     const toc = document.createElement('div');
     toc.className = 'table-of-contents';
-    toc.innerHTML = '<h2 class="table-of-contents__title">Table of Contents</h2>';
+    toc.innerHTML = '<h2 class="table-of-contents__title">Innholdsfortegnelse</h2>';
 
     const tocList = document.createElement('ul');
     let globalCounter = 0;

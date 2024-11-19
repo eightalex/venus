@@ -1,7 +1,10 @@
+@use "../variables";
+@use "../mixins";
+
 .table-of-contents {
     margin-top: 15px;
     margin-bottom: 15px;
-    padding: 15px 0;
+    padding: 0 0 15px;
     max-width: 500px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -26,8 +29,7 @@
         }
 
         h2.table-of-contents__title {
-            margin-bottom: 0;
-            padding: 15px 15px;
+            padding-bottom: 15px;
 
             &::after {
                 transform: rotate(180deg);
@@ -45,13 +47,12 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 30px;
-        padding: 0 15px;
+        padding: 15px 15px 30px;
         color: #fff;
         font-size: 25px;
         font-weight: 800;
         cursor: pointer;
-        transition: margin-bottom 200ms, padding 200ms;
+        transition: padding 200ms;
 
         &::after {
             content: "";
@@ -108,6 +109,13 @@
                     }
                 }
             }
+        }
+    }
+
+    @include mixins.bp(s) {
+        h2.table-of-contents__title {
+            font-size: 20px;
+            word-break: break-all;
         }
     }
 }
