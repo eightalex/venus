@@ -39,42 +39,40 @@ function generateTableOfContents() {
     const tocList = document.createElement('ul');
     let globalCounter = 0;
 
-    contentBlocks.forEach((block, blockIndex) => {
-        const headings = block.querySelectorAll('h2, h3, h4, h5, h6');
-        let currentNumber = [];
+    const headings = document.querySelectorAll('h2, h3, h4, h5, h6');
+    let currentNumber = [];
 
-        headings.forEach((header, index) => {
-            const headerId = `toc-heading-${blockIndex}-${index}`;
-            header.id = headerId;
+    headings.forEach((header, index) => {
+        const headerId = `toc-heading-${index}`;
+        header.id = headerId;
 
-            const level = parseInt(header.tagName[1]);
-            while (currentNumber.length < level - 1) {
-                currentNumber.push(0);
-            }
-            while (currentNumber.length > level - 1) {
-                currentNumber.pop();
-            }
-            currentNumber[currentNumber.length - 1]++;
-            globalCounter++;
+        const level = parseInt(header.tagName[1]);
+        while (currentNumber.length < level - 1) {
+            currentNumber.push(0);
+        }
+        while (currentNumber.length > level - 1) {
+            currentNumber.pop();
+        }
+        currentNumber[currentNumber.length - 1]++;
+        globalCounter++;
 
-            const listItem = document.createElement('li');
-            const link = document.createElement('a');
+        const listItem = document.createElement('li');
+        const link = document.createElement('a');
 
-            link.style.marginLeft = `${(level - 2) * 20}px`;
+        link.style.marginLeft = `${(level - 2) * 20}px`;
 
-            if (level === 1) {
-                link.style.marginLeft = '0';
-            }
+        if (level === 1) {
+            link.style.marginLeft = '0';
+        }
 
-            link.href = `#${headerId}`;
-            link.textContent = header.textContent;
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                document.getElementById(headerId).scrollIntoView({ behavior: 'smooth' });
-            });
-            listItem.appendChild(link);
-            tocList.appendChild(listItem);
+        link.href = `#${headerId}`;
+        link.textContent = header.textContent;
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById(headerId).scrollIntoView({ behavior: 'smooth' });
         });
+        listItem.appendChild(link);
+        tocList.appendChild(listItem);
     });
 
     toc.appendChild(tocList);
