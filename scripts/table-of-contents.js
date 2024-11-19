@@ -23,6 +23,15 @@ function generateTableOfContents() {
         return;
     }
 
+    const isExcludedId = [
+        ...php_vars.toc_excluded_pages,
+        ...php_vars.toc_excluded_posts,
+    ].includes(php_vars.current_id);
+
+    if (isExcludedId) {
+        return;
+    }
+
     const toc = document.createElement('div');
     toc.className = 'table-of-contents';
     toc.innerHTML = '<h2 class="table-of-contents__title">Innholdsfortegnelse</h2>';

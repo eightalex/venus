@@ -1209,6 +1209,34 @@ function ud_get_pages_opt(){
     return $options_arr;
 }
 
+add_filter('ud_get_all_posts_opt', 'ud_get_all_posts_opt');
+function ud_get_all_posts_opt() {
+    $args = array(
+        'post_type'      => 'post',
+        'posts_per_page' => -1,
+        'post_status'    => 'publish',
+        'orderby'        => 'modified',
+        'order'          => 'DESC',
+    );
+
+    $query = new WP_Query($args);
+    wp_reset_postdata();
+
+    $options_arr = [
+        '' => __('Select post'),
+    ];
+
+    if($query->have_posts()){
+        while($query->have_posts()){
+            $query->the_post();
+
+            $options_arr[get_the_ID()] = get_the_title();
+        }
+    }
+
+    return $options_arr;
+}
+
 add_filter('ud_get_authors', 'ud_get_authors');
 function ud_get_authors() {
     $user_query = new WP_User_Query(array(
@@ -2098,6 +2126,13 @@ function ud_custon_fields() {
                 ->set_help_text('Select an casino to display in the Float Bar'),
             Field::make('text', 'float_bar_button_text', __('Button text'))
                 ->set_help_text('Enter the text for the button'),
+            Field::make('separator', 'toc_settings', __('Table of Contents Settings')),
+            Field::make('multiselect', 'toc_excluded_pages', __('Exclude pages'))
+                ->add_options(apply_filters('ud_get_pages_opt', true))
+                ->set_help_text('Excluded pages will not display the Table of Contents'),
+            Field::make('multiselect', 'toc_excluded_posts', __('Exclude posts'))
+                ->add_options(apply_filters('ud_get_all_posts_opt', true))
+                ->set_help_text('Excluded posts will not display the Table of Contents'),
         ));
 }
 
