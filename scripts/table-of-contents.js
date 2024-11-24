@@ -41,11 +41,11 @@ function generateTableOfContents() {
 
     const headings = document.querySelectorAll([
         '.section__title',
-        '.variable-content > h2',
-        '.variable-content > h3',
-        '.variable-content > h4',
-        '.variable-content > h5',
-        '.variable-content > h6'
+        '.variable-content h2',
+        '.variable-content h3',
+        '.variable-content h4',
+        '.variable-content h5',
+        '.variable-content h6',
     ].join(', '));
 
     let currentNumber = [];
