@@ -39,7 +39,15 @@ function generateTableOfContents() {
     const tocList = document.createElement('ul');
     let globalCounter = 0;
 
-    const headings = document.querySelectorAll('h2, h3, h4, h5, h6');
+    const headings = document.querySelectorAll([
+        '.section__title',
+        '.variable-content > h2',
+        '.variable-content > h3',
+        '.variable-content > h4',
+        '.variable-content > h5',
+        '.variable-content > h6'
+    ].join(', '));
+
     let currentNumber = [];
 
     headings.forEach((header, index) => {
@@ -78,7 +86,7 @@ function generateTableOfContents() {
     toc.appendChild(tocList);
 
     const firstContentBlock = contentBlocks[0];
-    const paragraphs = firstContentBlock.querySelectorAll('p');
+    const paragraphs = firstContentBlock.querySelectorAll('.variable-content > p');
 
     if (paragraphs.length >= 2) {
         paragraphs[1].after(toc);
