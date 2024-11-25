@@ -642,6 +642,8 @@ function print_single_casino_template($data = []){
     $elb_txt            = !empty(get_option('casinos_play_now_title'))? get_option('casinos_play_now_title'): 'Play now';
     $add_class          = isset($item_class)? $item_class: '';
     $directory_uri      = get_stylesheet_directory_uri();
+    $is_table           = $is_table ?? false;
+    $main_tag           = $is_table? 'td': 'div';
 
     if(isset($desc) && !empty($desc)){
         $desc_html = "<div class='casino-card__subtitle'>{$desc}</div>";
@@ -651,7 +653,7 @@ function print_single_casino_template($data = []){
         $external_link_html = "<a href='{$external_link}' target='_blank' class='casino-card__button button' rel='nofollow'>{$elb_txt}</a>";
     }
 
-    $tmpl = "<div class='casino-card {$add_class}'>
+    $tmpl = "<{$main_tag} class='casino-card {$add_class}'>
                 <div class='casino-card__image'>
                     <img src='{$img_src}' alt='{$img_alt}'>
                 </div>
@@ -694,7 +696,7 @@ function print_single_casino_template($data = []){
                     <a href='{$permalink}' class='casino-card__button button button_outline'>{$lb_txt}</a>
                     {$external_link_html}
                 </div>
-            </div>";
+            </{$main_tag}>";
 
     echo $tmpl;
 }

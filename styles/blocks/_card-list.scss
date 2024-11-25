@@ -8,37 +8,80 @@
   padding: 0;
   list-style: none;
 
+  &.table {
+    display: block;
+  }
+
+  tbody {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 18px;
+  }
+
   &_col-1 {
     grid-template-columns: auto;
+
+    tbody {
+      grid-template-columns: auto;
+    }
   }
 
   &_col-2 {
     grid-template-columns: repeat(2, 1fr);
+
+    tbody {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   &_col-3 {
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
+
+    tbody {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   @include mixins.bp(1230px) {
     grid-template-columns: repeat(2, auto);
     justify-content: center;
 
+    tbody {
+      grid-template-columns: repeat(2, auto);
+      justify-content: center;
+    }
+
     &_col-1 {
       grid-template-columns: auto;
+
+      tbody {
+        grid-template-columns: auto;
+      }
     }
 
     &_col-2 {
       grid-template-columns: auto;
+
+      tbody {
+        grid-template-columns: auto;
+      }
     }
 
     &_col-3 {
       grid-template-columns: repeat(2, auto);
+
+      tbody {
+        grid-template-columns: repeat(2, auto);
+      }
     }
   }
 
   @include mixins.bp(m) {
     grid-template-columns: auto;
+
+    tbody {
+      grid-template-columns: auto;
+    }
   }
 }
