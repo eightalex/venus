@@ -1457,7 +1457,13 @@ function ud_custon_fields() {
                 ->add_fields('game-card', __('Games'), array(
                     Field::make('text', 'gc_title', __('Title'))
                         ->help_text("<span style='color: blue;'>".__('Leave blank to use default text (post title + "GAMES")')."</span>")
-                        ->set_width(75),
+                        ->set_width(50),
+                    Field::make('select', 'gc_title_html_tag', __('Title tag'))
+                        ->add_options(array(
+                            'h2' => '<h2>',
+                            'span' => '<span>',
+                        ))
+                        ->set_width(25),
                     Field::make('image', 'gc_bg', __('Background'))
                         ->set_value_type('url')
                         ->set_width(25),
@@ -1681,8 +1687,14 @@ function ud_custon_fields() {
                         ->set_attribute('type', 'number')
                         ->set_width(25),
                     Field::make('text', 'bonuses_title', __('Title'))
-                        ->set_width(50)
+                        ->set_width(25)
                         ->help_text("<span style='color: blue;'>".__('Leave blank to use default text (post title + "BONUSES")')."</span>"),
+                    Field::make('select', 'bonuses_title_html_tag', __('Title tag'))
+                        ->add_options(array(
+                            'h2' => '<h2>',
+                            'span' => '<span>',
+                        ))
+                        ->set_width(25),
                     Field::make('textarea', 'bonuses_subtitle', __('Subtitle'))
                         ->set_width(50)
                         ->help_text("<span style='color: blue;'>".__('Leave blank to use excerpt text')."</span>"),
@@ -1832,7 +1844,13 @@ function ud_custon_fields() {
                 ->add_fields('game-card', __('Games'), array(
                     Field::make('text', 'gc_title', __('Title'))
                         ->help_text("<span style='color: blue;'>".__('Leave blank to use default text (post title + "GAMES")')."</span>")
-                        ->set_width(75),
+                        ->set_width(50),
+                    Field::make('select', 'gc_title_html_tag', __('Title tag'))
+                        ->add_options(array(
+                            'h2' => '<h2>',
+                            'span' => '<span>',
+                        ))
+                        ->set_width(25),
                     Field::make('image', 'gc_bg', __('Background'))
                         ->set_value_type('url')
                         ->set_width(25),
@@ -2051,8 +2069,14 @@ function ud_custon_fields() {
                         ->set_attribute('type', 'number')
                         ->set_width(25),
                     Field::make('text', 'bonuses_title', __('Title'))
-                        ->set_width(50)
+                        ->set_width(25)
                         ->help_text("<span style='color: blue;'>".__('Leave blank to use default text (post title + "BONUSES")')."</span>"),
+                    Field::make('select', 'bonuses_title_html_tag', __('Title tag'))
+                        ->add_options(array(
+                            'h2' => '<h2>',
+                            'span' => '<span>',
+                        ))
+                        ->set_width(25),
                     Field::make('textarea', 'bonuses_subtitle', __('Subtitle'))
                         ->set_width(50)
                         ->help_text("<span style='color: blue;'>".__('Leave blank to use excerpt text')."</span>"),

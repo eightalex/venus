@@ -17,16 +17,16 @@ if(isset($content['bonuses_parent']) && $content['bonuses_parent'] == 'curent'){
 }
 
 
-$title_section      = !empty($content['bonuses_title'])? $content['bonuses_title']: get_the_title()." <em>bonuses</em>";
+$title_section  = !empty($content['bonuses_title'])? $content['bonuses_title']: get_the_title()." <em>bonuses</em>";
+$title_html_tag = !empty($content['bonuses_title_html_tag'])? $content['bonuses_title_html_tag']: 'h2';
 
-$title_conv = '<h2 class="section__title">' . $title_section . '</h2>';
-
+$title_conv = "<{$title_html_tag} class='section__title'>" . $title_section . "</{$title_html_tag}>";
 
 if(is_page()){
     $is_main_casinois_page	= (carbon_get_theme_option('default_page_casinois') == $id);
 
     if($is_main_casinois_page){
-        $title_conv = '<h1 class="section__title">' . $title_section . '</h1>';
+        $title_conv = "<{$title_html_tag} class='section__title'>" . $title_section . "</{$title_html_tag}>";
     }
 }
 
