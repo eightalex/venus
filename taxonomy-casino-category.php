@@ -58,7 +58,7 @@ if($casinos->have_posts()):
                         </div>
                     </div>
 
-                    <div class="card-list card-list_col-2" style="margin-top: 40px;">
+                    <table class="card-list card-list_col-2 table" style="margin-top: 40px;">
                         <?php
                         while($casinos->have_posts()):
                             $casinos->the_post();
@@ -78,11 +78,15 @@ if($casinos->have_posts()):
                                 'desc'              => $desc,
                                 'permalink'         => get_the_permalink(),
                                 'external_link'     => $casino_external_link,
+                                'is_table'          => true,
                             ];
-                            do_action('print_single_casino_template', $atts);
+
+                            echo '<tr>';
+                                do_action('print_single_casino_template', $atts);
+                            echo '</tr>';
                         endwhile;
                         ?>
-                    </div>
+                    </table>
                 </div>
 				<?php
 					$max_pages = $casinos->max_num_pages;
