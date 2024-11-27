@@ -4,7 +4,6 @@ extract($args); // tag: string, show_activities: boolean, light: boolean
 $main_tag            = $tag ? $tag : 'div';
 $light_class         = isset($light) && $light ? '_light' : '';
 $date_f              = 'F d, Y';
-$post_published_date = get_the_date($date_f);
 $post_modified_date  = get_the_modified_date($date_f);
 $author_id           = get_the_author_meta("ID");
 $term_id		     = get_queried_object()->term_id;
@@ -16,14 +15,9 @@ if (is_tax() || $term_id ) {
     });
 
     $author = array_shift($filtered_array);
-    $cbn_published_date = strtotime(carbon_get_term_meta($term_id, 'published_date'));
     $cbn_updated_date = strtotime(carbon_get_term_meta($term_id, 'updated_date'));
     $cbn_updated_date_auto =strtotime(carbon_get_term_meta($term_id, 'updated_date_auto'));
     $is_changed_updated_date = carbon_get_term_meta($term_id, 'modify_updated_date');
-
-    if ($cbn_published_date) {
-        $post_published_date = date_i18n($date_f, $cbn_published_date);
-    }
 
     if ($cbn_updated_date || $cbn_updated_date_auto) {
         $post_modified_date      = $is_changed_updated_date
@@ -44,9 +38,8 @@ $comment_count       = get_comment_count(get_the_ID())['total_comments'];
 
 echo "<{$main_tag} class='post-info__container{$light_class}'>";
 ?>
-    <?php if ($author_id || $post_published_date):?>
+    <?php if ($author_id):?>
     <div class="post-info__about">
-        <?php if ($author_id):?>
         <a class="post-info__author" href="<?php echo $author_page_link ?>">
             <span class="post-info__avatar">
                 <img src="<?php echo $author_info['ava_url']?>" alt="<?php echo $author_full_name ?>">
@@ -55,17 +48,11 @@ echo "<{$main_tag} class='post-info__container{$light_class}'>";
                 <?php echo __('by')?> <?php echo $author_full_name?>
             </span>
         </a>
-        <?php endif ?>
-        <?php if ($post_published_date):?>
+        <?php if ($post_modified_date): ?>
         <div class="post-info__date">
-            <time datetime="<?php echo get_the_date('c') ?>">
-                <?php echo "Publisert: " . $post_published_date; ?>
-            </time>
-            <?php if ($post_modified_date) {?>
             <time datetime="<?php echo get_the_modified_date('c') ?>">
                 <?php echo "Oppdatert: " . $post_modified_date; ?>
             </time>
-            <?php }?>
         </div>
         <?php endif ?>
     </div>
