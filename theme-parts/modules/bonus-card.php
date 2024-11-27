@@ -18,7 +18,7 @@ if(isset($content['bonuses_parent']) && $content['bonuses_parent'] == 'curent'){
 
 
 $title_section  = !empty($content['bonuses_title'])? $content['bonuses_title']: get_the_title()." <em>bonuses</em>";
-$title_html_tag = !empty($content['bonuses_title_html_tag'])? $content['bonuses_title_html_tag']: 'h2';
+$title_html_tag = !empty($content['bonuses_title_html_tag'])? $content['bonuses_title_html_tag']: 'span';
 
 $title_conv = "<{$title_html_tag} class='section__title'>" . $title_section . "</{$title_html_tag}>";
 

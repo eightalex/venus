@@ -29,7 +29,7 @@ if($content['gs_is_filter']){
 }
 
 $section_title  = !empty($content['gc_title'])? $content['gc_title']: get_the_title()." <em>games</em>";
-$title_html_tag = !empty($content['gc_title_html_tag'])? $content['gc_title_html_tag']: 'h2';
+$title_html_tag = !empty($content['gc_title_html_tag'])? $content['gc_title_html_tag']: 'span';
 
 ?>
 

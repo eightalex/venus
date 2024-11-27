@@ -1691,8 +1691,8 @@ function ud_custon_fields() {
                         ->help_text("<span style='color: blue;'>".__('Leave blank to use default text (post title + "BONUSES")')."</span>"),
                     Field::make('select', 'bonuses_title_html_tag', __('Title tag'))
                         ->add_options(array(
-                            'h2' => '<h2>',
                             'span' => '<span>',
+                            'h2' => '<h2>',
                         ))
                         ->set_width(25),
                     Field::make('textarea', 'bonuses_subtitle', __('Subtitle'))
@@ -1847,8 +1847,8 @@ function ud_custon_fields() {
                         ->set_width(50),
                     Field::make('select', 'gc_title_html_tag', __('Title tag'))
                         ->add_options(array(
-                            'h2' => '<h2>',
                             'span' => '<span>',
+                            'h2' => '<h2>',
                         ))
                         ->set_width(25),
                     Field::make('image', 'gc_bg', __('Background'))
