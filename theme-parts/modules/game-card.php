@@ -28,7 +28,8 @@ if($content['gs_is_filter']){
     return;
 }
 
-$section_title = !empty($content['gc_title'])? $content['gc_title']: get_the_title()." <em>games</em>";
+$section_title  = !empty($content['gc_title'])? $content['gc_title']: get_the_title()." <em>games</em>";
+$title_html_tag = !empty($content['gc_title_html_tag'])? $content['gc_title_html_tag']: 'span';
 
 ?>
 
@@ -43,7 +44,9 @@ $section_title = !empty($content['gc_title'])? $content['gc_title']: get_the_tit
         <div class="section__inner">
 
             <header class="section__header">
-                <h2 class="section__title"><?php echo do_shortcode( $section_title )?></h2>
+                <?= "<{$title_html_tag} class='section__title'>" ?>
+                    <?php echo do_shortcode( $section_title )?>
+                <?= "</{$title_html_tag}>" ?>
                 <?php
                 if(!empty($content['gc_subtitle'])):
                     ?>

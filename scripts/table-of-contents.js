@@ -40,7 +40,7 @@ function generateTableOfContents() {
     let globalCounter = 0;
 
     const headings = document.querySelectorAll([
-        '.section__title',
+        'h2.section__title',
         '.variable-content h2',
         '.variable-content h3',
         '.variable-content h4',
