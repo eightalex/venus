@@ -13,9 +13,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600&family=Montserrat:ital,wght@0,600;0,700;0,800;1,500&family=Ubuntu&display=swap" rel="stylesheet">
 
+    <?php
+
+    global $current_id;
+    $current_id = get_the_ID();
+
+    ?>
+
     <script>
         const php_vars = {
-            current_id: <?= get_the_ID() ?>,
+            current_id: <?= $current_id ?>,
             toc_excluded_pages: <?= json_encode(carbon_get_theme_option('toc_excluded_pages')) ?>,
             toc_excluded_posts: <?= json_encode(carbon_get_theme_option('toc_excluded_posts')) ?>,
         };
