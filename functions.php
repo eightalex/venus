@@ -3,6 +3,17 @@
 global $float_bar_casino_id;
 $float_bar_casino_id = null;
 
+/**
+ * Yoast disable article:published_time
+ */
+add_filter('wpseo_frontend_presenter_classes', function ($presenters) {
+    return array_filter($presenters, function ($presenter) {
+        return !in_array($presenter, [
+            'Yoast\WP\SEO\Presenters\Open_Graph\Article_Published_Time_Presenter',
+        ]);
+    });
+});
+
 function filter_menu_item_classes( $classes ) {
     $classes[] = 'navigation__item';
     return $classes;
