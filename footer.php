@@ -12,7 +12,7 @@ $float_bar_show = carbon_get_theme_option('float_bar_show');
     <div class="container footer__container">
         <div class="footer__info">
             <a class="footer__logo" href="<?php echo get_home_url() ?>">
-                <img src=<?php echo get_stylesheet_directory_uri() . "/assets/images/logo.svg" ?> alt="logo">
+                <img src="<?php echo get_stylesheet_directory_uri() . "/assets/images/logo.svg" ?>" alt="logo">
             </a>
             <div class="footer__text">
                 <?php if (get_theme_mod('footer_copyright') == '') { ?>
