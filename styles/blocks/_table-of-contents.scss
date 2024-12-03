@@ -112,7 +112,7 @@
         }
     }
 
-    @include mixins.bp(s) {
+    @include mixins.bp(425px) {
         h2.table-of-contents__title {
             font-size: 20px;
             word-break: break-all;

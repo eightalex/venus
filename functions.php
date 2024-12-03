@@ -1,7 +1,21 @@
 <?php
 
 global $float_bar_casino_id;
+global $current_id;
+
 $float_bar_casino_id = null;
+$current_id = null;
+
+/**
+ * Yoast disable article:published_time
+ */
+add_filter('wpseo_frontend_presenter_classes', function ($presenters) {
+    return array_filter($presenters, function ($presenter) {
+        return !in_array($presenter, [
+            'Yoast\WP\SEO\Presenters\Open_Graph\Article_Published_Time_Presenter',
+        ]);
+    });
+});
 
 function filter_menu_item_classes( $classes ) {
     $classes[] = 'navigation__item';
@@ -778,36 +792,47 @@ function print_single_bonus_card(array $data){
     return $cart;
 }
 
-add_filter( 'my_pagination', 'my_pagination', 10, 3);
-function my_pagination(int $current_page, int $max_page,string $url_param){
-    $page_url = get_the_permalink();
+add_filter('my_pagination', 'my_pagination', 10, 3);
+function my_pagination(int $current_page, int $max_page, string $url_param) {
+    global $current_id;
+
+    $page_url = trailingslashit(get_permalink($current_id));
     $html = "<div class='pagination content__pagination' data-max_pages='{$max_page}'>";
-            $p = paginate_links([
-                    "base"               => wp_normalize_path("?{$url_param}=%#%" ),
-                    "format"             => "?{$url_param}=%#%",
-                    "total"              => $max_page,
-                    "current"            => $current_page,
-                    "aria_current"       => "page",
-                    "show_all"           => false,
-                    "prev_next"          => true,
-                    "prev_text"          => "<",
-                    "next_text"          => ">",
-                    "end_size"           => 2,
-                    "mid_size"           => 2,
-                    "type"               => "array",
-                ]);
 
-                foreach($p as $l){
-                    $current_class = "";
-                    if($l == '<span aria-current="page" class="pagination__item">' . $current_page . '</span>'){
-                        $current_class = "pagination__item active";
-                    }
-                    $html .= "<li class='{$current_class}'>{$l}</li>";
-                }
+    $p = paginate_links([
+        "base"         => $page_url . '%_%',
+        "format"       => "?{$url_param}=%#%",
+        "total"        => $max_page,
+        "current"      => $current_page,
+        "aria_current" => "page",
+        "show_all"     => false,
+        "prev_next"    => true,
+        "prev_text"    => "<",
+        "next_text"    => ">",
+        "end_size"     => 2,
+        "mid_size"     => 2,
+        "type"         => "array",
+    ]);
 
-            $html .= "</div>";
+    if ($p) {
+        foreach ($p as $key => $link) {
+            // Для першої сторінки прибираємо параметри
+            if (strpos($link, "?{$url_param}=1") !== false || strpos($link, "&{$url_param}=1") !== false) {
+                $link = preg_replace('/\?'.$url_param.'=1|&'.$url_param.'=1/', '', $link);
+            }
 
-        return $html;
+            // Для поточної сторінки додаємо клас
+            $current_class = "";
+            if (strpos($link, 'aria-current="page"') !== false) {
+                $current_class = "pagination__item active";
+            }
+            $html .= "<li class='{$current_class}'>{$link}</li>";
+        }
+    }
+
+    $html .= "</div>";
+
+    return $html;
 }
 
 add_action("ud_get_posts_loop", "ud_get_posts_loop");

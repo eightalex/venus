@@ -33,10 +33,10 @@ jobs:
           server-dir: /wp-content/themes/venus/
           exclude: |
             **/node_modules/**
-            **/.git*
-            **/.git*/**
+            **/.git*/
             **/.github/**
-            **/node_modules/**
             package.json
             package-lock.json
             gulpfile.js
+            wp-config.php
+            .htaccess
