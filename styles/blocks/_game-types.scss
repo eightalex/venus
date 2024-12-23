@@ -47,12 +47,16 @@
   }
 
   &__text {
-    color: #9197af;
+    color: #fff;
     font-family: Hind, sans-serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 128%;
+
+    a {
+      @include mixins.text-link();
+    }
   }
 
   @include mixins.bp(m) {
