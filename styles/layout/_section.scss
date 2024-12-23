@@ -215,6 +215,7 @@
             position: relative;
             z-index: 1;
             width: 522px;
+            height: auto;
           }
 
           &:nth-child(2) {
@@ -291,7 +292,6 @@
       }
 
       &__header {
-
       }
 
       &__title {
