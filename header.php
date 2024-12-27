@@ -42,7 +42,7 @@
                         title="<?= esc_attr(get_bloginfo('name')) ?>"
                         class="header__logo"
                     >
-                        <img src="<?= get_stylesheet_directory_uri() ?>/assets/images/logo.svg" alt="Logo">
+                        <img src="<?= get_stylesheet_directory_uri() ?>/assets/images/logo.svg" alt="Norgecasinohub logo">
                     </a>
                 </div>
                 <div class="header__search">
