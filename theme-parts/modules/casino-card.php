@@ -62,7 +62,7 @@ if($casinos->have_posts()):
             endif;
             ?>
             <div class="section__content">
-                <?php if(!$casino_card_v2): ?>
+                <?php if($casino_card_v2): ?>
                     <div class="card-list card-list_col-1">
                         <?php while($casinos->have_posts()): ?>
 

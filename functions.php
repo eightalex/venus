@@ -1560,7 +1560,7 @@ function ud_custon_fields() {
                         ->set_default_value('yes')
                         ->set_width(50),
                     Field::make('checkbox', 'casino_card_v2', __('Card version 2'))
-                        ->set_default_value('no')
+                        ->set_default_value('yes')
                         ->set_width(50),
                     // Field::make('image', 'cas_bg', __('Background'))
                     //     ->set_value_type('url')
