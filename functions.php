@@ -798,6 +798,11 @@ function my_pagination(int $current_page, int $max_page, string $url_param) {
 
     $page_url = trailingslashit(get_permalink($current_id));
 
+    if (is_category()) {
+        $category = get_category($current_id);
+        $page_url = get_site_url() . '/' . $category->slug . '/';
+    }
+
     if(is_tax()){
         $page_url = get_term_link($current_id);
     }
