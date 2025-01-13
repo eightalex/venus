@@ -8,6 +8,7 @@ $content_editor 	= carbon_get_term_meta($ID, 'content_editor');
 $content 			= carbon_get_term_meta($ID, 'ud_cat_content');
 $main_casinois_page	= carbon_get_theme_option('default_page_casinois');
 $is_paginavi 		= apply_filters('is_paginavi', 0);
+$casino_card_v1     = carbon_get_term_meta($ID, 'casino_card_v1');;
 
 $cas_args = [
     'items_number'   => 9,
@@ -57,7 +58,7 @@ if($casinos->have_posts()):
                             ?>
                         </div>
                     </div>
-
+                    <?php if ($casino_card_v1):?>
                     <table class="card-list card-list_col-2 table" style="margin-top: 40px;">
                         <?php
                         while($casinos->have_posts()):
@@ -87,6 +88,87 @@ if($casinos->have_posts()):
                         endwhile;
                         ?>
                     </table>
+                    <?php else : ?>
+                    <div class="card-list card-list_col-1" style="margin-top: 40px;">
+                        <?php while($casinos->have_posts()): ?>
+
+                        <?php
+
+                        $casinos->the_post();
+
+                        $id                    = get_the_ID();
+                        $is_first_casino       = $casinos->current_post === 0;
+                        $img_id                = get_post_thumbnail_id();
+                        $img_data              = apply_filters('ud_get_file_data', $img_id);
+                        $img_src               = $img_id !== 0? $img_data['src']: '';
+                        $img_alt               = $img_id !== 0? $img_data['alt']: get_the_title();
+                        $description           = get_post_meta($id, 'casino_short_desc', true);
+                        $overall_rating        = floatval(get_post_meta($id, 'casino_overall_rating', true));
+                        $external_link         = get_post_meta($id, 'casino_external_link', true);
+                        $title                 = get_the_title();
+                        $permalink             = get_the_permalink();
+                        $button_external_text  = !empty(get_option('casinos_play_now_title')) ? get_option('casinos_play_now_title') : 'Spill Na';
+                        $button_permalink_text = !empty(get_option('casinos_read_review_title')) ? get_option('casinos_read_review_title') : 'Les Anmeldelse';
+                        $promo_text_title      = carbon_get_post_meta($id, 'promo_text_title') ?: 'Temp text';
+                        $promo_text_price      = carbon_get_post_meta($id, 'promo_text_price') ?: 'Temp text';
+                        $promo_text_price_2    = carbon_get_post_meta($id, 'promo_text_price_2'); // optional
+                        $promo_text_subtitle   = carbon_get_post_meta($id, 'promo_text_subtitle') ?: 'Temp text';
+                        $detailed_tc           = get_post_meta($id, 'casino_detailed_tc', true);
+
+                        if ($is_first_casino) {
+                            $float_bar_casino_id = $id;
+                        }
+
+                        ?>
+
+                        <div class="casino-card-v2">
+                            <div class="casino-card-v2__casino">
+                                <div class="casino-card-v2__logo">
+                                    <img src="<?= $img_src ?>" alt="<?= $img_alt ?>">
+                                </div>
+                                <div class="casino-card-v2__info">
+                                    <div class="casino-card-v2__title"><?= $title ?></div>
+                                    <div class="casino-card-v2__rating">
+                                        <?php get_template_part('theme-parts/modules/star-rating', '', [
+                                            'id' => 2,
+                                            'number_of_stars' => 5,
+                                            'rating' => $overall_rating,
+                                            'classname' => 'casino-card-v2__star-rating',
+                                            'bg_color' => $is_first_casino ? '#5c2ed2' : '#223147',
+                                            'bg_stars' => true,
+                                        ]) ?>
+                                        <div class="casino-card-v2__number-rating">
+                                            <?= number_format($overall_rating, 2); ?>
+                                        </div>
+                                    </div>
+                                    <div class="casino-card-v2__clarification">
+                                        <span>*Kun nye spillere</span>
+                                        <i class="info-tooltip">
+                                            <span><?= $detailed_tc ?></span>
+                                        </i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="casino-card-v2__details">
+                                <span class="detail-1"><?= $promo_text_title ?></span>
+                                <span class="detail-2"><?= $promo_text_price ?></span>
+                                <?php if ($promo_text_price_2): ?>
+                                    <span class="detail-3"><?= $promo_text_price_2 ?></span>
+                                <?php endif; ?>
+                                <span class="detail-4"><?= $promo_text_subtitle ?></span>
+                            </div>
+                            <div class="casino-card-v2__cta">
+                                <a href="<?= $external_link ?>" class="button button_v2">
+                                    <?= $button_external_text ?>
+                                </a>
+                                <a href="<?= $permalink ?>" class="button button_v2 button_outline">
+                                    <?= $button_permalink_text ?>
+                                </a>
+                            </div>
+                        </div>
+                        <?php endwhile; ?>
+                    </div>
+                    <?php endif ?>
                 </div>
 				<?php
 					$max_pages = $casinos->max_num_pages;

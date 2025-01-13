@@ -2169,6 +2169,15 @@ function ud_custon_fields() {
             )
         );
 
+    Container::make('term_meta', 'Taxonomy Options')
+        ->where('term_taxonomy', '=', $custom_field_dates_taxonomy['casino-category'])
+        ->add_fields(
+           array(
+            Field::make('separator', 'taxonomy_options', 'Taxonomy Options'),
+            Field::make('checkbox', 'casino_card_v1', 'Casino Card Version 1')
+                ->set_width(20),
+           )
+        );
     Container::make( 'theme_options', __('Additional theme options') )
         ->add_fields( array(
             Field::make('separator', 'defpgsopt', __('Default pages settings'))
