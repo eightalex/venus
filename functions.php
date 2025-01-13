@@ -798,6 +798,11 @@ function my_pagination(int $current_page, int $max_page, string $url_param) {
 
     $page_url = trailingslashit(get_permalink($current_id));
 
+    if (is_category()) {
+        $category = get_category($current_id);
+        $page_url = get_site_url() . '/' . $category->slug . '/';
+    }
+
     if(is_tax()){
         $page_url = get_term_link($current_id);
     }
@@ -1554,8 +1559,8 @@ function ud_custon_fields() {
                     Field::make('checkbox', 'cas_show_pagination', __('Show pagination'))
                         ->set_default_value('yes')
                         ->set_width(50),
-                    Field::make('checkbox', 'casino_card_v2', __('Card version 2'))
-                        ->set_default_value('yes')
+                    Field::make('checkbox', 'casino_card_v1', __('Card version 1'))
+                        ->set_default_value('no')
                         ->set_width(50),
                     // Field::make('image', 'cas_bg', __('Background'))
                     //     ->set_value_type('url')
