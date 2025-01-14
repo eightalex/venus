@@ -1949,6 +1949,9 @@ function ud_custon_fields() {
                     Field::make('checkbox', 'cas_show_pagination', __('Show pagination 1'))
                         ->set_default_value('yes')
                         ->set_width(33),
+                    Field::make('checkbox', 'casino_card_v1', __('Card version 1'))
+                        ->set_default_value('no')
+                        ->set_width(50),
                 ))
                 ->add_fields('faq', 'FAQ`s', array(
                     // Field::make('checkbox', 'faq_power', __('Include FAQ'))
@@ -2166,6 +2169,15 @@ function ud_custon_fields() {
             )
         );
 
+    Container::make('term_meta', 'Taxonomy Options')
+        ->where('term_taxonomy', '=', $custom_field_dates_taxonomy['casino-category'])
+        ->add_fields(
+           array(
+            Field::make('separator', 'taxonomy_options', 'Taxonomy Options'),
+            Field::make('checkbox', 'casino_card_v1', 'Casino Card Version 1')
+                ->set_width(20),
+           )
+        );
     Container::make( 'theme_options', __('Additional theme options') )
         ->add_fields( array(
             Field::make('separator', 'defpgsopt', __('Default pages settings'))
